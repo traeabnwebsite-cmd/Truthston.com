@@ -1,0 +1,19 @@
+node_modules/
+.wrangler/
+public/
+.dev.vars
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+
+# Private local CMS state, drafts and music masters
+.local-media/
+.cms-local.json
+content/editorial.json
+__pycache__/
+*.pyc
+assets/audio/*.mp3
+companion-3d.html
+research/

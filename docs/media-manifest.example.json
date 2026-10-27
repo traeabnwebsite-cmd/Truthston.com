@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "publish": false,
+  "project": {
+    "id": "prototype-preview",
+    "title": "Prototype preview — replace with authorized project",
+    "releaseDate": null,
+    "artworkPath": null,
+    "tracks": [
+      {
+        "id": "boss-ballin-preview",
+        "trackNumber": 1,
+        "title": "Boss Ballin",
+        "localPath": "assets/audio/boss-ballin.mp3",
+        "isrc": null,
+        "rights": {
+          "masterOwner": null,
+          "masterStatus": "unreviewed",
+          "compositionStatus": "unreviewed",
+          "agreementReference": null,
+          "allowedUses": [],
+          "territories": [],
+          "startsAt": null,
+          "endsAt": null
+        }
+      }
+    ]
+  }
+}

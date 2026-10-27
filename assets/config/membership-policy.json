@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "status": "prototype",
+  "timezone": "America/Chicago",
+  "creditName": "Stamp Credits",
+  "creditsHaveCashValue": false,
+  "repeatableDailyCreditCap": 100,
+  "maxActivePlaybackSessions": 1,
+  "maxDjDecksPerSession": 2,
+  "plans": [
+    {"id":"free","name":"The Family","priceCents":0,"interval":null,"features":["Your Stamp Book and activity stamps","Public music previews and screening room","Houston exploration and DJ preview","Eligible community challenges"]},
+    {"id":"vault","name":"The ABN Vault","priceCents":null,"interval":"month","features":["Authorized members-only music and videos","Eligible project downloads, where included","Early access to announced member drops","Member events when announced"]}
+  ],
+  "stamps": [
+    {"id":"abn","key":"abn-approved","name":"ABN Approved","official":true,"credits":0,"rule":"An official award from an authorized ABN account. Personal approval cannot be earned automatically.","source":"staff","repeat":"once"},
+    {"id":"truth","key":"the-truth","name":"The Truth","kind":"listen","need":60,"credits":40,"rule":"Listen for 60 qualifying seconds. Production checks server-issued playback sessions and bounded progress receipts.","previewRule":"Listen to 60 seconds of the preview record while this page is visible.","source":"playback","repeat":"once"},
+    {"id":"maab","key":"guerilla-maab","name":"Guerilla Maab","official":true,"credits":0,"rule":"A verified award by an authorized Guerilla Maab affiliate or staff campaign. Membership does not buy approval.","source":"staff","repeat":"once"},
+    {"id":"street","key":"street-certified","name":"Street Certified","kind":"city","need":4,"credits":30,"rule":"Explore four different Houston landmarks for at least five qualifying seconds each.","previewRule":"Explore four different Houston landmark viewpoints.","minimumSeconds":5,"source":"exploration","repeat":"once"},
+    {"id":"crate","key":"crate-digger","name":"Crate Digger","kind":"dig","need":5,"credits":50,"rule":"Open five different releases for at least eight qualifying seconds each.","previewRule":"Open five different releases from the record shelves or archive.","minimumSeconds":8,"source":"exploration","repeat":"once"},
+    {"id":"chop","key":"chopped-in","name":"Chopped In","kind":"cut","need":4,"credits":25,"rule":"Make four manual crossfader cuts during authorized DJ playback. Automatic chops do not qualify.","previewRule":"Play the record and make four manual cuts with the DJ crossfader.","source":"dj","repeat":"once"},
+    {"id":"project","key":"project-collector","name":"Project Collector","credits":0,"rule":"Collect a project-specific stamp when an eligible project download is authorized and delivery starts. Each eligible project has its own permanent stamp.","source":"download","repeat":"per-project"}
+  ],
+  "rewards": [
+    {"id":"tee","name":"ABN Tee reservation","cost":100,"active":false,"description":"A sample reward for a future apparel drop. No product is reserved or shipped in this preview."},
+    {"id":"merch","name":"Merch credit","cost":75,"active":false,"description":"A sample future merch reward. No cash conversion or live discount is offered."},
+    {"id":"drop","name":"Members-only drop","cost":150,"active":false,"description":"A sample future collection reward. Final stock, terms and eligibility must be published before activation."}
+  ]
+}
