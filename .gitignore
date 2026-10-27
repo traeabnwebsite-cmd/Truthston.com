@@ -17,3 +17,4 @@ __pycache__/
 assets/audio/*.mp3
 companion-3d.html
 research/
+handoff/verification/*authorization.png
