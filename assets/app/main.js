@@ -1,3 +1,6 @@
+import { createScreeningCatalog } from "./features/theater/catalog.js";
+import { createCinemaController } from "./features/theater/controller.js";
+import { createTheaterScreen } from "./features/theater/world-screen.js";
 import { createAudioEngine } from "./features/audio/engine.js";
 import { createPlayerDock } from "./features/audio/dock.js";
 import { createDJMixer } from "./features/dj/mixer.js";
@@ -204,105 +207,16 @@ function twin(label, fn) {
   $("#twins").append(b);
 }
 
-const embeddedVideos = [
-  {
-    id: "QgZD5Uyg6t4",
-    title: "Hit",
-    date: "2024-09-03",
-    duration: 152,
-    thumb: "assets/videos/QgZD5Uyg6t4.jpg",
-  },
-  {
-    id: "r700E994Obk",
-    title: "Rain",
-    date: "2023-12-18",
-    duration: 184,
-    thumb: "assets/videos/r700E994Obk.jpg",
-  },
-  {
-    id: "xv2_XGzG5jw",
-    title: "Rearview",
-    date: "2023-12-18",
-    duration: 244,
-    thumb: "assets/videos/xv2_XGzG5jw.jpg",
-  },
-  {
-    id: "UN9kx9RPRyA",
-    title: "Slumz",
-    date: "2023-12-18",
-    duration: 176,
-    thumb: "assets/videos/UN9kx9RPRyA.jpg",
-  },
-  {
-    id: "enIxvD1HmWw",
-    title: "Im Here",
-    date: "2023-11-13",
-    duration: 136,
-    thumb: "assets/videos/enIxvD1HmWw.jpg",
-  },
-  {
-    id: "JIMVaq_mQzA",
-    title: "Reconsider",
-    date: "2023-10-20",
-    duration: 166,
-    thumb: "assets/videos/JIMVaq_mQzA.jpg",
-  },
-  {
-    id: "E_7e_egADjs",
-    title: "Feel Like Tha Water",
-    date: "2023-01-27",
-    duration: 143,
-    thumb: "assets/videos/E_7e_egADjs.jpg",
-  },
-  {
-    id: "2cwbqwZS7So",
-    title: "Shake Em Off",
-    date: "2022-04-28",
-    duration: 184,
-    thumb: "assets/videos/2cwbqwZS7So.jpg",
-  },
-  {
-    id: "AlZ0WSB8GdE",
-    title: "Hope It Don't Change You",
-    date: "2022-04-08",
-    duration: 295,
-    thumb: "assets/videos/AlZ0WSB8GdE.jpg",
-  },
-  {
-    id: "9RRyy47Pg70",
-    title: "Sky Scraper",
-    date: "2022-02-07",
-    duration: 222,
-    thumb: "assets/videos/9RRyy47Pg70.jpg",
-  },
-  {
-    id: "M_DoO5BmA9g",
-    title: "Clutch",
-    date: "2022-01-28",
-    duration: 151,
-    thumb: "assets/videos/M_DoO5BmA9g.jpg",
-  },
-  {
-    id: "_kzuxBIPSYs",
-    title: "Freestyle",
-    date: "2021-07-01",
-    duration: 174,
-    thumb: "assets/videos/_kzuxBIPSYs.jpg",
-  },
-];
-const screeningVideos = (
-  Array.isArray(data.videos) && data.videos.length
-    ? data.videos
-    : embeddedVideos
-).filter((v) => /^[A-Za-z0-9_-]{11}$/.test(v.id));
-if (!screeningVideos.some((v) => v.id === "J8fztJ29L7E"))
-  screeningVideos.unshift({
-    id: "J8fztJ29L7E",
-    title: "Strapped Up",
-    date: "2011",
-    duration: 0,
-    thumb: "assets/videos/J8fztJ29L7E.jpg",
-  });
+const screeningVideos = createScreeningCatalog(data);
+const cinema = createCinemaController({
+  screeningVideos,
+  appState,
+  getWorld: () => sceneAPI,
+  setMode,
+  go,
+  pauseRoomForVideo,
+  earn,
+});
 const commerce = createCommercePage({
   siteContent,
   getPhoto: (id) => editorial.photo(id),
@@ -345,221 +259,9 @@ function pauseRoomForVideo() {
   audio.stopAutoChop();
   audio.syncAudioLabels();
 }
-function setupCinema() {
-  const room = $(".room-wrap"),
-    host = document.createElement("div");
-  host.id = "room-cinema";
-  host.hidden = true;
-  host.setAttribute("aria-label", "Theater screen");
-  room.append(host);
-  const browse = document.createElement("div");
-  browse.id = "cinema-browse-zone";
-  browse.innerHTML =
-    '<button id="cinema-browse-toggle" aria-expanded="true" aria-controls="cinema-carousel">Browse films <span>⌄</span></button>';
-  room.append(browse);
-  const rail = document.createElement("aside");
-  rail.id = "cinema-carousel";
-  rail.setAttribute("aria-label", "Theater film strip");
-  rail.innerHTML = `<button id="cinema-rail-up" aria-label="Previous videos">‹</button><div id="cinema-rail-scroll">${screeningVideos.map((v, i) => `<button class="cinema-pick" data-cinema-video="${i}" aria-current="false"><img loading="lazy" src="${esc(v.thumb)}" alt=""><span><b>${esc(v.title)}</b></span></button>`).join("")}</div><button id="cinema-rail-down" aria-label="More videos">›</button>`;
-  browse.append(rail);
-  function menu(open) {
-    room.classList.toggle("cinema-menu-open", open);
-    $("#cinema-browse-toggle").setAttribute("aria-expanded", String(open));
-    rail.setAttribute("aria-hidden", String(!open));
-    if (open) rail.removeAttribute("inert");
-    else rail.setAttribute("inert", "");
-  }
-  room._cinemaMenu = menu;
-  let hideMenu;
-  const closeSoon = () => {
-    clearTimeout(hideMenu);
-    hideMenu = setTimeout(() => {
-      if (cinemaState.active && !browse.matches(":focus-within")) menu(false);
-    }, 450);
-  };
-  browse.addEventListener("pointerenter", () => {
-    clearTimeout(hideMenu);
-    menu(true);
-  });
-  browse.addEventListener("pointerleave", closeSoon);
-  browse.addEventListener("focusin", () => menu(true));
-  browse.addEventListener("focusout", closeSoon);
-  $("#cinema-browse-toggle").onclick = () => menu(true);
-  browse.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      $("#cinema-browse-toggle").focus();
-      menu(false);
-    }
-  });
-  const controls = document.createElement("div");
-  controls.id = "cinema-controls";
-  controls.innerHTML =
-    '<span id="cinema-now" role="status">Choose a video from the carousel.</span><button id="cinema-stop">Lights up</button><button id="cinema-leave">Back to the shop</button><a id="cinema-external" target="_blank" rel="noopener noreferrer" hidden>Open on YouTube ↗</a>';
-  room.append(controls);
-  $$("[data-cinema-video]").forEach(
-    (b) => (b.onclick = () => video(+b.dataset.cinemaVideo)),
-  );
-  $("#cinema-rail-up").onclick = () =>
-    $("#cinema-rail-scroll").scrollBy({
-      left: -360,
-      behavior: appState.calm ? "auto" : "smooth",
-    });
-  $("#cinema-rail-down").onclick = () =>
-    $("#cinema-rail-scroll").scrollBy({
-      left: 360,
-      behavior: appState.calm ? "auto" : "smooth",
-    });
-  $("#cinema-stop").onclick = stopCinema;
-  $("#cinema-leave").onclick = () => go(0);
-  document.addEventListener("truth-station", (e) => {
-    document.body.classList.toggle("theater-mode", e.detail === 2);
-    document.body.classList.toggle("in-screening-room", e.detail === 2);
-    if (e.detail === 2) {
-      menu(!cinemaState.active);
-      document.dispatchEvent(new Event("truth-guide-screening"));
-      room.scrollIntoView({ block: "start" });
-    } else stopCinema();
-  });
-}
-let youtubeReady = null,
-  cinemaSerial = 0;
-function loadYouTubeAPI() {
-  if (window.YT?.Player) return Promise.resolve(window.YT);
-  if (youtubeReady) return youtubeReady;
-  youtubeReady = new Promise((resolve, reject) => {
-    const old = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = () => {
-      old?.();
-      resolve(window.YT);
-    };
-    const script = document.createElement("script");
-    script.src = "https://www.youtube.com/iframe_api";
-    script.onerror = () => reject(new Error("Video API unavailable"));
-    document.head.append(script);
-    setTimeout(() => {
-      if (!window.YT?.Player) reject(new Error("Video API timed out"));
-    }, 15000);
-  });
-  return youtubeReady;
-}
-function cinemaPlaying(value, ended = false) {
-  cinemaState.playing = value;
-  if (ended) $(".room-wrap")._cinemaMenu?.(true);
-  document.dispatchEvent(
-    new CustomEvent("truth-cinema", { detail: { playing: value, ended } }),
-  );
-  if (cinemaState.selected >= 0)
-    $("#cinema-now").textContent =
-      (ended ? "FINISHED / " : value ? "NOW PLAYING / " : "ON SCREEN / ") +
-      screeningVideos[cinemaState.selected].title;
-}
-function stopCinema() {
-  cinemaSerial++;
-  cinemaState.active = false;
-  cinemaPlaying(false);
-  try {
-    cinemaState.player?.destroy();
-  } catch {}
-  cinemaState.player = null;
-  const host = $("#room-cinema");
-  if (host) {
-    host.innerHTML = "";
-    host.hidden = true;
-  }
-  sceneAPI?.setCinemaLights?.(false);
-  document.body.classList.remove("cinema-playing");
-  $(".room-wrap")._cinemaMenu?.(true);
-  $("#cinema-now") &&
-    ($("#cinema-now").textContent = "Choose a video from the carousel.");
-}
-async function video(i = 0) {
-  if (!screeningVideos.length) return;
-  if ($("#modal").open) $("#modal").close();
-  if (sceneAPI && appState.mode !== "immersive") setMode("immersive");
-  if (appState.station !== 2) go(2);
-  i = Math.max(0, Math.min(screeningVideos.length - 1, i));
-  const selected = screeningVideos[i],
-    serial = ++cinemaSerial;
-  pauseRoomForVideo();
-  try {
-    cinemaState.player?.destroy();
-  } catch {}
-  cinemaState.player = null;
-  cinemaState.active = true;
-  cinemaState.selected = i;
-  cinemaPlaying(false);
-  document.body.classList.add(
-    "theater-mode",
-    "in-screening-room",
-    "cinema-playing",
-  );
-  sceneAPI?.setCinemaLights?.(true);
-  sceneAPI?.theaterView?.();
-  document.dispatchEvent(new Event("truth-guide-screening"));
-  $$("[data-cinema-video]").forEach((b) =>
-    b.setAttribute("aria-current", String(+b.dataset.cinemaVideo === i)),
-  );
-  $("#cinema-now").textContent = "LOADING / " + selected.title;
-  $("#cinema-external").hidden = false;
-  $("#cinema-external").href = "https://www.youtube.com/watch?v=" + selected.id;
-  const host = $("#room-cinema");
-  host.hidden = false;
-  const iframe = document.createElement("iframe");
-  iframe.id = "cinema-youtube";
-  iframe.title = "Trae Tha Truth — " + selected.title;
-  iframe.width = "960";
-  iframe.height = "540";
-  iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
-  iframe.allowFullscreen = true;
-  iframe.referrerPolicy = "strict-origin-when-cross-origin";
-  iframe.src =
-    "https://www.youtube-nocookie.com/embed/" +
-    selected.id +
-    "?enablejsapi=1&playsinline=1&rel=0&fs=0&autoplay=1&origin=" +
-    encodeURIComponent(location.origin);
-  host.replaceChildren(iframe);
-  host.dataset.video = selected.id;
-  $(".room-wrap")._cinemaMenu?.(false);
-  document.activeElement?.blur();
-  try {
-    const YT = await loadYouTubeAPI();
-    if (serial !== cinemaSerial) return;
-    cinemaState.player = new YT.Player(iframe, {
-      events: {
-        onReady: (e) => {
-          if (serial === cinemaSerial) {
-            $("#cinema-now").textContent = "ON SCREEN / " + selected.title;
-            e.target.playVideo();
-          }
-        },
-        onStateChange: (e) => {
-          if (serial !== cinemaSerial) return;
-          if (e.data === 1) cinemaPlaying(true);
-          else if ([0, 2, 5].includes(e.data))
-            cinemaPlaying(false, e.data === 0);
-        },
-        onAutoplayBlocked: () => {
-          if (serial === cinemaSerial)
-            $("#cinema-now").textContent =
-              "Press play on the theater screen / " + selected.title;
-        },
-        onError: () => {
-          if (serial !== cinemaSerial) return;
-          cinemaPlaying(false);
-          $("#cinema-now").textContent =
-            "This upload is unavailable here. Choose another video or open YouTube.";
-        },
-      },
-    });
-  } catch {
-    if (serial === cinemaSerial)
-      $("#cinema-now").textContent =
-        "Use the play button on the screen. If unavailable, choose another video.";
-  }
-}
 
 screeningVideos.forEach((v, i) =>
-  twin("Watch video: " + v.title, () => video(i)),
+  twin("Watch video: " + v.title, () => cinema.open(i)),
 );
 $("#modal").addEventListener("close", () => {
   const frame = $("#youtube-player");
@@ -858,7 +560,7 @@ function go(i) {
   document.dispatchEvent(new CustomEvent("truth-station", { detail: i }));
   if (appState.mode !== "immersive") {
     if (i === 1) showDJFallback();
-    if (i === 2) video(0);
+    if (i === 2) cinema.open(0);
     if (i === 3) timeline();
     if (i === 4) giving();
     if (i === 5) commerce.merch();
@@ -869,13 +571,8 @@ $$("[data-station]").forEach(
     (b.onclick = () =>
       +b.dataset.station === 1 ? enterDJRoom() : go(+b.dataset.station)),
 );
-const cinemaState = {
-  active: false,
-  playing: false,
-  selected: -1,
-  player: null,
-};
-setupCinema();
+
+cinema.mount();
 initCompanion();
 
 try {
@@ -1770,7 +1467,7 @@ try {
   screen.position.set(18.21, theaterScreen.y, theaterScreen.z);
   screen.rotation.y = -Math.PI / 2;
   world.add(screen);
-  hit(screen, "Choose a film from the theater menu", () => video(0));
+  hit(screen, "Choose a film from the theater menu", () => cinema.open(0));
   world.children
     .slice(theaterMeshStart)
     .forEach((o) => o.traverse((child) => child.layers.enable(1)));
@@ -6670,35 +6367,21 @@ try {
   }
 
   // Project the live YouTube iframe onto the four corners of the actual theater screen.
-  const cinemaDepthMask = new T.Mesh(
-    screen.geometry,
-    new T.MeshBasicMaterial({
-      colorWrite: false,
-      depthWrite: true,
-      side: T.DoubleSide,
-    }),
-  );
-  cinemaDepthMask.position.copy(screen.position);
-  cinemaDepthMask.position.x -= 0.02;
-  cinemaDepthMask.quaternion.copy(screen.quaternion);
-  cinemaDepthMask.renderOrder = -1000;
-  cinemaDepthMask.visible = false;
-  cinemaDepthMask.layers.set(1);
-  scene.add(cinemaDepthMask);
-  let theaterLightsLevel = 0,
-    theaterDim = false;
-  sceneAPI.setCinemaLights = (value) => {
-    theaterDim = value;
-    screen.visible = !value;
-    cinemaDepthMask.visible = value;
-    if (value) {
-      scene.background = null;
-      renderer.setClearColor("#0b120e", 0);
-    } else {
-      renderer.setClearColor("#0b120e", 1);
-      if (appState.station === 2) scene.background = new T.Color("#20251f");
-    }
-  };
+
+  const theaterProjection = createTheaterScreen({
+    T,
+    scene,
+    screen,
+    renderer,
+    appState,
+    camera,
+    canvas,
+    sun,
+    roomAmbient,
+    theatreLights,
+    screenLight,
+  });
+  sceneAPI.setCinemaLights = theaterProjection.setCinemaLights;
   sceneAPI.theaterView = () => {
     streetJourney = null;
     camera.fov = 45;
@@ -6708,74 +6391,6 @@ try {
     elevationGoal = 4.15;
     targetGoal.set(18.2, 3.65, -0.8);
   };
-  function updateTheater(dt) {
-    const desired = theaterDim && appState.station === 2 ? 1 : 0;
-    theaterLightsLevel +=
-      (desired - theaterLightsLevel) *
-      (appState.calm ? 1 : Math.min(1, dt * 1.6));
-    if (appState.station === 2) {
-      sun.intensity = 3 * (1 - theaterLightsLevel) + 0.1 * theaterLightsLevel;
-      roomAmbient.intensity =
-        2.6 * (1 - theaterLightsLevel) + 0.2 * theaterLightsLevel;
-      theatreLights.forEach(
-        (l) =>
-          (l.intensity =
-            16 * (1 - theaterLightsLevel) + 0.65 * theaterLightsLevel),
-      );
-      screenLight.intensity =
-        22 * (1 - theaterLightsLevel) + 11 * theaterLightsLevel;
-      screenLight.color.set(theaterLightsLevel > 0.3 ? "#adc9f1" : "#93aaa0");
-    }
-    const host = $("#room-cinema");
-    if (
-      !host ||
-      host.hidden ||
-      appState.station !== 2 ||
-      appState.mode !== "immersive"
-    )
-      return;
-    const { width: w, height: h } = screen.geometry.parameters;
-    const points = [
-      [-w / 2, h / 2],
-      [w / 2, h / 2],
-      [w / 2, -h / 2],
-      [-w / 2, -h / 2],
-    ].map(([x, y]) =>
-      new T.Vector3(x, y, 0).applyMatrix4(screen.matrixWorld).project(camera),
-    );
-    if (points.some((p) => p.z <= -1 || p.z >= 1) || camera.position.x > 18.2) {
-      host.style.visibility = "hidden";
-      return;
-    }
-    host.style.visibility = "visible";
-    const rect = canvas.getBoundingClientRect(),
-      p = points.map((v) => ({
-        x: ((v.x + 1) * rect.width) / 2,
-        y: ((1 - v.y) * rect.height) / 2,
-      }));
-    let dx1 = p[1].x - p[2].x,
-      dx2 = p[3].x - p[2].x,
-      dx3 = p[0].x - p[1].x + p[2].x - p[3].x,
-      dy1 = p[1].y - p[2].y,
-      dy2 = p[3].y - p[2].y,
-      dy3 = p[0].y - p[1].y + p[2].y - p[3].y,
-      g = 0,
-      j = 0,
-      den = dx1 * dy2 - dx2 * dy1;
-    if (Math.abs(den) > 0.001) {
-      g = (dx3 * dy2 - dx2 * dy3) / den;
-      j = (dx1 * dy3 - dx3 * dy1) / den;
-    }
-    const a = p[1].x - p[0].x + g * p[1].x,
-      b = p[3].x - p[0].x + j * p[3].x,
-      c = p[0].x,
-      d = p[1].y - p[0].y + g * p[1].y,
-      e = p[3].y - p[0].y + j * p[3].y,
-      f = p[0].y;
-    host.style.transform = `matrix3d(${a / 960},${d / 960},0,${g / 960},${b / 540},${e / 540},0,${j / 540},0,0,1,0,${c},${f},0,1)`;
-    host.dataset.screenAttached = "true";
-  }
-
   const bins = new Uint8Array(1024);
   let bass = 0,
     mid = 0,
@@ -6974,7 +6589,7 @@ try {
       while (drops.length && drops[0].life < 0) drops.shift();
     }
     updateRoomGuide(ts);
-    updateTheater(dt);
+    theaterProjection.update(dt);
     renderer.render(scene, camera);
     frames++;
     frameTotal += dt;
@@ -8187,7 +7802,7 @@ function initCompanion() {
   }
   function guideArrived(seated) {
     worldSeat = seated;
-    rig?.cinema?.(seated, Boolean(cinemaState?.playing));
+    rig?.cinema?.(seated, Boolean(cinema.state?.playing));
     if (!seated) pose(3);
   }
   function guidePosition(x, y, visible) {
@@ -8239,7 +7854,7 @@ function initCompanion() {
     rig?.cinema?.(worldSeat, Boolean(e.detail.playing));
     if (e.detail.ended && inWorld && worldSeat) {
       rig?.cinema?.(true, false, true);
-      const next = (cinemaState.selected + 1) % screeningVideos.length;
+      const next = (cinema.state.selected + 1) % screeningVideos.length;
       showThought(
         "One more? Try " + screeningVideos[next].title + ".",
         "screens",
@@ -8247,7 +7862,7 @@ function initCompanion() {
       $("#companion-cta small").textContent = "Play next video ↗";
       $("#companion-cta").onclick = () => {
         $("#companion-bubble").hidden = true;
-        video(next);
+        cinema.open(next);
       };
     }
   });
