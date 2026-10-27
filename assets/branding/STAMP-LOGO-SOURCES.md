@@ -1,3 +1,9 @@
+# Current Hustle Gang mark — owner supplied
+
+The owner supplied the circular Hustle Gang / Grand Hustle headdress emblem on October27. Current stamp uses assets/branding/hustle-gang-supplied.png unchanged as its source, with a runtime ink-color mask. It replaces the store bear variant below. Preserve the supplied emblem; do not return to the bear.
+
+---
+
 # Stamp logo artwork — October 27, 2026
 
 - Hustle Gang: bear mark from the official Hustle Gang clothing store header, https://hustlegang32.com/ . Source file: https://hustlegang32.com/cdn/shop/files/hg-beear-logo_1.png?v=1695998928&width=600 . Stored as hustle-gang-logo.png. The stamp uses an SVG ink mask of the existing mark, not a newly invented logo. This is the official store bear variant; a music-label-specific variant can replace the source if supplied.
