@@ -8,9 +8,9 @@ The interactive artist-site **prototype is built and publicly deployed**. The pa
 
 **Yes, the public frontend is monolithic.** Most application code, styling, catalog fallback data and procedural 3D models are in `index.html`. The local CMS and Cloudflare backend already have separate files, so this is not one monolithic server application. The recommended next engineering job is an incremental conversion to a **modular application in the same repository**, keeping Cloudflare and the existing visual design. A collection of separately deployed microservices is unnecessary at this stage.
 
-Subsequent updates in this same job renamed the site Truthston.com, added a welcome gantry and25 grouped collectible designs, and isolated stamp artwork into assets/stamps.mjs/assets/stamps.css with display definitions in assets/config/collectible-stamps.json. The rest of the public frontend remains monolithic. New art/collection metadata does not activate official stamp issuance. The figures below describe the audited b499d9a baseline, before those additions.
+Subsequent updates in this same job renamed the site Truthston.com, added a welcome gantry and 35 grouped collectible designs (including 12 sourced Trae Day venues), and isolated stamp artwork into assets/stamps.mjs/assets/stamps.css with display definitions in assets/config/collectible-stamps.json. The rest of the public frontend remains monolithic. New art/collection metadata does not activate official stamp issuance. Toyota Center now has a solid exterior roof; 13 named skyline complexes use geographic relative placement, with automated overlap checks. See [skyline inventory](docs/SKYLINE-INVENTORY.md) and [Trae Day venue evidence](docs/TRAE-DAY-VENUES.md). Angel By Nature has wings; the supplied Hustle Gang emblem and Rap-A-Lot historical logo are used. The figures below describe the audited b499d9a baseline, before those additions.
 
-The original single-file prototype requirement explains the current structure. The requested modularization plan supersedes that restriction for the future production source. The full R0–R8 refactor has not been performed; only the subsequent stamp presentation feature has been isolated.
+The original single-file prototype requirement explains the current structure. The requested modularization plan supersedes that restriction for the future production source. The full R0–R8 refactor has not been performed; the stamp presentation feature and skyline placement data have been isolated.
 
 ## Status key
 
@@ -71,3 +71,7 @@ The right result is a small entry page, feature-owned modules, explicit service 
 4. Complete real-device/accessibility/security/load/restore/editorial acceptance, then run a controlled member launch.
 
 No new approval is needed merely to produce this plan. This report does not activate services, incur a paid plan, migrate private media or change the public application architecture.
+
+## Final validation for this update
+
+21 Node tests and 17 Python tests pass, alongside Worker types, source/assets/size and SQL checks. Browser checks confirmed35 stamp designs,12 venue cards, no names outside stamp SVG bounds and no horizontal overflow at desktop and phone widths. Toyota roof/court restoration and13 named skyline buildings were checked separately; modeled tower road/freeway conflict counts are zero. These checks cover the preview updates, not production membership activation.

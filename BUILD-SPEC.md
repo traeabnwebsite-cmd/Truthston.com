@@ -12,7 +12,7 @@ Owner-provided Trae intellectual property, partner arrangements and acquired pho
 
 A completed slice includes visible UI, correct loading/empty/error states, accessible controls, appropriate tests, source/delivery synchronization and a documented operational boundary. A page mockup, schema migration or external checkout link alone does not complete its corresponding production service.
 
-Latest owner addition: brand the site Truthston.com; add “Welcome to Truthston, Texas” in the city; apply intricate worn-ink designs throughout the Stamp Book (varied designs, with matching shape and color within a related family), including individual stamps for Trae tha Truth, 6 Tre G, Dougie D and Roc. Truthston branding, welcome sign and25 collection designs are implemented at preview scope. Individual and campaign stamps remain unissued. These additions belong to S01/S03/S11. They do not change official award authorization or activate real credits.
+Latest owner addition: brand the site Truthston.com; add “Welcome to Truthston, Texas” in the city; apply intricate worn-ink designs throughout the Stamp Book (varied designs, with matching shape and color within a related family), including individual stamps for Trae tha Truth, 6 Tre G, Dougie D and Roc. Truthston branding, welcome sign and 35 collection designs (12 sourced venue collectibles) are implemented at preview scope. Individual and campaign stamps remain unissued. These additions belong to S01/S03/S11. They do not change official award authorization or activate real credits.
 
 ## Architecture decision
 
@@ -181,3 +181,7 @@ These are dependencies for their future slice, not blockers to refactoring: paid
 ## Completion reporting rule
 
 Every implementation handoff must list slice IDs changed, exact completed acceptance checks, remaining gaps, deployed commit, changed data/service bindings and any rollback limits. Keep LOCAL, FOUNDATION and LIVE distinctions. Do not publish a percentage without defined, weighted scope and explicit evidence. A successful unit suite or a deployed preview alone does not complete the commercial platform.
+
+### Latest visual/content corrections
+
+Angel By Nature winged seal; fitted heavy Guerilla Maab family with vinyl symbols; ABN lines/thumbs-up; supplied Hustle Gang logo and historical Rap-A-Lot logo. Trae Day designs use physical venues and linked evidence, not city labels: see [research](docs/TRAE-DAY-VENUES.md). Toyota Center roof repaired; downtown 13 named complexes geographically spread: see [inventory](docs/SKYLINE-INVENTORY.md). These complete the current preview requests, while commercial acceptance gates above remain pending.

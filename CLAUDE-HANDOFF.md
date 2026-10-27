@@ -1,10 +1,14 @@
-# Latest Truthston branding and stamp collection — October 27, 2026
+## Latest completed update — October 27, 2026
+
+Read COMPLETION-REPORT.md, BUILD-SPEC.md v3, MONOLITH-BREAKDOWN.md, WORK-QUEUE.md and docs/TRAE-DAY-VENUES.md first. Jobs25–30 are complete at their stated prototype/research scope. Truthston.com branding/welcome sign;35 worn-ink stamp designs, four matching GUERILLA MAAB member marks, Angel By Nature wings, ABN lines/thumb, exact supplied Hustle Gang emblem, Rap-A-Lot logo;12 sourced Trae Day venues replace city labels. No display-only design grants real awards/credits. Toyota Center solid curved roof and court restoration fixed;13 geographically placed downtown complexes with road/freeway clearance checks. Stamp artwork and skyline layout are native modules, but most frontend remains a monolith; R0–R8 is a plan still to execute. 21 Node+17 Python tests, types/assets/SQL pass. Do not treat old handoff counts/status below as current. Real identity/D1/R2/Stripe/cloud CMS/AI remain unconfigured and protected routes fail closed. Preserve the approved illustrated companion. Finish one job and its verification before the next.
+
+# Historical step — initial Truthston branding and stamp collection — October 27, 2026
 
 Site now Truthston.com; artist remains Trae tha Truth; store remains ABN Records, CDs and Tapes. Street has elevated Welcome to Truthston Texas gantry.25 stamps grouped by family, same shape+ink for related designs. Four member stamps name Guerilla Maab; project/DJ/Trae Day/location/Relief/affiliation/Vault designs added. All share worn ink and detailed ornaments, safe text widths. ABN uses top lines and bottom thumbs-up, no five-point stars. Logo assets/provenance in assets/branding; Hustle mark is official clothing-store bear variant. New concepts are display-only/unissued, zero-credit; existing award policy unchanged. assets/stamps.mjs and stamps.css isolate presentation; collectible-stamps.json defines display-only extras. This small feature extraction is not the full planned refactor. Roof repair next, then skyline reference audit.
 
 ---
 
-# Latest completion audit and build plan — October 27, 2026
+# Historical step — initial completion audit and build plan — October 27, 2026
 
 Read COMPLETION-REPORT.md, BUILD-SPEC.md v3 and MONOLITH-BREAKDOWN.md. Frontend is monolithic; CMS/backend partly separate. Owner requested report and a plan, not an immediate full refactor. R0–R8 is the proposed gated extraction; no extraction has happened. Existing commercial services remain unconnected. New owner request queued next: Truthston.com branding, Welcome to Truthston Texas city sign, all Stamp Book designs matching approved banner stamp, four individual affiliate stamps. Preserve official award authorization; no real approval/grants from browser UI.
 

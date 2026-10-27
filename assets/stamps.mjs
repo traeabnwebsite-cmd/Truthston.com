@@ -25,8 +25,6 @@ Object.assign(designs,{
  slabbed:{...screwedInk,shape:'rectangle',lines:['S.L.A.B.ED']},
  'rap-a-lot':{shape:'square',color:'#292b28',lines:['RAP-A-LOT'],top:'TRUTHSTON · TEXAS',bottom:'AFFILIATION SERIES'},
  'hustle-gang':{shape:'octagon',color:'#d55c23',lines:['HUSTLE','GANG'],top:'TRUTHSTON · TEXAS',bottom:'AFFILIATION SERIES'},
- 'trae-day-houston':{...eventInk,shape:'round',lines:['HOUSTON'],bottom:'HOUSTON · TEXAS'},
- 'trae-day-katy':{...eventInk,shape:'ticket',lines:['KATY'],bottom:'KATY · TEXAS'},
  'relief-gang':{shape:'round',color:'#167d9a',lines:['RELIEF','GANG'],top:'FOR THE PEOPLE',bottom:'COMMUNITY SERIES'},
  'relief-gang-service':{shape:'rectangle',color:'#167d9a',lines:['RELIEF GANG','SHOW UP'],top:'FOR THE PEOPLE',bottom:'COMMUNITY SERIES'},
  'angel-by-nature':{shape:'round',color:'#a32d24',lines:['ANGEL','BY NATURE'],top:'ABN · TRUTHSTON',bottom:'FOR THE PEOPLE'},
@@ -37,7 +35,6 @@ Object.assign(designs,{
 for(const id of ['maab','trae','6-tre-g','dougie-d','roc'])Object.assign(designs[id],{shape:'round',color:'#292b28'});
 for(const id of ['project','losing-control','king-streets','tha-truth-project','restless'])Object.assign(designs[id],{shape:'rectangle',color:'#a17423',metallic:'gold',paper:undefined});
 for(const id of ['chop','dj-screw','slabbed'])Object.assign(designs[id],{shape:'oval',color:'#7545ab'});
-for(const id of ['trae-day-houston','trae-day-katy'])Object.assign(designs[id],{shape:'round',color:'#2c7250'});
 for(const id of ['relief-gang','relief-gang-service'])Object.assign(designs[id],{shape:'round',color:'#167d9a'});
 Object.assign(designs['angel-by-nature'],{shape:'banner',lines:['ANGEL BY NATURE']});
 
@@ -48,8 +45,10 @@ function wear(seed) {
   const random = () => { state = (state * 1664525 + 1013904223) >>> 0; return state / 4294967296; };
   return Array.from({ length: 230 }, () => `<ellipse cx="${(8 + random()*224).toFixed(1)}" cy="${(8 + random()*224).toFixed(1)}" rx="${(.3 + random()*.9).toFixed(2)}" ry="${(.3 + random()*1.15).toFixed(2)}"/>`).join('');
 }
-export function renderStamp(id, { scope = 'book', name = 'Project Collector' } = {}) {
-  const d = designs[id] || { ...designs.project, lines: [name] };
+export function renderStamp(id, { scope = 'book', name = 'Project Collector', artLines, years = [] } = {}) {
+  const venue = id.startsWith('trae-day-') && Array.isArray(artLines) && artLines.length === 2;
+  const yearLabel = years.length > 2 ? 'VENUE HISTORY' : years.join(' · ');
+  const d = venue ? { ...eventInk, shape:'round', lines:artLines.map(String), bottom:yearLabel || 'VENUE SERIES' } : designs[id] || { ...designs.project, lines: [name] };
   const isMaab=['maab','trae','6-tre-g','dougie-d','roc'].includes(id);
   const uid = `stamp-${scope}-${id}`.replace(/[^a-zA-Z0-9_-]/g, '-');
   const gradient=d.metallic==='gold'?['#825217','#c7943f','#95621e']:['#46545f','#9ba9b1','#566571'];

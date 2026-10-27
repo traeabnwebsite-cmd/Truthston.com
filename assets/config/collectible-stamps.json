@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "status": "collection-design-preview",
   "stamps": [
     {
@@ -111,24 +111,6 @@
       "credits": 0
     },
     {
-      "id": "trae-day-houston",
-      "name": "Trae Day \u00b7 Houston",
-      "family": "events",
-      "rule": "Location-specific community collectible. A verified Houston event campaign and check-in requirements must be announced before issuance. Not awarded in this preview.",
-      "official": false,
-      "displayOnly": true,
-      "credits": 0
-    },
-    {
-      "id": "trae-day-katy",
-      "name": "Trae Day \u00b7 Katy",
-      "family": "events",
-      "rule": "Location-specific community collectible. A verified Katy event campaign and check-in requirements must be announced before issuance. Not awarded in this preview.",
-      "official": false,
-      "displayOnly": true,
-      "credits": 0
-    },
-    {
       "id": "relief-gang",
       "name": "Relief Gang",
       "family": "relief",
@@ -139,7 +121,7 @@
     },
     {
       "id": "relief-gang-service",
-      "name": "Relief Gang \u00b7 Show Up",
+      "name": "Relief Gang · Show Up",
       "family": "relief",
       "rule": "Community-service participation design. The organizer must verify an eligible service activity; no attendance is inferred from browsing. Not awarded in this preview.",
       "official": false,
@@ -163,6 +145,373 @@
       "official": false,
       "displayOnly": true,
       "credits": 0
+    },
+    {
+      "id": "trae-day-sharpstown",
+      "name": "Trae Day · Sharpstown Mall",
+      "family": "events",
+      "artLines": [
+        "SHARPSTOWN",
+        "MALL"
+      ],
+      "years": [
+        2008
+      ],
+      "eventType": "Family celebration",
+      "venue": "Sharpstown Mall",
+      "location": "Behind the mall / parking grounds",
+      "historyNote": "The inaugural block party used the area behind Sharpstown Mall.",
+      "sources": [
+        {
+          "label": "Chronicle · 2008 reporting",
+          "url": "https://www.chron.com/neighborhood/champions-klein/news/article/Trae-Day-9400492.php"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-tsu",
+      "name": "Trae Day · Texas Southern University",
+      "family": "events",
+      "artLines": [
+        "TSU",
+        "STADIUM LOT"
+      ],
+      "years": [
+        2009
+      ],
+      "eventType": "Family celebration",
+      "venue": "Texas Southern University",
+      "location": "TSU stadium parking lot",
+      "historyNote": "The documented location is the stadium parking lot, not an event inside Reliant Stadium.",
+      "sources": [
+        {
+          "label": "Houston Press · 2009 eyewitness report",
+          "url": "https://www.houstonpress.com/music/aftermath-trae-day-pre-shooting-at-tsu-stadium-6492259/"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-delmar",
+      "name": "Trae Day · Delmar Stadium",
+      "family": "events",
+      "artLines": [
+        "DELMAR",
+        "STADIUM"
+      ],
+      "years": [
+        2011
+      ],
+      "eventType": "Family celebration",
+      "venue": "Delmar Stadium",
+      "location": "2020 Mangum Road",
+      "historyNote": "The 2011 announcement identifies Delmar Stadium and its street address.",
+      "sources": [
+        {
+          "label": "Houston Press · 2011 artist interview",
+          "url": "https://www.houstonpress.com/music/trae-tha-truth-pumped-for-todays-trae-day-6504208/"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-emancipation",
+      "name": "Trae Day · Emancipation Park",
+      "family": "events",
+      "artLines": [
+        "EMANCIPATION",
+        "PARK"
+      ],
+      "years": [
+        2012
+      ],
+      "eventType": "Family celebration",
+      "venue": "Emancipation Park",
+      "location": "Emancipation Park grounds",
+      "historyNote": "Held as a community fair. Post-event reporting and a dated Chronicle photograph place the event here, despite earlier Northwest Mall plans.",
+      "sources": [
+        {
+          "label": "Houston Press · 2012 year review",
+          "url": "https://www.houstonpress.com/music/inglorious-basterds-6596795/"
+        },
+        {
+          "label": "Chronicle · dated 2012 event photograph",
+          "url": "https://www.houstonchronicle.com/music/article/Trae-Day-is-beginning-to-look-like-Trae-Weekend-16298662.php"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-reliant",
+      "name": "Trae Day · Reliant / NRG Park",
+      "family": "events",
+      "artLines": [
+        "RELIANT / NRG",
+        "PARK LOTS"
+      ],
+      "years": [
+        2013,
+        2014
+      ],
+      "eventType": "Family celebration",
+      "venue": "Reliant / NRG Park",
+      "location": "Reliant / NRG campus parking grounds",
+      "historyNote": "The documented editions used the stadium parking grounds. This stamp does not claim that the festival took place on the football field.",
+      "sources": [
+        {
+          "label": "Houston Press · venue history",
+          "url": "https://www.houstonpress.com/music/on-trae-day-no-8-a-rapper-at-the-center-of-his-community-7611172/"
+        },
+        {
+          "label": "Houston Press · 2014 photo report",
+          "url": "https://www.houstonpress.com/music/trae-day-2014-in-photos-6507881/"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-sam-houston",
+      "name": "Trae Day · Sam Houston Race Park",
+      "family": "events",
+      "artLines": [
+        "SAM HOUSTON",
+        "RACE PARK"
+      ],
+      "years": [
+        2015
+      ],
+      "eventType": "Family celebration",
+      "venue": "Sam Houston Race Park",
+      "location": "Sam Houston Race Park",
+      "historyNote": "The 2015 artist interview identifies the race park as that year’s Trae Day location.",
+      "sources": [
+        {
+          "label": "Houston Press · 2015 artist interview",
+          "url": "https://www.houstonpress.com/music/on-trae-day-no-8-a-rapper-at-the-center-of-his-community-7611172/"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-discovery",
+      "name": "Trae Day · Discovery Green",
+      "family": "events",
+      "artLines": [
+        "DISCOVERY",
+        "GREEN"
+      ],
+      "years": [
+        2016,
+        2017,
+        2018
+      ],
+      "eventType": "Family celebration",
+      "venue": "Discovery Green",
+      "location": "1500 McKinney Street",
+      "historyNote": "Three separately documented editions at Discovery Green; no years between other verified venues are inferred.",
+      "sources": [
+        {
+          "label": "Chronicle · 2016 event photographs",
+          "url": "https://www.houstonchronicle.com/news/houston-texas/houston/article/Mayor-Houston-rappers-join-forces-8413406.php"
+        },
+        {
+          "label": "Houston Press · 2017 event photographs",
+          "url": "https://www.houstonpress.com/music/houston-rapper-trae-tha-truth-hosts-10th-annual-trae-day-at-discovery-green-9633181/"
+        },
+        {
+          "label": "The Source · 2018 artist announcement",
+          "url": "https://thesource.com/2018/07/23/trae-tha-truth-day/"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-sabercats",
+      "name": "Trae Day · SaberCats / Aveva Stadium",
+      "family": "events",
+      "artLines": [
+        "SABERCATS",
+        "STADIUM"
+      ],
+      "years": [
+        2021,
+        2022,
+        2023,
+        2025
+      ],
+      "eventType": "Family Fun Day",
+      "venue": "SaberCats / Aveva Stadium",
+      "location": "12131 Kirby Drive",
+      "historyNote": "Aveva and SaberCats are names for the same physical stadium. Only the years individually supported by the linked coverage are listed.",
+      "sources": [
+        {
+          "label": "KPRC · 2021 schedule",
+          "url": "https://www.click2houston.com/news/local/2021/07/18/heres-what-planned-for-the-4-day-trae-day-celebration-in-houston/"
+        },
+        {
+          "label": "Houstonia · 2022 artist announcement",
+          "url": "https://www.houstoniamag.com/news-and-city-life/2022/07/trae-day-weekend-2022-dates-events-info"
+        },
+        {
+          "label": "KPRC · 2023 schedule",
+          "url": "https://www.click2houston.com/news/local/2023/07/21/full-list-traeday-celebrations-go-inside-the-trae-tha-truth-weekend-of-community-events/"
+        },
+        {
+          "label": "Chronicle · 2025 schedule",
+          "url": "https://www.houstonchronicle.com/news/houston-texas/trending/article/trae-tha-truth-trae-day-houston-20772314.php"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-white-oak",
+      "name": "Trae Day · White Oak Music Hall",
+      "family": "events",
+      "artLines": [
+        "WHITE OAK",
+        "MUSIC HALL"
+      ],
+      "years": [
+        2021,
+        2023
+      ],
+      "eventType": "Weekend concert / comedy",
+      "venue": "White Oak Music Hall",
+      "location": "2915 North Main Street",
+      "historyNote": "The 2021 schedule lists a concert; the 2023 schedule lists Funny by Nature. A weekend venue, distinct from the main Family Fun Day.",
+      "sources": [
+        {
+          "label": "KPRC · 2021 schedule",
+          "url": "https://www.click2houston.com/news/local/2021/07/18/heres-what-planned-for-the-4-day-trae-day-celebration-in-houston/"
+        },
+        {
+          "label": "KPRC · 2023 schedule",
+          "url": "https://www.click2houston.com/news/local/2023/07/21/full-list-traeday-celebrations-go-inside-the-trae-tha-truth-weekend-of-community-events/"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-uh",
+      "name": "Trae Day · University of Houston",
+      "family": "events",
+      "artLines": [
+        "UNIVERSITY",
+        "OF HOUSTON"
+      ],
+      "years": [
+        2021,
+        2023
+      ],
+      "eventType": "Weekend celebrity dodgeball",
+      "venue": "University of Houston",
+      "location": "UH practice facility / 3820 Holman Street",
+      "historyNote": "Celebrity dodgeball is listed at UH in 2021 and its practice facility in 2023. The 2023 article spells the street Helman; the 2021 schedule uses Holman.",
+      "sources": [
+        {
+          "label": "KPRC · 2021 schedule",
+          "url": "https://www.click2houston.com/news/local/2021/07/18/heres-what-planned-for-the-4-day-trae-day-celebration-in-houston/"
+        },
+        {
+          "label": "KPRC · 2023 schedule",
+          "url": "https://www.click2houston.com/news/local/2023/07/21/full-list-traeday-celebrations-go-inside-the-trae-tha-truth-weekend-of-community-events/"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-house-blues",
+      "name": "Trae Day · House of Blues",
+      "family": "events",
+      "artLines": [
+        "HOUSE",
+        "OF BLUES"
+      ],
+      "years": [
+        2021,
+        2022,
+        2025
+      ],
+      "eventType": "Weekend comedy",
+      "venue": "House of Blues",
+      "location": "1204 Caroline Street",
+      "historyNote": "The documented comedy venue is separate from the Family Fun Day stadium.",
+      "sources": [
+        {
+          "label": "KPRC · 2021 schedule",
+          "url": "https://www.click2houston.com/news/local/2021/07/18/heres-what-planned-for-the-4-day-trae-day-celebration-in-houston/"
+        },
+        {
+          "label": "Houstonia · 2022 artist announcement",
+          "url": "https://www.houstoniamag.com/news-and-city-life/2022/07/trae-day-weekend-2022-dates-events-info"
+        },
+        {
+          "label": "Chronicle · 2025 schedule",
+          "url": "https://www.houstonchronicle.com/news/houston-texas/trending/article/trae-tha-truth-trae-day-houston-20772314.php"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-match",
+      "name": "Trae Day · MATCH",
+      "family": "events",
+      "artLines": [
+        "MATCH",
+        "THEATER"
+      ],
+      "years": [
+        2023
+      ],
+      "eventType": "Weekend roast / film premiere",
+      "venue": "MATCH",
+      "location": "3400 Main Street",
+      "historyNote": "The 2023 schedule lists the Trae tha Truth Roast and Sole movie premiere at MATCH.",
+      "sources": [
+        {
+          "label": "KPRC · 2023 artist-supplied schedule",
+          "url": "https://www.click2houston.com/news/local/2023/07/21/full-list-traeday-celebrations-go-inside-the-trae-tha-truth-weekend-of-community-events/"
+        }
+      ],
+      "rule": "Venue-history collectible. Future earning requires a separately announced, verified organizer campaign; viewing this archive does not prove attendance.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
     }
-  ]
+  ],
+  "researchedAt": "2026-10-27"
 }
