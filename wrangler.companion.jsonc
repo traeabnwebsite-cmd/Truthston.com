@@ -36,5 +36,17 @@
       }
     }
   ],
-  "account_id": "90e7a4da02e47f49eb819dd595f1f430"
+  "account_id": "90e7a4da02e47f49eb819dd595f1f430",
+  "workers_dev": true,
+  "preview_urls": true,
+  "routes": [
+    {
+      "pattern": "truthston.com/*",
+      "zone_name": "truthston.com"
+    },
+    {
+      "pattern": "www.truthston.com/*",
+      "zone_name": "truthston.com"
+    }
+  ]
 }
