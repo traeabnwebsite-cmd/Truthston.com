@@ -75,3 +75,5 @@ No new approval is needed merely to produce this plan. This report does not acti
 ## Final validation for this update
 
 21 Node tests and 17 Python tests pass, alongside Worker types, source/assets/size and SQL checks. Browser checks confirmed35 stamp designs,12 venue cards, no names outside stamp SVG bounds and no horizontal overflow at desktop and phone widths. Toyota roof/court restoration and13 named skyline buildings were checked separately; modeled tower road/freeway conflict counts are zero. These checks cover the preview updates, not production membership activation.
+
+Final live QA also fixed deployment packaging of optional release-data.js: a supplied override is copied; otherwise a valid no-op script prevents Cloudflare SPA HTML being parsed as JavaScript. Embedded/public catalog fallback is preserved.
