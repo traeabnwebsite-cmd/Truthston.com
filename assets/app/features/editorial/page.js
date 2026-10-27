@@ -1,3 +1,4 @@
+import { createEventCalendar } from "../events/calendar.js";
 import { uniqueGalleryPhotos } from "./gallery.js";
 import { $, $$, esc } from "../../core/dom.js";
 import { createLifetime } from "../../core/lifecycle.js";
@@ -10,6 +11,13 @@ export function createEditorialPage({
   modal,
 }) {
   const lifetime = createLifetime();
+  const eventCalendar = createEventCalendar({
+    events: siteContent.events || [],
+    title: siteContent.site?.eventsTitle || "Mark the date.",
+    intro:
+      siteContent.site?.eventsIntro ||
+      "Shows, community days, releases and moments to be there for.",
+  });
   let editorialFilter = "All",
     editorialQuery = "",
     editorialLimit = 12,
@@ -138,27 +146,7 @@ export function createEditorialPage({
           "",
         )}</div>${selected.length > editorialLimit * 2 ? '<button class="journal-load" id="editorial-more">More frames ↓</button>' : ""}${!selected.length ? '<div class="editorial-empty">No photos match that search.</div>' : ""}`;
     } else if (section === "events") {
-      const todayKey = new Intl.DateTimeFormat("en-CA", {
-          timeZone: "America/Chicago",
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-        }).format(new Date()),
-        events = siteContent.events || [],
-        upcoming = events
-          .filter((e) => (e.endDate || e.startDate) >= todayKey)
-          .sort((a, b) => a.startDate.localeCompare(b.startDate)),
-        past = events
-          .filter((e) => (e.endDate || e.startDate) < todayKey)
-          .sort((a, b) => b.startDate.localeCompare(a.startDate));
-      const rows = (list) =>
-        list
-          .map((e) => {
-            const d = new Date(e.startDate + "T12:00:00");
-            return `<article class="event-row"><div class="event-date">${d.getDate()}<small>${new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric" }).format(d).toUpperCase()}</small></div><div><span class="event-badge">${(e.endDate || e.startDate) < todayKey ? "PAST EVENT" : "CONFIRMED DATE"} / ${esc(e.category)}</span><h3>${esc(e.title)}</h3><span class="journal-caption">${esc(e.venue)}${e.endDate !== e.startDate ? " · THROUGH " + esc(editorialDate(e.endDate)) : ""}</span><p>${esc(e.description)}</p></div>${e.sourceUrl ? `<a class="journal-source" href="${esc(e.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(e.linkLabel || "Event details")} ↗</a>` : ""}</article>`;
-          })
-          .join("");
-      content = `${editorialChrome(section)}<div class="editorial-hero"><div><span class="journal-kicker">CURRENT EVENTS / THE CITY & BEYOND</span><h1>${esc(siteContent.site?.eventsTitle || "Where the truth shows up.")}</h1><p>${esc(siteContent.site?.eventsIntro || "Community dates and new releases.")}</p></div><div class="editorial-issue">ABN<small>SHOW UP. STAY CONNECTED.</small></div></div><div class="journal-section-heading"><h2>Upcoming & happening now.</h2><small>CONFIRMED DATES ONLY</small></div><div class="event-list">${upcoming.length ? rows(upcoming) : '<div class="editorial-empty">The next dates are on the way. New appearances, community events and member announcements will be posted here when confirmed.</div>'}</div><div class="journal-section-heading"><h2>Latest dispatches.</h2><a class="journal-source" href="#newsroom">Read the paper ↗</a></div><div class="journal-grid">${articles.slice(0, 3).map(storyCard).join("")}</div><div class="journal-section-heading"><h2>From the calendar.</h2><small>PAST EVENTS / ORIGINAL DATES RETAINED</small></div>${rows(past)}`;
+      content = editorialChrome(section) + eventCalendar.render();
     } else if (section === "merch") {
       const products = siteContent.products || [];
       const selected = products
@@ -180,6 +168,7 @@ export function createEditorialPage({
     }
     page.innerHTML = content + editorialFooter();
     bindEditorial();
+    if (section === "events") eventCalendar.bind(renderEditorial);
   }
   function bindEditorial() {
     $$("[data-story]").forEach(
@@ -278,6 +267,7 @@ export function createEditorialPage({
     photo: contentPhoto,
     destroy() {
       lifetime.dispose();
+      eventCalendar.destroy();
       $("#editorial-page").replaceChildren();
     },
   };
