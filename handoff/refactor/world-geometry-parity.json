@@ -1,0 +1,29 @@
+{
+  "before": {
+    "objects": 4874,
+    "hash": "6d9048630d2c4183ecaa3fdfc2202c1d8a65f8283b9ea94c99f065157c5ea4f8"
+  },
+  "after": {
+    "objects": 4874,
+    "hash": "6d9048630d2c4183ecaa3fdfc2202c1d8a65f8283b9ea94c99f065157c5ea4f8"
+  },
+  "identical": true,
+  "cityIdentical": true,
+  "afterAudit": {
+    "parcels": 242,
+    "streets": 166,
+    "parkingCourts": 215,
+    "generatedRoadConflicts": 0,
+    "campusRoadConflicts": 0,
+    "skylineRoadConflicts": 0,
+    "namedSkylineBuildings": 13,
+    "downtownInfill": 7,
+    "skylineFreewayConflictNames": [],
+    "skylineFreewayConflicts": 0
+  },
+  "disposed": {
+    "geometries": 4786,
+    "materials": 1479,
+    "textures": 340
+  }
+}
