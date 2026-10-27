@@ -1,3 +1,6 @@
+import { createAudioEngine } from "./features/audio/engine.js";
+import { createPlayerDock } from "./features/audio/dock.js";
+import { createDJMixer } from "./features/dj/mixer.js";
 import { loadGalleryCuration } from "./features/editorial/gallery.js";
 import { createCatalogPage } from "./features/catalog/page.js";
 import { createDailyChallenge } from "./features/catalog/daily-challenge.js";
@@ -54,22 +57,21 @@ const appState = createAppState({
   selected: releases[0],
   prefersReducedMotion: matchMedia("(prefers-reduced-motion: reduce)").matches,
 });
-let playing = false,
-  ctx,
-  source,
-  analyser,
-  gain,
-  panner,
-  bypass,
-  buffer,
-  started = 0,
-  offset = 0,
-  rate = 1,
-  headphones = false,
-  cassette = false,
-  spin = 0,
-  spinSpeed = 0,
-  sceneAPI;
+let sceneAPI;
+const audio = createAudioEngine({
+  initialVolume: +$("#volume").value,
+  toast,
+  earn,
+  recordActivity: (...args) => account.recordEvent(...args),
+});
+const dj = createDJMixer({ audio, appState, modal });
+const playerDock = createPlayerDock({
+  audio,
+  appState,
+  earn,
+  updateDJ: dj.update,
+});
+
 const today = new Date();
 const dailyChallenge = createDailyChallenge({
   today,
@@ -174,7 +176,7 @@ $("#stamp-invite").onclick = $("#book-bottom").onclick = () => {
 };
 router.start();
 setInterval(() => {
-  if (playing && !document.hidden) account.tickListening();
+  if (audio.playing && !document.hidden) account.tickListening();
 }, 1000);
 
 const catalog = createCatalogPage({
@@ -186,7 +188,7 @@ const catalog = createCatalogPage({
   earn,
   toast,
   modal,
-  play: (...args) => play(...args),
+  play: (...args) => audio.play(...args),
   pauseRoomForVideo: () => pauseRoomForVideo(),
   enterDJRoom: () => enterDJRoom(),
   registerTwin: (...args) => twin(...args),
@@ -312,7 +314,7 @@ function showDJFallback() {
   modal(
     '<section class="dj-room-fallback"><span class="eyebrow">THE DJ BOOTH / WEST WING</span><h2>Step into the booth.</h2><p>Select the turntables to open the mixer.</p><button class="primary" id="fallback-turntables">Select the turntables ↗</button><button class="secondary" id="fallback-bump">Shop Bumpboxx ↗</button></section>',
   );
-  $("#fallback-turntables").onclick = deck;
+  $("#fallback-turntables").onclick = dj.open;
   $("#fallback-bump").onclick = () =>
     commerce.bumpboxDisplay("Bumpboxx / gray display");
 }
@@ -337,11 +339,11 @@ function enterDJRoom() {
 }
 
 function pauseRoomForVideo() {
-  if (!playing) return;
-  stopDeck(0);
-  stopDeck(1);
-  stopAutoChop();
-  syncAudioLabels();
+  if (!audio.playing) return;
+  audio.stopDeck(0);
+  audio.stopDeck(1);
+  audio.stopAutoChop();
+  audio.syncAudioLabels();
 }
 function setupCinema() {
   const room = $(".room-wrap"),
@@ -588,636 +590,14 @@ data.giving.forEach((p, i) =>
   twin(p.name + " community pin " + (i + 1), () => giving(i)),
 );
 twin("Community ledger", () => giving());
-twin("DJ booth turntables and mixer", deck);
+twin("DJ booth turntables and mixer", dj.open);
 twin("Enter the screening room", () => go(2));
 twin("Return to the record shop", () => go(0));
 twin("Back door to Houston street", () => go(3));
 // One supplied record, two transport heads. Both decks share a single decoded AudioBuffer.
-const previewTrack = {
-  title: "Boss Ballin",
-  url: "assets/audio/boss-ballin.mp3",
-  bpm: 64.6,
-};
-let mixer,
-  limiter,
-  previewLoad,
-  previewBusy = false,
-  providedTrack = false,
-  crossfade = -1,
-  pitchLinked = true,
-  chopTimer = null,
-  chopSide = false,
-  lastTap = 0,
-  tapIntervals = [];
-const decks = [
-  {
-    node: null,
-    out: null,
-    offset: 0,
-    anchor: 0,
-    speed: 1,
-    pitch: 1,
-    running: false,
-    holding: false,
-    scratchVoice: null,
-    spin: 0,
-  },
-  {
-    node: null,
-    out: null,
-    offset: 60 / previewTrack.bpm,
-    anchor: 0,
-    speed: 1,
-    pitch: 1,
-    running: false,
-    holding: false,
-    scratchVoice: null,
-    spin: 0,
-  },
-];
-const audioDuration = () => buffer?.duration || 318.093;
-const wrapPosition = (n) =>
-  ((n % audioDuration()) + audioDuration()) % audioDuration();
-const clockText = (n) =>
-  Math.floor(Math.max(0, n) / 60) +
-  ":" +
-  String(Math.floor(Math.max(0, n) % 60)).padStart(2, "0");
-function initAudio() {
-  if (ctx) return;
-  ctx = new (window.AudioContext || window.webkitAudioContext)();
-  analyser = ctx.createAnalyser();
-  analyser.fftSize = 2048;
-  gain = ctx.createGain();
-  gain.gain.value = +$("#volume").value;
-  mixer = ctx.createGain();
-  limiter = ctx.createDynamicsCompressor();
-  limiter.threshold.value = -4;
-  limiter.knee.value = 12;
-  limiter.ratio.value = 5;
-  limiter.attack.value = 0.003;
-  limiter.release.value = 0.1;
-  panner = ctx.createPanner();
-  panner.panningModel = "HRTF";
-  panner.distanceModel = "inverse";
-  panner.refDistance = 5;
-  decks.forEach((d) => {
-    d.out = ctx.createGain();
-    d.out.connect(mixer);
-  });
-  analyser.connect(limiter);
-  limiter.connect(gain);
-  gain.connect(ctx.destination);
-  route();
-  setCrossfade(crossfade);
-}
-function route() {
-  if (!mixer) return;
-  mixer.disconnect();
-  panner.disconnect();
-  if (headphones) {
-    mixer.connect(panner);
-    panner.connect(analyser);
-  } else mixer.connect(analyser);
-}
-function syncAudioLabels() {
-  const title = providedTrack ? previewTrack.title : "Original room beat";
-  $("#track-title").textContent = title;
-  $("#track-subtitle").textContent = previewBusy
-    ? "LOADING YOUR PREVIEW RECORD…"
-    : providedTrack
-      ? "PREVIEW RECORD / BOTH DECKS LOADED"
-      : "GENERATED BEAT / AUDIO FILE UNAVAILABLE";
-  $("#play").textContent = previewBusy ? "…" : playing ? "Ⅱ" : "▶";
-  $("#play").setAttribute(
-    "aria-label",
-    previewBusy ? "Loading preview track" : playing ? "Pause" : "Press play",
-  );
-  $("#fullscreen-play").textContent = previewBusy
-    ? "Loading…"
-    : playing
-      ? "Ⅱ Pause"
-      : "▶ Press play";
-  for (const el of [$("#play"), $("#fullscreen-play")])
-    el.disabled = previewBusy;
-  for (let i = 0; i < 2; i++) {
-    const el = $("#deck-" + i + "-transport");
-    if (el) {
-      el.textContent = decks[i].running ? "Ⅱ Pause" : "▶ Start";
-      el.setAttribute("aria-pressed", String(decks[i].running));
-    }
-  }
-  $("#time").textContent =
-    clockText(position()) + " / " + clockText(audioDuration());
-  $(".dock").dataset.audioStatus = previewBusy
-    ? "loading"
-    : playing
-      ? "playing"
-      : "paused";
-  $(".dock").dataset.track = title;
-  $(".dock").dataset.bpm = String(previewTrack.bpm);
-}
-async function loadPreviewRecord() {
-  if (previewLoad) return previewLoad;
-  previewLoad = (async () => {
-    previewBusy = true;
-    syncAudioLabels();
-    try {
-      const res = await fetch(previewTrack.url);
-      if (!res.ok) throw new Error("Preview record unavailable");
-      buffer = await ctx.decodeAudioData(await res.arrayBuffer());
-      providedTrack = true;
-    } catch {
-      buffer = ctx.createBuffer(1, ctx.sampleRate * 12, ctx.sampleRate);
-      const a = buffer.getChannelData(0),
-        sr = ctx.sampleRate;
-      for (let j = 0; j < a.length; j++) {
-        const t = j / sr,
-          k = t % 0.75,
-          h = t % 0.1875;
-        a[j] = Math.tanh(
-          (Math.sin(2 * Math.PI * (45 * k + 6 * (1 - Math.exp(-k * 30)))) *
-            Math.exp(-k * 18) +
-            (Math.random() * 2 - 1) * Math.exp(-h * 100) * 0.1 +
-            Math.sin(2 * Math.PI * 55 * t) * 0.16) *
-            0.6,
-        );
-      }
-      providedTrack = false;
-      toast(
-        "The supplied MP3 could not load. The original room beat is available.",
-      );
-    } finally {
-      previewBusy = false;
-      decks[1].offset = 60 / previewTrack.bpm;
-      syncAudioLabels();
-    }
-  })();
-  return previewLoad;
-}
-function deckPosition(i) {
-  const d = decks[i];
-  return wrapPosition(
-    d.offset +
-      (d.running && !d.holding
-        ? Math.max(0, (ctx?.currentTime || 0) - d.anchor) * d.speed
-        : 0),
-  );
-}
-function position() {
-  return buffer ? deckPosition(crossfade > 0.1 ? 1 : 0) : 0;
-}
-function stopDeck(i) {
-  const d = decks[i];
-  if (d.running) d.offset = deckPosition(i);
-  if (d.node) {
-    try {
-      d.node.stop();
-    } catch {}
-    d.node.disconnect();
-    d.node = null;
-  }
-  d.running = false;
-  d.holding = false;
-  playing = decks.some((d) => d.running);
-  source = decks[0].node;
-}
-function startDeck(i, pos, when) {
-  const d = decks[i];
-  if (d.node) {
-    try {
-      d.node.stop();
-    } catch {}
-    d.node.disconnect();
-  }
-  const node = ctx.createBufferSource();
-  node.buffer = buffer;
-  node.loop = true;
-  node.playbackRate.value = d.pitch;
-  node.connect(d.out);
-  d.node = node;
-  d.offset = wrapPosition(pos);
-  d.anchor = when ?? ctx.currentTime;
-  d.speed = d.pitch;
-  d.running = true;
-  d.holding = false;
-  node.start(d.anchor, d.offset);
-  playing = true;
-  source = decks[0].node;
-  rate = decks[0].pitch;
-}
-async function play(force) {
-  try {
-    initAudio();
-    await ctx.resume();
-    if (previewBusy) return;
-    await loadPreviewRecord();
-    if (force && playing) return;
-    if (playing) {
-      stopDeck(0);
-      stopDeck(1);
-      stopAutoChop();
-    } else {
-      const when = ctx.currentTime + 0.04,
-        pos = decks[0].offset;
-      startDeck(0, pos, when);
-      startDeck(1, pos + 60 / previewTrack.bpm, when);
-      earn(6);
-    }
-    syncAudioLabels();
-  } catch (e) {
-    previewBusy = false;
-    syncAudioLabels();
-    toast("Audio could not start. Press play to try again.");
-  }
-}
-async function toggleDeck(i) {
-  initAudio();
-  await ctx.resume();
-  await loadPreviewRecord();
-  const d = decks[i];
-  if (d.running) stopDeck(i);
-  else startDeck(i, d.offset);
-  syncAudioLabels();
-}
-function setDeckPitch(i, multiplier) {
-  const d = decks[i],
-    p = deckPosition(i);
-  d.offset = p;
-  d.anchor = ctx?.currentTime || 0;
-  d.pitch = Math.max(0.5, Math.min(1.16, multiplier));
-  d.speed = d.pitch;
-  if (d.node && !d.holding)
-    d.node.playbackRate.setTargetAtTime(d.pitch, ctx.currentTime, 0.018);
-  rate = decks[0].pitch;
-  const slider = $("#pitch-" + i),
-    read = $("#pitch-read-" + i);
-  if (slider) slider.value = Math.round(d.pitch * 100);
-  if (read)
-    read.textContent =
-      (d.pitch >= 1 ? "+" : "") + Math.round((d.pitch - 1) * 100) + "%";
-  const speedRead = $("#deck-" + i + "-speed");
-  if (speedRead)
-    speedRead.textContent = (previewTrack.bpm * d.pitch).toFixed(1) + " BPM";
-}
-function setCrossfade(v, manual = false) {
-  crossfade = Math.max(-1, Math.min(1, v));
-  if (manual) {
-    stopAutoChop();
-    if (playing && Math.abs(v) > 0.8)
-      account.recordEvent("cut", String(Date.now()));
-  }
-  if (ctx && decks[0].out) {
-    const u = (crossfade + 1) / 2;
-    decks[0].out.gain.setTargetAtTime(
-      Math.cos((u * Math.PI) / 2),
-      ctx.currentTime,
-      0.003,
-    );
-    decks[1].out.gain.setTargetAtTime(
-      Math.sin((u * Math.PI) / 2),
-      ctx.currentTime,
-      0.003,
-    );
-  }
-  const fader = $("#crossfader");
-  if (fader) fader.value = crossfade;
-  const read = $("#crossfade-read");
-  if (read)
-    read.textContent =
-      crossfade < -0.95
-        ? "A ONLY"
-        : crossfade > 0.95
-          ? "B ONLY"
-          : crossfade < -0.15
-            ? "A " + Math.round(((1 - crossfade) / 2) * 100) + "%"
-            : crossfade > 0.15
-              ? "B " + Math.round(((crossfade + 1) / 2) * 100) + "%"
-              : "CENTER MIX";
-  $(".dock").dataset.crossfader = String(crossfade);
-}
-function syncDecks() {
-  if (!ctx || !buffer) return;
-  const pos = deckPosition(0),
-    running = playing;
-  if (running) {
-    const when = ctx.currentTime + 0.025;
-    startDeck(0, pos, when);
-    startDeck(1, pos + 60 / previewTrack.bpm, when);
-  } else {
-    decks[0].offset = pos;
-    decks[1].offset = wrapPosition(pos + 60 / previewTrack.bpm);
-  }
-  syncAudioLabels();
-  toast("Deck B is one beat ahead of Deck A.");
-}
-function stopAutoChop() {
-  if (chopTimer) {
-    clearInterval(chopTimer);
-    chopTimer = null;
-  }
-  const b = $("#auto-chop");
-  if (b) {
-    b.textContent = "Auto chop";
-    b.setAttribute("aria-pressed", "false");
-  }
-}
-async function autoChop() {
-  if (chopTimer) {
-    stopAutoChop();
-    return;
-  }
-  await play(true);
-  if (!playing) return;
-  let next = ctx.currentTime;
-  chopSide = false;
-  chopTimer = setInterval(() => {
-    if (!playing) return;
-    const step = 60 / previewTrack.bpm / Math.max(0.5, decks[0].pitch) / 2;
-    if (ctx.currentTime >= next) {
-      chopSide = !chopSide;
-      setCrossfade(chopSide ? 1 : -1);
-      next += step;
-    }
-  }, 12);
-  $("#auto-chop").textContent = "Stop chop";
-  $("#auto-chop").setAttribute("aria-pressed", "true");
-}
-function scratchVoice(i, pos, velocity) {
-  if (!ctx || !buffer) return;
-  const d = decks[i];
-  if (d.scratchVoice) {
-    try {
-      d.scratchVoice.stop();
-    } catch {}
-  }
-  const voice = ctx.createBufferSource(),
-    envelope = ctx.createGain(),
-    now = ctx.currentTime,
-    speed = Math.max(0.16, Math.min(4, Math.abs(velocity)));
-  if (velocity < 0) {
-    const length = Math.ceil(buffer.sampleRate * 0.22),
-      slice = ctx.createBuffer(
-        buffer.numberOfChannels,
-        length,
-        buffer.sampleRate,
-      ),
-      sample = Math.floor(wrapPosition(pos) * buffer.sampleRate);
-    for (let ch = 0; ch < buffer.numberOfChannels; ch++) {
-      const input = buffer.getChannelData(ch),
-        output = slice.getChannelData(ch);
-      for (let j = 0; j < length; j++)
-        output[j] =
-          input[(((sample - j) % input.length) + input.length) % input.length];
-    }
-    voice.buffer = slice;
-    voice.playbackRate.value = speed;
-    voice.start(now);
-  } else {
-    voice.buffer = buffer;
-    voice.loop = true;
-    voice.playbackRate.value = speed;
-    voice.start(now, wrapPosition(pos));
-  }
-  envelope.gain.setValueAtTime(0.001, now);
-  envelope.gain.linearRampToValueAtTime(0.9, now + 0.005);
-  envelope.gain.setValueAtTime(0.9, now + 0.09);
-  envelope.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
-  voice.connect(envelope);
-  envelope.connect(d.out);
-  voice.stop(now + 0.17);
-  d.scratchVoice = voice;
-}
-// Compatibility hook for the platter's keyboard nudge and the room disc animation.
-function scratch(r) {
-  if (!ctx) return;
-  setDeckPitch(0, Math.max(0.5, Math.min(1.16, r)));
-  if (pitchLinked) setDeckPitch(1, decks[0].pitch);
-}
-$("#play").onclick = () => play();
-$("#fullscreen-play").onclick = () => play();
-$("#fullscreen-volume").oninput = (e) => {
-  $("#volume").value = e.target.value;
-  gain?.gain.setTargetAtTime(+e.target.value, ctx.currentTime, 0.03);
-};
-$("#volume").oninput = (e) => {
-  $("#fullscreen-volume").value = e.target.value;
-  gain?.gain.setTargetAtTime(+e.target.value, ctx.currentTime, 0.03);
-};
-$("#seek").oninput = (e) => {
-  if (!buffer) return;
-  const p = (+e.target.value / 100) * audioDuration(),
-    was = playing;
-  if (was) {
-    stopDeck(0);
-    stopDeck(1);
-    const when = ctx.currentTime + 0.025;
-    startDeck(0, p, when);
-    startDeck(1, p + 60 / previewTrack.bpm, when);
-  } else {
-    decks[0].offset = p;
-    decks[1].offset = wrapPosition(p + 60 / previewTrack.bpm);
-  }
-  syncAudioLabels();
-};
-$("#headphones").onclick = () => {
-  headphones = !headphones;
-  $("#headphones").setAttribute("aria-pressed", headphones);
-  route();
-  sceneAPI?.audioPosition();
-};
 
-function deckMarkup(i) {
-  return `<section class="dj-turntable" aria-label="Deck ${i ? "B" : "A"}"><div class="dj-model">DIRECT DRIVE <b>${i ? "B / +1 BEAT" : "A / MASTER"}</b></div><div class="dj-hardware"><div class="dj-arm"><i></i></div><div class="dj-vinyl" id="platter-${i}" role="slider" tabindex="0" aria-label="Deck ${i ? "B" : "A"} scratch. Drag in circles; left and right arrows scratch backward and forward." aria-valuemin="0" aria-valuemax="318" aria-valuenow="0"><div class="dj-record-label"><small>ABN / PREVIEW RECORD</small><b>BOSS<br>BALLIN</b><span>33⅓ / SIDE ${i ? "B" : "A"}</span></div></div><label class="dj-pitch">PITCH<input type="range" id="pitch-${i}" aria-label="Deck ${i ? "B" : "A"} pitch" min="50" max="116" step="1" value="${Math.round(decks[i].pitch * 100)}"><output id="pitch-read-${i}">${Math.round((decks[i].pitch - 1) * 100)}%</output></label></div><div class="dj-bottom"><button class="dj-start" id="deck-${i}-transport" aria-pressed="${decks[i].running}">${decks[i].running ? "Ⅱ Pause" : "▶ Start"}</button><span class="dj-strobe">● 33⅓</span><output id="deck-${i}-speed">${(previewTrack.bpm * decks[i].pitch).toFixed(1)} BPM</output></div><div class="dj-readout"><output id="deck-${i}-time">0:00.0</output><span id="deck-${i}-state">READY</span></div></section>`;
-}
-function deck() {
-  modal(
-    `<div class="dj-console"><span class="eyebrow">THE DJ BOOTH / TWO COPIES. ONE RECORD.</span><h2>Slow it down.<br>Chop it up.</h2><p class="dj-intro">Boss Ballin on both decks. B runs one beat ahead. Cut between A and B to repeat the phrase. Pitch changes speed and tone together.</p><div class="dj-rig">${deckMarkup(0)}<section class="dj-mixer" aria-label="DJ mixer"><div class="dj-mixer-brand">THE TRUTH<br><small>HOUSTON / TWO-DECK MIXER</small></div><button class="primary" id="dj-both">${playing ? "Ⅱ Pause both" : "▶ Play both"}</button><label class="dj-link"><input type="checkbox" id="link-pitch" ${pitchLinked ? "checked" : ""}> Link pitch</label><div class="dj-presets"><button data-dj-preset="1">Original</button><button data-dj-preset=".75">Screw 75%</button><button data-dj-preset=".65">Deep 65%</button></div><label class="dj-tempo">RECORD TEMPO<input id="dj-bpm" aria-label="Record tempo in beats per minute" type="number" min="40" max="180" step=".1" value="${previewTrack.bpm}"></label><small class="dj-hint">Estimated tempo. Adjust or tap to match the beat.</small><button class="secondary" id="dj-tap">Tap tempo</button><button class="secondary" id="dj-sync">B + one beat</button><div class="dj-fader"><div><b>A</b><output id="crossfade-read">A ONLY</output><b>B</b></div><input id="crossfader" aria-label="Crossfader, left Deck A, right Deck B" type="range" min="-1" max="1" step=".01" value="${crossfade}"><div class="dj-cuts"><button id="cut-a">Cut A [1]</button><button id="cut-b">Cut B [2]</button></div></div><button class="secondary" id="auto-chop" aria-pressed="${!!chopTimer}">${chopTimer ? "Stop chop" : "Auto chop"}</button></section>${deckMarkup(1)}</div><p class="dj-footnote">Drag either record to scratch forward or backward. Release to resume at its pitch setting. Keyboard: focus a record and use ← / →. The fader also works with arrow keys.</p></div>`,
-  );
-  for (let i = 0; i < 2; i++) {
-    const p = $("#platter-" + i),
-      d = decks[i];
-    $("#deck-" + i + "-transport").onclick = () => toggleDeck(i);
-    $("#pitch-" + i).oninput = (e) => {
-      setDeckPitch(i, +e.target.value / 100);
-      if (pitchLinked) setDeckPitch(1 - i, decks[i].pitch);
-    };
-    let angleLast = 0,
-      timeLast = 0,
-      wasRunning = false;
-    function hold() {
-      wasRunning = d.running;
-      d.offset = deckPosition(i);
-      d.holding = true;
-      if (d.node) {
-        try {
-          d.node.stop();
-        } catch {}
-        d.node.disconnect();
-        d.node = null;
-      }
-      $("#deck-" + i + "-state").textContent = "HELD";
-      p.classList.add("held");
-    }
-    function releaseHold() {
-      if (!d.holding) return;
-      const pos = d.offset;
-      d.holding = false;
-      if (d.scratchVoice) {
-        try {
-          d.scratchVoice.stop();
-        } catch {}
-      }
-      if (wasRunning) startDeck(i, pos);
-      else d.running = false;
-      p.classList.remove("held");
-      playing = decks.some((x) => x.running);
-      syncAudioLabels();
-    }
-    p.onpointerdown = async (e) => {
-      e.preventDefault();
-      p.setPointerCapture(e.pointerId);
-      const rect = p.getBoundingClientRect();
-      angleLast = Math.atan2(
-        e.clientY - rect.top - rect.height / 2,
-        e.clientX - rect.left - rect.width / 2,
-      );
-      timeLast = performance.now();
-      initAudio();
-      await ctx.resume();
-      await loadPreviewRecord();
-      if (p.hasPointerCapture(e.pointerId)) hold();
-    };
-    p.onpointermove = (e) => {
-      if (!p.hasPointerCapture(e.pointerId) || !d.holding) return;
-      const rect = p.getBoundingClientRect(),
-        a = Math.atan2(
-          e.clientY - rect.top - rect.height / 2,
-          e.clientX - rect.left - rect.width / 2,
-        ),
-        now = performance.now();
-      let delta = a - angleLast;
-      if (delta > Math.PI) delta -= Math.PI * 2;
-      if (delta < -Math.PI) delta += Math.PI * 2;
-      const seconds = (delta / (Math.PI * 2)) * 1.8,
-        velocity = seconds / Math.max(0.008, (now - timeLast) / 1000);
-      d.offset = wrapPosition(d.offset + seconds);
-      d.spin += (delta * 180) / Math.PI;
-      scratchVoice(i, d.offset, velocity);
-      p.style.transform = `rotate(${d.spin}deg)`;
-      $("#deck-" + i + "-state").textContent =
-        velocity < 0 ? "◀ BACKSPIN" : "▶ FORWARD";
-      p.dataset.scratchDirection = velocity < 0 ? "reverse" : "forward";
-      angleLast = a;
-      timeLast = now;
-    };
-    p.onpointerup = p.onpointercancel = p.onlostpointercapture = releaseHold;
-    p.onkeydown = async (e) => {
-      if (!["ArrowLeft", "ArrowRight", " "].includes(e.key)) return;
-      e.preventDefault();
-      if (e.key === " ") {
-        await toggleDeck(i);
-        return;
-      }
-      initAudio();
-      await ctx.resume();
-      await loadPreviewRecord();
-      if (!d.holding) hold();
-      const direction = e.key === "ArrowLeft" ? -1 : 1;
-      d.offset = wrapPosition(d.offset + direction * 0.085);
-      d.spin += direction * 17;
-      scratchVoice(i, d.offset, direction * 1.2);
-      p.style.transform = `rotate(${d.spin}deg)`;
-      p.dataset.scratchDirection = direction < 0 ? "reverse" : "forward";
-      $("#deck-" + i + "-state").textContent =
-        direction < 0 ? "◀ BACKSPIN" : "▶ FORWARD";
-    };
-    p.onkeyup = (e) => {
-      if (["ArrowLeft", "ArrowRight"].includes(e.key)) releaseHold();
-    };
-    p.onblur = releaseHold;
-    p._releaseScratch = releaseHold;
-  }
-  $("#dj-both").onclick = async () => {
-    await play();
-    $("#dj-both").textContent = playing ? "Ⅱ Pause both" : "▶ Play both";
-  };
-  $("#link-pitch").onchange = (e) => {
-    pitchLinked = e.target.checked;
-    if (pitchLinked) setDeckPitch(1, decks[0].pitch);
-  };
-  $$("[data-dj-preset]").forEach(
-    (b) =>
-      (b.onclick = () => {
-        setDeckPitch(0, +b.dataset.djPreset);
-        setDeckPitch(1, +b.dataset.djPreset);
-        syncDecks();
-      }),
-  );
-  $("#crossfader").oninput = (e) => setCrossfade(+e.target.value, true);
-  $("#cut-a").onclick = () => setCrossfade(-1, true);
-  $("#cut-b").onclick = () => setCrossfade(1, true);
-  $("#dj-sync").onclick = syncDecks;
-  $("#auto-chop").onclick = autoChop;
-  function tempo(v) {
-    if (!Number.isFinite(v)) return;
-    previewTrack.bpm = Math.max(40, Math.min(180, v));
-    $("#dj-bpm").value = previewTrack.bpm.toFixed(1);
-    setDeckPitch(0, decks[0].pitch);
-    setDeckPitch(1, decks[1].pitch);
-    syncDecks();
-  }
-  $("#dj-bpm").onchange = (e) => tempo(+e.target.value);
-  $("#dj-tap").onclick = () => {
-    const now = performance.now();
-    if (lastTap && now - lastTap < 2000) {
-      tapIntervals.push(now - lastTap);
-      tapIntervals = tapIntervals.slice(-6);
-      if (tapIntervals.length > 1)
-        tempo(
-          60000 /
-            (tapIntervals.reduce((a, b) => a + b, 0) / tapIntervals.length),
-        );
-    } else tapIntervals = [];
-    lastTap = now;
-  };
-  $("#modal-body").onkeydown = (e) => {
-    if (/INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
-    if (e.key === "1" || e.key === "2") {
-      e.preventDefault();
-      setCrossfade(e.key === "1" ? -1 : 1, true);
-    }
-  };
-  setCrossfade(crossfade);
-  for (let i = 0; i < 2; i++) setDeckPitch(i, decks[i].pitch);
-  syncAudioLabels();
-}
-function updateDJ(dt) {
-  for (let i = 0; i < 2; i++) {
-    const d = decks[i],
-      p = $("#platter-" + i),
-      pos = buffer ? deckPosition(i) : 0;
-    if (p) {
-      if (d.running && !d.holding && !appState.calm)
-        d.spin += dt * d.pitch * 200;
-      p.style.transform = `rotate(${d.spin}deg)`;
-      p.setAttribute("aria-valuenow", pos.toFixed(2));
-      $("#deck-" + i + "-time").textContent =
-        clockText(pos) + "." + Math.floor((pos % 1) * 10);
-      if (!d.holding)
-        $("#deck-" + i + "-state").textContent = d.running
-          ? "PLAYING"
-          : "PAUSED";
-    }
-  }
-  if (ctx && buffer) {
-    $(".dock").dataset.deckOffset = String(
-      wrapPosition(deckPosition(1) - deckPosition(0)),
-    );
-    $(".dock").dataset.pitch = String(decks[0].pitch);
-  }
-}
 $("#deck").onclick = enterDJRoom;
-$("#open-dj-mixer").onclick = deck;
+$("#open-dj-mixer").onclick = dj.open;
 $("#dj-back-store").onclick = () => go(0);
 $("#modal").addEventListener("close", () => {
   $$(".project-audio audio").forEach((a) => a.pause());
@@ -1831,14 +1211,14 @@ try {
   for (const x of [1.2, 6.8])
     for (const z of [0.3, 2.7]) box(0.15, 1.45, 0.15, dark, x, 0.7, z);
   const table = box(6.1, 0.09, 2.7, paper, 4, 1.6, 1.5);
-  hit(table, "DJ booth — open turntable", deck);
+  hit(table, "DJ booth — open turntable", dj.open);
   const disc = new T.Mesh(
     new T.CylinderGeometry(0.6, 0.6, 0.05, 64),
     mat("#111711", { metalness: 0.2 }),
   );
   disc.position.set(3.08, 1.84, 1.6);
   world.add(disc);
-  hit(disc, "Drag the platter in the DJ booth", deck);
+  hit(disc, "Drag the platter in the DJ booth", dj.open);
   const discLabel = new T.Mesh(new T.CylinderGeometry(0.2, 0.2, 0.06, 32), red);
   discLabel.position.copy(disc.position);
   discLabel.position.y += 0.02;
@@ -1855,9 +1235,9 @@ try {
   discB.position.x = 4.92;
   discLabelB.position.x = 4.92;
   world.add(discB, discLabelB);
-  hit(discB, "Deck B — open DJ mixer", deck);
+  hit(discB, "Deck B — open DJ mixer", dj.open);
   const mixerBody = box(0.36, 0.22, 1.25, dark, 4, 1.82, 1.6);
-  hit(mixerBody, "Crossfader and pitch controls", deck);
+  hit(mixerBody, "Crossfader and pitch controls", dj.open);
   box(0.27, 0.025, 0.035, paper, 4, 1.95, 1.96);
   box(0.05, 0.035, 0.08, red, 3.9, 1.98, 1.96);
   label("THE DJ BOOTH", 4.3, 0.5, 4, 1, 2.96, "#dbc79c", "#2d3928", 68);
@@ -6850,7 +6230,7 @@ try {
     { a: 0.2, r: 7, e: 4.9, t: [4.4, 1.5, 1] },
   ];
   function audioPosition() {
-    if (!panner || !ctx) return;
+    if (!audio.panner || !audio.ctx) return;
     const p = [
       [-4, 0, -3],
       [-5, 0, -1],
@@ -6859,9 +6239,9 @@ try {
       [-3, 0, -2],
       [4, 0, -1],
     ][appState.station];
-    panner.positionX.setTargetAtTime(p[0], ctx.currentTime, 0.1);
-    panner.positionY.setTargetAtTime(p[1], ctx.currentTime, 0.1);
-    panner.positionZ.setTargetAtTime(p[2], ctx.currentTime, 0.1);
+    audio.panner.positionX.setTargetAtTime(p[0], audio.ctx.currentTime, 0.1);
+    audio.panner.positionY.setTargetAtTime(p[1], audio.ctx.currentTime, 0.1);
+    audio.panner.positionZ.setTargetAtTime(p[2], audio.ctx.currentTime, 0.1);
   }
   let streetJourney = null;
   sceneAPI = {
@@ -7404,17 +6784,17 @@ try {
     visitorTime = 0,
     glow = 0;
   function bands() {
-    if (!playing || !analyser) {
+    if (!audio.playing || !audio.analyser) {
       bass = mid = treble = 0;
       return;
     }
-    analyser.getByteFrequencyData(bins);
+    audio.analyser.getByteFrequencyData(bins);
     const avg = (a, b) => {
       let sum = 0;
       for (let i = a; i < b; i++) sum += bins[i];
       return sum / (b - a) / 255;
     };
-    const hz = ctx.sampleRate / 2048;
+    const hz = audio.ctx.sampleRate / 2048;
     bass = avg(1, Math.ceil(250 / hz));
     mid = avg(Math.ceil(250 / hz), Math.ceil(2500 / hz));
     treble = avg(Math.ceil(2500 / hz), Math.min(1024, Math.ceil(10000 / hz)));
@@ -7429,27 +6809,6 @@ try {
     const dt = Math.min((ts - lastFrame) / 1000 || 0.016, 0.08);
     lastFrame = ts;
     const t = ts / 1000;
-    updateDJ(dt);
-    spinSpeed +=
-      (playing ? rate - spinSpeed : -spinSpeed) * Math.min(1, dt * 4);
-    spin += spinSpeed * dt * 160;
-    const plat = $("#platter");
-    if (plat && !appState.calm) {
-      if (cassette)
-        $$(".reel").forEach((r) => (r.style.transform = `rotate(${spin}deg)`));
-      else plat.style.transform = `rotate(${spin}deg)`;
-    }
-    if (playing) {
-      const p = position();
-      $("#seek").value = (p / audioDuration()) * 100;
-      $("#time").textContent =
-        clockText(p) + " / " + clockText(audioDuration());
-      acc += dt;
-      if (acc >= 6) {
-        earn(2);
-        acc = 0;
-      }
-    }
     if (
       appState.mode !== "immersive" ||
       document.body.classList.contains("account-view")
@@ -7457,9 +6816,12 @@ try {
       return;
     // Let the guide finish his entrance before expensive WebGL shader compilation.
     // Otherwise a busy GPU can leave him invisible in the portal-born state.
-    if (!document.body.classList.contains("companion-dismissed") &&
-        (!$("#companion-home").dataset.journey ||
-          $("#companion-home").dataset.journey === "arriving")) return;
+    if (
+      !document.body.classList.contains("companion-dismissed") &&
+      (!$("#companion-home").dataset.journey ||
+        $("#companion-home").dataset.journey === "arriving")
+    )
+      return;
     const ballparkStep = appState.calm ? 1 : dt / 24;
     ballparkOpen +=
       Math.sign(ballparkTarget - ballparkOpen) *
@@ -7582,10 +6944,10 @@ try {
         g.position.z =
           g.userData.z + Math.cos(t * 0.12 + g.userData.phase) * 0.4;
       });
-      disc.rotation.y += dt * spinSpeed * 3;
+      disc.rotation.y += dt * playerDock.spinSpeed * 3;
       discLabel.rotation.y = disc.rotation.y;
-      if (decks[1].running && !decks[1].holding) {
-        discB.rotation.y += dt * decks[1].pitch * 3;
+      if (audio.decks[1].running && !audio.decks[1].holding) {
+        discB.rotation.y += dt * audio.decks[1].pitch * 3;
         discLabelB.rotation.y = discB.rotation.y;
       }
       visitorTime += dt;
@@ -7643,17 +7005,6 @@ try {
   console.warn("Room fallback:", e);
   $("#loading")?.remove();
   setMode("standard");
-  // Keep the dock functional even if WebGL or its CDN is unavailable.
-  setInterval(() => {
-    if (!document.hidden) {
-      updateDJ(0.25);
-      if (playing) {
-        $("#seek").value = (position() / audioDuration()) * 100;
-        $("#time").textContent =
-          clockText(position()) + " / " + clockText(audioDuration());
-      }
-    }
-  }, 250);
 }
 // The companion is an illustrated site guide, not a direct chat with Trae. All destinations are allowlisted.
 // Retain the approved illustrated character. Canvas layers provide light limb/head motion without a card flip.
@@ -8931,10 +8282,15 @@ function initCompanion() {
         onArrive: guideArrived,
       });
     } catch (error) {
-      console.warn("Room guide unavailable; page companion remains active.", error);
+      console.warn(
+        "Room guide unavailable; page companion remains active.",
+        error,
+      );
     }
   }
-  document.addEventListener("truth-room-ready", connectRoomGuide, { once: true });
+  document.addEventListener("truth-room-ready", connectRoomGuide, {
+    once: true,
+  });
   if (sceneAPI) connectRoomGuide();
   dockHome();
   pose(0);
@@ -8957,16 +8313,21 @@ function initCompanion() {
     hidden: () => hidden,
     cover: () => activeProject.cover,
     ready: () => root.classList.add("companion-animated"),
-  }).then((model) => {
-    rig = model;
-    rig?.pose(frame);
-    clearTimeout(entranceDeadline);
-    startEntrance();
-  }).catch((error) => {
-    console.warn("Animated guide unavailable; using the illustrated guide.", error);
-    clearTimeout(entranceDeadline);
-    startEntrance();
-  });
+  })
+    .then((model) => {
+      rig = model;
+      rig?.pose(frame);
+      clearTimeout(entranceDeadline);
+      startEntrance();
+    })
+    .catch((error) => {
+      console.warn(
+        "Animated guide unavailable; using the illustrated guide.",
+        error,
+      );
+      clearTimeout(entranceDeadline);
+      startEntrance();
+    });
   setInterval(() => {
     status();
     if (
