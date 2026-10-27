@@ -1,3 +1,4 @@
+import { loadGalleryCuration } from "./features/editorial/gallery.js";
 import { createCatalogPage } from "./features/catalog/page.js";
 import { createDailyChallenge } from "./features/catalog/daily-challenge.js";
 import { createAccountPage } from "./features/account/page.js";
@@ -142,7 +143,9 @@ const account = await createAccountPage({
   merch: () => commerce.merch(),
 });
 
+const galleryCuration = await loadGalleryCuration();
 const editorial = createEditorialPage({
+  galleryCuration,
   siteContent,
   getWishlist: () => commerce.wishlist,
   renderGarment: (p) => commerce.renderGarment(p),

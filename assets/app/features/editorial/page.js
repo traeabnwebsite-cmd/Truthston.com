@@ -1,7 +1,9 @@
+import { uniqueGalleryPhotos } from "./gallery.js";
 import { $, $$, esc } from "../../core/dom.js";
 import { createLifetime } from "../../core/lifecycle.js";
 export function createEditorialPage({
   siteContent,
+  galleryCuration,
   getWishlist,
   renderGarment,
   toast,
@@ -86,7 +88,7 @@ export function createEditorialPage({
       articles = [...(siteContent.articles || [])].sort((a, b) =>
         String(b.date).localeCompare(String(a.date)),
       ),
-      photos = siteContent.photos || [];
+      photos = uniqueGalleryPhotos(siteContent.photos || [], galleryCuration);
     if (section === "article") {
       page.innerHTML = articleView(
         articles.find(
