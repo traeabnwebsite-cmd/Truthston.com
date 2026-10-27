@@ -13,4 +13,5 @@ Visual fixtures are the approved screenshots in handoff/verification. Routes, st
 ## Slice gates
 
 - R0 COMPLETE: isolated branch/worktree, rollback commit, baseline routes/storage/hash inventory, recursive ES module/CSS asset validation;21 Node+17 Python tests and types/schema pass. Private media and CMS state are isolated in this worktree. No production refactor deployment.
-- R1–R8: pending; each must record its completion evidence before the next.
+- R1 COMPLETE (cascade-preserving extraction):105297 original CSS bytes moved into nine ordered stylesheets plus the existing stamp stylesheet. Formatted for readability; font sizes, line heights, families, colors,35 stamp cards and zero overflow matched baseline at390/768/1280px. Original cascade overrides are retained deliberately; deduplication/redesign is not mixed into extraction.
+- R2–R8 pending; each must record its completion evidence before the next.

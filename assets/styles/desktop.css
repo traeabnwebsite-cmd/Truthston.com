@@ -1,0 +1,287 @@
+/* Desktop reading sizes: give copy and controls enough space at normal zoom. */
+@media (min-width: 761px) {
+  body {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .brand {
+    font-size: 36px;
+  }
+  .brand .tagline {
+    font-size: 13px;
+  }
+  .header-note {
+    font-size: 12px;
+  }
+  .modes button,
+  .account-link {
+    font-size: 14px;
+    min-height: 44px;
+  }
+  .account-link small {
+    font-size: 12px;
+  }
+  .site-links {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .site-links a,
+  #companion-restore {
+    font-size: 13px;
+    min-height: 38px;
+    white-space: nowrap;
+  }
+  .eyebrow,
+  .tiny,
+  .topline,
+  .shelf-strip,
+  .footer {
+    font-size: 13px;
+    line-height: 1.65;
+    letter-spacing: 0.6px;
+  }
+  .subline p {
+    font-size: 17px;
+  }
+  .panel p,
+  .book-note,
+  .book-notice,
+  .book-invite p {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .thresholds {
+    font-size: 13px;
+  }
+  .tag,
+  .room-tools .tag,
+  .stations button,
+  .city-nav button,
+  .venue-controls button,
+  .uptown-controls button,
+  .ballpark-controls button,
+  .dj-room-controls button {
+    font-size: 14px;
+    min-height: 44px;
+  }
+  .room-label b {
+    font-size: 28px;
+  }
+  .room-label small {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  .room-label {
+    max-width: calc(100% - 400px);
+  }
+  .room-caption {
+    gap: 32px;
+    padding: 24px 28px;
+  }
+  .room-caption h2 {
+    font-size: 34px;
+    flex-basis: 220px;
+  }
+  .room-caption p {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .room-wrap .room-caption p {
+    font-size: 14px;
+  }
+  .room-wrap .room-caption h2 {
+    font-size: 28px;
+  }
+  .release small {
+    font-size: 14px;
+  }
+  .release b {
+    font-size: 24px;
+  }
+  .text-button,
+  .secondary,
+  .primary {
+    font-size: 14px;
+  }
+  .track small {
+    font-size: 13px;
+  }
+  .dock .track {
+    min-width: 180px;
+  }
+  .dock .track b {
+    font-size: 20px;
+  }
+  .dock .tag,
+  .dock label,
+  .clock {
+    font-size: 13px;
+  }
+  .journal-edition,
+  .journal-kicker,
+  .journal-meta,
+  .journal-caption,
+  .journal-source,
+  .journal-search,
+  .journal-filters button,
+  .journal-section-heading small,
+  .editorial-footer,
+  .journal-masthead p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .journal-search input,
+  .editorial-product select {
+    font-size: 16px;
+  }
+  .journal-lead p,
+  .journal-card p,
+  .journal-wire p,
+  .event-card p,
+  .journal-article p {
+    font-size: 18px;
+    line-height: 1.75;
+  }
+  .photo-card figcaption span,
+  .editorial-issue small,
+  .event-badge,
+  .event-date small {
+    font-size: 13px;
+  }
+  .editorial-product label,
+  .product-actions button,
+  .product-actions a {
+    font-size: 14px;
+  }
+  .editorial-product p {
+    font-size: 17px;
+  }
+  .product-price {
+    font-size: 16px;
+  }
+  .book-tabs button {
+    font-size: 14px;
+  }
+  .stamp-leaf p,
+  .stamp-status,
+  .stamp-leaf details,
+  .stamp-frequency {
+    font-size: 14px;
+  }
+  .member-panel p,
+  .plan-card li,
+  .member-setting-row,
+  .member-settings label,
+  .member-library small,
+  .plan-card .tiny {
+    font-size: 16px;
+  }
+  .member-stat-grid span,
+  .member-stat-grid small,
+  .member-panel small {
+    font-size: 14px;
+  }
+  .plan-price small {
+    font-size: 14px;
+  }
+  .ledger-row {
+    font-size: 14px;
+  }
+  .bump-shop-note,
+  .bump-shop-copy p,
+  .dj-intro,
+  .dj-footnote {
+    font-size: 16px;
+  }
+  .bump-variants button,
+  .dj-model,
+  .dj-model b,
+  .dj-mixer button,
+  .dj-link,
+  .dj-tempo,
+  .dj-readout,
+  .dj-bottom,
+  .dj-fader > div {
+    font-size: 14px;
+  }
+  .dj-hint {
+    font-size: 13px;
+  }
+  .dj-rig {
+    grid-template-columns: minmax(0, 1fr) 230px minmax(0, 1fr);
+  }
+  .world-guide-tools button,
+  .venue-controls span {
+    font-size: 13px;
+  }
+  .companion-chat-v2 .companion-chat-foot {
+    font-size: 12px;
+  }
+  .companion-messages {
+    font-size: 16px;
+  }
+  .companion-chat-form input {
+    font-size: 17px;
+  }
+}
+@media (min-width: 761px) and (max-width: 1050px) {
+  .dj-rig {
+    grid-template-columns: 1fr;
+  }
+  .dj-deck,
+  .dj-mixer {
+    max-width: 590px;
+    width: 100%;
+    margin-inline: auto;
+  }
+  .dock .track {
+    min-width: 145px;
+  }
+  .room-label {
+    max-width: calc(100% - 380px);
+  }
+  .room-label b {
+    font-size: 24px;
+  }
+  .site-links {
+    gap: 16px;
+  }
+  .site-links a {
+    font-size: 12px;
+  }
+}
+@media (min-width: 761px) {
+  .journal-sidebar p,
+  .paper-note p {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .journal-sidebar h3 {
+    font-size: 30px;
+    line-height: 1.12;
+  }
+}
+@media (max-width: 760px) {
+  .journal-sidebar p,
+  .paper-note p {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .dj-room-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 6px;
+    white-space: normal;
+    overflow: visible;
+  }
+  .dj-room-controls button {
+    min-width: 0;
+    white-space: normal;
+    line-height: 1.4;
+    padding: 9px 7px;
+    font-size: 12px;
+  }
+  .dock .track small {
+    font-size: 11px;
+  }
+}
