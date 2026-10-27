@@ -1,3 +1,9 @@
+# Latest completion audit and build plan — October 27, 2026
+
+Read COMPLETION-REPORT.md, BUILD-SPEC.md v3 and MONOLITH-BREAKDOWN.md. Frontend is monolithic; CMS/backend partly separate. Owner requested report and a plan, not an immediate full refactor. R0–R8 is the proposed gated extraction; no extraction has happened. Existing commercial services remain unconnected. New owner request queued next: Truthston.com branding, Welcome to Truthston Texas city sign, all Stamp Book designs matching approved banner stamp, four individual affiliate stamps. Preserve official award authorization; no real approval/grants from browser UI.
+
+---
+
 # Latest ABN stamp refinement — October 27, 2026
 
 Homepage ABN Approved seal is now inline SVG,200px desktop/174px tablet, with a bold rectangular ABN APPROVED banner across the circular seal, curved lettering, stars and scattered ink flecks matching the owner’s supplied rubber-stamp reference. No horizontal/diagonal stripes through lettering. Stamp Book impression masks/background stripes also removed. Keep the enlarged seal and its existing #stamp-invite action. Browser checked layout with companion and Stamp Book opening. Screenshot handoff/verification/abn-stamp-refined.png.
