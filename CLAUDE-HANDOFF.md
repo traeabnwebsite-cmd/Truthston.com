@@ -1,3 +1,9 @@
+# Latest Truthston branding and stamp collection — October 27, 2026
+
+Site now Truthston.com; artist remains Trae tha Truth; store remains ABN Records, CDs and Tapes. Street has elevated Welcome to Truthston Texas gantry.25 stamps grouped by family, same shape+ink for related designs. Four member stamps name Guerilla Maab; project/DJ/Trae Day/location/Relief/affiliation/Vault designs added. All share worn ink and detailed ornaments, safe text widths. ABN uses top lines and bottom thumbs-up, no five-point stars. Logo assets/provenance in assets/branding; Hustle mark is official clothing-store bear variant. New concepts are display-only/unissued, zero-credit; existing award policy unchanged. assets/stamps.mjs and stamps.css isolate presentation; collectible-stamps.json defines display-only extras. This small feature extraction is not the full planned refactor. Roof repair next, then skyline reference audit.
+
+---
+
 # Latest completion audit and build plan — October 27, 2026
 
 Read COMPLETION-REPORT.md, BUILD-SPEC.md v3 and MONOLITH-BREAKDOWN.md. Frontend is monolithic; CMS/backend partly separate. Owner requested report and a plan, not an immediate full refactor. R0–R8 is the proposed gated extraction; no extraction has happened. Existing commercial services remain unconnected. New owner request queued next: Truthston.com branding, Welcome to Truthston Texas city sign, all Stamp Book designs matching approved banner stamp, four individual affiliate stamps. Preserve official award authorization; no real approval/grants from browser UI.

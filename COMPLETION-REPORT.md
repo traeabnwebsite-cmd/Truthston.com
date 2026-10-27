@@ -8,7 +8,9 @@ The interactive artist-site **prototype is built and publicly deployed**. The pa
 
 **Yes, the public frontend is monolithic.** Most application code, styling, catalog fallback data and procedural 3D models are in `index.html`. The local CMS and Cloudflare backend already have separate files, so this is not one monolithic server application. The recommended next engineering job is an incremental conversion to a **modular application in the same repository**, keeping Cloudflare and the existing visual design. A collection of separately deployed microservices is unnecessary at this stage.
 
-The original single-file prototype requirement explains the current structure. The requested modularization plan supersedes that restriction for the future production source. No refactor has been performed as part of this report.
+Subsequent updates in this same job renamed the site Truthston.com, added a welcome gantry and25 grouped collectible designs, and isolated stamp artwork into assets/stamps.mjs/assets/stamps.css with display definitions in assets/config/collectible-stamps.json. The rest of the public frontend remains monolithic. New art/collection metadata does not activate official stamp issuance. The figures below describe the audited b499d9a baseline, before those additions.
+
+The original single-file prototype requirement explains the current structure. The requested modularization plan supersedes that restriction for the future production source. The full R0–R8 refactor has not been performed; only the subsequent stamp presentation feature has been isolated.
 
 ## Status key
 

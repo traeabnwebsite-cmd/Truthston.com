@@ -1,3 +1,9 @@
+# Truthston.com — current project documents
+
+- [Completion report](COMPLETION-REPORT.md)
+- [Sliced build specification v3](BUILD-SPEC.md)
+- [Monolith breakdown plan](MONOLITH-BREAKDOWN.md)
+
 # Truthston.com — Trae Tha Truth / ABN Records, CDs and Tapes
 
 An interactive website for Houston legend Trae tha Truth.

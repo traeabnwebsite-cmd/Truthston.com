@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "status": "collection-design-preview",
+  "stamps": [
+    {
+      "id": "trae",
+      "name": "Trae tha Truth",
+      "family": "maab",
+      "rule": "An individual Guerilla Maab artist collectible, reserved for a verified Trae tha Truth or authorized affiliate award. Not awarded in this preview.",
+      "official": true,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "6-tre-g",
+      "name": "6 Tre G",
+      "family": "maab",
+      "rule": "An individual Guerilla Maab artist collectible, reserved for a verified 6 Tre G or authorized affiliate award. Not awarded in this preview.",
+      "official": true,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "dougie-d",
+      "name": "Dougie D",
+      "family": "maab",
+      "rule": "An individual Guerilla Maab artist collectible, reserved for a verified Dougie D or authorized affiliate award. Not awarded in this preview.",
+      "official": true,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "roc",
+      "name": "Roc",
+      "family": "maab",
+      "rule": "An individual Guerilla Maab artist collectible, reserved for a verified Roc or authorized affiliate award. Not awarded in this preview.",
+      "official": true,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "losing-control",
+      "name": "Losing Control",
+      "family": "projects",
+      "rule": "Project-series design requested by the team. Project association and eligible download qualification will be set before issuance. Not awarded in this preview.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "king-streets",
+      "name": "King of the Streets",
+      "family": "projects",
+      "rule": "Project-series collectible for an eligible King of the Streets project download when member downloads launch. Not awarded in this preview.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "tha-truth-project",
+      "name": "Tha Truth",
+      "family": "projects",
+      "rule": "Project-series collectible for an eligible Tha Truth project download when member downloads launch. Not awarded in this preview.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "restless",
+      "name": "Restless",
+      "family": "projects",
+      "rule": "Project-series collectible for an eligible Restless project download when member downloads launch. Not awarded in this preview.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "dj-screw",
+      "name": "DJ Screw",
+      "family": "screwed",
+      "rule": "Screwed-and-chopped activity-series design. A verified DJ challenge and its earning requirements must be announced before issuance. Not awarded in this preview.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "slabbed",
+      "name": "S.L.A.B.ed",
+      "family": "screwed",
+      "rule": "Screwed-and-chopped project-series design. Eligible project and playback or download requirements will be announced before issuance. Not awarded in this preview.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "rap-a-lot",
+      "name": "Rap-A-Lot",
+      "family": "affiliations",
+      "rule": "Affiliation-series collectible reserved for an authorized partner award or announced campaign. Not awarded in this preview.",
+      "official": true,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "hustle-gang",
+      "name": "Hustle Gang",
+      "family": "affiliations",
+      "rule": "Affiliation-series collectible reserved for an authorized partner award or announced campaign. Not awarded in this preview.",
+      "official": true,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-houston",
+      "name": "Trae Day \u00b7 Houston",
+      "family": "events",
+      "rule": "Location-specific community collectible. A verified Houston event campaign and check-in requirements must be announced before issuance. Not awarded in this preview.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "trae-day-katy",
+      "name": "Trae Day \u00b7 Katy",
+      "family": "events",
+      "rule": "Location-specific community collectible. A verified Katy event campaign and check-in requirements must be announced before issuance. Not awarded in this preview.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "relief-gang",
+      "name": "Relief Gang",
+      "family": "relief",
+      "rule": "Community-service collectible for a verified Relief Gang campaign. No stamp is granted by a donation or purchase. Not awarded in this preview.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "relief-gang-service",
+      "name": "Relief Gang \u00b7 Show Up",
+      "family": "relief",
+      "rule": "Community-service participation design. The organizer must verify an eligible service activity; no attendance is inferred from browsing. Not awarded in this preview.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "angel-by-nature",
+      "name": "Angel By Nature",
+      "family": "abn",
+      "rule": "ABN community collectible reserved for an authorized campaign or official award. Not awarded in this preview.",
+      "official": true,
+      "displayOnly": true,
+      "credits": 0
+    },
+    {
+      "id": "abn-vault",
+      "name": "ABN Vault",
+      "family": "vault",
+      "rule": "Member-series design. Availability and qualification will be announced when real membership services launch. Not awarded in this preview.",
+      "official": false,
+      "displayOnly": true,
+      "credits": 0
+    }
+  ]
+}

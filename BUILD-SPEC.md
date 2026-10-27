@@ -12,7 +12,7 @@ Owner-provided Trae intellectual property, partner arrangements and acquired pho
 
 A completed slice includes visible UI, correct loading/empty/error states, accessible controls, appropriate tests, source/delivery synchronization and a documented operational boundary. A page mockup, schema migration or external checkout link alone does not complete its corresponding production service.
 
-Latest owner addition: brand the site Truthston.com; add “Welcome to Truthston, Texas” in the city; apply the approved banner-style design throughout the Stamp Book, including individual stamps for Trae tha Truth, 6 Tre G, Dougie D and Roc. These additions belong to S01/S03/S11. They do not change official award authorization or activate real credits.
+Latest owner addition: brand the site Truthston.com; add “Welcome to Truthston, Texas” in the city; apply intricate worn-ink designs throughout the Stamp Book (varied designs, with matching shape and color within a related family), including individual stamps for Trae tha Truth, 6 Tre G, Dougie D and Roc. Truthston branding, welcome sign and25 collection designs are implemented at preview scope. Individual and campaign stamps remain unissued. These additions belong to S01/S03/S11. They do not change official award authorization or activate real credits.
 
 ## Architecture decision
 
