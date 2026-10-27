@@ -1,7 +1,7 @@
 import { readFile, stat, readdir } from 'node:fs/promises';
 import { resolve, relative, dirname, extname } from 'node:path';
 import { parse } from 'acorn';
-const root = resolve(import.meta.dirname, '..');
+const root = process.argv[2] ? resolve(process.argv[2]) : resolve(import.meta.dirname, '..');
 const html = await readFile(resolve(root, 'index.html'), 'utf8');
 if (Buffer.byteLength(html) >= 2 * 1024 * 1024) throw new Error('HTML exceeds 2 MB');
 const checked = new Set();
