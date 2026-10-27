@@ -1,6 +1,6 @@
 # Latest ABN stamp refinement — October 27, 2026
 
-Homepage ABN Approved seal is now inline SVG,200px desktop/174px tablet, with curved lettering and scattered ink flecks. No horizontal/diagonal stripes through lettering. Stamp Book impression masks/background stripes also removed. Keep the enlarged seal and its existing #stamp-invite action. Browser checked layout with companion and Stamp Book opening. Screenshot handoff/verification/abn-stamp-refined.png.
+Homepage ABN Approved seal is now inline SVG,200px desktop/174px tablet, with a bold rectangular ABN APPROVED banner across the circular seal, curved lettering, stars and scattered ink flecks matching the owner’s supplied rubber-stamp reference. No horizontal/diagonal stripes through lettering. Stamp Book impression masks/background stripes also removed. Keep the enlarged seal and its existing #stamp-invite action. Browser checked layout with companion and Stamp Book opening. Screenshot handoff/verification/abn-stamp-refined.png.
 
 ---
 
