@@ -1,3 +1,9 @@
+# Latest ABN stamp refinement — October 27, 2026
+
+Homepage ABN Approved seal is now inline SVG,200px desktop/174px tablet, with curved lettering and scattered ink flecks. No horizontal/diagonal stripes through lettering. Stamp Book impression masks/background stripes also removed. Keep the enlarged seal and its existing #stamp-invite action. Browser checked layout with companion and Stamp Book opening. Screenshot handoff/verification/abn-stamp-refined.png.
+
+---
+
 # Latest readability and companion update — October 27, 2026
 
 Completed the mobile spacing/readability pass and a second, larger desktop typography pass requested by the owner. Desktop: 16px body/copy (18px feature articles), 14px controls, 13px secondary labels; mobile: compact header, scrollable navigation, safe-area-aware two-row player, single-column content/mixer where needed. Station directions now occupy a dedicated HTML panel BELOW the 3D room; fullscreen temporarily reparents it into an explicit band and restores it on exit. Do not put directions back over the turntable table. Room titles/controls have opaque contrast panels. CMS labels/inputs also enlarged.
