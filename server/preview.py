@@ -16,6 +16,9 @@ class Handler(SimpleHTTPRequestHandler):
     def __init__(self,*args,**kwargs):super().__init__(*args,directory=str(args[2].root),**kwargs)
     def log_message(self,fmt,*args):pass
     def end_headers(self):
+        # Preview assets change in place; never reuse an older browser copy.
+        if not any(header.lower().startswith(b'cache-control:') for header in self._headers_buffer):
+            self.send_header('Cache-Control','no-store')
         self.send_header('X-Content-Type-Options','nosniff');self.send_header('Referrer-Policy','strict-origin-when-cross-origin');self.send_header('X-Frame-Options','DENY');self.send_header('Content-Security-Policy',"frame-ancestors 'none'; object-src 'none'; base-uri 'self'");super().end_headers()
     def _json(self,obj,status=200,headers=None):
         data=json.dumps(obj,ensure_ascii=False).encode();self.send_response(status);self.send_header('Content-Type','application/json; charset=utf-8');self.send_header('Cache-Control','no-store');self.send_header('Content-Length',str(len(data)))

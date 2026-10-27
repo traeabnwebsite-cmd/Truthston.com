@@ -1489,6 +1489,15 @@ $$("[data-station]").forEach(
     (b.onclick = () =>
       +b.dataset.station === 1 ? enterDJRoom() : go(+b.dataset.station)),
 );
+const cinemaState = {
+  active: false,
+  playing: false,
+  selected: -1,
+  player: null,
+};
+setupCinema();
+initCompanion();
+
 try {
   const T = await import(
     "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.module.min.js"
@@ -7446,6 +7455,11 @@ try {
       document.body.classList.contains("account-view")
     )
       return;
+    // Let the guide finish his entrance before expensive WebGL shader compilation.
+    // Otherwise a busy GPU can leave him invisible in the portal-born state.
+    if (!document.body.classList.contains("companion-dismissed") &&
+        (!$("#companion-home").dataset.journey ||
+          $("#companion-home").dataset.journey === "arriving")) return;
     const ballparkStep = appState.calm ? 1 : dt / 24;
     ballparkOpen +=
       Math.sign(ballparkTarget - ballparkOpen) *
@@ -7613,6 +7627,7 @@ try {
       frameTotal = 0;
     }
   }
+  document.dispatchEvent(new Event("truth-room-ready"));
   raf = requestAnimationFrame(render);
   document.addEventListener("visibilitychange", () => {
     cancelAnimationFrame(raf);
@@ -7666,6 +7681,7 @@ async function buildCompanionIllustration(canvas, options) {
     phase = 0,
     last = 0,
     lastDraw = 0,
+    firstFrame = true,
     raf,
     turnStart = -10000,
     turning = false,
@@ -7842,6 +7858,10 @@ async function buildCompanionIllustration(canvas, options) {
       q.restore();
     }
     q.restore();
+    if (firstFrame) {
+      firstFrame = false;
+      options.ready();
+    }
   }
   raf = requestAnimationFrame(draw);
   document.addEventListener("visibilitychange", () => {
@@ -7851,7 +7871,6 @@ async function buildCompanionIllustration(canvas, options) {
       raf = requestAnimationFrame(draw);
     }
   });
-  options.ready();
   return {
     cinema(s, p, back = false) {
       seated = s;
@@ -7873,13 +7892,6 @@ async function buildCompanionIllustration(canvas, options) {
   };
 }
 
-const cinemaState = {
-  active: false,
-  playing: false,
-  selected: -1,
-  player: null,
-};
-setupCinema();
 function initCompanion() {
   const root = document.createElement("aside");
   root.id = "truth-companion";
@@ -7952,6 +7964,8 @@ function initCompanion() {
     worldTools.hidden = true;
     root.hidden = true;
     restore.hidden = false;
+    home.classList.remove("door-open", "door-present");
+    setPortalState("resting");
     document.body.classList.add("companion-dismissed");
     try {
       localStorage.setItem("truth-companion-hidden", "true");
@@ -7982,6 +7996,7 @@ function initCompanion() {
     attach();
     pose(0);
     status();
+    emerge();
     character.focus({ preventScroll: true });
   }
   $("#companion-putaway").onclick = putAway;
@@ -8284,7 +8299,7 @@ function initCompanion() {
     root.style.position = "absolute";
     root.style.left =
       Math.max(0, (home.clientWidth - (root.offsetWidth || 132)) / 2) + "px";
-    root.style.top = "0px";
+    root.style.top = "var(--companion-home-top, 0px)";
     root.style.bottom = "auto";
     homeDocked = true;
     constrainThought();
@@ -8721,7 +8736,7 @@ function initCompanion() {
     );
     $("#companion-portal-marker span").textContent = inWorld
       ? "CALL HIM BACK"
-      : "THE WAY IN";
+      : "CALL TRAE OUT";
   }
   const portalWait = (ms) =>
     new Promise((resolve) => setTimeout(resolve, appState.calm ? 0 : ms));
@@ -8730,15 +8745,15 @@ function initCompanion() {
     setPortalState("arriving");
     root.classList.add("portal-born");
     home.classList.add("door-present");
-    await portalWait(250);
+    await portalWait(650);
     if (token !== portalToken) return;
     home.classList.add("door-open");
-    await portalWait(700);
+    await portalWait(1000);
     if (token !== portalToken) return;
     root.classList.remove("portal-born");
     root.classList.add("portal-emerging");
     pose(0);
-    await portalWait(1150);
+    await portalWait(1900);
     if (token !== portalToken) return;
     home.classList.remove("door-open");
     pose(3);
@@ -8841,6 +8856,10 @@ function initCompanion() {
     }
   });
   $("#companion-portal-marker").onclick = () => {
+    if (!inWorld) {
+      restoreCompanion();
+      return;
+    }
     if (inWorld) {
       returnFromWorld();
       return;
@@ -8903,16 +8922,36 @@ function initCompanion() {
         enterPortal(appState.station === 2 ? 2 : 0);
     }
   };
-  sceneAPI?.installGuide?.({
-    canvas: $("#companion-model"),
-    onSelect: openChat,
-    onPosition: guidePosition,
-    onArrive: guideArrived,
-  });
+  function connectRoomGuide() {
+    try {
+      sceneAPI?.installGuide?.({
+        canvas: $("#companion-model"),
+        onSelect: openChat,
+        onPosition: guidePosition,
+        onArrive: guideArrived,
+      });
+    } catch (error) {
+      console.warn("Room guide unavailable; page companion remains active.", error);
+    }
+  }
+  document.addEventListener("truth-room-ready", connectRoomGuide, { once: true });
+  if (sceneAPI) connectRoomGuide();
   dockHome();
   pose(0);
   status();
   attach();
+  let entranceStarted = false;
+  function startEntrance() {
+    if (entranceStarted) return;
+    entranceStarted = true;
+    if (!hidden) emerge();
+    else {
+      root.classList.remove("portal-born");
+      setPortalState("resting");
+    }
+  }
+  // The CSS atlas remains a usable portrait if decoding/canvas setup is delayed.
+  const entranceDeadline = setTimeout(startEntrance, 3000);
   buildCompanionIllustration($("#companion-model"), {
     still,
     hidden: () => hidden,
@@ -8921,11 +8960,12 @@ function initCompanion() {
   }).then((model) => {
     rig = model;
     rig?.pose(frame);
-    if (!hidden) emerge();
-    else {
-      root.classList.remove("portal-born");
-      setPortalState("outside");
-    }
+    clearTimeout(entranceDeadline);
+    startEntrance();
+  }).catch((error) => {
+    console.warn("Animated guide unavailable; using the illustrated guide.", error);
+    clearTimeout(entranceDeadline);
+    startEntrance();
   });
   setInterval(() => {
     status();
@@ -8958,7 +8998,6 @@ function initCompanion() {
     }
   }, 1000);
 }
-initCompanion();
 
 const deepLink = location.hash.match(/^#release=(\d+)$/);
 if (deepLink && releases[+deepLink[1]]) release(releases[+deepLink[1]]);
