@@ -20,3 +20,8 @@ research/
 handoff/verification/*authorization.png
 handoff/verification/ionos-nameservers-confirmed.png
 handoff/verification/cloudflare-deployed.png
+
+# Local artwork iterations and browser working files
+.refactor-artwork-cache/
+.playwright-cli/
+output/playwright/

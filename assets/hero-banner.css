@@ -1,0 +1,466 @@
+/* The artwork owns the house/record/skyline. Text, seal and guide remain live. */
+.intro.hero-banner {
+  height: clamp(420px, 33.333vw, 640px);
+  padding: 0;
+  isolation: isolate;
+  background: #eee6d3;
+  overflow: visible;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #a98f58;
+}
+.hero-banner:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("./hero/truthston-house-banner.png") center/100% 100%
+    no-repeat;
+  pointer-events: none;
+}
+.hero-banner .topline {
+  position: absolute;
+  top: 8%;
+  left: 4%;
+  right: 4%;
+  margin: 0;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+.hero-banner .topline > span {
+  padding: 6px 9px;
+  background: #eee6d3ed;
+  border: 1px solid #7c725233;
+  line-height: 1.5;
+}
+.hero-banner .headline {
+  position: static;
+  display: block;
+}
+.hero-banner .headline h1 {
+  position: absolute;
+  top: 25%;
+  left: 4%;
+  width: 42%;
+  font-size: clamp(58px, 6.5vw, 128px);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  margin: 0;
+  z-index: 2;
+  text-shadow: 0 1px #fff8;
+}
+.hero-banner .headline h1 span {
+  white-space: nowrap;
+}
+.hero-banner .headline .companion-chamber {
+  position: absolute;
+  left: 56%;
+  top: calc(78% - 176px);
+  width: 180px;
+  min-width: 0;
+  max-width: none;
+  height: 218px;
+  margin: 0;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: block;
+}
+.hero-banner .companion-doorway {
+  top: 39px;
+  width: clamp(76px, 7.3vw, 126px);
+  height: 141px;
+  opacity: 1;
+  filter: drop-shadow(1px 3px 2px #0004);
+}
+.hero-banner .companion-door-depth {
+  border-width: 4px;
+  background: #121e18;
+}
+.hero-banner .companion-door-leaf {
+  inset: 4px;
+  border-width: 2px;
+  background: repeating-linear-gradient(0deg, #2c4c3b 0 2px, #253e31 3px 31px);
+}
+.hero-banner .companion-door-leaf span {
+  font-size: 17px;
+  left: 14px;
+  right: 14px;
+  top: 27px;
+  padding: 4px 0;
+}
+.hero-banner .companion-door-leaf i {
+  top: 76px;
+}
+.hero-banner .companion-portal-marker {
+  right: -8px;
+  bottom: 14px;
+  padding: 5px;
+  color: #253e31;
+  background: #eee6d3de;
+  border-radius: 4px;
+}
+.hero-banner .companion-portal-marker span {
+  font-size: 9px;
+  letter-spacing: 0.4px;
+}
+.hero-banner .companion-portal-menu {
+  top: 205px;
+  left: -28px;
+  right: -28px;
+}
+.hero-banner .headline .seal {
+  position: absolute;
+  left: 76.5%;
+  top: 51%;
+  width: clamp(150px, 14vw, 230px);
+  height: clamp(150px, 14vw, 230px);
+  display: block;
+  margin: 0;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  z-index: 3;
+}
+.hero-banner .subline {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 6%;
+  margin: 0;
+  align-items: end;
+  z-index: 2;
+}
+.hero-banner .subline p {
+  padding: 9px 13px;
+  max-width: 39%;
+  font-size: clamp(12px, 1.05vw, 17px);
+  line-height: 1.65;
+  background: #eee6d3ed;
+  border-left: 3px solid var(--red);
+  box-shadow: 2px 2px 0 #1c372622;
+}
+.hero-banner .subline .tiny {
+  padding: 5px 8px;
+  background: #233d31ed;
+  color: #eee6d3;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.6px;
+}
+/* Put-away is the fourth action below his feet; it can never overlap a pose. */
+#truth-companion .companion-actions > .companion-putaway {
+  position: static;
+  inset: auto;
+  flex: 0 0 40px;
+  min-width: 40px;
+  min-height: 40px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #fff8e9;
+  border-radius: 0;
+  padding: 0;
+  font: 22px/1 system-ui;
+  opacity: 0;
+}
+.companion-v2.companion-near .companion-actions,
+.companion-v2:has(:focus-visible) .companion-actions {
+  width: 180px;
+  height: 42px;
+}
+#truth-companion.companion-near .companion-actions > .companion-putaway,
+#truth-companion:has(:focus-visible) .companion-actions > .companion-putaway {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* Center copy within the actual cloud body, away from its scalloped top edge. */
+body > .companion-thought,
+.room-wrap > .companion-thought {
+  width: 250px;
+  height: 174px;
+  z-index: 51;
+  filter: drop-shadow(1px 2px 0 #fff8) drop-shadow(3px 5px 4px #3c2c2638);
+}
+.companion-thought .companion-thought-message {
+  top: 31px;
+  left: 40px;
+  right: 31px;
+  width: auto;
+  height: 103px;
+  max-height: none;
+  padding: 2px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+.companion-thought-message span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  max-width: 100%;
+}
+.companion-thought-message small {
+  font-size: 10px;
+  line-height: 1.35;
+  margin: 0;
+  max-width: 100%;
+}
+.companion-thought .companion-bubble-close {
+  top: 24px;
+  right: 27px;
+  width: 22px;
+  height: 22px;
+  min-height: 22px;
+  padding: 0;
+  font: 16px/1 system-ui;
+}
+@media (min-width: 761px) and (max-width: 1050px) {
+  .hero-banner .topline {
+    font-size: 10px;
+  }
+  .hero-banner .headline h1 {
+    font-size: 6.5vw;
+  }
+  .hero-banner .headline .companion-chamber {
+    left: 55%;
+    top: calc(78% - 160px);
+    width: 140px;
+  }
+  .hero-banner #truth-companion.companion-v2 {
+    width: 112px;
+    height: 185px;
+  }
+  .hero-banner #truth-companion.companion-v2 #companion-character {
+    width: 112px;
+    height: 149px;
+  }
+  .hero-banner .companion-doorway {
+    top: 35px;
+    height: 120px;
+  }
+  .hero-banner .headline .seal {
+    left: 77%;
+    width: 140px;
+    height: 140px;
+  }
+  .hero-banner .subline p {
+    max-width: 42%;
+    font-size: 12px;
+  }
+}
+@media (max-width: 760px) {
+  .intro.hero-banner {
+    height: 690px;
+    margin-bottom: 16px;
+    background: #eee6d3;
+  }
+  .hero-banner:before {
+    background-size: 720px 240px;
+    background-position: calc(50% - 103px) bottom;
+  }
+  .hero-banner:after {
+    content: "";
+    position: absolute;
+    right: -44px;
+    bottom: 18px;
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    background:
+      radial-gradient(
+        circle,
+        #18271e 0 2px,
+        #be7727 3px 28px,
+        #8a571e 29px 30px,
+        #171b17 31px 36px,
+        transparent 37px
+      ),
+      repeating-radial-gradient(
+        circle,
+        #111a16 0 1px,
+        #354136 2px,
+        #111a16 3px 4px
+      );
+    box-shadow: -3px 4px 7px #0004;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-banner .topline {
+    left: 5%;
+    right: 5%;
+    top: 20px;
+    align-items: start;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0.3px;
+  }
+  .hero-banner .topline > span {
+    padding: 4px 7px;
+  }
+  .hero-banner .headline h1 {
+    top: 124px;
+    left: 5%;
+    width: 90%;
+    font-size: clamp(44px, 11.5vw, 78px);
+    line-height: 0.9;
+  }
+  .hero-banner .subline {
+    left: 5%;
+    right: 5%;
+    top: 246px;
+    bottom: auto;
+    display: block;
+  }
+  .hero-banner .subline p {
+    max-width: 100%;
+    padding: 8px 10px;
+    font-size: 12px;
+    background: #eee6d3ed;
+  }
+  .hero-banner .subline .tiny {
+    display: none;
+  }
+  .hero-banner .headline .companion-chamber {
+    left: 35%;
+    top: calc(100% - 203px);
+    width: 136px;
+    min-width: 0;
+    max-width: none;
+    height: 190px;
+    display: block;
+  }
+  .hero-banner #truth-companion.companion-v2 {
+    width: 104px !important;
+    height: 177px !important;
+  }
+  .hero-banner #truth-companion.companion-v2 #companion-character {
+    width: 104px !important;
+    height: 139px !important;
+  }
+  .hero-banner #truth-companion .companion-actions {
+    bottom: 18px;
+  }
+  .hero-banner .companion-doorway {
+    top: 20px;
+    width: 76px;
+    height: 123px;
+  }
+  .hero-banner .companion-portal-marker {
+    right: -12px;
+    bottom: 1px;
+    background: #eee6d3ed;
+  }
+  .hero-banner .companion-portal-marker span {
+    display: none;
+  }
+  .hero-banner .headline .seal {
+    display: block;
+    left: 77%;
+    top: 54%;
+    width: 132px;
+    height: 132px;
+    transform: translate(-50%, -50%) rotate(-8deg);
+  }
+  .hero-banner .companion-portal-menu {
+    top: 182px;
+    left: -55px;
+    right: -80px;
+  }
+  body > .companion-thought,
+  .room-wrap > .companion-thought {
+    width: 226px;
+    height: 164px;
+  }
+  .companion-thought .companion-thought-message {
+    top: 30px;
+    left: 35px;
+    right: 29px;
+    height: 96px;
+    font-size: 11px;
+  }
+  .companion-thought-message small {
+    font-size: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-banner .companion-door-leaf {
+    transition: none;
+  }
+}
+@media (max-width: 760px) {
+  .intro.hero-banner {
+    height: 560px;
+  }
+  .hero-banner .topline > span:first-child {
+    max-width: none;
+  }
+  .hero-banner .subline {
+    top: 220px;
+  }
+  .hero-banner .headline .companion-chamber {
+    left: calc(50% - 60px);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .hero-banner .headline .seal {
+    top: 65%;
+  }
+  .hero-banner:after {
+    right: 0;
+    width: 101px;
+    border-radius: 145px 0 0 145px;
+    box-shadow: none;
+  }
+}
+.hero-banner .headline .companion-chamber {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+@media (max-width: 760px) {
+  .intro.hero-banner {
+    height: 590px;
+  }
+  .hero-banner:before {
+    mask-image: linear-gradient(to right, #000 0 61%, transparent 73%);
+  }
+  .hero-banner .headline .seal {
+    left: 80%;
+    top: 60%;
+    width: 124px;
+    height: 124px;
+  }
+  .hero-banner:after {
+    bottom: 0;
+  }
+}
+
+@media (min-width: 761px) {
+  .hero-banner .headline .seal {
+    top: 68%;
+  }
+  .hero-banner .topline > span:last-child {
+    max-width: 160px;
+    text-align: right;
+    font-size: 11px;
+  }
+  .hero-banner .topline .tiny {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.2px;
+  }
+}
+.hero-banner .companion-portal-marker{left:auto;top:auto;min-width:0;min-height:0;width:auto;height:auto}
+@media(max-width:760px){.hero-banner .companion-portal-marker{width:36px;height:36px;padding:4px;left:auto;top:auto;right:-8px;bottom:0}}

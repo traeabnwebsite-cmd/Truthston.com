@@ -7891,6 +7891,9 @@ function initCompanion() {
     svg = (k) =>
       `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${icon[k]}</svg>`;
   root.innerHTML = `<div class="companion-thought" id="companion-bubble" hidden><svg viewBox="0 0 280 180" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="thought-cream" x1="0" y1="0" x2=".25" y2="1"><stop offset="0" stop-color="#fffef8"/><stop offset=".62" stop-color="#fff6e4"/><stop offset="1" stop-color="#ded0b3"/></linearGradient></defs><path d="M44 133C15 135 8 110 25 94C3 70 20 45 43 46C40 20 70 9 91 24C104 3 138 5 149 22C169 7 201 18 203 37C233 25 256 43 250 65C278 69 282 99 261 112C271 139 242 157 221 147C209 169 179 169 165 154C145 171 119 164 113 151C86 166 60 156 59 138Z" fill="url(#thought-cream)" stroke="#c9baa0" stroke-width="1.5"/><circle cx="66" cy="162" r="6" fill="#fff8e8" stroke="#b2a185"/><circle cx="52" cy="175" r="3" fill="#fff8e8" stroke="#b2a185"/></svg><button class="companion-bubble-close" aria-label="Dismiss companion thought">×</button><button class="companion-thought-message" id="companion-cta"><span></span><small></small></button></div><button id="companion-character" aria-label="Site companion. Drag to move; arrow keys also move. Hover nearby for chat, voice and store." aria-expanded="false"><canvas id="companion-model" width="150" height="200" aria-hidden="true"></canvas><span class="companion-sprite"></span><img class="companion-record" alt=""><i class="companion-spark"></i><i class="companion-spark"></i></button><div class="companion-actions" role="group" aria-label="Companion actions"><button id="companion-open-chat" aria-label="Chat with site companion" title="Chat">${svg("chat")}</button><button id="companion-open-voice" aria-label="Voice chat with site companion" title="Voice chat">${svg("voice")}</button><button id="companion-open-store" aria-label="Open merch store" title="Merch store">${svg("store")}</button></div><button class="companion-putaway" id="companion-putaway" aria-label="Put companion away" title="Put companion away">×</button><span class="accessible" id="companion-status" role="status">Companion active</span>`;
+  root
+    .querySelector(".companion-actions")
+    .append(root.querySelector("#companion-putaway"));
   const chat = document.createElement("section");
   chat.id = "companion-chat";
   chat.className = "companion-chat-v2";
@@ -8053,18 +8056,20 @@ function initCompanion() {
     const r = root.getBoundingClientRect(),
       w = el.offsetWidth,
       h = el.offsetHeight;
-    if (
-      homeDocked &&
-      innerWidth <= 760 &&
-      r.top - h + 5 < $(".site-links").getBoundingClientRect().bottom + 8
-    ) {
-      el.hidden = true;
-      return;
-    }
-    el.style.left =
-      Math.max(8, Math.min(innerWidth - w - 8, r.left - 60)) + "px";
-    el.style.top =
-      Math.max(8, Math.min(innerHeight - h - 8, r.top - h + 5)) + "px";
+    // Prefer the viewer's right; keep the cloud body and its copy on screen.
+    const left = Math.max(8, Math.min(innerWidth - w - 8, r.right - 4));
+    const top = Math.max(8, Math.min(innerHeight - h - 8, r.top - 160));
+    el.style.left = left + "px";
+    el.style.top = top + "px";
+    const anchor = Math.max(
+      6,
+      Math.min(66, ((r.left + r.width * 0.78 - left) / w) * 280),
+    );
+    const dots = el.querySelectorAll("circle");
+    dots[0]?.setAttribute("cx", String(anchor + 13));
+    dots[0]?.setAttribute("cy", "153");
+    dots[1]?.setAttribute("cx", String(anchor));
+    dots[1]?.setAttribute("cy", "172");
   }
   function place(x, y) {
     if (homeDocked) {
@@ -8111,6 +8116,10 @@ function initCompanion() {
   function showThought(text, action) {
     if (hidden) return;
     $("#companion-cta span").textContent = text;
+    $("#companion-cta").setAttribute(
+      "aria-label",
+      text + " " + actions[action][0],
+    );
     $("#companion-cta small").textContent = actions[action][0] + " ↗";
     $("#companion-cta").onclick = () => act(action);
     $("#companion-bubble").hidden = false;
