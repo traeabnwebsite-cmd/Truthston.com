@@ -43,3 +43,7 @@ Start with [BUILD-SPEC.md](BUILD-SPEC.md). Supporting research: [platform/servic
 - Team publishing console: http://localhost:8765/cms.html
 
 Read [CMS-GUIDE.md](docs/CMS-GUIDE.md) for editing/uploading and the production boundary. Local edits save to disk and mirror to the delivery preview. Read [CONNECT-ACCOUNTS.md](docs/CONNECT-ACCOUNTS.md) for adding the Trae GitHub/Cloudflare accounts while preserving existing connections. The cloud CMS, subscriptions and checkout are not activated.
+
+## Live preview and deployment
+
+https://www.truthston.com/ — Cloudflare-hosted prototype. Alternate: https://trae-tha-truth-preview.traeabnwebsite.workers.dev/ . Main commits build/test/deploy automatically through Cloudflare Workers Builds. See [DEPLOYMENT-STATUS.md](docs/DEPLOYMENT-STATUS.md) for DNS, SSL, account connections and production boundaries.

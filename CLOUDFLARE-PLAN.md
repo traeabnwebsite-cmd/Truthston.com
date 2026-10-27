@@ -93,3 +93,5 @@ After binding configuration, generate types with `npm run types`. Apply migratio
 ## October 27 publishing / account connection update
 
 Use docs/CONNECT-ACCOUNTS.md for additive account setup and docs/CMS-GUIDE.md for current publishing boundaries. The existing terminal API token points to the older WebFaktory account, so do not run a real deployment with that environment. Set the Trae account/token as repository CI secrets instead. GitHub import push awaits Trae write authorization. The local editor persists on disk; cloud publishing is fail-closed until staff identity, D1/R2 and commerce adapters are implemented. The sanitized public content snapshot can deploy now once the correct accounts are connected. Public output excludes MP3 masters.
+
+Current status: authorization and public-preview deployment are complete. Use docs/DEPLOYMENT-STATUS.md; the older account-connection blockers above are historical. Cloudflare Workers Builds is the active automatic pipeline.

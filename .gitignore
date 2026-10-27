@@ -18,3 +18,5 @@ assets/audio/*.mp3
 companion-3d.html
 research/
 handoff/verification/*authorization.png
+handoff/verification/ionos-nameservers-confirmed.png
+handoff/verification/cloudflare-deployed.png

@@ -1,0 +1,16 @@
+# Deployment status — October 27, 2026
+
+Repository: https://github.com/traeabnwebsite-cmd/Truthston.com . Imported on top of the original main/README commit, then pushed as the newly authorized traeabnwebsite-cmd account. All previously saved GitHub accounts remain. Existing WebFaktory Cloudflare environment credentials were not changed or used for this deployment.
+
+Live preview: https://trae-tha-truth-preview.traeabnwebsite.workers.dev/
+Custom website: https://www.truthston.com/ and https://truthston.com/
+
+Cloudflare Workers Builds is connected to only Truthston.com through its GitHub App. Main deploys automatically using `npm run check && npm run prepare:assets`, then `npx wrangler deploy`. Both the initial build and the follow-up route-config build completed successfully. GitHub Actions validation also passed. The manual GitHub Actions deploy workflow is optional and still needs separate repository secrets if ever used; do not configure a second automatic deploy pipeline.
+
+Account: Traeabnwebsite Gmail account, account ID90e7a4da02e47f49eb819dd595f1f430. Worker: trae-tha-truth-preview. Domain registration remains at IONOS. IONOS confirmed the nameserver change to cortney.ns.cloudflare.com and kurt.ns.cloudflare.com. Cloudflare Free plan selected; no paid upgrade or subscription purchased. Universal SSL is Active for truthston.com and *.truthston.com; Always Use HTTPS enabled.
+
+Exact Worker routes: truthston.com/* and www.truthston.com/*, fail-closed. Both are persisted in Wrangler config. No wildcard route intercepts email/autodiscover hostnames. Proxied apex records are retained; routing serves the Worker/ASSETS directly and does not use the IONOS parking origin. www is a proxied CNAME to the apex. MX/SPF/DMARC/autodiscover/domainconnect and both IONOS DKIM CNAMEs are preserved as DNS-only; MX priority10 for both hosts was checked against live DNS. The scan initially missed DKIM; both records were restored before nameserver activation. Two certificate TXT validation records were added using values shown by Cloudflare. DNS snapshots are private in .local-media/setup, not committed.
+
+Verification: normal HTTPS www/API health200; strict TLS apex/API health200 through the current Cloudflare edge IP with hostname verification intact; live 3D room visible on custom domain. Public resolver1.1.1.1 and authoritative Cloudflare servers return Cloudflare addresses. The current local upstream DNS resolver still cached the old IONOS apex A/AAAA for about19minutes at the last check; root connections on that resolver can fail until that cache expires. This does not affect the fresh www hostname. Do not disable TLS verification or change global DNS settings to conceal that propagation boundary.
+
+Production boundary: this is the deployed prototype, not a working paid membership service. /api/cms and premium audio remain503. Local CMS continues saving to disk/mirroring source and delivery. D1/R2 persistence, staff/member identity, subscriptions/commerce, private media authorization and real AI are still implementation/configuration jobs. Master MP3s remain local/private and excluded from Git/public asset packaging; missing local Boss Ballin preview uses the generated original beat fallback. Do not upload catalog masters to public assets as a workaround.

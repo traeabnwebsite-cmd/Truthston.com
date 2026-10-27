@@ -1,3 +1,5 @@
+> Completed October27: both connections are authorized; Cloudflare Workers Builds now deploys this repository directly. Existing accounts were preserved. The CI-secret route below remains an optional alternative, not the active deployment pipeline. Read DEPLOYMENT-STATUS.md.
+
 # Add the Trae accounts without removing existing accounts
 
 Prepared October 27, 2026. No existing connection was disconnected. Repository: https://github.com/traeabnwebsite-cmd/Truthston.com (public, initial main branch preserved). The terminal’s active GitHub account has read-only access to this repository; the Cloudflare token targets the older WebFaktory account. Do not deploy using that old token.

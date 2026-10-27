@@ -1,3 +1,9 @@
+# Latest hosting handoff — October 27, 2026
+
+GitHub/Cloudflare connections are now authorized and setup is complete at public-preview scope. Read docs/DEPLOYMENT-STATUS.md first; it supersedes older statements below about authorization blockers. Code is pushed to traeabnwebsite-cmd/Truthston.com; Cloudflare Workers Builds automatically checks/prepares/deploys main. https://www.truthston.com/ is live with Active Universal SSL and the room browser-verified. Root domain is correctly routed but the current local upstream resolver temporarily caches old IONOS apex A/AAAA. www and the workers.dev alternate work normally. No old accounts were disconnected; no old Cloudflare token was used. Free domain plan, no paid upgrade. IONOS remains registrar; Cloudflare now provides DNS. Mail records preserved, two missed DKIM records restored, HTTPS enforced. Wrangler config persists exact root/www routes and public preview flags. No real production CMS/membership/payment/media service is activated. Local launch and CMS still work unchanged. See the deployment status document for private backup location and validation evidence.
+
+---
+
 # Current handoff priority — October 27 publishing update
 
 Local publishing is implemented and tested. `cms.html`, `assets/cms.js`, `assets/cms.css`, `server/cms_store.py` and `server/preview.py`. Read docs/CMS-GUIDE.md and docs/CONNECT-ACCOUNTS.md first. Last user addition: CMS MUST edit in-site merch; done for products/images/price/sizes/stock/availability/checkout links. Product edits flow into main merch page and Flare/camo Bumpboxx routes.
