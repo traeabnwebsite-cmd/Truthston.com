@@ -1,3 +1,8 @@
+import { createCatalogPage } from "./features/catalog/page.js";
+import { createDailyChallenge } from "./features/catalog/daily-challenge.js";
+import { createAccountPage } from "./features/account/page.js";
+import { createEditorialPage } from "./features/editorial/page.js";
+import { createCommercePage } from "./features/commerce/page.js";
 import { $, $$, esc } from "./core/dom.js";
 import { createRandom } from "./core/random.js";
 import { createAppState } from "./core/app-state.js";
@@ -36,8 +41,9 @@ if (siteContent.site?.homeIntro) {
     ),
   );
 }
+const supplied = window.RELEASE_DATA || window.releaseData || embeddedVault;
 const { data, releases } = prepareCatalog({
-  supplied: window.RELEASE_DATA || window.releaseData || embeddedVault,
+  supplied,
   embeddedVault,
   siteContent,
   sample,
@@ -63,21 +69,15 @@ let playing = false,
   spin = 0,
   spinSpeed = 0,
   sceneAPI;
-const today = new Date(),
-  dayKey = today.toLocaleDateString("en-CA");
-let stamped = false;
-try {
-  const saved = JSON.parse(localStorage.getItem("truth-stamps") || "{}");
-  appState.stamps = saved.count || 0;
-  stamped = saved.day === dayKey;
-} catch {}
-const target =
-  releases[
-    (today.getFullYear() * 366 + today.getMonth() * 31 + today.getDate()) %
-      releases.length
-  ];
-$("#challenge").textContent = `Find the tape from ${target.year}.`;
-$("#stamps").textContent = appState.stamps + " HUNTS COMPLETED";
+const today = new Date();
+const dailyChallenge = createDailyChallenge({
+  today,
+  releases,
+  appState,
+  earn,
+  toast,
+});
+
 $("#current-year").textContent = today.getFullYear();
 $("#release-count").textContent = releases.length;
 const mmdd =
@@ -132,865 +132,73 @@ $("#modal").addEventListener("click", (e) => {
 });
 
 // Account and rewards preview: device-local only. Replace these events with verified API awards in production.
-const bookKey = "abn-stamp-book-v1";
-let book = {
-  name: "",
-  awards: {},
-  events: { dig: [], city: [], cut: [], listen: [] },
-  ledger: [],
-  redemptions: [],
-};
-try {
-  const v = JSON.parse(localStorage.getItem(bookKey) || "null");
-  if (
-    v &&
-    v.awards &&
-    v.events &&
-    Array.isArray(v.ledger) &&
-    Array.isArray(v.redemptions)
-  )
-    book = v;
-} catch {}
-let bookTab = "stamps",
-  heardSeconds = Math.min(60, book.events.listen?.length || 0);
-const fallbackStampDefs = [
-  {
-    id: "abn",
-    name: "ABN Approved",
-    rule: "An official award from an authorized ABN account. Personal approval cannot be earned automatically.",
-    credits: 0,
-    official: true,
-  },
-  {
-    id: "truth",
-    name: "The Truth",
-    rule: "Listen to 60 seconds of the preview record while this page is visible.",
-    kind: "listen",
-    need: 60,
-    credits: 40,
-  },
-  {
-    id: "maab",
-    name: "Guerilla Maab",
-    rule: "Reserved for a verified affiliate award or an announced member event.",
-    credits: 0,
-    official: true,
-  },
-  {
-    id: "street",
-    name: "Street Certified",
-    rule: "Explore four different Houston landmark viewpoints.",
-    kind: "city",
-    need: 4,
-    credits: 30,
-  },
-  {
-    id: "crate",
-    name: "Crate Digger",
-    rule: "Open five different releases from the record shelves or archive.",
-    kind: "dig",
-    need: 5,
-    credits: 50,
-  },
-  {
-    id: "chop",
-    name: "Chopped In",
-    rule: "Play the record and make four manual cuts with the DJ crossfader.",
-    kind: "cut",
-    need: 4,
-    credits: 25,
-  },
-  {
-    id: "project",
-    name: "Project Collector",
-    rule: "Download an eligible full project when member downloads launch. Each project gets its own stamp.",
-    credits: 0,
-  },
-];
-const fallbackRewardDefs = [
-  {
-    id: "tee",
-    name: "ABN Tee reservation",
-    cost: 100,
-    description:
-      "A sample reward for a future member apparel drop. No product is reserved or shipped in this preview.",
-  },
-  {
-    id: "merch",
-    name: "Merch credit",
-    cost: 75,
-    description:
-      "Try redeeming credits toward future merch. Preview credits have no cash value.",
-  },
-  {
-    id: "drop",
-    name: "Members-only drop",
-    cost: 150,
-    description:
-      "A sample access reward for a future limited collection. Final rewards and terms will be set before launch.",
-  },
-];
-let membershipPolicy = null;
-try {
-  const response = await fetch("assets/config/membership-policy.json", {
-    signal: AbortSignal.timeout(1500),
-  });
-  if (response.ok) membershipPolicy = await response.json();
-} catch {}
-const artistStampDefs = [
-  ["trae", "Trae tha Truth"],
-  ["6-tre-g", "6 Tre G"],
-  ["dougie-d", "Dougie D"],
-  ["roc", "Roc"],
-].map(([id, name]) => ({
-  id,
-  name,
-  official: true,
-  displayOnly: true,
-  credits: 0,
-  rule:
-    "An individual " +
-    name +
-    " collectible. Reserved for a verified artist or authorized affiliate award when official member issuance launches. Not awarded in this preview.",
-}));
-let collectionStampDefs = artistStampDefs;
-try {
-  const res = await fetch("assets/config/collectible-stamps.json", {
-    signal: AbortSignal.timeout(1500),
-  });
-  if (res.ok) {
-    const extra = await res.json();
-    if (Array.isArray(extra.stamps))
-      collectionStampDefs = extra.stamps
-        .filter(
-          (d) => d && typeof d.id === "string" && typeof d.name === "string",
-        )
-        .map((d) => ({
-          ...d,
-          credits: 0,
-          kind: undefined,
-          need: undefined,
-          displayOnly: true,
-        }));
-  }
-} catch {}
-const stampDefs = [
-  ...(membershipPolicy?.stamps?.map((d) => ({
-    ...d,
-    productionRule: d.rule,
-    rule: d.previewRule || d.rule,
-  })) || fallbackStampDefs),
-  ...collectionStampDefs,
-];
-const rewardDefs = membershipPolicy?.rewards || fallbackRewardDefs;
-const memberPlans = membershipPolicy?.plans || [
-  {
-    id: "free",
-    name: "The Family",
-    priceCents: 0,
-    features: ["Your Stamp Book", "Public previews and community challenges"],
-  },
-  {
-    id: "vault",
-    name: "The ABN Vault",
-    priceCents: null,
-    features: [
-      "Authorized premium catalog",
-      "Eligible project downloads",
-      "Announced member drops",
-    ],
-  },
-];
-const accountTabs = [
-  ["overview", "01 / My account"],
-  ["stamps", "02 / Stamp Book"],
-  ["membership", "03 / Membership"],
-  ["library", "04 / My library"],
-  ["rewards", "05 / Rewards"],
-  ["community", "06 / Community"],
-  ["settings", "07 / Settings"],
-];
-function accountLink(tab) {
-  location.hash = "account/" + (tab === "stamps" ? "stamp-book" : tab);
-}
-
-function saveBook() {
-  try {
-    localStorage.setItem(bookKey, JSON.stringify(book));
-  } catch {
-    toast("This browser could not save your Stamp Book.");
-  }
-}
-function bookBalance() {
-  return book.ledger.reduce((n, v) => n + v.amount, 0);
-}
-function bookEvent(kind, key) {
-  if (!book.events[kind]) book.events[kind] = [];
-  const list = book.events[kind];
-  if (list.includes(key)) return;
-  list.push(key);
-  if (list.length > 200) list.splice(0, list.length - 200);
-  saveBook();
-  if (book.name) checkBookAwards();
-}
-function checkBookAwards() {
-  for (const d of stampDefs) {
-    if (
-      d.kind &&
-      !book.awards[d.id] &&
-      (book.events[d.kind]?.length || 0) >= d.need
-    ) {
-      const date = new Date().toISOString();
-      book.awards[d.id] = date;
-      book.ledger.push({
-        id: "award:" + d.id,
-        amount: d.credits,
-        label: d.name,
-        date,
-      });
-      saveBook();
-      toast(d.name + " stamped. +" + d.credits + " preview credits.");
-      if (document.body.classList.contains("account-view")) renderBook();
-    }
-  }
-}
-function redeemReward(id) {
-  const r = rewardDefs.find((v) => v.id === id);
-  if (
-    !r ||
-    !book.name ||
-    book.redemptions.some((v) => v.id === id) ||
-    bookBalance() < r.cost
-  )
-    return;
-  const date = new Date().toISOString();
-  book.ledger.push({
-    id: "redeem:" + id,
-    amount: -r.cost,
-    label: r.name,
-    date,
-  });
-  book.redemptions.push({ id, date, name: r.name });
-  saveBook();
-  renderBook();
-  $("#book-status").textContent =
-    "Demo redemption recorded. Your collectible stamps stay in your book. No order has been placed.";
-}
-function renderBook() {
-  const page = $("#account-page"),
-    earned = Object.keys(book.awards).length,
-    balance = bookBalance();
-  const headings = {
-    overview: ["YOUR PLACE. IN THE FAMILY.", "YOUR ABN", "ACCOUNT."],
-    stamps: ["YOUR STORY. IN INK.", "THE STAMP", "BOOK."],
-    membership: ["MORE THAN A LISTENER.", "PART OF", "THE FAMILY."],
-    library: ["EVERY PROJECT. A CONNECTION.", "YOUR", "CRATE."],
-    rewards: ["COLLECT THE MOMENTS.", "MAKE IT", "COUNT."],
-    community: ["HOUSTON REACHES EVERYWHERE.", "IN GOOD", "COMPANY."],
-    settings: ["MAKE YOURSELF AT HOME.", "YOUR", "DETAILS."],
-  };
-  const h = headings[bookTab] || headings.overview;
-  page.innerHTML = `<div class="book-nav"><button class="text-button" id="book-back">← Back to the record shop</button><span class="eyebrow">TRUTHSTON / MEMBER HOUSE</span></div><div class="book-hero"><div><span class="eyebrow">${h[0]}</span><h1>${h[1]}<br><span>${h[2]}</span></h1><p>Join the site. Get stamped. Get approved.<br>Build your collection with Trae tha Truth, Guerilla Maab and the ABN family.</p></div><div class="member-card"><span class="eyebrow">${book.name ? "THE FAMILY / PREVIEW MEMBER" : "YOUR PLACE IS WAITING"}</span><b>${book.name ? esc(book.name) : "COME THROUGH."}</b>${book.name ? `<p>${earned} COLLECTIBLE STAMPS</p><div class="book-balance">${balance} STAMP CREDITS</div><small>Device-local preview · no paid membership</small>` : `<form id="book-join"><label for="member-name">CHOOSE A DISPLAY NAME</label><input id="member-name" maxlength="32" autocomplete="nickname" required placeholder="Your name"><button class="primary">Start my preview book ↗</button></form>`}</div></div><div class="book-notice">ACCOUNT DESIGN PREVIEW · Saved on this device. Sign-in, billing, premium downloads and real rewards are not connected.</div><nav class="book-tabs" aria-label="Account pages">${accountTabs.map(([id, label]) => `<button data-book-tab="${id}" aria-current="${bookTab === id ? "page" : "false"}" aria-selected="${bookTab === id}">${label}</button>`).join("")}</nav><div id="book-content"></div><p id="book-status" role="status"></p>`;
-  $("#book-back").onclick = () => {
-    location.hash = "";
-  };
-  $$("[data-book-tab]").forEach(
-    (b) => (b.onclick = () => accountLink(b.dataset.bookTab)),
-  );
-  if ($("#book-join"))
-    $("#book-join").onsubmit = (e) => {
-      e.preventDefault();
-      const name = $("#member-name").value.trim();
-      if (!name) return;
-      book.name = name;
-      saveBook();
-      checkBookAwards();
-      renderBook();
-    };
-  const content = $("#book-content");
-  if (bookTab === "overview") {
-    const next = stampDefs.find((d) => d.kind && !book.awards[d.id]),
-      n = next ? Math.min(next.need, book.events[next.kind]?.length || 0) : 0;
-    content.innerHTML = `<section class="member-welcome"><div><span class="eyebrow">YOU BELONG HERE.</span><h2>${book.name ? "What’s good, " + esc(book.name) + "?" : "Step inside the family."}</h2><p>Keep your collection, find your next stamp and see what’s coming.</p></div><span class="member-ticket">ABN<br><small>MEMBER HOUSE / HOUSTON</small></span></section><div class="member-stat-grid"><article><span>IN YOUR BOOK</span><b>${earned}</b><small>permanent collectible stamps</small></article><article><span>READY TO REDEEM</span><b>${balance}</b><small>preview Stamp Credits</small></article><article><span>YOUR MEMBERSHIP</span><b class="stat-word">${book.name ? "The Family" : "Visitor"}</b><small>${book.name ? "free member design preview" : "start a local preview above"}</small></article></div><div class="member-two-col"><article class="member-panel"><span class="eyebrow">YOUR NEXT IMPRESSION</span><h3>${next ? esc(next.name) : "Every activity stamp collected."}</h3><p>${next ? esc(next.rule) : "Watch for announced challenges and verified affiliate awards."}</p>${next ? `<progress max="${next.need}" value="${n}" aria-label="Next stamp progress"></progress><small>${n} / ${next.need} · ${next.credits} preview credits</small>` : ""}<button class="secondary" data-account-destination="stamps">Open the Stamp Book ↗</button></article><article class="member-panel dark"><span class="eyebrow">THE NEXT CHAPTER</span><h3>Keys to the Vault.</h3><p>Artist-authorized music. Exclusive screenings. Eligible project downloads. A deeper connection with the ABN family.</p><small>PROPOSED MEMBERSHIP / NOT ON SALE</small><button class="secondary" data-account-destination="membership">Explore membership ↗</button></article></div><h2 class="member-section-title">Your latest moves.</h2><div class="book-ledger">${
-      book.ledger.length
-        ? book.ledger
-            .slice(-4)
-            .reverse()
-            .map(
-              (v) =>
-                `<div class="ledger-row"><span>${esc(v.label)}<br><small>${new Date(v.date).toLocaleDateString()}</small></span><b>${v.amount > 0 ? "+" : ""}${v.amount} credits</b></div>`,
-            )
-            .join("")
-        : "<p>Your first earned stamp will start your story here.</p>"
-    }</div>`;
-  } else if (bookTab === "stamps") {
-    const stampCard = (d) => {
-      const date = book.awards[d.id],
-        n = Math.min(d.need || 0, book.events[d.kind]?.length || 0);
-      return `<article data-stamp="${d.id}" class="stamp-leaf ${date ? "earned" : "locked"}"><div class="ink-impression">${stampArtwork ? stampArtwork(d.id, { scope: "book", name: d.name, artLines: d.artLines, years: d.years }) : `<b>${esc(d.name)}</b>`}</div><div class="stamp-status">${date ? "STAMPED " + new Date(date).toLocaleDateString() : d.official ? "VERIFIED AWARD REQUIRED" : "COLLECT YOUR STORY"}</div><h3>${esc(d.name)}</h3><p>${esc(d.rule)}</p>${
-        d.venue
-          ? `<div class="stamp-venue-info"><b>${esc(d.eventType)}</b><p>${esc(d.location)}<br>Documented editions: ${d.years.map(esc).join(" · ")}</p><details><summary>Venue history & sources</summary><p>${esc(d.historyNote)}</p>${d.sources
-              .filter((v) => /^https:\/\//.test(v.url))
-              .map(
-                (v) =>
-                  `<a href="${esc(v.url)}" target="_blank" rel="noopener noreferrer">${esc(v.label)} ↗</a>`,
-              )
-              .join("")}</details></div>`
-          : ""
-      }${d.kind ? `<progress max="${d.need}" value="${n}" aria-label="${esc(d.name)} progress"></progress><p>${n} / ${d.need} · +${d.credits} preview credits</p>` : ""}${d.productionRule && d.productionRule !== d.rule ? `<details><summary>Planned member earning rule</summary><p>${esc(d.productionRule)}</p></details>` : ""}<small class="stamp-frequency">${d.displayOnly ? "COLLECTION PREVIEW · ISSUANCE NOT LIVE" : d.official ? "OFFICIAL AWARD" : d.repeat === "per-project" ? "ONE STAMP PER ELIGIBLE PROJECT" : "EARN ONCE · KEEP FOREVER"}</small></article>`;
-    };
-    const groups = [
-      ["Official marks", ["abn", "maab", "angel-by-nature"]],
-      ["Guerilla Maab · Artist series", ["trae", "6-tre-g", "dougie-d", "roc"]],
-      [
-        "From the projects",
-        [
-          "project",
-          "losing-control",
-          "king-streets",
-          "tha-truth-project",
-          "restless",
-        ],
-      ],
-      ["Screwed & chopped", ["chop", "dj-screw", "slabbed"]],
-      ["Street & crate", ["truth", "street", "crate"]],
-      ["Affiliations", ["rap-a-lot", "hustle-gang"]],
-      [
-        "Trae Day · Venue collection",
-        stampDefs.filter((d) => d.family === "events").map((d) => d.id),
-      ],
-      ["Relief Gang · For the people", ["relief-gang", "relief-gang-service"]],
-      ["The Vault", ["abn-vault"]],
-    ];
-    content.innerHTML = `<div class="member-two-col earning-note"><p>Stamps are permanent collectibles. Stamp Credits are the separate balance used for rewards. A redemption keeps every stamp in your book.</p><p>Related collections share their shape and ink color. Official and campaign designs remain locked until verified issuance is available.</p></div>${groups
-      .map(
-        ([title, ids]) =>
-          `<section class="stamp-collection"><h2 class="stamp-collection-heading">${esc(title)}</h2><div class="stamp-grid">${ids
-            .map((id) => stampDefs.find((d) => d.id === id))
-            .filter(Boolean)
-            .map(stampCard)
-            .join("")}</div></section>`,
-      )
-      .join("")}`;
-  } else if (bookTab === "membership") {
-    content.innerHTML = `<div class="membership-plans">${memberPlans.map((plan) => `<article class="plan-card ${plan.id === "vault" ? "vault" : ""}"><span class="eyebrow">${plan.id === "free" ? "A PLACE FOR EVERYBODY" : "GO A LITTLE DEEPER"}</span><h2>${esc(plan.name)}</h2><div class="plan-price">${plan.id === "free" ? "Free" : "Coming soon"}<small>${plan.id === "free" ? "No subscription required" : "Price and launch catalog to be announced"}</small></div><ul>${plan.features.map((f) => `<li>${esc(f)}</li>`).join("")}</ul><button class="${plan.id === "free" ? "secondary" : "primary"}" data-plan-preview="${plan.id}">${plan.id === "free" ? (book.name ? "Your preview membership" : "Start a free preview") : "Preview the Vault experience ↗"}</button><p class="tiny">${plan.id === "vault" ? "No payment is collected. Benefits depend on the final authorized catalog." : "This prototype uses a display name. Secure sign-in arrives at launch."}</p></article>`).join("")}</div><div class="member-two-col"><article class="member-panel"><h3>Your music. Your session.</h3><p>The planned Vault lets different members listen independently. The DJ booth uses two decks within your own playback session.</p></article><article class="member-panel"><h3>Approval is earned.</h3><p>A paid plan does not purchase ABN or affiliate approval. Your stamps stay in the book if a paid membership ends.</p></article></div><div class="member-panel billing-preview"><span class="eyebrow">BILLING & RECEIPTS</span><h3>No active subscription.</h3><p>When memberships launch, manage your payment method, invoices and cancellation here. You have not been charged.</p><button class="secondary" disabled>Billing portal · not connected</button></div>`;
-    $$("[data-plan-preview]").forEach(
-      (b) =>
-        (b.onclick = () => {
-          if (b.dataset.planPreview === "free") {
-            if (!book.name) $("#member-name").focus();
-            else
-              $("#book-status").textContent =
-                "The Family is your free, device-local preview membership.";
-          } else
-            modal(
-              `<span class="eyebrow">THE ABN VAULT / MEMBERSHIP DESIGN</span><h2>Your pass to the next chapter.</h2><p>One member account for authorized music, private screenings, eligible downloads and announced drops.</p><p>Pricing, launch dates and the included catalog are not final. No subscription is created in this preview.</p><button class="primary" id="vault-book">Keep building my Stamp Book ↗</button>`,
-            );
-          if ($("#vault-book"))
-            $("#vault-book").onclick = () => {
-              $("#modal").close();
-              accountLink("stamps");
-            };
-        }),
-    );
-  } else if (bookTab === "library") {
-    const dug = releases.filter((r) =>
-      (book.events.dig || []).includes(String(r.title) + ":" + r.year),
-    );
-    const favorites = book.favorites || [];
-    content.innerHTML = `<div class="member-panel library-owned"><span class="eyebrow">OWNED & INCLUDED PROJECTS</span><h3>Your collection starts here.</h3><p>Purchased projects and eligible member downloads will appear here. Browsing a sleeve does not add a purchase or unlock a paid download.</p><small>NO PURCHASES / NO PREMIUM DOWNLOADS IN THIS PREVIEW</small></div><h2 class="member-section-title">Recently dug.</h2><p class="book-note">Save a favorite or reopen a sleeve. Every release currently uses the same Boss Ballin preview.</p><div class="member-library">${
-      dug.length
-        ? dug
-            .map((r) => {
-              const i = releases.indexOf(r),
-                key = r.title + ":" + r.year;
-              return `<article><button data-library-open="${i}" aria-label="Open ${esc(r.title)}"><img src="${esc(r.cover)}" alt="${esc(r.title)} cover" loading="lazy"><h3>${esc(r.title)}</h3></button><small>${r.year} / RECENTLY BROWSED</small><button class="secondary" data-library-save="${i}" aria-pressed="${favorites.includes(key)}">${favorites.includes(key) ? "✓ Saved favorite" : "Save favorite +"}</button></article>`;
-            })
-            .join("")
-        : '<div class="member-panel"><p>Dig into the record shelves to bring releases into this view.</p><button class="secondary" id="library-browse">Visit the record shelves ↗</button></div>'
-    }</div>`;
-    $$("[data-library-open]").forEach(
-      (b) => (b.onclick = () => release(releases[+b.dataset.libraryOpen])),
-    );
-    $$("[data-library-save]").forEach(
-      (b) =>
-        (b.onclick = () => {
-          const r = releases[+b.dataset.librarySave],
-            key = r.title + ":" + r.year;
-          book.favorites = book.favorites || [];
-          book.favorites = book.favorites.includes(key)
-            ? book.favorites.filter((v) => v !== key)
-            : [...book.favorites, key];
-          saveBook();
-          renderBook();
-        }),
-    );
-    if ($("#library-browse"))
-      $("#library-browse").onclick = () => {
-        location.hash = "";
-        setMode("standard");
-      };
-  } else if (bookTab === "rewards") {
-    content.innerHTML = `<p class="book-note">${balance} available preview credits. Stamps stay in your collection when you redeem. These sample rewards demonstrate the experience; there are no live offers or orders.</p><div class="rewards-grid">${rewardDefs
-      .map((r) => {
-        const used = book.redemptions.some((v) => v.id === r.id);
-        return `<article class="reward-card"><span class="eyebrow">DEMO REWARD</span><h3>${esc(r.name)}</h3><strong>${r.cost}</strong> STAMP CREDITS<p>${esc(r.description)}</p><button class="primary" data-reward="${r.id}" ${!book.name || used || balance < r.cost ? "disabled" : ""}>${used ? "✓ Demo redeemed" : !book.name ? "Start a book first" : balance < r.cost ? "Keep collecting" : "Redeem demo reward"}</button></article>`;
-      })
-      .join(
-        "",
-      )}</div><h2 class="member-section-title">In your ledger.</h2><div class="book-ledger">${
-      book.ledger.length
-        ? book.ledger
-            .slice()
-            .reverse()
-            .map(
-              (v) =>
-                `<div class="ledger-row"><span>${esc(v.label)}<br><small>${new Date(v.date).toLocaleDateString()}</small></span><b>${v.amount > 0 ? "+" : ""}${v.amount} credits</b></div>`,
-            )
-            .join("")
-        : "<p>No credits earned or spent yet.</p>"
-    }</div><p class="book-note">Giveaways and awards have separate eligibility, dates and entry terms. None are active. Preview credits have no cash value.</p><button class="secondary" id="book-merch">Explore the merch concepts ↗</button>`;
-    $$("[data-reward]").forEach(
-      (b) => (b.onclick = () => redeemReward(b.dataset.reward)),
-    );
-    $("#book-merch").onclick = merch;
-  } else if (bookTab === "settings") {
-    const preferences = book.preferences || {};
-    content.innerHTML = `<div class="member-two-col"><form class="member-panel member-settings" id="member-settings"><span class="eyebrow">PROFILE / LOCAL PREVIEW</span><h3>Make it yours.</h3><label for="profile-name">DISPLAY NAME</label><input id="profile-name" maxlength="32" autocomplete="nickname" required value="${esc(book.name)}" placeholder="Your name"><label class="check-line"><input id="profile-public" type="checkbox" ${preferences.publicBook ? "checked" : ""}> Show my Stamp Book publicly at launch</label><label class="check-line"><input id="profile-updates" type="checkbox" ${preferences.updates ? "checked" : ""}> I’d like member drop announcements</label><p>These preferences stay on this device. Your book is not published and no email is collected or sent.</p><button class="primary">Save preview preferences</button></form><article class="member-panel"><span class="eyebrow">ACCOUNT & SECURITY</span><h3>Your identity stays yours.</h3><p>Secure sign-in, email verification, session management and account export or deletion belong here when real accounts launch.</p><div class="member-setting-row"><span>Email & sign-in</span><b>Not connected</b></div><div class="member-setting-row"><span>Active devices</span><b>This preview only</b></div><div class="member-setting-row"><span>Public Stamp Book</span><b>Not published</b></div><button class="secondary" disabled>Manage sign-in · coming at launch</button></article></div>`;
-    $("#member-settings").onsubmit = (e) => {
-      e.preventDefault();
-      const name = $("#profile-name").value.trim();
-      if (!name) return;
-      book.name = name;
-      book.preferences = {
-        publicBook: $("#profile-public").checked,
-        updates: $("#profile-updates").checked,
-      };
-      saveBook();
-      checkBookAwards();
-      renderBook();
-      $("#book-status").textContent =
-        "Preview preferences saved on this device. Nothing has been published or sent.";
-    };
-  } else {
-    content.innerHTML = `<span class="eyebrow">THE NEXT CHAPTER / PROPOSED MEMBER FEATURES</span><div class="community-grid">${[
-      [
-        "Crate hunts",
-        "Trade clues on weekly liner-note hunts. Earn a stamp for an eligible completed challenge.",
-      ],
-      [
-        "Chop sessions",
-        "Join moderated DJ challenges using authorized music. Public mix uploads require additional approval.",
-      ],
-      [
-        "Listening rooms",
-        "Scheduled listening sessions with reactions, polls and a shared room goal.",
-      ],
-      [
-        "Public Stamp Books",
-        "Opt in to show your collection and follow other collectors. Personal details stay private.",
-      ],
-      [
-        "Show up for Houston",
-        "Verified event check-ins can unlock a community-service stamp. No credits for donations.",
-      ],
-      [
-        "Member drops",
-        "Vote on merch designs, join announced giveaways and unlock collective milestones.",
-      ],
-    ]
-      .map(
-        ([a, b]) =>
-          `<article><h3>${a}</h3><p>${b}</p><small>PLANNED / NOT LIVE</small></article>`,
-      )
-      .join("")}</div>`;
-  }
-  $$("[data-account-destination]").forEach(
-    (b) => (b.onclick = () => accountLink(b.dataset.accountDestination)),
-  );
-}
-
-let editorialFilter = "All",
-  editorialQuery = "",
-  editorialLimit = 12,
-  gallerySelection = [];
-
-const editorialDate = (value, precision = "day") => {
-  if (!value) return "Date not recorded";
-  if (precision === "year") return String(value).slice(0, 4);
-  const d = new Date(
-    String(value).slice(0, 10) +
-      (String(value).length === 7 ? "-15" : "") +
-      "T12:00:00",
-  );
-  if (!Number.isFinite(d.getTime())) return String(value);
-  return (
-    new Intl.DateTimeFormat(
-      "en-US",
-      precision === "month" || precision === "approx"
-        ? { month: "long", year: "numeric" }
-        : { month: "short", day: "numeric", year: "numeric" },
-    ).format(d) + (precision === "approx" ? " (approx.)" : "")
-  );
-};
-const contentPhoto = (id) =>
-  (siteContent.photos || []).find((p) => p.id === id);
-function sourceLink(a) {
-  return a.sourceUrl
-    ? `<a class="journal-source" href="${esc(a.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(a.sourceName || "Original source")} ↗</a>`
-    : "";
-}
-function storyMeta(a) {
-  return `<div class="journal-meta"><time>${esc(editorialDate(a.date, a.precision))}</time><span>${esc(a.kind || "ABN Journal")}</span></div>`;
-}
-function photoImage(p, { lead = false } = {}) {
-  return p
-    ? `<img src="${esc(lead ? p.fullSrc || p.src : p.src)}" alt="${esc(p.alt || p.title)}" ${lead ? 'fetchpriority="high"' : 'loading="lazy"'}>`
-    : "";
-}
-function storyCard(a) {
-  const photo = contentPhoto(a.imageId);
-  return `<article class="journal-card"><button class="journal-story-button" data-story="${esc(a.id)}">${photoImage(photo)}<span class="journal-kicker">${esc(a.section)}</span><h3>${esc(a.title)}</h3></button>${storyMeta(a)}<p>${esc(a.summary)}</p>${sourceLink(a)}</article>`;
-}
-function editorialChrome(section) {
-  const d = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/Chicago",
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date());
-  return `<div class="journal-edition"><span>TRUTHSTON, TEXAS / ANGEL BY NATURE</span><span>${esc(d)}</span><span>${section === "newsroom" ? "THE RECORD OF A LIFE." : "ABN / " + section.toUpperCase()}</span></div>`;
-}
-function editorialFooter() {
-  return `<footer class="editorial-footer"><span>TRUTHSTON.COM / THE ABN JOURNAL</span><span>FROM HOUSTON. FOR THE PEOPLE.</span><a href="cms.html">Team publishing console ↗</a></footer>`;
-}
-function articleView(a) {
-  if (!a)
-    return `<div class="editorial-empty">That article is not published. <a href="#newsroom">Back to the newsroom</a></div>`;
-  const photo = contentPhoto(a.imageId),
-    related = (siteContent.articles || [])
-      .filter((v) => v.id !== a.id && v.section === a.section)
-      .slice(0, 4);
-  return `${editorialChrome("newsroom")}<div class="article-layout"><article class="article-main"><a class="journal-source" href="#newsroom">← The ABN Journal</a><div style="margin-top:24px" class="journal-kicker">${esc(a.section)} / ${esc(a.kind || "ABN Journal")}</div><h1>${esc(a.title)}</h1>${storyMeta(a)}<p class="article-deck">${esc(a.summary)}</p><p class="journal-caption">${esc(a.byline || "ABN Journal")}</p>${photo ? `<figure>${photoImage(photo, { lead: true })}<figcaption class="journal-caption">${esc(photo.caption || photo.title)} · ${esc(photo.credit)}${photo.date ? " · PHOTO ARCHIVE / " + esc(editorialDate(photo.date, photo.precision)) : ""}</figcaption></figure>` : ""}<div class="article-body">${String(
-    a.body || a.summary,
-  )
-    .split(/\n\s*\n/)
-    .filter(Boolean)
-    .map((p) => `<p>${esc(p).replace(/\n/g, "<br>")}</p>`)
-    .join(
-      "",
-    )}</div><div class="article-attribution">${a.sourceUrl ? `This ${esc((a.kind || "brief").toLowerCase())} draws on the linked reporting or research record. Original publication: ${esc(editorialDate(a.sourceDate || a.date, a.precision))}.<br>${sourceLink(a)}` : "Original ABN editorial."}</div></article><aside class="article-aside"><span class="eyebrow">IN THIS EDITION</span><h3>More from ${esc(a.section)}.</h3>${related.map((r) => `<button data-story="${esc(r.id)}">${esc(r.title)}</button>`).join("")}<p class="journal-caption">Archive dates remain attached to their stories. New announcements are posted when confirmed.</p></aside></div>${editorialFooter()}`;
-}
-function renderEditorial() {
-  const page = $("#editorial-page"),
-    section = location.hash.slice(1).split("/")[0],
-    articles = [...(siteContent.articles || [])].sort((a, b) =>
-      String(b.date).localeCompare(String(a.date)),
-    ),
-    photos = siteContent.photos || [];
-  if (section === "article") {
-    page.innerHTML = articleView(
-      articles.find(
-        (a) => a.id === decodeURIComponent(location.hash.split("/")[1] || ""),
-      ),
-    );
-    bindEditorial();
-    return;
-  }
-  let content = "";
-  if (section === "newsroom") {
-    const eligible = articles.filter(
-        (a) =>
-          (editorialFilter === "All" || a.section === editorialFilter) &&
-          (!editorialQuery ||
-            [a.title, a.summary, a.sourceName, a.date]
-              .join(" ")
-              .toLowerCase()
-              .includes(editorialQuery.toLowerCase())),
-      ),
-      lead = eligible.find((a) => a.featured) || eligible[0],
-      side = eligible.filter((a) => a !== lead).slice(0, 3),
-      rest = eligible.filter((a) => a !== lead && !side.includes(a));
-    content = `${editorialChrome(section)}<div class="journal-masthead"><h1>${esc(siteContent.site?.newsroomName || "The ABN Journal")}</h1><p>${esc(siteContent.site?.newsroomTagline || "The music. The city. The mission.")}</p></div><div class="journal-toolbar"><div class="journal-filters" role="group" aria-label="News sections">${["All", "Music", "Community", "Houston"].map((v) => `<button data-editorial-filter="${v}" aria-pressed="${editorialFilter === v}">${v === "All" ? "Front page" : v}</button>`).join("")}</div><label class="journal-search">SEARCH THE PAPER<input id="editorial-search" value="${esc(editorialQuery)}" placeholder="Story, year or source…" type="search"></label></div>${lead ? `<div class="journal-front"><article class="journal-lead"><button data-story="${esc(lead.id)}"><span class="journal-kicker">${esc(lead.section)} / ${lead.featured ? "THE LEAD STORY" : "FROM THE ARCHIVE"}</span><h2>${esc(lead.title)}</h2>${photoImage(contentPhoto(lead.imageId), { lead: true })}</button>${contentPhoto(lead.imageId) ? `<div class="journal-caption">PHOTO / ${esc(contentPhoto(lead.imageId).credit)} · ${esc(contentPhoto(lead.imageId).caption || "ABN archive")}</div>` : ""}${storyMeta(lead)}<p>${esc(lead.summary)}</p>${sourceLink(lead)}</article><aside class="journal-sidebar"><span class="eyebrow">ON THE WIRE / DATED DISPATCHES</span>${side.map((a) => `<article><button class="journal-story-button" data-story="${esc(a.id)}"><span class="journal-kicker">${esc(a.section)}</span><h3>${esc(a.title)}</h3></button>${storyMeta(a)}<p>${esc(a.summary)}</p>${sourceLink(a)}</article>`).join("")}<div class="paper-note"><span class="eyebrow">THE PEOPLE BEHIND THE PAGES</span><h3>A city in every story.</h3><p>Music, community and moments from the research archive. Every sourced brief keeps its original date and a link to the reporting.</p><a class="journal-source" href="#gallery">Open the photo archive ↗</a></div></aside></div><div class="journal-section-heading"><h2>From the archive.</h2><small>${eligible.length} DATED STORIES</small></div><div class="journal-grid">${rest.slice(0, editorialLimit).map(storyCard).join("")}</div>${rest.length > editorialLimit ? '<button class="journal-load" id="editorial-more">More from the archive ↓</button>' : ""}` : '<div class="editorial-empty">No stories match that search. Try another year or section.</div>'}`;
-  } else if (section === "gallery") {
-    const selected = photos.filter(
-        (p) =>
-          (editorialFilter === "All" || p.collection === editorialFilter) &&
-          (!editorialQuery ||
-            [p.title, p.caption, p.credit, p.date]
-              .join(" ")
-              .toLowerCase()
-              .includes(editorialQuery.toLowerCase())),
-      ),
-      collections = [
-        "All",
-        ...new Set(photos.map((p) => p.collection).filter(Boolean)),
-      ];
-    gallerySelection = selected;
-    content = `${editorialChrome(section)}<div class="editorial-hero"><div><span class="journal-kicker">THE PHOTO ARCHIVE / IN GOOD COMPANY</span><h1>${esc(siteContent.site?.galleryTitle || "A life in the frame.")}</h1><p>${esc(siteContent.site?.galleryIntro || "On stage. In the city. With the people.")}</p></div><div class="editorial-issue">${photos.length}<small>PHOTOGRAPHS FROM THE ARCHIVE</small></div></div><div class="journal-toolbar"><div class="journal-filters" role="group" aria-label="Photo collections">${collections.map((v) => `<button data-editorial-filter="${esc(v)}" aria-pressed="${editorialFilter === v}">${esc(v)}</button>`).join("")}</div><label class="journal-search">FIND A FRAME<input id="editorial-search" type="search" value="${esc(editorialQuery)}" placeholder="Moment, year or credit…"></label></div><div class="photo-grid">${selected
-      .slice(0, editorialLimit * 2)
-      .map(
-        (p, i) =>
-          `<button class="photo-card" data-photo="${i}" aria-label="Open photo: ${esc(p.title)}"><figure style="margin:0">${photoImage(p)}<figcaption><span>FRAME ${String(i + 1).padStart(3, "0")} / ${esc(p.collection)}</span><b>${esc(p.title)}</b><span>${esc(p.date ? editorialDate(p.date, p.precision) : "DATE NOT RECORDED")} · ${esc(p.credit)}</span></figcaption></figure></button>`,
-      )
-      .join(
-        "",
-      )}</div>${selected.length > editorialLimit * 2 ? '<button class="journal-load" id="editorial-more">More frames ↓</button>' : ""}${!selected.length ? '<div class="editorial-empty">No photos match that search.</div>' : ""}`;
-  } else if (section === "events") {
-    const todayKey = new Intl.DateTimeFormat("en-CA", {
-        timeZone: "America/Chicago",
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      }).format(new Date()),
-      events = siteContent.events || [],
-      upcoming = events
-        .filter((e) => (e.endDate || e.startDate) >= todayKey)
-        .sort((a, b) => a.startDate.localeCompare(b.startDate)),
-      past = events
-        .filter((e) => (e.endDate || e.startDate) < todayKey)
-        .sort((a, b) => b.startDate.localeCompare(a.startDate));
-    const rows = (list) =>
-      list
-        .map((e) => {
-          const d = new Date(e.startDate + "T12:00:00");
-          return `<article class="event-row"><div class="event-date">${d.getDate()}<small>${new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric" }).format(d).toUpperCase()}</small></div><div><span class="event-badge">${(e.endDate || e.startDate) < todayKey ? "PAST EVENT" : "CONFIRMED DATE"} / ${esc(e.category)}</span><h3>${esc(e.title)}</h3><span class="journal-caption">${esc(e.venue)}${e.endDate !== e.startDate ? " · THROUGH " + esc(editorialDate(e.endDate)) : ""}</span><p>${esc(e.description)}</p></div>${e.sourceUrl ? `<a class="journal-source" href="${esc(e.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(e.linkLabel || "Event details")} ↗</a>` : ""}</article>`;
-        })
-        .join("");
-    content = `${editorialChrome(section)}<div class="editorial-hero"><div><span class="journal-kicker">CURRENT EVENTS / THE CITY & BEYOND</span><h1>${esc(siteContent.site?.eventsTitle || "Where the truth shows up.")}</h1><p>${esc(siteContent.site?.eventsIntro || "Community dates and new releases.")}</p></div><div class="editorial-issue">ABN<small>SHOW UP. STAY CONNECTED.</small></div></div><div class="journal-section-heading"><h2>Upcoming & happening now.</h2><small>CONFIRMED DATES ONLY</small></div><div class="event-list">${upcoming.length ? rows(upcoming) : '<div class="editorial-empty">The next dates are on the way. New appearances, community events and member announcements will be posted here when confirmed.</div>'}</div><div class="journal-section-heading"><h2>Latest dispatches.</h2><a class="journal-source" href="#newsroom">Read the paper ↗</a></div><div class="journal-grid">${articles.slice(0, 3).map(storyCard).join("")}</div><div class="journal-section-heading"><h2>From the calendar.</h2><small>PAST EVENTS / ORIGINAL DATES RETAINED</small></div>${rows(past)}`;
-  } else if (section === "merch") {
-    const products = siteContent.products || [];
-    const selected = products
-      .filter(
-        (p) => editorialFilter === "All" || p.category === editorialFilter,
-      )
-      .sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
-    content = `${editorialChrome(section)}<div class="editorial-hero"><div><span class="journal-kicker">ABN / THE MERCH STORE</span><h1>Wear the truth.<br>Bring the sound.</h1><p>Apparel, everyday essentials and Bumpboxx. Made for the family.</p></div><div class="editorial-issue">ABN<small>ANGEL BY NATURE / HOUSTON MADE</small></div></div><div class="journal-toolbar"><div class="journal-filters" role="group" aria-label="Merch categories">${["All", ...new Set(products.map((p) => p.category))].map((v) => `<button data-editorial-filter="${esc(v)}" aria-pressed="${editorialFilter === v}">${esc(v)}</button>`).join("")}</div><span class="journal-caption">Wishlist saved on this device · checkout through each listed store</span></div><div class="editorial-products">${selected
-      .map((p) => {
-        const image = p.image || contentPhoto(p.imageId)?.src,
-          saved = merchWishlist.some((w) => w.id === p.id),
-          buy =
-            p.availability === "available" && p.checkoutUrl && p.stock !== 0;
-        return `<article class="editorial-product"><div class="editorial-product-art">${image ? `<img src="${esc(image)}" alt="${esc(p.title)}" loading="lazy">` : garmentSVG({ ...p, name: p.title })}</div><span class="journal-kicker">${esc(p.category)}</span><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p><div class="product-price">${p.priceCents == null ? (p.availability === "coming-soon" ? "PRICE TO BE ANNOUNCED" : "SEE OFFICIAL STORE") : new Intl.NumberFormat("en-US", { style: "currency", currency: p.currency || "USD" }).format(p.priceCents / 100)}</div><label>SIZE / OPTION<select id="merch-size-${esc(p.id)}" aria-label="${esc(p.title)} size">${(p.sizes?.length ? p.sizes : ["One size"]).map((size) => `<option>${esc(size)}</option>`).join("")}</select></label><div class="product-actions">${buy ? `<a class="primary" href="${esc(p.checkoutUrl)}" target="_blank" rel="noopener noreferrer">${p.category === "Bumpboxx" ? "Shop Bumpboxx" : "Shop this item"} ↗</a>` : `<button class="primary" disabled>${p.availability === "sold-out" || p.stock === 0 ? "Sold out" : "Coming soon"}</button>`}<button class="secondary" data-merch-wishlist="${esc(p.id)}" aria-pressed="${saved}">${saved ? "✓ Saved" : "Save favorite +"}</button></div></article>`;
-      })
-      .join(
-        "",
-      )}</div>${!selected.length ? '<div class="editorial-empty">This collection is being prepared.</div>' : ""}`;
-  }
-  page.innerHTML = content + editorialFooter();
-  bindEditorial();
-}
-function bindEditorial() {
-  $$("[data-story]").forEach(
-    (b) =>
-      (b.onclick = () => {
-        location.hash = "article/" + encodeURIComponent(b.dataset.story);
-      }),
-  );
-  $$("[data-editorial-filter]").forEach(
-    (b) =>
-      (b.onclick = () => {
-        editorialFilter = b.dataset.editorialFilter;
-        editorialLimit = 12;
-        renderEditorial();
-      }),
-  );
-  if ($("#editorial-search"))
-    $("#editorial-search").oninput = (e) => {
-      const focus = e.target.selectionStart;
-      editorialQuery = e.target.value;
-      editorialLimit = 12;
-      renderEditorial();
-      const field = $("#editorial-search");
-      field.focus();
-      field.setSelectionRange(focus, focus);
-    };
-  if ($("#editorial-more"))
-    $("#editorial-more").onclick = () => {
-      const y = scrollY;
-      editorialLimit += 12;
-      renderEditorial();
-      window.scrollTo(0, y);
-    };
-  $$("[data-photo]").forEach(
-    (b) => (b.onclick = () => openGalleryPhoto(+b.dataset.photo)),
-  );
-  $$("[data-merch-wishlist]").forEach(
-    (b) =>
-      (b.onclick = () => {
-        const id = b.dataset.merchWishlist,
-          i = merchWishlist.findIndex((v) => v.id === id);
-        if (i >= 0) merchWishlist.splice(i, 1);
-        else merchWishlist.push({ id, size: $("#merch-size-" + id).value });
-        try {
-          localStorage.setItem(
-            "truth-merch-wishlist",
-            JSON.stringify(merchWishlist),
-          );
-        } catch {}
-        b.setAttribute("aria-pressed", String(i < 0));
-        b.textContent = i < 0 ? "✓ Saved" : "Save favorite +";
-        toast(
-          i < 0
-            ? "Saved to your device wishlist."
-            : "Removed from your device wishlist.",
-        );
-      }),
-  );
-}
-function openGalleryPhoto(index) {
-  const p =
-    gallerySelection[
-      (index + gallerySelection.length) % gallerySelection.length
-    ];
-  if (!p) return;
-  const i = gallerySelection.indexOf(p);
-  modal(
-    `<section class="gallery-modal">${photoImage(p, { lead: true })}<div class="photo-information"><div><span class="journal-kicker">FRAME ${String(i + 1).padStart(3, "0")} / ${esc(p.collection)}</span><h2>${esc(p.title)}</h2><p>${esc(p.caption)}<br>${esc(p.credit)}${p.date ? " · " + esc(editorialDate(p.date, p.precision)) : ""}${p.license ? " · " + esc(p.license) : ""}</p>${p.sourceUrl ? `<a class="journal-source" href="${esc(p.sourceUrl)}" target="_blank" rel="noopener noreferrer">Photo source & credit ↗</a>` : ""}</div><div class="photo-arrows"><button id="photo-prev" aria-label="Previous photograph">←</button><button id="photo-next" aria-label="Next photograph">→</button></div></div></section>`,
-  );
-  $("#modal").dataset.gallery = String(i);
-  $("#photo-prev").onclick = () => openGalleryPhoto(i - 1);
-  $("#photo-next").onclick = () => openGalleryPhoto(i + 1);
-}
-$("#modal").addEventListener("keydown", (e) => {
-  if ($("#modal").dataset.gallery === undefined) return;
-  if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-    e.preventDefault();
-    openGalleryPhoto(
-      +$("#modal").dataset.gallery + (e.key === "ArrowRight" ? 1 : -1),
-    );
-  }
+const account = await createAccountPage({
+  stampArtwork,
+  toast,
+  modal,
+  releases,
+  release: (r) => release(r),
+  setMode: (m) => setMode(m),
+  merch: () => commerce.merch(),
 });
 
-let lastEditorialSection = "";
+const editorial = createEditorialPage({
+  siteContent,
+  getWishlist: () => commerce.wishlist,
+  renderGarment: (p) => commerce.renderGarment(p),
+  toast,
+  modal,
+});
+
 const router = createRouter({
   query: $,
   queryAll: $$,
-  editorial: {
-    open(section) {
-      if (section !== lastEditorialSection) {
-        editorialFilter = "All";
-        editorialQuery = "";
-        editorialLimit = 12;
-      }
-      lastEditorialSection = section;
-      renderEditorial();
-    },
-  },
-  commerce: { open: () => renderBumpShop() },
-  account: {
-    open(path) {
-      bookTab =
-        path === "stamp-book"
-          ? "stamps"
-          : accountTabs.some(([key]) => key === path)
-            ? path
-            : "overview";
-      renderBook();
-    },
-  },
+  editorial: { open: (section) => editorial.open(section) },
+  commerce: { open: () => commerce.render() },
+  account: { open: (path) => account.open(path) },
 });
 function accountRoute() {
   return router.route();
 }
 
 $("#account-open").onclick = () => {
-  accountLink("overview");
+  account.navigate("overview");
   accountRoute();
 };
 $("#stamp-invite").onclick = $("#book-bottom").onclick = () => {
-  accountLink("stamps");
+  account.navigate("stamps");
   accountRoute();
 };
 router.start();
 setInterval(() => {
-  if (playing && !document.hidden) {
-    heardSeconds++;
-    if (heardSeconds <= 60) {
-      bookEvent("listen", String(heardSeconds));
-      const progress = document.querySelector(
-        'progress[aria-label="The Truth progress"]',
-      );
-      if (progress) {
-        progress.value = heardSeconds;
-        progress.nextElementSibling.textContent =
-          heardSeconds + " / 60 · +40 credits";
-      }
-    }
-  }
+  if (playing && !document.hidden) account.tickListening();
 }, 1000);
 
-function release(r) {
-  bookEvent("dig", String(r.title) + ":" + r.year);
-  appState.selected = r;
-  earn(4);
-  if (Number(r.year) === Number(target.year) && !stamped) {
-    appState.stamps++;
-    stamped = true;
-    try {
-      localStorage.setItem(
-        "truth-stamps",
-        JSON.stringify({ count: appState.stamps, day: dayKey }),
-      );
-    } catch {}
-    $("#stamps").textContent = appState.stamps + " HUNTS COMPLETED";
-    earn(15);
-    toast("FOUND IT. A fresh stamp for the collection.");
-  }
-  modal(
-    `<div class="modal-layout"><img class="modal-cover" src="${esc(r.fullCover || r.cover)}" alt="${esc(r.title)} cover"><div><span class="eyebrow">RELEASE ROOM / ${esc(r.year)} / ${esc(r.type || "Release")}</span><h2>${esc(r.title)}</h2><p>${supplied ? "From the research vault" : "Concept sleeve · sample release"}<br>${r.cmsProjectId ? "Uploaded project · " + esc(r.access) + " access" : "Boss Ballin is the preview record for every selection."}</p>${
-      r.cmsProjectId
-        ? `<div class="project-audio">${
-            r.audioTracks
-              .filter((t) => t.audioUrl)
-              .map(
-                (t) =>
-                  `<label>${esc(t.title)}<audio controls preload="none" src="${esc(t.audioUrl)}" style="width:100%;margin:10px 0"></audio></label>`,
-              )
-              .join("") ||
-            "<p>Member playback will be available after membership services are connected.</p>"
-          }</div>`
-        : ""
-    }<ol>${r.tracks.length ? r.tracks.map((t) => `<li>${esc(typeof t === "string" ? t : t.title || t.name)}</li>`).join("") : "<li>Tracklist not available in the vault.</li>"}</ol><div class="actions"><button class="primary" id="release-play">▶ Play</button><button class="secondary" id="release-deck">DJ Booth</button><button class="secondary" id="release-share">Share ↗</button></div></div></div>`,
-  );
-  const im = $(".modal-cover");
-  im.onerror = () => (im.src = r.art);
-  $("#release-play").hidden = !!r.cmsProjectId;
-  $("#release-play").onclick = () => play(true);
-  $$(".project-audio audio").forEach(
-    (a) =>
-      (a.onplay = () => {
-        pauseRoomForVideo();
-        $$(".project-audio audio").forEach((other) => {
-          if (other !== a) other.pause();
-        });
-      }),
-  );
-  $("#release-deck").onclick = enterDJRoom;
-  $("#release-share").onclick = () => share(r);
-}
-$("#grid").innerHTML = releases
-  .map(
-    (r, i) =>
-      `<button class="release" data-release="${i}"><img loading="lazy" src="${esc(r.cover)}" alt="${esc(r.title)} sleeve"><b>${esc(r.title)}</b><small>${esc(r.year)} / ${esc(r.type || "Release")}</small></button>`,
-  )
-  .join("");
-$$("[data-release]").forEach((b) => {
-  b.onclick = () => release(releases[+b.dataset.release]);
-  b.querySelector("img").onerror = () =>
-    (b.querySelector("img").src = releases[+b.dataset.release].art);
+const catalog = createCatalogPage({
+  appState,
+  releases,
+  sourceLabel: !!supplied,
+  challenge: dailyChallenge,
+  recordActivity: (...args) => account.recordEvent(...args),
+  earn,
+  toast,
+  modal,
+  play: (...args) => play(...args),
+  pauseRoomForVideo: () => pauseRoomForVideo(),
+  enterDJRoom: () => enterDJRoom(),
+  registerTwin: (...args) => twin(...args),
 });
+function release(r) {
+  return catalog.openRelease(r);
+}
+
 function twin(label, fn) {
   const b = document.createElement("button");
   b.textContent = label;
   b.onclick = fn;
   $("#twins").append(b);
 }
-for (let i = 0; i < releases.length; i++)
-  twin(`Release ${i + 1}: ${releases[i].title}, ${releases[i].year}`, () =>
-    release(releases[i]),
-  );
+
 const embeddedVideos = [
   {
     id: "QgZD5Uyg6t4",
@@ -1090,139 +298,20 @@ if (!screeningVideos.some((v) => v.id === "J8fztJ29L7E"))
     duration: 0,
     thumb: "assets/videos/J8fztJ29L7E.jpg",
   });
-const merchItems = [
-  {
-    id: "abn-tee",
-    name: "ABN Everyday Tee",
-    kind: "tee",
-    color: "#272e2b",
-    sizes: ["S", "M", "L", "XL", "2XL"],
-  },
-  {
-    id: "truth-tee",
-    name: "Tha Truth Tee",
-    kind: "tee",
-    color: "#a33a2c",
-    sizes: ["S", "M", "L", "XL", "2XL"],
-  },
-  {
-    id: "abn-hoodie",
-    name: "ABN Heavyweight Hoodie",
-    kind: "hoodie",
-    color: "#d5c9aa",
-    sizes: ["S", "M", "L", "XL", "2XL"],
-  },
-  {
-    id: "houston-cap",
-    name: "Houston Cap",
-    kind: "cap",
-    color: "#2c5a46",
-    sizes: ["Adjustable"],
-  },
-  {
-    id: "crate-tote",
-    name: "Crate Digger Tote",
-    kind: "tote",
-    color: "#dfd1af",
-    sizes: ["One size"],
-  },
-];
-let merchWishlist = [];
-try {
-  merchWishlist = JSON.parse(
-    localStorage.getItem("truth-merch-wishlist") || "[]",
-  );
-  if (!Array.isArray(merchWishlist)) merchWishlist = [];
-} catch {}
-function garmentSVG(item) {
-  let path =
-    item.kind === "cap"
-      ? '<path d="M55 150 Q55 55 150 55 Q240 55 240 150 L275 185 Q170 220 35 185 Z"/>'
-      : item.kind === "tote"
-        ? '<path fill="none" stroke="currentColor" stroke-width="15" d="M105 95V65Q150 5 195 65V95"/><path d="M65 90H235L255 265H45Z"/>'
-        : '<path d="M105 60L66 73L24 140L70 165L92 127V270H208V127L230 165L276 140L234 73L195 60Q150 93 105 60Z"/>' +
-          (item.kind === "hoodie"
-            ? '<path d="M105 64Q94 4 150 10Q206 4 195 64L175 92H125Z"/>'
-            : "");
-  return `<svg viewBox="0 0 300 300" role="img" aria-label="${esc(item.name)} concept" style="color:${item.color}"><g fill="currentColor" stroke="#17251d" stroke-width="2">${path}</g><image href="assets/branding/abn-angel-by-nature-official.png" x="112" y="${item.kind === "cap" ? 105 : 125}" width="76" height="42"/></svg>`;
-}
-function merch() {
-  if ($("#modal").open) $("#modal").close();
-  location.hash = "merch";
-  accountRoute();
-}
-function bumpboxDisplay(title, photo) {
-  bumpSelection = title.includes("camo")
-    ? "camo"
-    : title.includes("red")
-      ? "red"
-      : "flare";
-  if ($("#modal").open) $("#modal").close();
-  location.hash = "shop/bumpboxx";
-  accountRoute();
-}
-let bumpSelection = "flare";
+const commerce = createCommercePage({
+  siteContent,
+  getPhoto: (id) => editorial.photo(id),
+  enterDJRoom: () => enterDJRoom(),
+  navigate: () => accountRoute(),
+});
 accountRoute();
-function renderBumpShop() {
-  const product = (siteContent.products || []).find(
-    (p) => p.id === "bumpboxx-" + bumpSelection,
-  );
-  const red = bumpSelection === "red",
-    camo = bumpSelection === "camo",
-    name =
-      product?.title ||
-      (red ? "ABN red display" : camo ? "Blue camo display" : "Flare boombox"),
-    photo =
-      product?.image ||
-      contentPhoto(product?.imageId)?.src ||
-      (camo
-        ? "assets/branding/bumpboxx-blue-camo.jpeg"
-        : "assets/branding/bumpboxx-flare.jpeg");
-  $("#bump-shop").innerHTML =
-    `<div class="book-nav"><button class="text-button" id="bump-room-back">← Back to the DJ room</button><span class="eyebrow">ABN MERCH STORE / BUMPBOXX</span></div><div class="bump-shop-layout"><div class="bump-shop-image">${
-      red
-        ? `<svg viewBox="0 0 600 450" role="img" aria-label="Red ABN room display"><defs><radialGradient id="woofer"><stop stop-color="#131b20"/><stop offset=".45" stop-color="#333c40"/><stop offset=".5" stop-color="#11181c"/><stop offset=".9" stop-color="#2a3134"/><stop offset="1" stop-color="#101619"/></radialGradient></defs><rect x="110" y="68" width="380" height="18" rx="8" fill="#909d9e"/><path d="M140 85v35m320-35v35" stroke="#4f5c5d" stroke-width="12"/><rect x="60" y="120" width="480" height="270" rx="9" fill="#aa2732" stroke="#242d2e" stroke-width="10"/>${[
-            [190, 205],
-            [410, 205],
-            [190, 320],
-            [410, 320],
-          ]
-            .map(
-              ([x, y]) =>
-                `<circle cx="${x}" cy="${y}" r="52" fill="url(#woofer)" stroke="#10191c" stroke-width="5"/>`,
-            )
-            .join(
-              "",
-            )}<text x="300" y="271" text-anchor="middle" fill="#51b4d1" font-family="Arial" font-weight="bold" font-size="38">b</text><text x="300" y="414" text-anchor="middle" fill="#655c48" font-family="monospace" font-size="11">ABN ROOM DISPLAY / CONCEPT COLORWAY</text></svg>`
-        : `<img src="${photo}" alt="${esc(name)} supplied product reference">`
-    }</div><div class="bump-shop-copy"><span class="eyebrow">SOUND WITH STYLE / BUMPBOXX</span><h1>BRING THE<br><span>BOOM.</span></h1><h2>${esc(name)}</h2><p>${esc(product?.description || "From the DJ room to your room. Explore the Bumpboxx collection and find your sound.")}</p><div class="bump-variants" role="group" aria-label="Bumpboxx room displays">${[
-      ["red", "ABN red"],
-      ["flare", "Flare"],
-      ["camo", "Blue camo"],
-    ]
-      .map(
-        ([id, label]) =>
-          `<button class="secondary" data-bump-variant="${id}" aria-pressed="${id === bumpSelection}">${label}</button>`,
-      )
-      .join(
-        "",
-      )}</div>${red || (product?.availability === "available" && product?.checkoutUrl && product?.stock !== 0) ? `<a class="primary bump-buy" href="${esc(product?.checkoutUrl || "https://bumpboxx.com/collections/all")}" target="_blank" rel="noopener noreferrer">Shop Bumpboxx ↗</a>` : `<button class="primary bump-buy" disabled>${product?.availability === "sold-out" || product?.stock === 0 ? "Sold out" : "Not currently available"}</button>`}${product?.priceCents !== null && product?.priceCents !== undefined ? `<p>${new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(product.priceCents / 100)}</p>` : ""}<p class="bump-shop-note">Purchase through the official Bumpboxx store. Choose from current models and available colors there. Room displays and supplied reference photos may show earlier or custom editions.</p><button class="text-button" id="bump-apparel">Explore ABN apparel ↗</button></div></div>`;
-  $("#bump-room-back").onclick = enterDJRoom;
-  $("#bump-apparel").onclick = merch;
-  $$("[data-bump-variant]").forEach(
-    (b) =>
-      (b.onclick = () => {
-        bumpSelection = b.dataset.bumpVariant;
-        renderBumpShop();
-      }),
-  );
-}
 function showDJFallback() {
   modal(
     '<section class="dj-room-fallback"><span class="eyebrow">THE DJ BOOTH / WEST WING</span><h2>Step into the booth.</h2><p>Select the turntables to open the mixer.</p><button class="primary" id="fallback-turntables">Select the turntables ↗</button><button class="secondary" id="fallback-bump">Shop Bumpboxx ↗</button></section>',
   );
   $("#fallback-turntables").onclick = deck;
-  $("#fallback-bump").onclick = () => bumpboxDisplay("Bumpboxx / gray display");
+  $("#fallback-bump").onclick = () =>
+    commerce.bumpboxDisplay("Bumpboxx / gray display");
 }
 function enterDJRoom() {
   if ($("#modal").open) $("#modal").close();
@@ -1771,7 +860,8 @@ function setCrossfade(v, manual = false) {
   crossfade = Math.max(-1, Math.min(1, v));
   if (manual) {
     stopAutoChop();
-    if (playing && Math.abs(v) > 0.8) bookEvent("cut", String(Date.now()));
+    if (playing && Math.abs(v) > 0.8)
+      account.recordEvent("cut", String(Date.now()));
   }
   if (ctx && decks[0].out) {
     const u = (crossfade + 1) / 2;
@@ -2132,58 +1222,6 @@ $("#modal").addEventListener("close", () => {
   $("#modal-body").onkeydown = null;
 });
 
-async function share(r) {
-  const c = document.createElement("canvas");
-  c.width = 1000;
-  c.height = 1200;
-  const x = c.getContext("2d");
-  x.fillStyle = "#eee6d3";
-  x.fillRect(0, 0, 1000, 1200);
-  let im = new Image();
-  im.crossOrigin = "anonymous";
-  await new Promise((resolve) => {
-    im.onload = resolve;
-    im.onerror = () => {
-      im.onload = resolve;
-      im.src = r.art;
-    };
-    im.src = r.cover;
-  });
-  try {
-    x.drawImage(im, 100, 100, 800, 800);
-    c.toDataURL();
-  } catch {
-    im = new Image();
-    await new Promise((resolve) => {
-      im.onload = resolve;
-      im.src = r.art;
-    });
-    x.drawImage(im, 100, 100, 800, 800);
-  }
-  x.fillStyle = "#c3321d";
-  x.font = "900 60px Impact,sans-serif";
-  x.fillText(r.title.toUpperCase(), 100, 980, 800);
-  x.fillStyle = "#26251e";
-  x.font = "22px monospace";
-  x.fillText("TRAE THA TRUTH / ABN RECORDS, CDs AND TAPES", 100, 1060, 800);
-  x.fillText(r.year + " / HOUSTON, TEXAS / CONCEPT EDITION", 100, 1110);
-  const url = c.toDataURL("image/png");
-  modal(
-    `<span class="eyebrow">MOMENTS / TAKE A PIECE OF THE ROOM</span><h2>Keep this one.</h2><img class="share-image" src="${url}" alt="Share card for ${esc(r.title)}"><div class="actions"><a class="primary" download="the-truth-moment.png" href="${url}">Save card ↓</a><button class="secondary" id="copy">Copy link</button></div>`,
-  );
-  $("#copy").onclick = async () => {
-    const u = new URL(location.href);
-    u.hash = "release=" + releases.indexOf(r);
-    try {
-      await navigator.clipboard.writeText(u.href);
-      toast("Link copied.");
-    } catch {
-      modal(
-        `<h2>Your moment link</h2><input style="width:100%;padding:12px" aria-label="Copy this link" value="${esc(u.href)}"><p>Select and copy this link. Local file links require the same file on the recipient’s device.</p>`,
-      );
-    }
-  };
-}
 function setMode(m) {
   appState.mode = m;
   document.body.classList.toggle("flat", m !== "immersive");
@@ -2225,7 +1263,7 @@ $$("[data-stadium-view]").forEach(
 $$("[data-city]").forEach(
   (b) =>
     (b.onclick = () => {
-      bookEvent("city", b.dataset.city);
+      account.recordEvent("city", b.dataset.city);
       sceneAPI?.cityView(b.dataset.city);
     }),
 );
@@ -2440,7 +1478,7 @@ function go(i) {
     if (i === 2) video(0);
     if (i === 3) timeline();
     if (i === 4) giving();
-    if (i === 5) merch();
+    if (i === 5) commerce.merch();
   }
 }
 $$("[data-station]").forEach(
@@ -3039,8 +2077,8 @@ try {
       style === "red" ? "#a62c2a" : "#273236",
       80,
     );
-    hit(body, title, () => bumpboxDisplay(title, photo));
-    twin(title, () => bumpboxDisplay(title, photo));
+    hit(body, title, () => commerce.bumpboxDisplay(title, photo));
+    twin(title, () => commerce.bumpboxDisplay(title, photo));
     const group = new T.Group();
     world.children.slice(start).forEach((o) => group.add(o));
     group.position.set(x, y, z);
@@ -3123,7 +2161,7 @@ try {
     shirt.position.set(x, 2.05, z);
     shirt.rotation.y = yaw;
     world.add(shirt);
-    hit(shirt, "Browse ABN apparel", merch);
+    hit(shirt, "Browse ABN apparel", commerce.merch);
     const logo = new T.Mesh(
       new T.PlaneGeometry(0.33, 0.18),
       new T.MeshBasicMaterial({ map: abnTexture }),
@@ -3150,7 +2188,7 @@ try {
     "#843c2b",
     90,
   );
-  hit(merchSign, "Enter the merch store", merch);
+  hit(merchSign, "Enter the merch store", commerce.merch);
   const merchPick = new T.Mesh(
     new T.BoxGeometry(3.8, 3.5, 1.9),
     new T.MeshBasicMaterial({
@@ -3161,8 +2199,8 @@ try {
   );
   merchPick.position.set(4.2, 1.75, 1.5);
   world.add(merchPick);
-  hit(merchPick, "Enter the ABN merch store", merch);
-  twin("Enter the ABN merch store", merch);
+  hit(merchPick, "Enter the ABN merch store", commerce.merch);
+  twin("Enter the ABN merch store", commerce.merch);
   box(3.8, 1.1, 0.9, wood, 4.4, 0.55, -0.5);
   for (let i = 0; i < 5; i++)
     box(
@@ -3182,7 +2220,7 @@ try {
     cap.position.set(x, 1.25, -0.5);
     world.add(cap);
     const bill = box(0.42, 0.04, 0.38, mat("#2e4837"), x, 1.26, -0.2);
-    hit(bill, "Browse ABN caps and accessories", merch);
+    hit(bill, "Browse ABN caps and accessories", commerce.merch);
   }
   label(
     "CAPS / TEES / EVERYDAY GOODS",
@@ -8947,10 +7985,13 @@ function initCompanion() {
   );
   const actions = {
     chat: ["Chat", () => openChat()],
-    boom: ["Shop Bumpboxx", () => bumpboxDisplay("Bumpboxx / ABN red display")],
+    boom: [
+      "Shop Bumpboxx",
+      () => commerce.bumpboxDisplay("Bumpboxx / ABN red display"),
+    ],
     dj: ["Enter the DJ booth", enterDJRoom],
     record: ["Open this project", () => release(activeProject)],
-    merch: ["Visit the merch shop", merch],
+    merch: ["Visit the merch shop", commerce.merch],
     member: [
       "Open your Stamp Book",
       () => {
