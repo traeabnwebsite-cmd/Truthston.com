@@ -1,0 +1,280 @@
+/* Theater-only controls: one film strip, revealed at the top edge. */
+#cinema-browse-zone {
+  display: none;
+}
+.in-screening-room #cinema-browse-zone {
+  display: block;
+  position: absolute;
+  z-index: 39;
+  top: 66px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(980px, calc(100% - 64px));
+  height: 132px;
+}
+.in-screening-room #cinema-browse-toggle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 25px;
+  padding: 4px 16px;
+  color: #c3b59b;
+  background: #101713c9;
+  border: 1px solid #b7a58233;
+  border-radius: 0 0 10px 10px;
+  font-size: 8px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.55;
+  transition: opacity 0.2s;
+}
+.in-screening-room #cinema-browse-toggle span {
+  margin-left: 10px;
+}
+.in-screening-room #cinema-carousel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 25px;
+  bottom: auto;
+  width: 100%;
+  height: 104px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 10px;
+  padding: 9px;
+  background: linear-gradient(#101914f5, #101914e8);
+  backdrop-filter: blur(14px);
+  border: 1px solid #b59b6a44;
+  border-radius: 9px;
+  box-shadow: 0 9px 24px #0007;
+  opacity: 0;
+  transform: translateY(-8px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.2s,
+    transform 0.2s,
+    visibility 0.2s;
+}
+.in-screening-room .cinema-menu-open #cinema-carousel {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  pointer-events: auto;
+}
+.cinema-menu-open #cinema-browse-toggle,
+.in-screening-room #cinema-browse-toggle:hover,
+.in-screening-room #cinema-browse-toggle:focus-visible {
+  opacity: 1;
+}
+.in-screening-room #cinema-rail-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  flex: 1;
+  padding: 1px 3px;
+  scrollbar-width: none;
+}
+.in-screening-room #cinema-rail-scroll::-webkit-scrollbar {
+  display: none;
+}
+.in-screening-room .cinema-pick {
+  flex: 0 0 123px;
+  width: 123px;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.in-screening-room .cinema-pick img {
+  width: 123px;
+  height: 65px;
+  aspect-ratio: auto;
+  border-radius: 3px;
+  object-fit: cover;
+}
+.in-screening-room .cinema-pick b {
+  font-size: 15px;
+  margin: 5px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.in-screening-room #cinema-rail-up,
+.in-screening-room #cinema-rail-down {
+  position: static;
+  width: 24px;
+  flex: 0 0 24px;
+  height: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #ceb98f;
+  font-size: 27px;
+}
+.in-screening-room #cinema-controls,
+.theater-mode .room-wrap.fullscreen-active #cinema-controls {
+  left: 20px;
+  right: 220px;
+  bottom: 14px;
+  gap: 9px;
+  padding: 6px 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.in-screening-room #cinema-controls span {
+  color: #9c9a8a;
+  font-size: 7px;
+}
+.in-screening-room #cinema-controls button,
+.in-screening-room #cinema-controls a {
+  background: #111b15b8;
+  border-color: #a28c6944;
+  border-radius: 4px;
+  font-size: 8px;
+}
+.theater-mode .room-wrap {
+  min-height: 520px;
+}
+.cinema-playing .room-wrap {
+  height: 100dvh;
+  min-height: 520px;
+}
+.cinema-playing .dock,
+.cinema-playing .stations {
+  display: none;
+}
+.theater-mode .fullscreen-exit-bar {
+  left: auto;
+  right: 14px;
+  bottom: 14px;
+  width: auto;
+  padding: 0;
+  background: none;
+  border: 0;
+  min-height: 0;
+}
+.theater-mode .fullscreen-exit-bar > span,
+.theater-mode .fullscreen-audio {
+  display: none;
+}
+.theater-mode .fullscreen-exit-bar > button {
+  min-width: 150px;
+  font-size: 9px;
+  padding: 10px;
+}
+.theater-mode .room-tools {
+  top: 18px;
+  right: 18px;
+}
+.theater-mode .room-tools .tag {
+  padding: 9px 11px;
+  font-size: 9px;
+  background: #132119bb;
+}
+.theater-mode .room-label {
+  top: 22px;
+  left: 24px;
+}
+.theater-mode .room-label b {
+  font-size: 20px;
+  letter-spacing: 1.4px;
+}
+.theater-mode .room-label small {
+  display: none;
+}
+.theater-mode .world-guide-tools {
+  top: 52px;
+  left: 24px;
+}
+.theater-mode .world-guide-tools button {
+  font-size: 7px;
+  padding: 6px 8px;
+  background: #15251bb3;
+  border-color: #b7a58233;
+}
+.theater-mode .room-wrap:after {
+  box-shadow: inset 0 0 75px #0004;
+  opacity: 0.1;
+}
+.cinema-playing #companion-bubble {
+  z-index: 40;
+}
+@media (max-width: 760px) {
+  .in-screening-room #cinema-browse-zone {
+    top: 110px;
+    width: calc(100% - 22px);
+    height: 117px;
+  }
+  .in-screening-room #cinema-carousel {
+    height: 89px;
+    padding: 7px;
+    gap: 4px;
+  }
+  .in-screening-room .cinema-pick {
+    flex-basis: 100px;
+    width: 100px;
+  }
+  .in-screening-room .cinema-pick img {
+    width: 100px;
+    height: 53px;
+  }
+  .in-screening-room .cinema-pick b {
+    font-size: 13px;
+  }
+  .in-screening-room #cinema-rail-scroll {
+    gap: 8px;
+  }
+  .theater-mode .room-label {
+    top: 69px;
+    left: 12px;
+  }
+  .theater-mode .world-guide-tools {
+    top: 91px;
+    left: 12px;
+  }
+  .in-screening-room #cinema-controls,
+  .theater-mode .room-wrap.fullscreen-active #cinema-controls {
+    left: 10px;
+    right: 165px;
+    bottom: 10px;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .in-screening-room #cinema-controls span {
+    flex-basis: 100%;
+  }
+  .theater-mode .fullscreen-exit-bar {
+    right: 8px;
+    bottom: 10px;
+  }
+  .theater-mode .fullscreen-exit-bar > button {
+    min-width: 140px;
+    padding: 10px;
+    font-size: 8px;
+  }
+  .cinema-playing #room-cinema {
+    left: 8px;
+    top: 232px;
+    width: calc(100% - 16px);
+    height: auto;
+    aspect-ratio: 16/9;
+    z-index: 7;
+    transform: none !important;
+  }
+  .theater-mode .room-wrap {
+    min-height: 540px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .in-screening-room #cinema-carousel,
+  #cinema-browse-toggle {
+    transition: none !important;
+  }
+}

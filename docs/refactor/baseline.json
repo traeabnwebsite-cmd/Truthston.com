@@ -1,0 +1,30 @@
+{
+  "commit": "0ba824806733689134918ce6973fc3c11b3f2562",
+  "htmlBytes": 434846,
+  "htmlSha256": "90c1cdaa8263abfba4944fc5937cd39c551565864c2472afefcf4f851f4f7b18",
+  "inlineCssBytes": 105297,
+  "storageKeys": [
+    "truth-companion-hidden",
+    "truth-companion-position",
+    "truth-merch-wishlist",
+    "truth-stamps"
+  ],
+  "preservedRoutes": [
+    "#",
+    "#release=INDEX",
+    "#newsroom",
+    "#article/ID",
+    "#gallery",
+    "#events",
+    "#merch",
+    "#shop/bumpboxx",
+    "#account/overview",
+    "#account/stamp-book",
+    "#account/membership",
+    "#account/library",
+    "#account/rewards",
+    "#account/community",
+    "#account/settings"
+  ],
+  "releaseIdentity": "Preserve title:year demo activity identities and numeric release deep links until a separate production ID migration."
+}

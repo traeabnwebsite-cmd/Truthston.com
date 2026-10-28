@@ -12,6 +12,8 @@ jobs:
     environment: preview
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -22,7 +24,8 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run prepare:assets
-      - run: npx wrangler deploy
+      - run: node scripts/check-source.mjs public
+      - run: npx wrangler deploy --config wrangler.staging.jsonc
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

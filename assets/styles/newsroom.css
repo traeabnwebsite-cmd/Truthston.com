@@ -1,0 +1,159 @@
+/* The newspaper uses complete frames and actual copy, with no fixed card heights. */
+#editorial-page .journal-lead img,
+#editorial-page .journal-card img,
+#editorial-page .article-main figure img {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  filter: none;
+}
+.journal-front {
+  align-items: start;
+}
+.journal-lead > button {
+  background: transparent;
+}
+#editorial-page .journal-copy p {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.75;
+  margin: 0 0 1em;
+  max-width: none;
+  overflow-wrap: break-word;
+}
+#editorial-page .journal-lead-copy p {
+  font-size: 19px;
+  line-height: 1.8;
+}
+#editorial-page .journal-deck {
+  font-size: 22px;
+  line-height: 1.5;
+  font-style: italic;
+}
+.journal-byline {
+  font:
+    13px/1.6 "IBM Plex Mono",
+    monospace;
+  padding: 12px 0;
+  border-block: 1px solid #a99e86;
+}
+#editorial-page .journal-read {
+  display: inline-block;
+  margin: 10px 15px 10px 0;
+  padding: 10px 0;
+  color: var(--red);
+  font:
+    600 14px/1.5 "IBM Plex Mono",
+    monospace;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+#editorial-page .journal-lead .journal-caption,
+#editorial-page .journal-card .journal-caption {
+  font-size: 12px;
+  line-height: 1.7;
+}
+#editorial-page .journal-grid {
+  display: block;
+  columns: 3;
+  column-gap: 30px;
+}
+#editorial-page .journal-card {
+  break-inside: avoid-column;
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+}
+#editorial-page .journal-card h3 {
+  margin-top: 12px;
+}
+#editorial-page .journal-wire-copy p {
+  font-size: 16px;
+}
+#editorial-page .journal-sidebar {
+  min-height: 0;
+}
+#editorial-page .article-body {
+  max-width: 760px;
+}
+@media (max-width: 1050px) {
+  #editorial-page .journal-grid {
+    columns: 2;
+  }
+}
+@media (max-width: 700px) {
+  #editorial-page .journal-grid {
+    columns: 1;
+  }
+  #editorial-page .journal-copy p,
+  #editorial-page .journal-lead-copy p {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+  #editorial-page .journal-deck {
+    font-size: 20px;
+  }
+}
+/* The lead is one self-contained spread; dispatches flow underneath it. */
+#editorial-page .journal-front {
+  display: block;
+}
+#editorial-page .journal-lead {
+  padding: 0 0 28px;
+  border-right: 0;
+}
+#editorial-page .journal-lead-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+#editorial-page .journal-lead-figure {
+  margin: 0;
+}
+#editorial-page .journal-lead-figure button {
+  width: 100%;
+  padding: 0;
+  display: block;
+}
+#editorial-page .journal-lead-copy p {
+  font-size: 18px;
+  line-height: 1.75;
+}
+#editorial-page .journal-byline {
+  font:
+    13px/1.6 "IBM Plex Mono",
+    monospace;
+}
+#editorial-page .journal-sidebar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+  border-top: 4px double var(--ink);
+  padding-top: 20px;
+}
+#editorial-page .journal-sidebar > .eyebrow {
+  grid-column: 1 / -1;
+}
+#editorial-page .journal-sidebar > article {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+@media (max-width: 900px) {
+  #editorial-page .journal-lead-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  #editorial-page .journal-sidebar {
+    grid-template-columns: 1fr;
+  }
+  #editorial-page .journal-sidebar > article {
+    border-bottom: 1px solid #a99e86;
+    padding-bottom: 20px;
+  }
+}

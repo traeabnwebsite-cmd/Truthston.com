@@ -1,0 +1,125 @@
+{
+  "390": {
+    "cards": 35,
+    "overflow": 0,
+    "styles": [
+      [
+        ".brand",
+        "29px",
+        "27.55px",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".book-hero h1",
+        "54.6px",
+        "51.87px",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".stamp-leaf h3",
+        "25px",
+        "27.5px",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".stamp-leaf p",
+        "12px",
+        "20.4px",
+        "\"Space Mono\", monospace",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".dock .track b",
+        "17px",
+        "19.55px",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(238, 230, 211)"
+      ]
+    ]
+  },
+  "768": {
+    "cards": 35,
+    "overflow": 0,
+    "styles": [
+      [
+        ".brand",
+        "36px",
+        "28.8px",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".book-hero h1",
+        "65px",
+        "53.3px",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".stamp-leaf h3",
+        "27px",
+        "normal",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".stamp-leaf p",
+        "14px",
+        "23.8px",
+        "\"Space Mono\", monospace",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".dock .track b",
+        "20px",
+        "normal",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(238, 230, 211)"
+      ]
+    ]
+  },
+  "1280": {
+    "cards": 35,
+    "overflow": 0,
+    "styles": [
+      [
+        ".brand",
+        "36px",
+        "28.8px",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".book-hero h1",
+        "102.4px",
+        "83.968px",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".stamp-leaf h3",
+        "27px",
+        "normal",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".stamp-leaf p",
+        "14px",
+        "23.8px",
+        "\"Space Mono\", monospace",
+        "rgb(38, 37, 30)"
+      ],
+      [
+        ".dock .track b",
+        "20px",
+        "normal",
+        "\"Barlow Condensed\", Impact, sans-serif",
+        "rgb(238, 230, 211)"
+      ]
+    ]
+  }
+}

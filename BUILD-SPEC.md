@@ -1,6 +1,8 @@
 # Trae Tha Truth — sliced production build specification
 
-Version 3.0 · October 27, 2026 · Audited prototype baseline `b499d9a`.
+Version 4.0 · October 27, 2026 · Modular prototype implemented on `codex/modularize-frontend`.
+
+**Architecture update:** R0–R8 separation is complete. See [actual module map, lifecycle and release contracts](docs/refactor/ARCHITECTURE.md) and [verification gates](docs/refactor/STATUS.md). Use the existing feature owners for further production work; do not recreate shared feature scope in the entry. Source preview needs no frontend build. The branch has not been merged into main or deployed over the live site. The product/backend acceptance items below remain distinct from architecture completion.
 
 Read [COMPLETION-REPORT.md](COMPLETION-REPORT.md) for current completion evidence and [MONOLITH-BREAKDOWN.md](MONOLITH-BREAKDOWN.md) for the refactor sequence. This specification supersedes the v2.1 delivery order and single-file source requirement. The detailed [v2.1 product requirements](docs/BUILD-SPEC-v2.1.md), [stamp/member contract](docs/MEMBERSHIP-AND-STAMPS.md), [media intake contract](docs/MEDIA-INGEST.md) and [CMS guide](docs/CMS-GUIDE.md) remain supporting requirements where they do not conflict with this version. The historical v2.1 status table is not the current completion report.
 
@@ -162,7 +164,7 @@ Complete and verify each job before the next. Existing historical jobs retain th
 
 | Release | Work | Exit gate |
 |---|---|---|
-| P0 | Refactor slices R0–R8 in MONOLITH-BREAKDOWN.md; preserve current behavior | Modular source, direct module tests, no UI/functionality regression and safe deployment |
+| P0 — COMPLETE ON BRANCH | Refactor slices R0–R8; preserve current behavior | Modular source, direct module tests, browser parity, isolated staging and rollback packaging verified. Production promotion remains separate |
 | P1 | Staging isolation, pinned identity proof, member/staff roles, transactional email and D1/R2 repositories | Real own-account and staff authorization flows pass; resources and secrets isolated |
 | P2 | Cloud CMS, catalog normalization and one representative batch intake | Authenticated staff publish article/photo/event/merch/project without code commits; private drafts protected |
 | P3 | Protected streaming/downloads and eligible DJ catalog | Asset identity/access/range/expiry/revocation/device limits tested against uploaded authorized files |

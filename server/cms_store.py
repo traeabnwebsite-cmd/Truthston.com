@@ -35,7 +35,7 @@ def public_snapshot(state,now=None):
     out={'schemaVersion':1,'revision':state.get('revision',1),'updatedAt':state.get('updatedAt'),'site':copy.deepcopy(state.get('site',{}))}
     fields={
       'articles':['id','slug','title','date','precision','section','summary','body','byline','sourceName','sourceUrl','sourceDate','imageId','kind','featured','verified'],
-      'photos':['id','title','caption','alt','date','precision','collection','credit','license','sourceUrl','src','fullSrc','featured'],
+      'photos':['id','title','caption','alt','date','precision','collection','credit','license','sourceUrl','src','fullSrc','featured','contentHash'],
       'events':['id','title','startDate','endDate','category','venue','description','sourceName','sourceUrl','imageId','linkLabel'],
       'products':['id','title','description','category','kind','color','image','imageId','priceCents','currency','sizes','availability','stock','checkoutUrl','featured']}
     for collection,allow in fields.items():
@@ -129,9 +129,14 @@ class CmsStore:
             if live and not r.get('alt'):raise CmsError('Add descriptive alt text before publishing.')
             r['date']=valid_date(r.get('date',''),r.get('precision','day'))
             if r.get('fileId'):
-                self._asset(r['fileId'])
+                info,_=self._asset(r['fileId']);r['contentHash']=info['sha256']
                 if live:r['src']=r['fullSrc']=self._publish_image(r['fileId'])
                 else:r['src']=r['fullSrc']='/api/cms/assets/'+r['fileId']
+            else:
+                image_path=(self.root/str(r.get('fullSrc') or r.get('src') or '')).resolve()
+                if image_path.is_relative_to(self.root/'assets') and image_path.is_file():
+                    r['contentHash']=hashlib.sha256(image_path.read_bytes()).hexdigest()
+                else:r.pop('contentHash',None)
             if live and not r.get('src'):raise CmsError('Choose or upload an image.')
         elif collection=='events':
             r['startDate']=valid_date(r.get('startDate',''),'day',live);r['endDate']=valid_date(r.get('endDate',''),'day') or r['startDate']

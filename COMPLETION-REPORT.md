@@ -1,3 +1,19 @@
+# Truthston — current completion report
+
+October 27, 2026 · Refactor branch: `codex/modularize-frontend` · [Working preview](http://localhost:8765/?v=modular-complete)
+
+The frontend monolith separation is complete at R0–R8 scope. The site now uses feature-owned native ES modules, external styles, explicit service ports and teardown. The three-line entry starts an application composition root; audio/DJ, theater, companion, ordinary pages/CMS and 3D rooms/city/landmarks have separate owners. This is a modular application in one repository, with no frontend compilation required for local viewing.
+
+51 JavaScript tests and 19 Python tests pass, alongside type/schema, module-boundary and source/packaging checks. Browser verification includes direct routes, gallery uniqueness, Stamp Book, calendar, player/DJ, fullscreen exit, phone layout, companion recovery and full app teardown/remount. The seeded scene fingerprint is identical for4,874 objects. [Detailed architecture and evidence](docs/refactor/ARCHITECTURE.md).
+
+The refactor is committed on its protected work branch. Main/live and the stable delivery folder have not been overwritten. Staging configuration is prepared and dry-run/local-Worker tested; no production promotion is claimed.
+
+The **prototype** is implemented. Secure member accounts, real paid subscriptions, private media delivery, authoritative rewards/redemption and cloud CMS publishing remain separate production work. Existing schemas/policies and unavailable protected endpoints must not be described as activated services.
+
+## Historical pre-refactor product audit
+
+The following audit remains useful for product-slice gaps. Its statements about a monolithic frontend and pending R0–R8 have been superseded by the current completion above.
+
 # Trae Tha Truth — completion report
 
 Audited October 27, 2026 · Baseline commit `b499d9a` · Public preview: https://www.truthston.com/

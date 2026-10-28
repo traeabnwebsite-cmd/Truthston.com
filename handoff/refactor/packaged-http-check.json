@@ -1,0 +1,50 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "cache": "no-cache"
+  },
+  {
+    "path": "/assets/releases/851592cbe80483e34958/app/main.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "path": "/assets/app/does-not-exist.js",
+    "status": 404,
+    "contentType": null,
+    "cache": "no-cache"
+  },
+  {
+    "path": "/api/health",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "cache": "no-store"
+  },
+  {
+    "path": "/api/member/credits",
+    "status": 503,
+    "contentType": "application/json; charset=utf-8",
+    "cache": "no-store"
+  },
+  {
+    "path": "/media/paid-track.mp3",
+    "status": 503,
+    "contentType": "application/json; charset=utf-8",
+    "cache": "no-store"
+  },
+  {
+    "path": "/api/cms/state",
+    "status": 503,
+    "contentType": "application/json; charset=utf-8",
+    "cache": "no-store"
+  },
+  {
+    "path": "/assets/audio/boss-ballin.mp3",
+    "status": 404,
+    "contentType": null,
+    "cache": null
+  }
+]

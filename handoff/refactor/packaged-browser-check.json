@@ -1,0 +1,12 @@
+{
+  "first": {
+    "entry": "http://127.0.0.1:8788/assets/releases/851592cbe80483e34958/app/main.js",
+    "photos": 24,
+    "worldRequests": 0
+  },
+  "warm": {
+    "photos": 24,
+    "cachedCode": 56
+  },
+  "cmsMerchEditor": true
+}

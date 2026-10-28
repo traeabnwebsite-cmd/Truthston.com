@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 2,
-  "updatedAt": "2026-10-27T06:17:19.963318+00:00",
+  "revision": 3,
+  "updatedAt": "2026-10-28T04:37:08.990489+00:00",
   "site": {
     "newsroomName": "The ABN Journal",
     "newsroomTagline": "The music. The city. The mission.",
@@ -14,1838 +14,416 @@
   },
   "articles": [
     {
-      "id": "story-d542740b4cb16b",
-      "slug": "trae-debuts-as-a-guest-on-z-ro-s-album-look-what-you-did-to-me",
-      "title": "Trae debuts as a guest on Z-Ro's album Look What You Did to Me",
-      "date": "1998",
-      "precision": "year",
-      "section": "Music",
-      "summary": "First recorded appearance; Guerilla Maab forms with Z-Ro and Dougie D around the same period.",
-      "body": "First recorded appearance; Guerilla Maab forms with Z-Ro and Dougie D around the same period.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "AllMusic bio (via Last.fm, Qobuz, Spotify, Apple Music)",
-      "sourceUrl": "https://www.last.fm/music/Trae+tha+Truth/+wiki",
-      "sourceDate": "1998",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
       "id": "story-87506d7f7e6360",
       "slug": "debut-solo-album-losing-composure-released-on-g-maab",
-      "title": "Debut solo album Losing Composure released on G-Maab",
+      "title": "Losing Composure: the start of the solo album story.",
       "date": "2003-09-09",
       "precision": "day",
       "section": "Music",
       "summary": "Features Bun B, Paul Wall, Chamillionaire and Lil B per Apple Music and Tidal bios.",
-      "body": "Features Bun B, Paul Wall, Chamillionaire and Lil B per Apple Music and Tidal bios.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Losing Composure arrived on September 9, 2003, as Trae’s debut solo album. The research archive identifies G-Maab with the release and places it after his early recorded appearances and work within the Guerilla Maab circle.\n\nThe catalog’s biographical sources list guest appearances including Bun B, Paul Wall and Chamillionaire. Those names connect the debut to the Houston scene around it, while the release itself marks the point where Trae’s solo album sequence begins.\n\nLater records would bring different labels, collaborators and audiences, but the debut remains its own starting point on the shelves. Listening through the catalog in order gives this project a role beyond a date in a biography: it establishes the first solo chapter that the later albums build on. The linked discography record provides the historical release reference.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "Wikipedia discography / Apple Music",
       "sourceUrl": "https://en.wikipedia.org/wiki/Trae_tha_Truth_discography",
       "sourceDate": "2003-09-09",
       "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-f9d2ccb54c91ed",
-      "slug": "screwed-up-click-rapper-big-hawk-shot-and-killed-in-houston",
-      "title": "Screwed Up Click rapper Big Hawk shot and killed in Houston",
-      "date": "2006-05-01",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Trae honors him on \"Give My Last Breath\" (Life Goes On, 2007); the case is unsolved per Wikipedia.",
-      "body": "Trae honors him on \"Give My Last Breath\" (Life Goes On, 2007); the case is unsolved per Wikipedia.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Wikipedia (Big Hawk)",
-      "sourceUrl": "https://en.wikipedia.org/wiki/Big_Hawk",
-      "sourceDate": "2006-05-01",
-      "imageId": "",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-00242be50c548b",
       "slug": "restless-released-on-g-maab-rap-a-lot-and-asylum",
-      "title": "Restless released on G-Maab, Rap-A-Lot and Asylum",
+      "title": "Restless and a wider release for the Houston sound.",
       "date": "2006-06-27",
       "precision": "day",
       "section": "Music",
       "summary": "Major-label debut; J. Prince credited as executive producer; guests include Bun B, Lil' Keke and Yung Joc. Qobuz lists May 2, 2006 for some regions.",
-      "body": "Major-label debut; J. Prince credited as executive producer; guests include Bun B, Lil' Keke and Yung Joc. Qobuz lists May 2, 2006 for some regions.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Restless reached listeners in 2006 through G-Maab, Rap-A-Lot and Asylum. The research catalog records June 27 as its principal release date while noting that some regional services show a different date.\n\nThe album marked Trae’s major-label debut. J. Prince is credited as executive producer, and the documented guest appearances include Bun B, Lil’ Keke and Yung Joc. Those details place the record within both Houston’s existing rap network and the wider distribution available to the project.\n\nRestless sits after Losing Composure and before Life Goes On in the solo catalog. Keeping those releases separate makes it possible to follow the progression without collapsing different editions or regional dates into one timeline. The linked album record preserves the main reference, and the record-room shelves retain the project’s individual identity.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "Wikipedia (Restless)",
       "sourceUrl": "https://en.wikipedia.org/wiki/Restless_(Trae_album)",
       "sourceDate": "2006-06-27",
       "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-25f3a5efc29d43",
-      "slug": "life-goes-on-released",
-      "title": "Life Goes On released",
-      "date": "2007-10-23",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Guests include Lil Wayne, Jadakiss and Slim Thug.",
-      "body": "Guests include Lil Wayne, Jadakiss and Slim Thug.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Wikipedia (Life Goes On)",
-      "sourceUrl": "https://en.wikipedia.org/wiki/Life_Goes_On_(Trae_album)",
-      "sourceDate": "2007-10-23",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-c98ec4e3803c69",
-      "slug": "review-of-life-goes-on",
-      "title": "Review of Life Goes On",
-      "date": "2007-11-16",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Reviewer Chase Hoffberger is mixed: says the low-end raps struggle to hold interest, with guest spots carrying it.",
-      "body": "Reviewer Chase Hoffberger is mixed: says the low-end raps struggle to hold interest, with guest spots carrying it.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Austin Chronicle",
-      "sourceUrl": "https://austinchronicle.com/music/2007-11-16/561522",
-      "sourceDate": "2007-11-16",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-6459911bbed490",
-      "slug": "review-of-life-goes-on-nov-29-to-dec-5-2007-issue",
-      "title": "Review of Life Goes On (Nov 29 to Dec 5, 2007 issue)",
-      "date": "2007-11-29",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Praises his versatility and \"Give My Last Breath\", a tribute to Big Hawk.",
-      "body": "Praises his versatility and \"Give My Last Breath\", a tribute to Big Hawk.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Houston Press",
-      "sourceUrl": "https://www.houstonpress.com/?p=244509",
-      "sourceDate": "2007-11-29",
-      "imageId": "",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-28c11fc74f91fb",
       "slug": "abn-trae-and-z-ro-release-it-is-what-it-is-on-rap-a-lot",
-      "title": "ABN (Trae and Z-Ro) release It Is What It Is on Rap-A-Lot",
+      "title": "It Is What It Is: the ABN album in the archive.",
       "date": "2008-07-15",
       "precision": "day",
       "section": "Music",
       "summary": "Peaks #62 Billboard 200, #10 R&B/Hip-Hop, #7 Rap; the duo's last album together.",
-      "body": "Peaks #62 Billboard 200, #10 R&B/Hip-Hop, #7 Rap; the duo's last album together.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Trae and Z-Ro released It Is What It Is as ABN on July 15, 2008. The research catalog identifies Rap-A-Lot with the release and records its place in the duo’s discography.\n\nThe album reached number sixty-two on the Billboard 200, with higher positions on the R&B/Hip-Hop and Rap charts recorded in the archive. Those chart entries describe the reception of this particular release; they are different measures from its lasting place in listeners’ collections.\n\nThe ABN record remains a shared chapter within careers that also include extensive solo catalogs. It can be followed here through its own artwork, date and track information, alongside the individual releases on the surrounding shelves. The linked discography record provides the historical reference for the album and its chart positions.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "Wikipedia (ABN)",
       "sourceUrl": "https://en.wikipedia.org/wiki/ABN_(hip-hop_duo)",
       "sourceDate": "2008-07-15",
       "imageId": "",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-3b6817f75c2574",
       "slug": "houston-mayor-bill-white-proclaims-july-22-trae-day-the-first-such-honor-for-a-rapper",
-      "title": "Houston Mayor Bill White proclaims July 22 \"Trae Day\", the first such honor for a rapper",
+      "title": "The day Houston made Trae Day official.",
       "date": "2008-07-22",
       "precision": "day",
       "section": "Community",
       "summary": "Proclamation read at City Council with Council Member Peter Brown.",
-      "body": "Proclamation read at City Council with Council Member Peter Brown.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Houston officially recognized Trae Day on July 22, 2008. The research archive records Mayor Bill White’s proclamation and its reading at City Council, with Council Member Peter Brown involved in the presentation.\n\nThe date became the foundation for an annual observance that later expanded into weekends and weeklong programs. Coverage across subsequent years documents different combinations of music, school supplies, scholarships, family activities and community assistance. Those later programs should not be confused with the details of the original 2008 proclamation.\n\nThe official recognition is a starting point for understanding why July 22 holds a place in this history. It connects the artist’s name with a recurring Houston community event, rather than just a release or performance anniversary. The linked Houston Press record preserves the contemporary account of the city’s recognition.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "Houston Press",
       "sourceUrl": "https://www.houstonpress.com/?p=231211",
       "sourceDate": "2008-07-22",
       "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-bd136e55813623",
-      "slug": "fuck-wit-trae-day-and-no-one-s-celebrating",
-      "title": "\"Fuck Wit Trae Day (And No One's Celebrating)\"",
-      "date": "2010-06-28",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Blog commentary written in the weeks after the KBXX dispute, dated from the URL.",
-      "body": "Blog commentary written in the weeks after the KBXX dispute, dated from the URL.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Passion of the Weiss",
-      "sourceUrl": "https://passionweiss.com/2010/06/28/fuck-wit-trae-day-and-no-ones-celebrating",
-      "sourceDate": "2010-06-28",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-7f07a887f77c8a",
-      "slug": "abn-trae-and-z-ro-release-rip",
-      "title": "ABN (Trae and Z-Ro) release \"RIP\"",
-      "date": "2011-01-18",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Reunion track; The Fader notes the last ABN album came out three years earlier.",
-      "body": "Reunion track; The Fader notes the last ABN album came out three years earlier.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "The Fader",
-      "sourceUrl": "https://www.thefader.com/2011/01/18/abn-trae-z-ro-rip-mp3",
-      "sourceDate": "2011-01-18",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-8e5e76c922f008",
-      "slug": "getting-paid-feat-wiz-khalifa-released-ahead-of-street-king",
-      "title": "\"Getting Paid\" (feat. Wiz Khalifa) released ahead of Street King",
-      "date": "2011-06-07",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Produced by V-Don per Wikipedia.",
-      "body": "Produced by V-Don per Wikipedia.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Apple Music",
-      "sourceUrl": "https://music.apple.com/us/album/735124937",
-      "sourceDate": "2011-06-07",
-      "imageId": "",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-8281a62ce67664",
       "slug": "street-king-released-on-abn-and-fontana",
-      "title": "Street King released on ABN and Fontana",
+      "title": "Street King: a defining stop on the record shelves.",
       "date": "2011-07-12",
       "precision": "day",
       "section": "Music",
       "summary": "Sixth studio album; a mirror credits ABN and Prez Entertainment instead of Fontana. Houston Press called it perhaps his best album to date.",
-      "body": "Sixth studio album; a mirror credits ABN and Prez Entertainment instead of Fontana. Houston Press called it perhaps his best album to date.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Street King arrived on July 12, 2011, as Trae’s sixth studio album. The research catalog connects the release with ABN and Fontana, while also recording differences in how some catalog mirrors describe the label credits.\n\nThe album followed the release of “Getting Paid,” featuring Wiz Khalifa, earlier that summer. Contemporary Houston coverage was strongly positive, with the Houston Press considering it among Trae’s best work to that point. That response belongs to its release period, before the later Tha Truth albums and the larger collaboration records that would follow.\n\nOn the site’s shelves, Street King remains a distinct chapter with its original artwork and release information. Reading the catalog chronologically puts it between the earlier solo albums and the next phase of Trae’s career. The linked release record provides the historical reference behind this entry.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "Wikipedia (Street King)",
       "sourceUrl": "https://en.wikipedia.org/wiki/Street_King_(album)",
       "sourceDate": "2011-07-12",
       "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-3882ac7219a247",
-      "slug": "i-m-on-feat-wiz-khalifa-lupe-fiasco-big-boi-and-others-released-i-m-on-2-0-follows-in-february-2012",
-      "title": "\"I'm On\" (feat. Wiz Khalifa, Lupe Fiasco, Big Boi and others) released; \"I'm On 2.0\" follows in February 2012",
-      "date": "2011-12-06",
-      "precision": "day",
-      "section": "Music",
-      "summary": "2.0 adds Mark Morrison on the hook and verses from Big K.R.I.T., Jadakiss, J. Cole, Kendrick Lamar, B.o.B, Tyga and Bun B.",
-      "body": "2.0 adds Mark Morrison on the hook and verses from Big K.R.I.T., Jadakiss, J. Cole, Kendrick Lamar, B.o.B, Tyga and Bun B.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Wikipedia (I'm On)",
-      "sourceUrl": "https://en.wikipedia.org/wiki/I%27m_On",
-      "sourceDate": "2011-12-06",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-8bba023ed90a04",
-      "slug": "t-i-announces-trae-signed-to-grand-hustle-on-mtv-rapfix-live",
-      "title": "T.I. announces Trae signed to Grand Hustle on MTV RapFix Live",
-      "date": "2012-03-01",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Announced alongside Iggy Azalea and Chip; Factmag covered it March 2, 2012.",
-      "body": "Announced alongside Iggy Azalea and Chip; Factmag covered it March 2, 2012.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL / Factmag (Mar 2)",
-      "sourceUrl": "https://www.xxlmag.com/t-i-signs-trae-tha-truth-to-grand-hustle-label/",
-      "sourceDate": "2012-03-01",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-459d416b6100bd",
-      "slug": "i-am-king-mixtape-reviewed-as-a-confessional-release",
-      "title": "I Am King mixtape reviewed as a confessional release",
-      "date": "2013-11-25",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Tribute to Dominic \"Money Clip D\" Brown per Wikipedia.",
-      "body": "Tribute to Dominic \"Money Clip D\" Brown per Wikipedia.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL",
-      "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-i-am-king-review/",
-      "sourceDate": "2013-11-25",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-5e6f501e110f46",
-      "slug": "review-tha-truth",
-      "title": "Review: Tha Truth",
-      "date": "2015-07-24",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Album review. Date read from the article's own metadata.",
-      "body": "Album review. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL",
-      "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-tha-truth-review/",
-      "sourceDate": "2015-07-24",
-      "imageId": "photo-4524dd0b05bf82",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-34116ac22c089c",
-      "slug": "tha-truth-released-first-grand-hustle-era-album-debuts-166-on-the-billboard-200",
-      "title": "Tha Truth released (first Grand Hustle-era album); debuts #166 on the Billboard 200",
-      "date": "2015-07-24",
-      "precision": "day",
-      "section": "Music",
-      "summary": "#15 R&B/Hip-Hop, #11 Rap, #17 Independent.",
-      "body": "#15 R&B/Hip-Hop, #11 Rap, #17 Independent.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Wikipedia discography",
-      "sourceUrl": "https://en.wikipedia.org/wiki/Trae_tha_Truth_discography",
-      "sourceDate": "2015-07-24",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-63acd6e483dbe3",
-      "slug": "trae-talks-tha-truth-lp-and-more-on-the-combat-jack-show",
-      "title": "Trae talks Tha Truth LP and more on The Combat Jack Show",
-      "date": "2015-08-01",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Podcast interview around the 2015 album. Date read from the article's own metadata.",
-      "body": "Podcast interview around the 2015 album. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Okayplayer",
-      "sourceUrl": "https://www.okayplayer.com/h-town-legend-trae-tha-truth-talks-tha-truth-lp-more-on-the-combat-jack-show/718945",
-      "sourceDate": "2015-08-01",
-      "imageId": "photo-6445054849c811",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-becd65c7bc39ca",
-      "slug": "trae-tha-truth-is-finally-letting-fans-into-his-world-interview",
-      "title": "Trae Tha Truth Is Finally Letting Fans Into His World (interview)",
-      "date": "2015-08-07",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Interview tied to the release of Tha Truth. Date read from the article's own metadata.",
-      "body": "Interview tied to the release of Tha Truth. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL",
-      "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-tha-truth-interview/",
-      "sourceDate": "2015-08-07",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-740d17d9c7434b",
-      "slug": "review-trae-tha-truth-tha-truth-abn-hustle-gang-empire",
-      "title": "Review: Trae Tha Truth, Tha Truth (ABN/Hustle Gang/EMPIRE)",
-      "date": "2015-12",
-      "precision": "month",
-      "section": "Music",
-      "summary": "Month taken from the archive URL.",
-      "body": "Month taken from the archive URL.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "RapReviews",
-      "sourceUrl": "https://rapreviews.com/archive/2015_12_trae-thatruth.html",
-      "sourceDate": "2015-12",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-572fc80ef88a8e",
-      "slug": "takers-feat-quentin-miller-released-as-first-single-from-pt-2",
-      "title": "\"Takers\" (feat. Quentin Miller) released as first single from Pt. 2",
-      "date": "2015-12-14",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Followed by \"All Good\" (Jan 3, 2016) and \"Slugs\" (Jan 27, 2016); album Feb 5, 2016.",
-      "body": "Followed by \"All Good\" (Jan 3, 2016) and \"Slugs\" (Jan 27, 2016); album Feb 5, 2016.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Wikipedia (Tha Truth, Pt. 2)",
-      "sourceUrl": "https://en.wikipedia.org/wiki/Tha_Truth,_Pt._2",
-      "sourceDate": "2015-12-14",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-376ef66a47be36",
-      "slug": "trae-t-i-rick-ross-and-audio-push-team-up-for-all-good",
-      "title": "Trae, T.I., Rick Ross and Audio Push team up for \"All Good\"",
-      "date": "2016-01-08",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Notes Trae was recording his eighth solo LP at Tree Sounds in Atlanta. Date read from the article's own metadata.",
-      "body": "Notes Trae was recording his eighth solo LP at Tree Sounds in Atlanta. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL",
-      "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-t-i-rick-ross-and-audio-push-team-up-for-all-good/",
-      "sourceDate": "2016-01-08",
-      "imageId": "photo-fbd18b818087db",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-960d0dfe21f87f",
-      "slug": "review-tha-truth-pt-2",
-      "title": "Review: Tha Truth, Pt. 2",
-      "date": "2016-02-04",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Critical: calls it cluttered and better as a tighter EP, praising the closing stretch. Date read from the article's own metadata.",
-      "body": "Critical: calls it cluttered and better as a tighter EP, praising the closing stretch. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Exclaim!",
-      "sourceUrl": "https://exclaim.ca/music/article/trae_tha_truth-tha_truth_pt_2",
-      "sourceDate": "2016-02-04",
-      "imageId": "photo-77c831e2b9369a",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-db8bb824bce598",
-      "slug": "another-48-hours-mixtape-released-free-via-livemixtapes-and-on-itunes",
-      "title": "Another 48 Hours mixtape released free via LiveMixtapes and on iTunes",
-      "date": "2016-06-27",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Guests include T.I., DJ Screw and the late Big Hawk.",
-      "body": "Guests include T.I., DJ Screw and the late Big Hawk.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL",
-      "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-another-48-hours/",
-      "sourceDate": "2016-06-27",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-c9a51221d7dcb2",
-      "slug": "mozzy-trae-and-snoop-dogg-set-ground-rules",
-      "title": "Mozzy, Trae and Snoop Dogg set \"Ground Rules\"",
-      "date": "2016-12-08",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Second single after \"Errbody On Go\". Date read from the article's own metadata.",
-      "body": "Second single after \"Errbody On Go\". Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL",
-      "sourceUrl": "https://www.xxlmag.com/mozzy-trae-tha-truth-and-snoop-dogg-set-ground-rules/",
-      "sourceDate": "2016-12-08",
-      "imageId": "photo-811cf0957dbe32",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-cfeef2f33ccda8",
-      "slug": "trae-tha-truth-and-mozzy-announce-tapped-in-dec-16",
-      "title": "Trae Tha Truth and Mozzy announce Tapped In (Dec 16)",
-      "date": "2016-12-16",
-      "precision": "day",
-      "section": "Music",
-      "summary": "ABN / Mozzy Records / EMPIRE; 17 tracks. Date read from the article's own metadata.",
-      "body": "ABN / Mozzy Records / EMPIRE; 17 tracks. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL",
-      "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-mozzy-tapped-in-album/",
-      "sourceDate": "2016-12-16",
-      "imageId": "photo-5d0c595f978a2e",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-852f24e3df67ed",
-      "slug": "i-m-on-3-0-released-with-15-guests-including-t-i-snoop-dogg-rick-ross-fabolous-and-gary-clark-jr",
-      "title": "\"I'm On 3.0\" released with 15 guests including T.I., Snoop Dogg, Rick Ross, Fabolous and Gary Clark Jr.",
-      "date": "2017-06-23",
-      "precision": "day",
-      "section": "Music",
-      "summary": "About nine minutes long; appears on Tha Truth, Pt. 3 (July 21, 2017); the video follows in January 2019.",
-      "body": "About nine minutes long; appears on Tha Truth, Pt. 3 (July 21, 2017); the video follows in January 2019.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Wikipedia (I'm On)",
-      "sourceUrl": "https://en.wikipedia.org/wiki/I%27m_On",
-      "sourceDate": "2017-06-23",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-af19eca1a418a4",
-      "slug": "trae-day-2017-10th-75-scholarships-with-houston-public-library-honored-by-mayor-turner-and-rep-sheila-jackson-lee",
-      "title": "Trae Day 2017 (10th): 75 scholarships with Houston Public Library; honored by Mayor Turner and Rep. Sheila Jackson Lee",
-      "date": "2017-07",
-      "precision": "month",
-      "section": "Community",
-      "summary": "Part of the library's Hip-Hop for Literacy program; block party at Discovery Green.",
-      "body": "Part of the library's Hip-Hop for Literacy program; block party at Discovery Green.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL / ABC13 / Blavity",
-      "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-gives-75-scholarships-kids-houston/",
-      "sourceDate": "2017-07",
-      "imageId": "photo-8e204ef83c9d39",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-61792aa782570a",
       "slug": "see-how-trae-tha-truth-is-helping-local-rescue-efforts-in-houston",
-      "title": "See how Trae tha Truth is helping local rescue efforts in Houston",
+      "title": "After his own rescue, Trae joined the rescue effort.",
       "date": "2017-08-30",
       "precision": "day",
       "section": "Community",
       "summary": "Trae, himself rescued from flooding, joins boat rescues during Hurricane Harvey.",
-      "body": "Trae, himself rescued from flooding, joins boat rescues during Hurricane Harvey.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Hurricane Harvey changed the shape of everyday life across Houston in August 2017. Contemporary reporting followed Trae Tha Truth joining boat rescues after he had himself needed help getting out of floodwaters.\n\nThe sequence is central to the story. A resident affected by the storm became part of the effort to reach other people. Coverage in the following weeks documented the wider relief work developing around Trae and DJ Mr. Rogers, including the volunteer network that became known as Relief Gang.\n\nThe rescue reporting marks an important moment in the community archive, but the work did not end when the water receded. Later accounts followed supplies, cleanups and rebuilding. Reading those stories together shows the movement from immediate rescue toward longer recovery. This dated report returns to the first emergency response rather than presenting a current storm advisory.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "REVOLT",
       "sourceUrl": "https://www.revolt.tv/article/2017-08-30/31265/see-how-trae-tha-truth-is-helping-local-rescue-efforts-in-houston",
       "sourceDate": "2017-08-30",
       "imageId": "photo-6d21973ab466b8",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-08745c6837367b",
-      "slug": "bun-b-trae-tha-truth-and-dj-mr-rogers-speak-on-hurricane-harvey-relief",
-      "title": "Bun B, Trae tha Truth and DJ Mr. Rogers speak on Hurricane Harvey relief",
-      "date": "2017-09-01",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Relief Gang takes shape as a volunteer cooperative with DJ Mr. Rogers.",
-      "body": "Relief Gang takes shape as a volunteer cooperative with DJ Mr. Rogers.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "REVOLT",
-      "sourceUrl": "https://www.revolt.tv/2017/9/1/20820144/bun-b-trae-tha-truth-and-dj-mr-rogers-speak-on-hurricane-harvey-relief",
-      "sourceDate": "2017-09-01",
-      "imageId": "photo-11ffbe2a06d324",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-f2d061585f9f4f",
-      "slug": "trae-joins-hurricane-harvey-relief-efforts-in-hometown-we-are-one-fund-tops-89k",
-      "title": "Trae joins Hurricane Harvey relief efforts in hometown; We Are One fund tops ~$89K",
-      "date": "2017-09-05",
-      "precision": "day",
-      "section": "Community",
-      "summary": "$250,000 goal for the We Are One fund; one earlier report put the total near $33K.",
-      "body": "$250,000 goal for the We Are One fund; one earlier report put the total near $33K.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "REVOLT",
-      "sourceUrl": "https://www.revolt.tv/2017/9/5/20820154/trae-tha-truth-joins-hurricane-harvey-relief-efforts-in-hometown-of-houston-tx",
-      "sourceDate": "2017-09-05",
-      "imageId": "photo-81c736051d6159",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-f221dd5c1b423e",
-      "slug": "local-celebrities-form-group-to-continue-helping-community",
-      "title": "Local celebrities form group to continue helping community",
-      "date": "2017-10-01",
-      "precision": "day",
-      "section": "Community",
-      "summary": "About the formation of Relief Gang. Date read from the article's own metadata.",
-      "body": "About the formation of Relief Gang. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Fox 26 Houston",
-      "sourceUrl": "https://www.fox26houston.com/news/local-celebrities-form-group-to-continue-helping-community",
-      "sourceDate": "2017-10-01",
-      "imageId": "photo-15f047c964e535",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-f82319039e3cf8",
-      "slug": "trae-and-dj-mr-rogers-help-rebuild-98-year-old-naomi-williams-home-after-fema-denial",
-      "title": "Trae and DJ Mr. Rogers help rebuild 98-year-old Naomi Williams' home after FEMA denial",
-      "date": "2017-12",
-      "precision": "month",
-      "section": "Community",
-      "summary": "Most funding comes from their own pockets.",
-      "body": "Most funding comes from their own pockets.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "ABC13",
-      "sourceUrl": "https://abc13.com/society/trae-tha-truth-helping-residents-rebuild-after-harvey/2750035/",
-      "sourceDate": "2017-12",
-      "imageId": "photo-270d223b099908",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-2f96643b19539b",
       "slug": "trae-receives-the-key-to-the-city-of-houston",
-      "title": "Trae receives the key to the city of Houston",
+      "title": "Houston’s key recognizes a relationship with the city.",
       "date": "2017-12-17",
       "precision": "day",
       "section": "Community",
       "summary": "Ceremony delayed from Trae Day 2017 by Harvey; Trae says he was the first rapper to receive it.",
-      "body": "Ceremony delayed from Trae Day 2017 by Harvey; Trae says he was the first rapper to receive it.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Trae Tha Truth received a key to the city of Houston in December 2017. XXL’s December 17 coverage recorded the recognition and Trae’s response to it, including his statement that he was the first rapper to receive that honor.\n\nThe ceremony had originally been connected with Trae Day earlier in the year, but Hurricane Harvey changed those plans. By the time the recognition took place, reporting had documented Trae’s participation in rescues and the relief work that continued afterward.\n\nThe key belongs to a wider history of Houston recognizing the artist’s community role. The city had proclaimed Trae Day in 2008, and the annual observance continued to grow. December’s ceremony added another milestone to that relationship. The linked contemporary report preserves the attribution around the honor and the circumstances of its delayed presentation.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "XXL / HotNewHipHop",
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-houston-flood-rescue/",
       "sourceDate": "2017-12-17",
       "imageId": "photo-0d642f02a66538",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-ee9dc2cf77dddd",
-      "slug": "rockets-guard-gerald-green-joins-relief-gang-and-tours-its-38-000-sq-ft-supply-warehouse",
-      "title": "Rockets guard Gerald Green joins Relief Gang and tours its 38,000 sq ft supply warehouse",
-      "date": "2018-01",
-      "precision": "month",
-      "section": "Community",
-      "summary": "Visited a Kashmere Gardens family; month stated in the report.",
-      "body": "Visited a Kashmere Gardens family; month stated in the report.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "ABC13",
-      "sourceUrl": "https://abc13.com/post/rockets-gerald-green-assists-harvey-victims-with-relief-gang/2931614/",
-      "sourceDate": "2018-01",
-      "imageId": "photo-ae8b841002837a",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-40bb5a2b643741",
-      "slug": "dj-mr-rogers-explains-how-he-and-trae-founded-relief-gang",
-      "title": "DJ Mr. Rogers explains how he and Trae founded Relief Gang",
-      "date": "2018-02-14",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Describes Relief Gang as a humanitarian cooperative started with Trae.",
-      "body": "Describes Relief Gang as a humanitarian cooperative started with Trae.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "DJ Mr. Rogers (blog)",
-      "sourceUrl": "https://www.djmrrogers.com/single-post/2018/02/14/the-reliefgang",
-      "sourceDate": "2018-02-14",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-e6660ff7c97f16",
-      "slug": "what-about-us-released-as-lead-single-from-hometown-hero",
-      "title": "\"What About Us\" released as lead single from Hometown Hero",
-      "date": "2018-03",
-      "precision": "month",
-      "section": "Music",
-      "summary": "Month from the URL.",
-      "body": "Month from the URL.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Complex",
-      "sourceUrl": "https://www.complex.com/music/2018/03/trae-tha-truth-what-about-us",
-      "sourceDate": "2018-03",
-      "imageId": "photo-1d7dfef867bcff",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-51ad8206ed364b",
-      "slug": "relief-gang-opens-warehouse-of-supplies-to-storm-victims",
-      "title": "Relief Gang opens warehouse of supplies to storm victims",
-      "date": "2018-03-04",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Harvey recovery. Date read from the article's own metadata.",
-      "body": "Harvey recovery. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "ABC13",
-      "sourceUrl": "https://abc13.com/post/relief-gang-opens-warehouse-of-supplies-to-storm-victims/3171197/",
-      "sourceDate": "2018-03-04",
-      "imageId": "photo-ca06df2d5dba74",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-781611d1eb985d",
       "slug": "trae-on-making-hometown-hero-recorded-in-atlanta-in-about-two-days",
-      "title": "Trae on making Hometown Hero (recorded in Atlanta in about two days)",
+      "title": "Hometown Hero carries Houston into the studio.",
       "date": "2018-03-13",
       "precision": "day",
       "section": "Music",
       "summary": "Tribute to Houston after Hurricane Harvey. Date read from the article's own metadata.",
-      "body": "Tribute to Houston after Hurricane Harvey. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Hometown Hero was introduced in March 2018 as a project shaped by Houston after Hurricane Harvey. ABC13’s March 13 coverage discussed its creation in Atlanta, where Trae described recording the music over roughly two days.\n\nThe record arrived in the same period that reporting continued to follow Relief Gang’s recovery work. In the music archive, the project was first presented under the name King Truth and released on March 16. Its guest list included artists such as Mozzy, T.I. and Young Thug.\n\nThat combination gives the album a particular place in the catalog: a Houston-focused statement made during an intense period of service and recovery. The release and the relief work remain separate activities, but their timing helps explain the context surrounding the record. The linked interview preserves Trae’s account of making it.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "ABC13",
       "sourceUrl": "https://abc13.com/news/3205322/",
       "sourceDate": "2018-03-13",
       "imageId": "photo-b1968ff641ea44",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-b05dc3ebef482d",
-      "slug": "trae-explains-pairing-with-young-thug-on-don-t-know-me",
-      "title": "Trae explains pairing with Young Thug on \"Don't Know Me\"",
-      "date": "2018-03-14",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Chose Young Thug for his \"feel and melodic soul\". Date read from the article's own metadata.",
-      "body": "Chose Young Thug for his \"feel and melodic soul\". Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL",
-      "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-young-thug-new-song-dont-know-me/",
-      "sourceDate": "2018-03-14",
-      "imageId": "photo-64c07a0931ae97",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-ee7722228806ae",
-      "slug": "hometown-hero-released-first-as-king-truth-vibe-interview-the-same-month",
-      "title": "Hometown Hero released (first as \"King Truth\"); Vibe interview the same month",
-      "date": "2018-03-16",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Guests include T.I., Mozzy, Young Thug, Boosie Badazz, Money Man.",
-      "body": "Guests include T.I., Mozzy, Young Thug, Boosie Badazz, Money Man.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Vibe / Audible Treats",
-      "sourceUrl": "https://www.vibe.com/2018/03/trae-tha-truth-hometown-hero-interview/",
-      "sourceDate": "2018-03-16",
-      "imageId": "photo-d9481c5c6d5724",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-3b2bf7987ace74",
-      "slug": "hometown-hero-t-i-boosie-badazz-young-thug-and-more",
-      "title": "Hometown Hero: T.I., Boosie Badazz, Young Thug and more",
-      "date": "2018-03-16",
-      "precision": "day",
-      "section": "Music",
-      "summary": "First album as \"King Truth\"; 12 tracks. Date read from the article's own metadata.",
-      "body": "First album as \"King Truth\"; 12 tracks. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL",
-      "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-hometown-hero-album-ti-boosie-badazz-young-thug-more/",
-      "sourceDate": "2018-03-16",
-      "imageId": "photo-79a52b23f84e9f",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-2f45074c33a651",
-      "slug": "trae-day-2018-free-concert-at-discovery-green-school-supplies-hiv-testing",
-      "title": "Trae Day 2018: free concert at Discovery Green, school supplies, HIV testing",
-      "date": "2018-07-23",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Called the eleventh observance.",
-      "body": "Called the eleventh observance.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "The Source",
-      "sourceUrl": "https://thesource.com/2018/07/23/trae-tha-truth-day/",
-      "sourceDate": "2018-07-23",
-      "imageId": "photo-5b6d7b940f5602",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-b18ebedd045d73",
-      "slug": "trae-and-stockx-link-up-for-a-charity-sneaker-sweepstakes",
-      "title": "Trae and StockX link up for a charity sneaker sweepstakes",
-      "date": "2018-07-26",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Ten sneakers donated by artists and athletes including DJ Khaled, Bun B, T.I., Chris Paul and James Harden.",
-      "body": "Ten sneakers donated by artists and athletes including DJ Khaled, Bun B, T.I., Chris Paul and James Harden.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "The Source",
-      "sourceUrl": "https://thesource.com/2018/07/26/trae-the-truth-and-stockx-link-up-for-charity-campaign/",
-      "sourceDate": "2018-07-26",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-6313a93aa6f933",
-      "slug": "trae-and-relief-gang-drive-16-hours-to-the-carolinas-for-hurricane-florence-relief",
-      "title": "Trae and Relief Gang drive 16 hours to the Carolinas for Hurricane Florence relief",
-      "date": "2018-09",
-      "precision": "month",
-      "section": "Community",
-      "summary": "Tied to the help Houston received after Harvey.",
-      "body": "Tied to the help Houston received after Harvey.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "ABC13 / KPRC",
-      "sourceUrl": "https://abc13.com/post/trae-tha-truth-helps-with-florence-relief-in-carolinas/4283388/",
-      "sourceDate": "2018-09",
-      "imageId": "photo-fe663cc9a61159",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-6a323b487bc6e5",
-      "slug": "trae-drives-to-florida-to-help-hurricane-michael-victims",
-      "title": "Trae drives to Florida to help Hurricane Michael victims",
-      "date": "2018-10-13",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Date from the ABC13 report cited in search.",
-      "body": "Date from the ABC13 report cited in search.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "ABC13",
-      "sourceUrl": "https://abc13.com/trae-tha-truth-goes-to-florida-to-help-michael-victims/4470114/",
-      "sourceDate": "2018-10-13",
-      "imageId": "photo-758587241ee8b4",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-5b98f74f87a4c7",
-      "slug": "i-m-on-3-0-video-released",
-      "title": "\"I'm On 3.0\" video released",
-      "date": "2019-01",
-      "precision": "month",
-      "section": "Music",
-      "summary": "Month from the URL; directed by Philly Fly Boy.",
-      "body": "Month from the URL; directed by Philly Fly Boy.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Complex",
-      "sourceUrl": "https://www.complex.com/music/2019/01/trae-tha-truth-im-on-3-video",
-      "sourceDate": "2019-01",
-      "imageId": "photo-c6bf1bd3581222",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-d243ab8d7bb398",
-      "slug": "trae-helping-flood-victims-get-to-safety",
-      "title": "Trae helping flood victims get to safety",
-      "date": "2019-05",
-      "precision": "month",
-      "section": "Community",
-      "summary": "Month from the URL.",
-      "body": "Month from the URL.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Complex",
-      "sourceUrl": "https://complex.com/music/2019/05/trae-tha-truth-helping-get-houston-flood-victims-to-safety",
-      "sourceDate": "2019-05",
-      "imageId": "photo-e8890cd1688b28",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-971e56bfb27aa9",
-      "slug": "trae-leads-rescue-efforts-for-houston-flood-victims",
-      "title": "Trae leads rescue efforts for Houston flood victims",
-      "date": "2019-05-08",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Picked up hundreds of stranded Woodbridge Forest Middle School students in Porter; set up a hotline; returned for stranded drivers. Says he has done high-water rescues since Hurricane Ike (2008).",
-      "body": "Picked up hundreds of stranded Woodbridge Forest Middle School students in Porter; set up a hotline; returned for stranded drivers. Says he has done high-water rescues since Hurricane Ike (2008).",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "REVOLT",
-      "sourceUrl": "https://revolt.tv/2019/5/8/20824037/trae-tha-truth-leads-rescue-efforts-for-houston-flood-victims",
-      "sourceDate": "2019-05-08",
-      "imageId": "photo-0f1be760545f41",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-a7791e4ff89f77",
-      "slug": "trae-releases-tribute-single-nipsey",
-      "title": "Trae releases tribute single \"Nipsey\"",
-      "date": "2019-06-14",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Release date from Apple Music; HNHH article is undated in the excerpt.",
-      "body": "Release date from Apple Music; HNHH article is undated in the excerpt.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "HotNewHipHop",
-      "sourceUrl": "https://www.hotnewhiphop.com/172294-trae-tha-truth-pays-homage-on-tribute-track-nipsey-new-song",
-      "sourceDate": "2019-06-14",
-      "imageId": "photo-137cda4d5d1176",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-70b892a881e567",
-      "slug": "trae-and-relief-gang-rescue-storm-victims-in-houston-imelda-sept-19-to-21",
-      "title": "Trae and Relief Gang rescue storm victims in Houston (Imelda, Sept 19 to 21)",
-      "date": "2019-09-21",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Called for volunteers with lifted trucks; Bun B amplified the request. Date read from the article's own metadata.",
-      "body": "Called for volunteers with lifted trucks; Bun B amplified the request. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL",
-      "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-save-storm-victims-houston/",
-      "sourceDate": "2019-09-21",
-      "imageId": "photo-ad0fbc862bfa5c",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-f529c53ebdcb78",
-      "slug": "texas-rappers-trae-and-bun-b-help-victims-of-tropical-storm-imelda",
-      "title": "Texas rappers Trae and Bun B help victims of Tropical Storm Imelda",
-      "date": "2019-09-24",
-      "precision": "day",
-      "section": "Community",
-      "summary": "With Impact Ministries in Beaumont: hot food and supplies.",
-      "body": "With Impact Ministries in Beaumont: hot food and supplies.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Atlanta Black Star",
-      "sourceUrl": "https://atlantablackstar.com/2019/09/24/its-a-great-need-here-texas-rappers-help-the-victims-of-hurricane-imelda/",
-      "sourceDate": "2019-09-24",
-      "imageId": "photo-6927240dee7f9f",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-cef3e0f264d69c",
       "slug": "relief-gang-heads-to-louisiana-with-30-to-40-trucks-of-supplies-after-hurricane-laura",
-      "title": "Relief Gang heads to Louisiana with 30 to 40 trucks of supplies after Hurricane Laura",
+      "title": "Relief Gang carries supplies toward Lake Charles.",
       "date": "2020-08-30",
       "precision": "day",
       "section": "Community",
       "summary": "Salvation Army partnership noted by the Chronicle.",
-      "body": "Salvation Army partnership noted by the Chronicle.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Relief Gang prepared a major supply response for Louisiana after Hurricane Laura in August 2020. ABC13’s August 30 coverage described a convoy of roughly thirty to forty trucks heading toward Lake Charles.\n\nThe reporting places that movement of supplies within the broader storm response. Follow-up coverage in the archive describes volunteers cutting trees, cleaning properties and distributing water as recovery continued. Those later activities show why the response cannot be reduced to the convoy alone: moving goods was one stage of work that continued on the ground.\n\nThe Lake Charles mission also reflects the links between neighboring Gulf Coast communities. Houston had its own recent experience of a major flood disaster, and the Louisiana trip carried that relief network across state lines. The original ABC13 report records the departure and scale described at the time; later accounts document additional recovery work.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "ABC13 / Houston Chronicle",
       "sourceUrl": "https://abc13.com/trae-tha-truth-and-relief-gang-heading-to-lake-charles/6393440/",
       "sourceDate": "2020-08-30",
       "imageId": "photo-7b52c5ee61a668",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-ba758024afc9ad",
-      "slug": "relief-gang-helps-lake-charles-recover-from-hurricane-laura",
-      "title": "Relief Gang helps Lake Charles recover from Hurricane Laura",
-      "date": "2020-09-08",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Volunteers cut trees, cleaned properties and handed out water; GoFundMe goal $100,000.",
-      "body": "Volunteers cut trees, cleaned properties and handed out water; GoFundMe goal $100,000.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Atlanta Black Star",
-      "sourceUrl": "https://atlantablackstar.com/2020/09/08/we-are-one-and-we-wont-stop-houston-rapper-trae-tha-truths-relief-gang-helps-lake-charles-recover-from-hurricane-laura/",
-      "sourceDate": "2020-09-08",
-      "imageId": "photo-09b814b1bcdee9",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-e3cdeccfb1a577",
-      "slug": "time-for-change-black-lives-matter-released-with-mysonne-t-i-styles-p-and-others",
-      "title": "\"Time for Change (Black Lives Matter)\" released with Mysonne, T.I., Styles P and others",
-      "date": "2020-12-04",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Wikipedia lists the single year as 2020.",
-      "body": "Wikipedia lists the single year as 2020.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Apple Music",
-      "sourceUrl": "https://music.apple.com/us/album/1542887862",
-      "sourceDate": "2020-12-04",
-      "imageId": "",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-aaf91d64dfdb48",
       "slug": "trae-buys-food-for-houston-families-during-the-winter-storm-blackout",
-      "title": "Trae buys food for Houston families during the winter storm blackout",
+      "title": "During the blackout, food and power became the priority.",
       "date": "2021-02-18",
       "precision": "day",
       "section": "Community",
       "summary": "DJ Mr. Rogers hands out generators.",
-      "body": "DJ Mr. Rogers hands out generators.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Houston’s February 2021 winter storm left families dealing with power failures and disrupted access to everyday necessities. Reporting from that week followed Trae Tha Truth buying food for families while DJ Mr. Rogers helped distribute generators.\n\nA later report in the archive described free gas for more than two hundred and fifty Houston families, with food and water also provided. These were separate accounts from the response, and their dates matter: the work developed as residents faced changing needs through the storm and its aftermath.\n\nThe coverage shows relief work in the city where Trae’s community efforts began. Meals, fuel, water and power served different purposes, but each addressed something a household needed to get through the disruption. This is a historical account of that week’s work; the linked source provides the original food-distribution reporting.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "REVOLT",
       "sourceUrl": "https://www.revolt.tv/article/2021-02-18/59499/trae-tha-truth-buys-food-for-houston-families",
       "sourceDate": "2021-02-18",
       "imageId": "photo-2f7b43206219b2",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-fd12e5e83d6da3",
-      "slug": "trae-gives-free-gas-to-250-houston-families",
-      "title": "Trae gives free gas to 250+ Houston families",
-      "date": "2021-02-24",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Each family also received food and cases of water.",
-      "body": "Each family also received food and cases of water.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "REVOLT",
-      "sourceUrl": "https://www.revolt.tv/news/2021/2/24/22300190/trae-tha-truth-houston-families-free-gas",
-      "sourceDate": "2021-02-24",
-      "imageId": "photo-34f2e83c4ccca4",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-a5d16e692022dc",
-      "slug": "if-you-re-scared-stay-inside-released-with-mysonne",
-      "title": "If You're Scared Stay Inside released with Mysonne",
-      "date": "2021-02-26",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Worldstar Distribution.",
-      "body": "Worldstar Distribution.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Wikipedia / Apple Music",
-      "sourceUrl": "https://music.apple.com/us/album/1553158142",
-      "sourceDate": "2021-02-26",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-f92f45c9f94cb7",
-      "slug": "trae-to-receive-change-maker-award-at-the-2021-billboard-music-awards",
-      "title": "Trae to receive Change Maker Award at the 2021 Billboard Music Awards",
-      "date": "2021-05-13",
-      "precision": "day",
-      "section": "Houston",
-      "summary": "Complex shows \"1990 days ago\" at capture, i.e. about 2021-05-13. Awards held May 23, 2021. Second recipient after Killer Mike.",
-      "body": "Complex shows \"1990 days ago\" at capture, i.e. about 2021-05-13. Awards held May 23, 2021. Second recipient after Killer Mike.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Complex (age label matches REVOLT's May 13 article)",
-      "sourceUrl": "https://www.complex.com/music/a/j-rose/trae-tha-truth-change-maker-award-2021-billboard-music-awards",
-      "sourceDate": "2021-05-13",
-      "imageId": "photo-27b9ffa327f6b5",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-406424d7f46711",
-      "slug": "trae-to-receive-change-maker-award-at-the-2021-billboard-music-awards",
-      "title": "Trae to receive Change Maker Award at the 2021 Billboard Music Awards",
-      "date": "2021-05-13",
-      "precision": "day",
-      "section": "Houston",
-      "summary": "Announcement dated from the URL.",
-      "body": "Announcement dated from the URL.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "REVOLT",
-      "sourceUrl": "https://www.revolt.tv/article/2021-05-13/53578/trae-tha-truth-to-receive-change-maker-award-at-2021-billboard-music-awards",
-      "sourceDate": "2021-05-13",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-b262e43b3179fc",
-      "slug": "trae-to-receive-honor-at-the-2021-billboard-music-awards",
-      "title": "Trae to receive honor at the 2021 Billboard Music Awards",
-      "date": "2021-05-15",
-      "precision": "day",
-      "section": "Houston",
-      "summary": "",
-      "body": "",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "The Source",
-      "sourceUrl": "https://thesource.com/2021/05/15/trae-tha-truth-to-receive-honor-at-2021-billboard-music-awards/",
-      "sourceDate": "2021-05-15",
-      "imageId": "",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-a09fb28ea52877",
       "slug": "trae-receives-the-change-maker-award",
-      "title": "Trae receives the Change Maker Award",
+      "title": "A Change Maker moment on a national stage.",
       "date": "2021-05-24",
       "precision": "day",
       "section": "Houston",
       "summary": "Presented by Tina Knowles-Lawson per search coverage; ceremony May 23, 2021.",
-      "body": "Presented by Tina Knowles-Lawson per search coverage; ceremony May 23, 2021.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Trae Tha Truth received the Change Maker Award at the 2021 Billboard Music Awards. The ceremony took place on May 23, with the research archive recording follow-up coverage the next day. Tina Knowles-Lawson presented the honor.\n\nThe award recognized a part of his public life that extends beyond a release schedule. By that point, the archive already documented Hurricane Harvey rescues, the growth of Relief Gang and responses to emergencies outside Houston. Earlier in 2021, coverage had also followed food and generator assistance during Texas’s winter storm.\n\nThe stage brought national attention to work that had been carried out in neighborhoods, homes and disaster-hit communities. It is a recognition milestone within that larger history, rather than the beginning of the work itself. The linked account records the presentation, while the newsroom’s dated archive follows the individual efforts around it.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "REVOLT",
       "sourceUrl": "https://www.revolt.tv/news/2021/5/24/22451849/trae-tha-truth-change-maker-award",
       "sourceDate": "2021-05-24",
       "imageId": "photo-2ba63e48ca4afc",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-746ff5960b02f6",
       "slug": "trae-and-james-harden-announce-trae-day-scholarships",
-      "title": "Trae and James Harden announce Trae Day scholarships",
+      "title": "Trae Day scholarships put education on the calendar.",
       "date": "2021-06-17",
       "precision": "day",
       "section": "Community",
       "summary": "Ten scholarships requiring financial hardship and a 250-word essay.",
-      "body": "Ten scholarships requiring financial hardship and a 250-word essay.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Trae Tha Truth and James Harden announced a scholarship initiative connected to Trae Day in June 2021. Revolt’s June 17 coverage described ten scholarships for applicants facing financial hardship.\n\nThe application process included a two-hundred-and-fifty-word essay. That detail connects the announcement to an actual opportunity with requirements, rather than a general promise of support. The number of awards and the essay requirement belong to that year’s program; they are not an open application offered through the current website.\n\nEducation had appeared in earlier Trae Day coverage through school supplies, literacy programs and scholarships. The 2021 announcement continued that strand of the event’s community work alongside its other gatherings and giveaways. The original report remains linked for the contemporary details. Any future scholarship opening should be published as a separate, confirmed announcement with its own eligibility rules and deadlines.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "REVOLT",
       "sourceUrl": "https://www.revolt.tv/news/2021/6/17/22539046/trae-tha-truth-james-harden-announce-trae-day-scholarships",
       "sourceDate": "2021-06-17",
       "imageId": "photo-084b705d4dc9c4",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-bc8fc55c689fab",
       "slug": "trae-announces-ice-cream-store-to-employ-young-adults-with-special-needs",
-      "title": "Trae announces ice cream store to employ young adults with special needs",
+      "title": "An ice cream shop with employment at its center.",
       "date": "2021-06-24",
       "precision": "day",
       "section": "Community",
       "summary": "Howdy Homemade Ice Cream franchise in Katy, TX with partner Roderick Baston; opening set for Trae Day (July 22).",
-      "body": "Howdy Homemade Ice Cream franchise in Katy, TX with partner Roderick Baston; opening set for Trae Day (July 22).",
-      "byline": "ABN Journal / Archive desk",
+      "body": "In June 2021, Trae Tha Truth announced plans for a Howdy Homemade Ice Cream franchise in Katy, Texas, with partner Roderick Baston. The coverage emphasized the shop’s purpose of employing young adults with special needs.\n\nThe announced opening was tied to Trae Day on July 22. That connection gave the project a place in the community calendar, but its purpose went beyond a single celebration: the business was presented around employment and inclusion. The people working behind the counter were central to the story from the beginning.\n\nThe announcement adds another form of community involvement to an archive often associated with relief trips and giveaways. A storefront and a job are different kinds of commitments from an event. This report preserves what was announced in 2021; current opening hours, staffing and business details should be checked with the shop itself.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "REVOLT",
       "sourceUrl": "https://revolt.tv/news/2021/6/24/22549012/trae-tha-truth-ice-cream-store-to-hire-special-needs-youth",
       "sourceDate": "2021-06-24",
       "imageId": "photo-9e5a50fb7c695c",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-6b134e8b8b7d56",
-      "slug": "48-hours-after-mixtape-released",
-      "title": "48 Hours After mixtape released",
-      "date": "2021-06-25",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Third in the 48 Hours series.",
-      "body": "Third in the 48 Hours series.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Wikipedia / REVOLT (Jul 1)",
-      "sourceUrl": "https://www.revolt.tv/article/2021-07-01/50170/trae-tha-truth-liberates-48-hours-after-project",
-      "sourceDate": "2021-06-25",
-      "imageId": "photo-88dcc316122b15",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-0519e7e3b32533",
-      "slug": "plans-for-the-4-day-trae-day-celebration-in-houston",
-      "title": "Plans for the 4-day Trae Day celebration in Houston",
-      "date": "2021-07-18",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Event schedule announcement.",
-      "body": "Event schedule announcement.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "KPRC Click2Houston",
-      "sourceUrl": "https://www.click2houston.com/news/local/2021/07/18/heres-what-planned-for-the-4-day-trae-day-celebration-in-houston",
-      "sourceDate": "2021-07-18",
-      "imageId": "photo-27d2dc3893243c",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-e3b2f728696bc5",
-      "slug": "houston-s-annual-trae-day-expanded-to-a-weekend-of-festivities",
-      "title": "Houston's annual Trae Day expanded to a weekend of festivities",
-      "date": "2021-07-22",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Date read from the article's own metadata.",
-      "body": "Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Defender Network",
-      "sourceUrl": "https://defendernetwork.com/news/local-state/houstons-annual-trae-day-expanded-to-weekend-full-of-festivities/",
-      "sourceDate": "2021-07-22",
-      "imageId": "photo-c0079c9594200c",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-ce46862ecea1ea",
-      "slug": "trae-receives-presidential-lifetime-achievement-award-for-4-000-volunteer-hours",
-      "title": "Trae receives Presidential Lifetime Achievement Award for 4,000+ volunteer hours",
-      "date": "2021-11",
-      "precision": "month",
-      "section": "Community",
-      "summary": "Okayplayer says \"in November\" in a May 2022 article, so November 2021 is inferred.",
-      "body": "Okayplayer says \"in November\" in a May 2022 article, so November 2021 is inferred.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Okayplayer / Blavity",
-      "sourceUrl": "https://blavity.com/trae-tha-truth-receives-presidential-lifetime-achievement-award-for-his-philanthropy",
-      "sourceDate": "2021-11",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-e2813eed65d63e",
-      "slug": "trae-and-relief-gang-hand-out-pizza-jackets-and-beanies-to-the-homeless",
-      "title": "Trae and Relief Gang hand out pizza, jackets and beanies to the homeless",
-      "date": "2021-12-04",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Goal was 100 jackets; about 200 given out.",
-      "body": "Goal was 100 jackets; about 200 given out.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "KPRC Click2Houston",
-      "sourceUrl": "https://gmg-kprc-prod.cdn.arcpublishing.com/news/local/2021/12/04/trae-tha-truth-and-relief-gang-hand-out-pizza-jackets-and-beanies-to-homeless-as-winter-weather-approaches/",
-      "sourceDate": "2021-12-04",
-      "imageId": "photo-2ffe553e8a9390",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-c8972143629a87",
-      "slug": "truth-season-the-united-streets-of-america-released",
-      "title": "Truth Season: The United Streets of America released",
-      "date": "2022-02-11",
-      "precision": "day",
-      "section": "Music",
-      "summary": "ABN / Empire.",
-      "body": "ABN / Empire.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Wikipedia / Apple Music",
-      "sourceUrl": "https://music.apple.com/us/album/1605014459",
-      "sourceDate": "2022-02-11",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-c510d60f202735",
-      "slug": "trae-declines-white-house-invitation-to-help-buffalo-and-uvalde-shooting-communities",
-      "title": "Trae declines White House invitation to help Buffalo and Uvalde shooting communities",
-      "date": "2022-05-25",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Invitation was to meet the President with families of people killed by police.",
-      "body": "Invitation was to meet the President with families of people killed by police.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "XXL / Okayplayer / Complex",
-      "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-declines-white-house-invitation-to-be-with-families-of-buffalo-and-texas-shooting-tragedies/",
-      "sourceDate": "2022-05-25",
-      "imageId": "photo-b7164b98149863",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-ec0b51d7c8f2b7",
       "slug": "trae-hosts-food-giveaway-across-from-the-buffalo-tops-supermarket",
-      "title": "Trae hosts food giveaway across from the Buffalo Tops supermarket",
+      "title": "A food giveaway for Buffalo’s community.",
       "date": "2022-05-26",
       "precision": "day",
       "section": "Community",
       "summary": "Partnered with Baltimore nonprofit 4 My City.",
-      "body": "Partnered with Baltimore nonprofit 4 My City.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Trae Tha Truth helped organize a food giveaway in Buffalo in May 2022 after the supermarket shooting that devastated the community. Revolt’s May 26 report placed the giveaway across from the Tops supermarket and identified Baltimore nonprofit 4 My City as a partner.\n\nThe location made the assistance directly accessible to a neighborhood already dealing with loss and disruption. Food distribution was a practical way to respond to the immediate needs described in the coverage, alongside the wider expressions of support that followed the tragedy.\n\nThe Buffalo visit belongs in the archive as its own community response, with its own local setting and partners. It is not interchangeable with the disaster-relief trips documented elsewhere in Trae’s history. The linked report preserves the contemporary account of the giveaway, including where it took place and how the collaboration was organized.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "REVOLT",
       "sourceUrl": "https://revolt.tv/article/2022-05-26/170918/trae-tha-truth-hosts-food-giveaway-for-buffalo-community",
       "sourceDate": "2022-05-26",
       "imageId": "photo-fa47737d18ed66",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-0a267cdc7b2d01",
-      "slug": "trae-day-weekend-2022-july-21-to-24-gas-card-giveaway-with-kroger-and-car-giveaways",
-      "title": "Trae Day Weekend 2022 (July 21 to 24): gas-card giveaway with Kroger and car giveaways",
-      "date": "2022-07",
-      "precision": "month",
-      "section": "Community",
-      "summary": "Month from the URL.",
-      "body": "Month from the URL.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Houstonia",
-      "sourceUrl": "https://www.houstoniamag.com/news-and-city-life/2022/07/trae-day-weekend-2022-dates-events-info",
-      "sourceDate": "2022-07",
-      "imageId": "photo-a266b0d0cbee93",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-2815003e16c5d7",
-      "slug": "background-on-the-trae-and-z-ro-fight-video",
-      "title": "Background on the Trae and Z-Ro fight video",
-      "date": "2022-08-31",
-      "precision": "day",
-      "section": "Houston",
-      "summary": "Context piece. Date read from the article's own metadata.",
-      "body": "Context piece. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Complex",
-      "sourceUrl": "https://www.complex.com/music/trae-tha-truth-background-z-ro-fight-video",
-      "sourceDate": "2022-08-31",
-      "imageId": "photo-ee3e66119517b2",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-ffb562cdca6262",
       "slug": "trae-hits-jackson-ms-to-deliver-clean-water-and-filters",
-      "title": "Trae hits Jackson, MS to deliver clean water and filters",
+      "title": "Clean water and a longer-term response in Jackson.",
       "date": "2022-09-14",
       "precision": "day",
       "section": "Community",
       "summary": "100 water filters and groceries for up to 50 families (Complex quotes Trae saying \"hundreds\").",
-      "body": "100 water filters and groceries for up to 50 families (Complex quotes Trae saying \"hundreds\").",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Trae Tha Truth traveled to Jackson, Mississippi, in September 2022 as residents dealt with the consequences of the city’s water-system failure. Contemporary reporting described deliveries of clean water, groceries and filtration equipment.\n\nThe research archive records a distribution of one hundred water filters and grocery support for as many as fifty families. Coverage used different language when discussing the wider reach, so those distribution figures should not be confused with a single verified total for every person assisted. The distinction is useful when looking back at a response covered across several outlets.\n\nWater filters added another element alongside immediate deliveries. The effort was concerned with what families could use after the handoff, as well as what they needed that day. This September report documents one part of that work; the linked source provides the original account and its attribution.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "TMZ",
       "sourceUrl": "https://www.tmz.com/2022/09/14/trae-tha-truth-jackson-mississippi-water-relief-gang-filter-groceries-photos/",
       "sourceDate": "2022-09-14",
       "imageId": "photo-36bef878456868",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-52c1135ce2b87e",
-      "slug": "trae-donates-filters-for-clean-water-to-mississippi-residents",
-      "title": "Trae donates filters for clean water to Mississippi residents",
-      "date": "2022-09-15",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Follows the Aug 29, 2022 Jackson water-system failure.",
-      "body": "Follows the Aug 29, 2022 Jackson water-system failure.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "REVOLT",
-      "sourceUrl": "https://www.revolt.tv/article/2022-09-15/209703/trae-tha-truth-donates-filters-for-clean-water-to-mississippi-residents",
-      "sourceDate": "2022-09-15",
-      "imageId": "photo-84a1737b6c535c",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-2fe77465f2d5ef",
-      "slug": "boosie-says-j-prince-might-squash-the-trae-and-z-ro-beef",
-      "title": "Boosie says J. Prince might squash the Trae and Z-Ro beef",
-      "date": "2022-09-21",
-      "precision": "day",
-      "section": "Houston",
-      "summary": "Reports no resolution at that time.",
-      "body": "Reports no resolution at that time.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "TMZ",
-      "sourceUrl": "https://www.tmz.com/2022/09/21/boosie-badazz-j-prince-trae-tha-truth-z-ro-beef-houston-rap-a-lot/",
-      "sourceDate": "2022-09-21",
-      "imageId": "photo-35f612ab4b3859",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-a104f4ad394776",
-      "slug": "trae-and-mattress-mack-step-up-to-help-hurricane-ian-victims-relief-gang-arrives-in-florida-sept-30",
-      "title": "Trae and Mattress Mack step up to help Hurricane Ian victims; Relief Gang arrives in Florida Sept 30",
-      "date": "2022-09-30",
-      "precision": "day",
-      "section": "Community",
-      "summary": "With Operation BBQ Relief, 1,000 hot meals a day in Fort Myers per Trae's post.",
-      "body": "With Operation BBQ Relief, 1,000 hot meals a day in Fort Myers per Trae's post.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "ABC13",
-      "sourceUrl": "https://abc13.com/amp/post/hurricane-ian-how-to-help-florida-victims-mattress-mack-trae-tha-truth/12283380/",
-      "sourceDate": "2022-09-30",
-      "imageId": "",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-9bb8a4f5cb23f3",
       "slug": "trae-aided-over-300-residents-after-hurricane-ian-in-florida",
-      "title": "Trae aided over 300 residents after Hurricane Ian in Florida",
+      "title": "Five days of help after Hurricane Ian.",
       "date": "2022-10-06",
       "precision": "day",
       "section": "Community",
       "summary": "Five-day Florida trip.",
-      "body": "Five-day Florida trip.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "In October 2022, reporting followed Trae Tha Truth’s relief work in Florida after Hurricane Ian. The research record describes a five-day trip and assistance reaching more than three hundred residents, a reported figure attached to that particular visit.\n\nThe mission followed late-September coverage of Relief Gang traveling to Florida. Accounts from that period also connected the response with food distribution and work alongside other relief efforts. Those reports describe different stages of the same emergency; their individual dates help distinguish travel plans, work on the ground and later accounts of who had been helped.\n\nFor the ABN archive, the Florida response sits alongside earlier out-of-state trips following hurricanes. Its value is in the documented work and the people affected, rather than treating every storm mission as interchangeable. The original source remains linked so readers can follow the contemporary account of the five-day visit.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "REVOLT",
       "sourceUrl": "https://revolt.tv/article/2022-10-06/218016/trae-tha-truth-aided-over-300-residents-hurricane-ian",
       "sourceDate": "2022-10-06",
       "imageId": "photo-7bae18c509abd8",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-c9f750bb98c0e7",
       "slug": "trae-wins-humanitarian-of-the-year-at-the-xxl-awards-2023",
-      "title": "Trae wins Humanitarian of the Year at the XXL Awards 2023",
+      "title": "A humanitarian honor, rooted in a year of service.",
       "date": "2023-01-30",
       "precision": "day",
       "section": "Community",
       "summary": "Fan-voted; recognizes his 2022 work including Jackson, MS and Florida relief. Date read from the article's own metadata.",
-      "body": "Fan-voted; recognizes his 2022 work including Jackson, MS and Florida relief. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Trae Tha Truth won Humanitarian of the Year at the XXL Awards in January 2023. XXL’s January 30 announcement described a fan-voted honor recognizing the community work that had continued alongside his music during the previous year.\n\nThe archive’s 2022 reporting includes relief efforts in Jackson, Mississippi, and Florida, among other responses. In Jackson, the work involved clean water and filtration after the city’s water-system failure. After Hurricane Ian, coverage followed Trae’s travel to Florida and assistance to residents dealing with the storm’s aftermath.\n\nThe award brings those individual stories together without replacing their separate histories. Each mission involved different local needs, dates and partners. Read alongside those reports, the recognition marks the public response to a year of visible service. The linked XXL announcement records the award itself and the basis on which it was presented.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "XXL",
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-wins-humanitarian-of-the-year-for-xxl-awards-2023/",
       "sourceDate": "2023-01-30",
       "imageId": "photo-93f1223ad69b7e",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-94fc1d127a9ed1",
       "slug": "trae-upgrades-home-of-martha-menefield-82-arrested-over-a-77-trash-bill",
-      "title": "Trae upgrades home of Martha Menefield, 82, arrested over a ~$77 trash bill",
+      "title": "A fresh start at home for Martha Menefield.",
       "date": "2023-03-27",
       "precision": "day",
       "section": "Community",
       "summary": "BEL Furniture contributed about $15K of items; Valley, Alabama.",
-      "body": "BEL Furniture contributed about $15K of items; Valley, Alabama.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Trae Tha Truth’s help for Martha Menefield continued beyond the initial attention surrounding her case in Valley, Alabama. March 2023 coverage followed work to improve the home of the eighty-two-year-old woman, whose arrest over an unpaid trash bill had drawn widespread attention.\n\nTMZ’s March 27 report described a contribution of roughly fifteen thousand dollars in furnishings from BEL Furniture. Other reporting in the research archive followed the wider renovation and refurnishing effort, with local coverage continuing into April. The assistance addressed the place where Menefield lived, rather than ending with a public statement about her situation.\n\nThe sequence is part of the story: an individual case prompted attention, then the response developed into practical work on a home. The linked coverage provides the account of the furniture contribution, while the later local reports document additional stages. Those figures and dates describe that project, not a current fundraiser.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "TMZ",
       "sourceUrl": "https://www.tmz.com/2023/03/27/trae-tha-truth-martha-menefield-trash-bill-valley-alabama-bel-furniture/",
       "sourceDate": "2023-03-27",
       "imageId": "photo-f600bebef37680",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-b7edc681f210c3",
-      "slug": "trae-funds-home-renovation-for-elderly-alabama-woman",
-      "title": "Trae funds home renovation for elderly Alabama woman",
-      "date": "2023-03-28",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Her GoFundMe passed its $25,000 goal by more than $11,000.",
-      "body": "Her GoFundMe passed its $25,000 goal by more than $11,000.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "REVOLT / Atlanta Black Star",
-      "sourceUrl": "https://revolt.tv/article/2023-03-28/282852/trae-tha-truth-funds-home-renovation-for-elderly-alabama-woman",
-      "sourceDate": "2023-03-28",
-      "imageId": "photo-63f0ce06c829fe",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-db57bf8b12f1cb",
-      "slug": "houston-rapper-refurnishes-valley-woman-s-entire-home",
-      "title": "Houston rapper refurnishes Valley woman's entire home",
-      "date": "2023-04-06",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Follow-up on the Menefield project.",
-      "body": "Follow-up on the Menefield project.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "WTVM",
-      "sourceUrl": "https://www.wtvm.com/2023/04/06/ill-never-forget-it-houston-rapper-refurnishes-valley-womans-entire-home",
-      "sourceDate": "2023-04-06",
-      "imageId": "photo-452d374856de3b",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-e4bff6969261b0",
-      "slug": "houston-rapper-trae-tha-truth-renovating-home-of-martha-menefield",
-      "title": "Houston rapper Trae Tha Truth renovating home of Martha Menefield",
-      "date": "2023-04-08",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Published 9:30 am, Saturday, April 8, 2023.",
-      "body": "Published 9:30 am, Saturday, April 8, 2023.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Valley Times-News",
-      "sourceUrl": "https://www.valleytimes-news.com/?p=42200",
-      "sourceDate": "2023-04-08",
-      "imageId": "photo-48f4e0f4a74fe7",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-69b9981a966314",
-      "slug": "trae-shares-event-details-for-trae-day-2023",
-      "title": "Trae shares event details for Trae Day 2023",
-      "date": "2023-07",
-      "precision": "month",
-      "section": "Community",
-      "summary": "Date inferred from the event; page date not shown.",
-      "body": "Date inferred from the event; page date not shown.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "KHOU Great Day Houston",
-      "sourceUrl": "https://www.khou.com/article/entertainment/television/programs/great-day-houston/trae-tha-truth-shares-event-details-for-trae-day-2023/285-9e3ceb30-b2cb-4872-b9c5-c3f557c70a7b",
-      "sourceDate": "2023-07",
-      "imageId": "",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-5e75c6fbf2dad3",
       "slug": "trae-day-weekend-returns-with-backpack-giveaways-celebrities-ninja-turtles-and-snow",
-      "title": "Trae Day Weekend returns with backpack giveaways, celebrities, Ninja Turtles and snow",
+      "title": "Trae Day 2023: backpacks, family time and a Houston weekend.",
       "date": "2023-07-21",
       "precision": "day",
       "section": "Community",
       "summary": "Family fun day at Aveva Stadium. Date read from the article's own metadata.",
-      "body": "Family fun day at Aveva Stadium. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Trae Day Weekend returned to Houston in July 2023 with a program aimed at families as well as music fans. ABC13’s July 21 coverage described backpack giveaways, celebrity appearances and a family fun day at Aveva Stadium.\n\nThe details made this particular year distinctive: Ninja Turtles and snow were among the attractions highlighted in the report. Alongside those activities, the backpack giveaway connected the celebration to the needs of children heading toward another school year. It is the combination of a day out and something useful to take home that runs through the event’s coverage.\n\nThe 2023 gathering is one chapter in the broader Trae Day archive, with its own location and schedule. Those details remain tied to their original year. Readers looking for future gatherings should use the Current Events calendar rather than treating this historical weekend report as a new announcement.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "ABC13",
       "sourceUrl": "https://abc13.com/post/trae-tha-truth-day-weekend-houston-rappers-american-rapper/13529642/",
       "sourceDate": "2023-07-21",
       "imageId": "photo-e5dcd544749ccf",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-1de7d4936172a7",
-      "slug": "stuck-in-motion-released-director-s-cut-dec-15-2023",
-      "title": "Stuck in Motion released (Director's Cut Dec 15, 2023)",
-      "date": "2023-10-20",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Self-released.",
-      "body": "Self-released.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Apple Music",
-      "sourceUrl": "https://music.apple.com/us/album/1707069255",
-      "sourceDate": "2023-10-20",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-1b3dbde8bb17d9",
-      "slug": "trae-buys-furniture-for-a-single-mom-of-three",
-      "title": "Trae buys furniture for a single mom of three",
-      "date": "2023-11-15",
-      "precision": "day",
-      "section": "Community",
-      "summary": "",
-      "body": "",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Atlanta Black Star",
-      "sourceUrl": "https://atlantablackstar.com/2023/11/15/trae-tha-truth-buys-furniture-for-single-mom-of-3-kids/",
-      "sourceDate": "2023-11-15",
-      "imageId": "photo-c0e8f684c73be0",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-ce5c580601072d",
       "slug": "trae-says-his-first-feature-film-sole-impressed-martin-lawrence-next-up-an-animated-abn-film",
-      "title": "Trae says his first feature film, Sole, impressed Martin Lawrence; next up an animated ABN film",
+      "title": "Sole takes Trae from the record to the screen.",
       "date": "2024-02-03",
       "precision": "day",
       "section": "Music",
       "summary": "Sole streams on Tubi; he plays Eddie, a sneaker-boutique owner. Also mentions \"Space Trap\".",
-      "body": "Sole streams on Tubi; he plays Eddie, a sneaker-boutique owner. Also mentions \"Space Trap\".",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Trae Tha Truth’s screen work became part of the conversation around Sole in February 2024. TMZ’s report described the film as his first feature and identified his character, Eddie, as a sneaker-boutique owner. The film was available through Tubi at the time of that coverage.\n\nThe story also covered Trae’s response to Martin Lawrence seeing the project, along with discussion of an animated ABN film and “Space Trap.” Those additional projects were part of the conversation reported then; they should not be read as a release announcement for this website.\n\nSole adds a different kind of performance to a career most often documented through records, videos and community work. The sneaker-shop setting also gives the film a direct connection to streetwear culture. The linked interview preserves Trae’s discussion of the role and the projects he was considering in that period.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "TMZ",
       "sourceUrl": "https://www.tmz.com/2024/02/03/trae-tha-truth-tubi-sole-martin-lawrence/",
       "sourceDate": "2024-02-03",
       "imageId": "photo-194286af5b6270",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-94a92d699b83c0",
       "slug": "crowd-control-is-trae-s-first-lp-of-2024-after-stuck-in-motion",
-      "title": "Crowd Control is Trae's first LP of 2024, after Stuck in Motion",
+      "title": "Crowd Control adds another chapter to the catalog.",
       "date": "2024-08-23",
       "precision": "day",
       "section": "Music",
       "summary": "Lists the Lil Yachty single \"Fires\" (July 2024). Date read from the article's own metadata.",
-      "body": "Lists the Lil Yachty single \"Fires\" (July 2024). Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Crowd Control arrived on August 23, 2024, following the previous year’s Stuck in Motion. XXL’s release coverage identified it as Trae Tha Truth’s first LP of 2024, placing the project in that week’s new-music roundup.\n\nThe lead-up included “Fires,” the Lil Yachty collaboration released in July. The album’s place in the catalog is useful context: Stuck in Motion had arrived in October 2023, followed by its Director’s Cut that December. Crowd Control continued the release sequence into a new year rather than serving as a renamed version of that earlier project.\n\nOur release shelves keep the projects separate so listeners can follow those chapters in order. The original date, artwork and available track information remain attached to each release. For the surrounding release-week reporting, the linked XXL coverage provides the contemporary account; the record shop provides the catalog entry.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "XXL",
       "sourceUrl": "https://www.xxlmag.com/cash-cobain-luh-tyler-trae-tha-truth-new-hip-hop-projects/",
       "sourceDate": "2024-08-23",
       "imageId": "photo-4a2555cc62c124",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-e493fc43270e5c",
-      "slug": "crowd-control-released",
-      "title": "Crowd Control released",
-      "date": "2024-08-23",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Self-released.",
-      "body": "Self-released.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Apple Music",
-      "sourceUrl": "https://music.apple.com/tr/album/crowd-control/1760343514",
-      "sourceDate": "2024-08-23",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-a9b1d6a58485a6",
-      "slug": "trae-headed-to-the-southeast-for-hurricane-helene-relief",
-      "title": "Trae headed to the Southeast for Hurricane Helene relief",
-      "date": "2024-10-03",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Asked followers to report closed routes. Date read from the article's own metadata.",
-      "body": "Asked followers to report closed routes. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "HipHopDX",
-      "sourceUrl": "https://hiphopdx.com/news/trae-tha-truth-help-hurricane-helene-relief/",
-      "sourceDate": "2024-10-03",
-      "imageId": "photo-4e9b353365ed57",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-8bb4a8a875518b",
       "slug": "trae-steps-in-to-help-hurricane-helene-victims",
-      "title": "Trae steps in to help Hurricane Helene victims",
+      "title": "Food, clothing and supplies after Hurricane Helene.",
       "date": "2024-10-04",
       "precision": "day",
       "section": "Community",
       "summary": "Goal to feed at least a couple of thousand families with food, clothes, diapers and supplies.",
-      "body": "Goal to feed at least a couple of thousand families with food, clothes, diapers and supplies.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "Hurricane Helene brought another relief mission for Trae Tha Truth in October 2024. KPRC reported his plans to help affected families with food, clothing, diapers and other supplies. The stated aim was to feed at least a couple of thousand families.\n\nThe reporting around the trip also documented the difficulty of reaching affected communities. A related account in the research archive notes that Trae asked people to share information about closed routes. Delivering supplies depends on access as much as collection: roads, local knowledge and coordination determine where a response can reach.\n\nThe Helene effort belongs to a longer record of storm response that includes Houston after Harvey and trips following hurricanes in other states. This report concerns the October 2024 mission and its announced goals. It does not present those targets as a verified final distribution total or as a current call for donations.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "KPRC Click2Houston",
       "sourceUrl": "https://gmg-kprc-prod.cdn.arcpublishing.com/news/local/2024/10/04/houstons-own-trae-tha-truth-steps-into-help-hurricane-helene-victims",
       "sourceDate": "2024-10-04",
       "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-4d30081103149a",
-      "slug": "trae-recruits-busta-rhymes-chance-the-rapper-dmx-and-more-for-i-m-on-4-0",
-      "title": "Trae recruits Busta Rhymes, Chance the Rapper, DMX and more for \"I'm On 4.0\"",
-      "date": "2025-01-03",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Wikipedia dates the release January 3, 2025; first installment in about eight years. Date read from the article's own metadata.",
-      "body": "Wikipedia dates the release January 3, 2025; first installment in about eight years. Date read from the article's own metadata.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "HotNewHipHop",
-      "sourceUrl": "https://www.hotnewhiphop.com/873838-trae-tha-truth-im-on-4-0-stream",
-      "sourceDate": "2025-01-03",
-      "imageId": "photo-52de34379015e2",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
     {
       "id": "story-73be9690782196",
       "slug": "houston-rapper-heads-to-la-to-support-california-wildfire-victims",
-      "title": "Houston rapper heads to LA to support California wildfire victims",
+      "title": "From Houston to California, help follows the need.",
       "date": "2025-01-10",
       "precision": "day",
       "section": "Community",
       "summary": "With Angel By Nature and Astros owner Jim Crane; 18-wheeler of donations; bought 300 burgers for a shelter.",
-      "body": "With Angel By Nature and Astros owner Jim Crane; 18-wheeler of donations; bought 300 burgers for a shelter.",
-      "byline": "ABN Journal / Archive desk",
+      "body": "In January 2025, Trae Tha Truth headed to the Los Angeles area as communities faced the effects of destructive wildfires. KPRC’s January 10 report described the Houston response through Angel By Nature and support from Astros owner Jim Crane.\n\nThe effort included an eighteen-wheeler carrying donations. The research record also notes food support at a shelter, including three hundred burgers, while follow-up coverage documented visits to Altadena and Pasadena. Together, those reports describe several practical parts of a response: transporting goods, getting meals to people and reaching affected neighborhoods.\n\nCalifornia added another destination to a relief history that had already taken Trae beyond Texas. The coverage follows the same visible thread as the Houston work: use existing relationships to move assistance and show up where families are dealing with an immediate disruption. The linked reports preserve the dates and details of that particular response.",
+      "byline": "ABN Journal / News desk",
       "sourceName": "KPRC Click2Houston",
       "sourceUrl": "https://www.click2houston.com/news/local/2025/01/10/houston-rapper-trae-tha-truth-heads-to-la-to-support-california-wildfire-victims/",
       "sourceDate": "2025-01-10",
       "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-f3948092d8b933",
-      "slug": "houston-rapper-trae-tha-truth-in-california-to-help-victims-of-wildfires",
-      "title": "Houston rapper Trae Tha Truth in California to help victims of wildfires",
-      "date": "2025-01-11",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Altadena and Pasadena visits.",
-      "body": "Altadena and Pasadena visits.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "KPRC Click2Houston",
-      "sourceUrl": "https://www.click2houston.com/news/local/2025/01/11/houston-rapper-trae-tha-truth-in-california-to-help-victims-of-wildfires/",
-      "sourceDate": "2025-01-11",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-9e23ca7b3e5b10",
-      "slug": "trae-unveils-thankful-thank-you-featuring-chance-the-rapper-and-yolanda-adams",
-      "title": "Trae unveils \"Thankful\" (Thank You) featuring Chance the Rapper and Yolanda Adams",
-      "date": "2025-02-08",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Apple Music dates the single Feb 7, 2025.",
-      "body": "Apple Music dates the single Feb 7, 2025.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "The Source",
-      "sourceUrl": "https://thesource.com/2025/02/08/trae-tha-truth-unveils-uplifting-new-single-thankful-featuring-chance-the-rapper-yolanda-adams/",
-      "sourceDate": "2025-02-08",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-df52f103559c8a",
-      "slug": "trae-day-schedule-released-for-2026-week-of-service",
-      "title": "Trae Day schedule released for 2026 week of service",
-      "date": "2026-06",
-      "precision": "month",
-      "section": "Community",
-      "summary": "Week of July 16 to 22, 2026.",
-      "body": "Week of July 16 to 22, 2026.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "Yahoo Entertainment",
-      "sourceUrl": "https://www.yahoo.com/entertainment/celebrity/articles/trae-day-schedule-released-2026-161111124.html",
-      "sourceDate": "2026-06",
-      "imageId": "photo-afa4e73c04ee93",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-c70acc7892b619",
-      "slug": "trae-day-2026-expands-to-16-events-with-tech-giveaways-tablets-with-lil-durk-and-bump-box",
-      "title": "Trae Day 2026 expands to 16 events with tech giveaways (tablets with Lil Durk and Bump Box)",
-      "date": "2026-07",
-      "precision": "month",
-      "section": "Community",
-      "summary": "Family day at Silver Stadium in Katy (Jul 19); special-needs family day at George R. Brown.",
-      "body": "Family day at Silver Stadium in Katy (Jul 19); special-needs family day at George R. Brown.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "AllHipHop / AceShowbiz",
-      "sourceUrl": "https://allhiphop.com/news/trae-tha-truth-pushing-it-to-the-limit-for-houston-community-for-trae-day-2026/",
-      "sourceDate": "2026-07",
-      "imageId": "photo-4520e8faa3ffa9",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-979aa5239e14ff",
-      "slug": "why-trae-tha-truth-keeps-turning-his-birthday-into-houston-s-biggest-give-back",
-      "title": "Why Trae Tha Truth keeps turning his birthday into Houston's biggest give-back",
-      "date": "2026-07-06",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Byline Melanie Camp; published 10:04 PM; mentions raising support for Venezuela earthquake victims.",
-      "body": "Byline Melanie Camp; published 10:04 PM; mentions raising support for Venezuela earthquake victims.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "KPRC Click2Houston",
-      "sourceUrl": "https://www.click2houston.com/houston-life/2026/07/07/why-trae-tha-truth-keeps-turning-his-birthday-into-houstons-biggest-give-back/",
-      "sourceDate": "2026-07-06",
-      "imageId": "photo-14176bd7cf4120",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
-    },
-    {
-      "id": "story-4d30df8778c2b9",
-      "slug": "trae-steps-in-to-help-gary-indiana-residents-after-storms-leave-thousands-without-power",
-      "title": "Trae steps in to help Gary, Indiana residents after storms leave thousands without power",
-      "date": "2026-08-26",
-      "precision": "day",
-      "section": "Community",
-      "summary": "Byline Peter Kerich. Storm hit Aug 11 (100 mph winds); Trae arrived Aug 23.",
-      "body": "Byline Peter Kerich. Storm hit Aug 11 (100 mph winds); Trae arrived Aug 23.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "theGrio",
-      "sourceUrl": "https://thegrio.com/2026/08/26/trae-tha-truth-gary-indiana-power-outages/",
-      "sourceDate": "2026-08-26",
-      "imageId": "photo-c21294be81069a",
-      "kind": "Archive brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": false
     },
@@ -1857,33 +435,15 @@
       "precision": "day",
       "section": "Music",
       "summary": "Trae Tha Truth and Mozzy reconnect on Still Tapped In, a 12-track collaboration that brings their shared perspective back to the record.",
-      "body": "Trae Tha Truth and Mozzy have released Still Tapped In. The Source reported the release on September 25, 2026, describing a 12-track project grounded in perseverance, faith and personal experience.\n\nThe collaboration includes appearances from Kalan.FrFr and Killa Twan. Read Shawn Grant’s report for the release details and track discussion.",
+      "body": "Trae Tha Truth and Mozzy reunited for Still Tapped In, released September 25, 2026. The twelve-track collaboration brings two distinct voices together around survival, loyalty and the experiences that shape their music. Shawn Grant’s reporting for The Source places the release alongside Trae’s recent work helping storm-affected families in northwest Indiana.\n\nThe record moves between personal reflection and harder questions about trust. “Gangsta Party with God,” featuring Kalan.FrFr, puts faith at the center. “If It’s Smoke” addresses betrayal, while “Preacher Man” turns toward violence, isolation and vulnerability. Killa Twan appears on “Delicate,” which considers success beyond material distractions and attention online.\n\n“Champion,” also featuring Kalan.FrFr, closes the project on perseverance. Across the release, the collaboration connects difficult experiences with the determination to keep building. For listeners following Trae’s catalog, it is another meeting point between the music and the communities that remain part of his story.",
       "byline": "ABN Journal / News desk",
       "sourceName": "The Source",
       "sourceUrl": "https://thesource.com/2026/09/25/trae-tha-truth-mozzy-still-tapped-in/",
       "sourceDate": "2026-09-25",
       "imageId": "photo-9a50516b43da40",
-      "kind": "News brief",
+      "kind": "News desk report",
       "featured": true,
       "verified": true
-    },
-    {
-      "id": "story-d5362d62e572f2",
-      "slug": "official-video-for-let-ya-tears-fall-trae-tha-truth-and-mozzy-posted",
-      "title": "Official video for \"Let Ya Tears Fall\" (Trae Tha Truth and Mozzy) posted",
-      "date": "2026-10-23",
-      "precision": "day",
-      "section": "Music",
-      "summary": "Most recent video on the @traethatruthtv channel at capture.",
-      "body": "Most recent video on the @traethatruthtv channel at capture.",
-      "byline": "ABN Journal / Archive desk",
-      "sourceName": "YouTube",
-      "sourceUrl": "https://www.youtube.com/watch?v=i9y2_BKl6Vw",
-      "sourceDate": "2026-10-23",
-      "imageId": "",
-      "kind": "Archive brief",
-      "featured": false,
-      "verified": false
     },
     {
       "id": "story-73f8d53e97a10c",
@@ -1893,13 +453,13 @@
       "precision": "day",
       "section": "Community",
       "summary": "Food, supplies and hands-on help: a dated report follows Trae’s relief work with storm-hit communities in northwest Indiana.",
-      "body": "HOT 97 reported on August 24, 2026 that Trae Tha Truth traveled to northwest Indiana to assist communities recovering from severe storms. The report describes work alongside Operation BBQ Relief, including meals and help clearing debris.\n\nThe coverage follows an effort that reached several communities and expanded into Gary. The original report includes local perspectives on the response.",
+      "body": "Trae Tha Truth traveled to northwest Indiana after storms left residents dealing with damaged neighborhoods and disrupted daily life. HOT 97’s August 24, 2026 report describes a response built around hot meals and practical help rather than a brief appearance.\n\nAfter seeing coverage of the damage, Trae contacted his team and flew into Chicago. He joined Operation BBQ Relief, whose regional work included Portage, Lake Station and Schererville before expanding into Gary. Alongside food distribution, he helped residents clear debris. The report also includes a resident’s account of seeing him work beside volunteers.\n\nThe recovery was still unfinished when the visit ended. In the reporting, Trae emphasized the work that would remain and his hope that others would be encouraged to help. The Indiana response extends the hands-on approach familiar from his relief efforts in Houston: get to the affected community, work with people already responding and address immediate needs.",
       "byline": "ABN Journal / News desk",
       "sourceName": "HOT 97",
       "sourceUrl": "https://www.hot97.com/news/trae-tha-truth-brings-aid-supplies-to-gary-indiana/",
       "sourceDate": "2026-08-24",
       "imageId": "photo-c21294be81069a",
-      "kind": "News brief",
+      "kind": "News desk report",
       "featured": true,
       "verified": true
     },
@@ -1911,13 +471,13 @@
       "precision": "day",
       "section": "Community",
       "summary": "The 2026 Trae Day calendar brought another week of community events to Houston, with service at the center.",
-      "body": "Defender Network’s July 2026 coverage looked at Trae Day’s community tradition and the July 16–22 event week. The report describes free resources and family activities built around giving back.\n\nThis is a recap of the 2026 celebration, not an announcement of future dates. Visit the original reporting for the calendar and interview.",
+      "body": "Trae Day returned in July 2026 as a week of community events rather than a single concert date. The research archive records the July 16–22 schedule, while Defender Network’s July coverage places the celebration within nineteen years of community impact.\n\nThe distinction matters to the event’s identity. Music brings people together, but the wider program gives space to families, young people and service. Accounts of the 2026 plans describe technology giveaways and events intended to include families with different needs. Those activities continue a tradition documented in earlier years through school-supply drives, scholarships and family gatherings.\n\nTrae Day’s history begins with Houston’s 2008 proclamation recognizing July 22. By 2026, the observance had become an ongoing part of the city’s community calendar. This is a dated account of that year’s celebration; future dates and individual event details belong in the Current Events calendar when they are confirmed.",
       "byline": "ABN Journal / News desk",
       "sourceName": "Defender Network",
       "sourceUrl": "https://defendernetwork.com/entertainment/trae-day-celebrates-19-years-of-community-impact/",
       "sourceDate": "2026-07-15",
       "imageId": "",
-      "kind": "News brief",
+      "kind": "News desk report",
       "featured": false,
       "verified": true
     }
@@ -1936,7 +496,8 @@
       "sourceUrl": "https://thesource.com/2026/09/25/trae-tha-truth-mozzy-still-tapped-in/",
       "src": "assets/gallery/thumbs/photo-9a50516b43da40.jpg",
       "fullSrc": "assets/gallery/full/photo-9a50516b43da40.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-c21294be81069a",
@@ -1951,7 +512,8 @@
       "sourceUrl": "https://thegrio.com/2026/08/26/trae-tha-truth-gary-indiana-power-outages/",
       "src": "assets/gallery/thumbs/photo-c21294be81069a.jpg",
       "fullSrc": "assets/gallery/full/photo-c21294be81069a.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-14176bd7cf4120",
@@ -1966,7 +528,8 @@
       "sourceUrl": "https://www.click2houston.com/houston-life/2026/07/07/why-trae-tha-truth-keeps-turning-his-birthday-into-houstons-biggest-give-back/",
       "src": "assets/gallery/thumbs/photo-14176bd7cf4120.jpg",
       "fullSrc": "assets/gallery/full/photo-14176bd7cf4120.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-4520e8faa3ffa9",
@@ -1981,7 +544,8 @@
       "sourceUrl": "https://allhiphop.com/news/trae-tha-truth-pushing-it-to-the-limit-for-houston-community-for-trae-day-2026/",
       "src": "assets/gallery/thumbs/photo-4520e8faa3ffa9.jpg",
       "fullSrc": "assets/gallery/full/photo-4520e8faa3ffa9.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-afa4e73c04ee93",
@@ -1996,7 +560,8 @@
       "sourceUrl": "https://www.yahoo.com/entertainment/celebrity/articles/trae-day-schedule-released-2026-161111124.html",
       "src": "assets/gallery/thumbs/photo-afa4e73c04ee93.jpg",
       "fullSrc": "assets/gallery/full/photo-afa4e73c04ee93.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-9ae5316673cb0a",
@@ -2011,7 +576,8 @@
       "sourceUrl": "https://legendswillneverdie.com/2026/03/06/trae-tha-truth-farewell-review/",
       "src": "assets/gallery/thumbs/photo-9ae5316673cb0a.jpg",
       "fullSrc": "assets/gallery/full/photo-9ae5316673cb0a.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-eb7675dc5c6a2e",
@@ -2026,7 +592,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trae_tha_Truth_at_Essence_Festival_of_Culture_July_2025.jpg",
       "src": "assets/gallery/thumbs/photo-eb7675dc5c6a2e.jpg",
       "fullSrc": "assets/gallery/full/photo-eb7675dc5c6a2e.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-8f8057c6548f76",
@@ -2041,7 +608,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trae_tha_Truth_at_Essence_Festival_of_Culture_July_2025_(cropped).jpg",
       "src": "assets/gallery/thumbs/photo-8f8057c6548f76.jpg",
       "fullSrc": "assets/gallery/full/photo-8f8057c6548f76.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-d7600a12107fe9",
@@ -2056,7 +624,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trae_tha_Truth_at_Essence_Festival_of_Culture_July_2025_(cropped)_(cropped).jpg",
       "src": "assets/gallery/thumbs/photo-d7600a12107fe9.jpg",
       "fullSrc": "assets/gallery/full/photo-d7600a12107fe9.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-adae2b5387619b",
@@ -2071,7 +640,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trae_Tha_Truth_and_Daughter_at_EssenceFest_2025.jpg",
       "src": "assets/gallery/thumbs/photo-adae2b5387619b.jpg",
       "fullSrc": "assets/gallery/full/photo-adae2b5387619b.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-c2b0592800c192",
@@ -2086,7 +656,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trae_Tha_Truth_at_EssenceFest_2025.jpg",
       "src": "assets/gallery/thumbs/photo-c2b0592800c192.jpg",
       "fullSrc": "assets/gallery/full/photo-c2b0592800c192.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-c37843224331c4",
@@ -2101,7 +672,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trae_Tha_Truth_at_EssenceFest_2025_-_01.jpg",
       "src": "assets/gallery/thumbs/photo-c37843224331c4.jpg",
       "fullSrc": "assets/gallery/full/photo-c37843224331c4.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-631543ab24f456",
@@ -2116,7 +688,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trae_Tha_Truth_at_EssenceFest_2025_-_01_-_cropped.jpg",
       "src": "assets/gallery/thumbs/photo-631543ab24f456.jpg",
       "fullSrc": "assets/gallery/full/photo-631543ab24f456.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-92cf2dae69efb8",
@@ -2131,7 +704,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trae_Tha_Truth_at_EssenceFest_2025_-_cropped.jpg",
       "src": "assets/gallery/thumbs/photo-92cf2dae69efb8.jpg",
       "fullSrc": "assets/gallery/full/photo-92cf2dae69efb8.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-ae42e27f1e300c",
@@ -2146,7 +720,8 @@
       "sourceUrl": "https://www.hotnewhiphop.com/926165-trae-tha-truth-angel-stream",
       "src": "assets/gallery/thumbs/photo-ae42e27f1e300c.jpg",
       "fullSrc": "assets/gallery/full/photo-ae42e27f1e300c.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-52de34379015e2",
@@ -2161,7 +736,8 @@
       "sourceUrl": "https://www.hotnewhiphop.com/873838-trae-tha-truth-im-on-4-0-stream",
       "src": "assets/gallery/thumbs/photo-52de34379015e2.jpg",
       "fullSrc": "assets/gallery/full/photo-52de34379015e2.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-2d269c4240d4d3",
@@ -2176,7 +752,8 @@
       "sourceUrl": "https://www.fox26houston.com/news/trae-tha-truths-daughter-back-home-after-being-reported-missing-august-2024",
       "src": "assets/gallery/thumbs/photo-2d269c4240d4d3.jpg",
       "fullSrc": "assets/gallery/full/photo-2d269c4240d4d3.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-d0e7623a166176",
@@ -2191,7 +768,8 @@
       "sourceUrl": "https://www.chron.com/news/houston-texas/article/trae-tha-truth-reunites-with-missing-daughter-20013496.php",
       "src": "assets/gallery/thumbs/photo-d0e7623a166176.png",
       "fullSrc": "assets/gallery/full/photo-d0e7623a166176.png",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-90bfad7802d5e7",
@@ -2206,7 +784,8 @@
       "sourceUrl": "https://www.complex.com/music/a/treyalston/trae-tha-truth-ex-gofund-me-daughter-turn-against-him",
       "src": "assets/gallery/thumbs/photo-90bfad7802d5e7.jpg",
       "fullSrc": "assets/gallery/full/photo-90bfad7802d5e7.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-b6d87a8fab2139",
@@ -2221,7 +800,8 @@
       "sourceUrl": "https://www.complex.com/music/a/treyalston/trae-tha-truth-song-missing-daughter",
       "src": "assets/gallery/thumbs/photo-b6d87a8fab2139.jpg",
       "fullSrc": "assets/gallery/full/photo-b6d87a8fab2139.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-4e9b353365ed57",
@@ -2236,7 +816,8 @@
       "sourceUrl": "https://hiphopdx.com/news/trae-tha-truth-help-hurricane-helene-relief/",
       "src": "assets/gallery/thumbs/photo-4e9b353365ed57.jpg",
       "fullSrc": "assets/gallery/full/photo-4e9b353365ed57.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-4a2555cc62c124",
@@ -2251,7 +832,8 @@
       "sourceUrl": "https://www.xxlmag.com/cash-cobain-luh-tyler-trae-tha-truth-new-hip-hop-projects/",
       "src": "assets/gallery/thumbs/photo-4a2555cc62c124.jpg",
       "fullSrc": "assets/gallery/full/photo-4a2555cc62c124.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-b4b84098965d6a",
@@ -2266,7 +848,8 @@
       "sourceUrl": "https://www.fox26houston.com/news/trae-tha-truths-daughter-is-missing-not-knowing-where-your-child-is-is-different-type-pain",
       "src": "assets/gallery/thumbs/photo-b4b84098965d6a.jpg",
       "fullSrc": "assets/gallery/full/photo-b4b84098965d6a.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-194286af5b6270",
@@ -2281,7 +864,8 @@
       "sourceUrl": "https://www.tmz.com/2024/02/03/trae-tha-truth-tubi-sole-martin-lawrence/",
       "src": "assets/gallery/thumbs/photo-194286af5b6270.jpg",
       "fullSrc": "assets/gallery/full/photo-194286af5b6270.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-e3daa067f14d01",
@@ -2296,7 +880,8 @@
       "sourceUrl": "https://www.complex.com/music/a/jaelaniturnerwilliams/travis-scott-hosts-second-hbcu-celebrity-softball-game",
       "src": "assets/gallery/thumbs/photo-e3daa067f14d01.jpg",
       "fullSrc": "assets/gallery/full/photo-e3daa067f14d01.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-c0e8f684c73be0",
@@ -2311,7 +896,8 @@
       "sourceUrl": "https://atlantablackstar.com/2023/11/15/trae-tha-truth-buys-furniture-for-single-mom-of-3-kids/",
       "src": "assets/gallery/thumbs/photo-c0e8f684c73be0.jpg",
       "fullSrc": "assets/gallery/full/photo-c0e8f684c73be0.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-90f143bb1ae31a",
@@ -2326,7 +912,8 @@
       "sourceUrl": "https://www.complex.com/music/a/backwoodsaltar/man-chokehold-prank-ti-king-harris-trae-tha-truth",
       "src": "assets/gallery/thumbs/photo-90f143bb1ae31a.jpg",
       "fullSrc": "assets/gallery/full/photo-90f143bb1ae31a.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-e5dcd544749ccf",
@@ -2341,7 +928,8 @@
       "sourceUrl": "https://abc13.com/post/trae-tha-truth-day-weekend-houston-rappers-american-rapper/13529642/",
       "src": "assets/gallery/thumbs/photo-e5dcd544749ccf.jpg",
       "fullSrc": "assets/gallery/full/photo-e5dcd544749ccf.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-48f4e0f4a74fe7",
@@ -2356,7 +944,8 @@
       "sourceUrl": "https://www.valleytimes-news.com/?p=42200",
       "src": "assets/gallery/thumbs/photo-48f4e0f4a74fe7.png",
       "fullSrc": "assets/gallery/full/photo-48f4e0f4a74fe7.png",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-452d374856de3b",
@@ -2371,7 +960,8 @@
       "sourceUrl": "https://www.wtvm.com/2023/04/06/ill-never-forget-it-houston-rapper-refurnishes-valley-womans-entire-home",
       "src": "assets/gallery/thumbs/photo-452d374856de3b.jpg",
       "fullSrc": "assets/gallery/full/photo-452d374856de3b.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-63f0ce06c829fe",
@@ -2386,7 +976,8 @@
       "sourceUrl": "https://revolt.tv/article/2023-03-28/282852/trae-tha-truth-funds-home-renovation-for-elderly-alabama-woman",
       "src": "assets/gallery/thumbs/photo-63f0ce06c829fe.jpg",
       "fullSrc": "assets/gallery/full/photo-63f0ce06c829fe.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-f600bebef37680",
@@ -2401,7 +992,8 @@
       "sourceUrl": "https://www.tmz.com/2023/03/27/trae-tha-truth-martha-menefield-trash-bill-valley-alabama-bel-furniture/",
       "src": "assets/gallery/thumbs/photo-f600bebef37680.jpg",
       "fullSrc": "assets/gallery/full/photo-f600bebef37680.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-8f0754fa2aa3c4",
@@ -2416,7 +1008,8 @@
       "sourceUrl": "https://www.complex.com/music/a/jose-martinez/trae-tha-truth-renovates-home-elderly-woman-arrested-unpaid-trash-bill",
       "src": "assets/gallery/thumbs/photo-8f0754fa2aa3c4.jpg",
       "fullSrc": "assets/gallery/full/photo-8f0754fa2aa3c4.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-93f1223ad69b7e",
@@ -2431,7 +1024,8 @@
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-wins-humanitarian-of-the-year-for-xxl-awards-2023/",
       "src": "assets/gallery/thumbs/photo-93f1223ad69b7e.jpg",
       "fullSrc": "assets/gallery/full/photo-93f1223ad69b7e.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-2da537bb84e86e",
@@ -2446,7 +1040,8 @@
       "sourceUrl": "https://www.complex.com/music/a/tara-mahadevan/trae-tha-truth-charged-assault-z-ro",
       "src": "assets/gallery/thumbs/photo-2da537bb84e86e.jpg",
       "fullSrc": "assets/gallery/full/photo-2da537bb84e86e.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-7bae18c509abd8",
@@ -2461,7 +1056,8 @@
       "sourceUrl": "https://revolt.tv/article/2022-10-06/218016/trae-tha-truth-aided-over-300-residents-hurricane-ian",
       "src": "assets/gallery/thumbs/photo-7bae18c509abd8.jpg",
       "fullSrc": "assets/gallery/full/photo-7bae18c509abd8.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-35f612ab4b3859",
@@ -2476,7 +1072,8 @@
       "sourceUrl": "https://www.tmz.com/2022/09/21/boosie-badazz-j-prince-trae-tha-truth-z-ro-beef-houston-rap-a-lot/",
       "src": "assets/gallery/thumbs/photo-35f612ab4b3859.jpg",
       "fullSrc": "assets/gallery/full/photo-35f612ab4b3859.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-84a1737b6c535c",
@@ -2491,7 +1088,8 @@
       "sourceUrl": "https://www.revolt.tv/article/2022-09-15/209703/trae-tha-truth-donates-filters-for-clean-water-to-mississippi-residents",
       "src": "assets/gallery/thumbs/photo-84a1737b6c535c.jpg",
       "fullSrc": "assets/gallery/full/photo-84a1737b6c535c.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-36bef878456868",
@@ -2506,7 +1104,8 @@
       "sourceUrl": "https://www.tmz.com/2022/09/14/trae-tha-truth-jackson-mississippi-water-relief-gang-filter-groceries-photos/",
       "src": "assets/gallery/thumbs/photo-36bef878456868.jpg",
       "fullSrc": "assets/gallery/full/photo-36bef878456868.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-6a1b9655fc40a3",
@@ -2521,7 +1120,8 @@
       "sourceUrl": "https://www.tmz.com/2022/09/02/trae-tha-truth-z-ro-fight-video-50-cent-houston/",
       "src": "assets/gallery/thumbs/photo-6a1b9655fc40a3.jpg",
       "fullSrc": "assets/gallery/full/photo-6a1b9655fc40a3.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-c62176a5c05d84",
@@ -2536,7 +1136,8 @@
       "sourceUrl": "https://www.houstonchronicle.com/news/houston-texas/trending/article/ZRo-Trae-Tha-Truth-fight-video-interview-history-17412695.php",
       "src": "assets/gallery/thumbs/photo-c62176a5c05d84.jpg",
       "fullSrc": "assets/gallery/full/photo-c62176a5c05d84.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-345aa0e7362e11",
@@ -2551,7 +1152,8 @@
       "sourceUrl": "https://www.complex.com/music/a/brad-callas/new-footage-fight-video-contradicts-trae-tha-truth-previous-claim-that-his-crew-didnt-jump-z-ro",
       "src": "assets/gallery/thumbs/photo-345aa0e7362e11.jpg",
       "fullSrc": "assets/gallery/full/photo-345aa0e7362e11.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-cdc46de3db33be",
@@ -2566,7 +1168,8 @@
       "sourceUrl": "https://www.complex.com/music/a/brad-callas/trae-tha-truth-jackson-mississippi-water-crisis",
       "src": "assets/gallery/thumbs/photo-cdc46de3db33be.jpg",
       "fullSrc": "assets/gallery/full/photo-cdc46de3db33be.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-ee3e66119517b2",
@@ -2581,7 +1184,8 @@
       "sourceUrl": "https://www.complex.com/music/trae-tha-truth-background-z-ro-fight-video",
       "src": "assets/gallery/thumbs/photo-ee3e66119517b2.jpg",
       "fullSrc": "assets/gallery/full/photo-ee3e66119517b2.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-9a596f0e21e717",
@@ -2596,7 +1200,8 @@
       "sourceUrl": "https://www.fox26houston.com/news/trae-tha-truth-charged-with-assault-against-zro",
       "src": "assets/gallery/thumbs/photo-9a596f0e21e717.jpg",
       "fullSrc": "assets/gallery/full/photo-9a596f0e21e717.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-a266b0d0cbee93",
@@ -2611,7 +1216,8 @@
       "sourceUrl": "https://www.houstoniamag.com/news-and-city-life/2022/07/trae-day-weekend-2022-dates-events-info",
       "src": "assets/gallery/thumbs/photo-a266b0d0cbee93.jpg",
       "fullSrc": "assets/gallery/full/photo-a266b0d0cbee93.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-fa47737d18ed66",
@@ -2626,7 +1232,8 @@
       "sourceUrl": "https://revolt.tv/article/2022-05-26/170918/trae-tha-truth-hosts-food-giveaway-for-buffalo-community",
       "src": "assets/gallery/thumbs/photo-fa47737d18ed66.jpg",
       "fullSrc": "assets/gallery/full/photo-fa47737d18ed66.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-b7164b98149863",
@@ -2641,7 +1248,8 @@
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-declines-white-house-invitation-to-be-with-families-of-buffalo-and-texas-shooting-tragedies/",
       "src": "assets/gallery/thumbs/photo-b7164b98149863.jpg",
       "fullSrc": "assets/gallery/full/photo-b7164b98149863.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-967900beafd942",
@@ -2656,7 +1264,8 @@
       "sourceUrl": "https://www.complex.com/music/a/backwoodsaltar/trae-tha-truth-turns-down-white-house-visit",
       "src": "assets/gallery/thumbs/photo-967900beafd942.jpg",
       "fullSrc": "assets/gallery/full/photo-967900beafd942.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-f8f37ef4f7cada",
@@ -2671,7 +1280,8 @@
       "sourceUrl": "https://www.complex.com/music/a/cmplxtara-mahadevan/trae-tha-truth-hope-it-dont-change-you-daughter",
       "src": "assets/gallery/thumbs/photo-f8f37ef4f7cada.jpg",
       "fullSrc": "assets/gallery/full/photo-f8f37ef4f7cada.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-2ffe553e8a9390",
@@ -2686,7 +1296,8 @@
       "sourceUrl": "https://gmg-kprc-prod.cdn.arcpublishing.com/news/local/2021/12/04/trae-tha-truth-and-relief-gang-hand-out-pizza-jackets-and-beanies-to-homeless-as-winter-weather-approaches/",
       "src": "assets/gallery/thumbs/photo-2ffe553e8a9390.jpg",
       "fullSrc": "assets/gallery/full/photo-2ffe553e8a9390.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-c0079c9594200c",
@@ -2701,7 +1312,8 @@
       "sourceUrl": "https://defendernetwork.com/news/local-state/houstons-annual-trae-day-expanded-to-weekend-full-of-festivities/",
       "src": "assets/gallery/thumbs/photo-c0079c9594200c.jpg",
       "fullSrc": "assets/gallery/full/photo-c0079c9594200c.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-27d2dc3893243c",
@@ -2716,7 +1328,8 @@
       "sourceUrl": "https://www.click2houston.com/news/local/2021/07/18/heres-what-planned-for-the-4-day-trae-day-celebration-in-houston",
       "src": "assets/gallery/thumbs/photo-27d2dc3893243c.jpg",
       "fullSrc": "assets/gallery/full/photo-27d2dc3893243c.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-88dcc316122b15",
@@ -2731,7 +1344,8 @@
       "sourceUrl": "https://www.revolt.tv/article/2021-07-01/50170/trae-tha-truth-liberates-48-hours-after-project",
       "src": "assets/gallery/thumbs/photo-88dcc316122b15.jpg",
       "fullSrc": "assets/gallery/full/photo-88dcc316122b15.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-9e5a50fb7c695c",
@@ -2746,7 +1360,8 @@
       "sourceUrl": "https://revolt.tv/news/2021/6/24/22549012/trae-tha-truth-ice-cream-store-to-hire-special-needs-youth",
       "src": "assets/gallery/thumbs/photo-9e5a50fb7c695c.jpg",
       "fullSrc": "assets/gallery/full/photo-9e5a50fb7c695c.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-084b705d4dc9c4",
@@ -2761,7 +1376,8 @@
       "sourceUrl": "https://www.revolt.tv/news/2021/6/17/22539046/trae-tha-truth-james-harden-announce-trae-day-scholarships",
       "src": "assets/gallery/thumbs/photo-084b705d4dc9c4.jpg",
       "fullSrc": "assets/gallery/full/photo-084b705d4dc9c4.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-bfec1bfca55124",
@@ -2776,7 +1392,8 @@
       "sourceUrl": "https://www.complex.com/music/a/b-blanchet/trae-tha-truth-ice-cream-shop-announcement",
       "src": "assets/gallery/thumbs/photo-bfec1bfca55124.jpg",
       "fullSrc": "assets/gallery/full/photo-bfec1bfca55124.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-2ba63e48ca4afc",
@@ -2791,7 +1408,8 @@
       "sourceUrl": "https://www.revolt.tv/news/2021/5/24/22451849/trae-tha-truth-change-maker-award",
       "src": "assets/gallery/thumbs/photo-2ba63e48ca4afc.jpg",
       "fullSrc": "assets/gallery/full/photo-2ba63e48ca4afc.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-27b9ffa327f6b5",
@@ -2806,7 +1424,8 @@
       "sourceUrl": "https://www.complex.com/music/a/j-rose/trae-tha-truth-change-maker-award-2021-billboard-music-awards",
       "src": "assets/gallery/thumbs/photo-27b9ffa327f6b5.jpg",
       "fullSrc": "assets/gallery/full/photo-27b9ffa327f6b5.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-34f2e83c4ccca4",
@@ -2821,7 +1440,8 @@
       "sourceUrl": "https://www.revolt.tv/news/2021/2/24/22300190/trae-tha-truth-houston-families-free-gas",
       "src": "assets/gallery/thumbs/photo-34f2e83c4ccca4.jpg",
       "fullSrc": "assets/gallery/full/photo-34f2e83c4ccca4.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-2f7b43206219b2",
@@ -2836,7 +1456,8 @@
       "sourceUrl": "https://www.revolt.tv/article/2021-02-18/59499/trae-tha-truth-buys-food-for-houston-families",
       "src": "assets/gallery/thumbs/photo-2f7b43206219b2.jpg",
       "fullSrc": "assets/gallery/full/photo-2f7b43206219b2.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-09b814b1bcdee9",
@@ -2851,7 +1472,8 @@
       "sourceUrl": "https://atlantablackstar.com/2020/09/08/we-are-one-and-we-wont-stop-houston-rapper-trae-tha-truths-relief-gang-helps-lake-charles-recover-from-hurricane-laura/",
       "src": "assets/gallery/thumbs/photo-09b814b1bcdee9.jpg",
       "fullSrc": "assets/gallery/full/photo-09b814b1bcdee9.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-7b52c5ee61a668",
@@ -2866,7 +1488,8 @@
       "sourceUrl": "https://abc13.com/trae-tha-truth-and-relief-gang-heading-to-lake-charles/6393440/",
       "src": "assets/gallery/thumbs/photo-7b52c5ee61a668.jpg",
       "fullSrc": "assets/gallery/full/photo-7b52c5ee61a668.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-2446eb5f37d9d5",
@@ -2881,7 +1504,8 @@
       "sourceUrl": "https://revolt.tv/2020/8/26/21402983/trae-tha-truth-yandy-smith-porsha-williams-arrested-breonna-taylor-protest",
       "src": "assets/gallery/thumbs/photo-2446eb5f37d9d5.jpg",
       "fullSrc": "assets/gallery/full/photo-2446eb5f37d9d5.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-becaad1884bf4b",
@@ -2896,7 +1520,8 @@
       "sourceUrl": "https://www.complex.com/life/a/alex-montrose/kentucky-ag-called-out-engagement-party-inaction-breonna-taylor-killers",
       "src": "assets/gallery/thumbs/photo-becaad1884bf4b.jpg",
       "fullSrc": "assets/gallery/full/photo-becaad1884bf4b.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-a7af34e30df73a",
@@ -2911,7 +1536,8 @@
       "sourceUrl": "https://www.complex.com/music/a/cmplxjoshua-espinoza/bun-b-trae-the-truth-other-texas-rappers-reflect-george-floyd-contributions-houston-hip-hop-scene",
       "src": "assets/gallery/thumbs/photo-a7af34e30df73a.jpg",
       "fullSrc": "assets/gallery/full/photo-a7af34e30df73a.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-6927240dee7f9f",
@@ -2926,7 +1552,8 @@
       "sourceUrl": "https://atlantablackstar.com/2019/09/24/its-a-great-need-here-texas-rappers-help-the-victims-of-hurricane-imelda/",
       "src": "assets/gallery/thumbs/photo-6927240dee7f9f.jpg",
       "fullSrc": "assets/gallery/full/photo-6927240dee7f9f.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-ad0fbc862bfa5c",
@@ -2941,7 +1568,8 @@
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-save-storm-victims-houston/",
       "src": "assets/gallery/thumbs/photo-ad0fbc862bfa5c.jpg",
       "fullSrc": "assets/gallery/full/photo-ad0fbc862bfa5c.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-137cda4d5d1176",
@@ -2956,7 +1584,8 @@
       "sourceUrl": "https://www.hotnewhiphop.com/172294-trae-tha-truth-pays-homage-on-tribute-track-nipsey-new-song",
       "src": "assets/gallery/thumbs/photo-137cda4d5d1176.jpg",
       "fullSrc": "assets/gallery/full/photo-137cda4d5d1176.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-0f1be760545f41",
@@ -2971,7 +1600,8 @@
       "sourceUrl": "https://revolt.tv/2019/5/8/20824037/trae-tha-truth-leads-rescue-efforts-for-houston-flood-victims",
       "src": "assets/gallery/thumbs/photo-0f1be760545f41.jpg",
       "fullSrc": "assets/gallery/full/photo-0f1be760545f41.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-e8890cd1688b28",
@@ -2986,7 +1616,8 @@
       "sourceUrl": "https://complex.com/music/2019/05/trae-tha-truth-helping-get-houston-flood-victims-to-safety",
       "src": "assets/gallery/thumbs/photo-e8890cd1688b28.jpg",
       "fullSrc": "assets/gallery/full/photo-e8890cd1688b28.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-c6bf1bd3581222",
@@ -3001,7 +1632,8 @@
       "sourceUrl": "https://www.complex.com/music/2019/01/trae-tha-truth-im-on-3-video",
       "src": "assets/gallery/thumbs/photo-c6bf1bd3581222.jpg",
       "fullSrc": "assets/gallery/full/photo-c6bf1bd3581222.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-758587241ee8b4",
@@ -3016,7 +1648,8 @@
       "sourceUrl": "https://abc13.com/trae-tha-truth-goes-to-florida-to-help-michael-victims/4470114/",
       "src": "assets/gallery/thumbs/photo-758587241ee8b4.jpg",
       "fullSrc": "assets/gallery/full/photo-758587241ee8b4.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-fe663cc9a61159",
@@ -3031,7 +1664,8 @@
       "sourceUrl": "https://abc13.com/post/trae-tha-truth-helps-with-florence-relief-in-carolinas/4283388/",
       "src": "assets/gallery/thumbs/photo-fe663cc9a61159.jpg",
       "fullSrc": "assets/gallery/full/photo-fe663cc9a61159.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-5b6d7b940f5602",
@@ -3046,7 +1680,8 @@
       "sourceUrl": "https://thesource.com/2018/07/23/trae-tha-truth-day/",
       "src": "assets/gallery/thumbs/photo-5b6d7b940f5602.jpg",
       "fullSrc": "assets/gallery/full/photo-5b6d7b940f5602.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-0d2dde1b4d0850",
@@ -3061,7 +1696,8 @@
       "sourceUrl": "https://www.revolt.tv/article/2018-04-26/39457/trae-tha-truth-speaks-on-new-lawsuit-against-radio-one-nine-year-music-ban",
       "src": "assets/gallery/thumbs/photo-0d2dde1b4d0850.jpg",
       "fullSrc": "assets/gallery/full/photo-0d2dde1b4d0850.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-79a52b23f84e9f",
@@ -3076,7 +1712,8 @@
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-hometown-hero-album-ti-boosie-badazz-young-thug-more/",
       "src": "assets/gallery/thumbs/photo-79a52b23f84e9f.jpg",
       "fullSrc": "assets/gallery/full/photo-79a52b23f84e9f.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-d9481c5c6d5724",
@@ -3091,7 +1728,8 @@
       "sourceUrl": "https://www.vibe.com/2018/03/trae-tha-truth-hometown-hero-interview/",
       "src": "assets/gallery/thumbs/photo-d9481c5c6d5724.jpg",
       "fullSrc": "assets/gallery/full/photo-d9481c5c6d5724.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-64c07a0931ae97",
@@ -3106,7 +1744,8 @@
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-young-thug-new-song-dont-know-me/",
       "src": "assets/gallery/thumbs/photo-64c07a0931ae97.jpg",
       "fullSrc": "assets/gallery/full/photo-64c07a0931ae97.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-b1968ff641ea44",
@@ -3121,7 +1760,8 @@
       "sourceUrl": "https://abc13.com/news/3205322/",
       "src": "assets/gallery/thumbs/photo-b1968ff641ea44.jpg",
       "fullSrc": "assets/gallery/full/photo-b1968ff641ea44.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-ca06df2d5dba74",
@@ -3136,7 +1776,8 @@
       "sourceUrl": "https://abc13.com/post/relief-gang-opens-warehouse-of-supplies-to-storm-victims/3171197/",
       "src": "assets/gallery/thumbs/photo-ca06df2d5dba74.jpg",
       "fullSrc": "assets/gallery/full/photo-ca06df2d5dba74.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-d669dbccd94530",
@@ -3151,7 +1792,8 @@
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-sues-radio-alleged-defamation-gross-negligence-more/",
       "src": "assets/gallery/thumbs/photo-d669dbccd94530.jpg",
       "fullSrc": "assets/gallery/full/photo-d669dbccd94530.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-1d7dfef867bcff",
@@ -3166,7 +1808,8 @@
       "sourceUrl": "https://www.complex.com/music/2018/03/trae-tha-truth-what-about-us",
       "src": "assets/gallery/thumbs/photo-1d7dfef867bcff.jpg",
       "fullSrc": "assets/gallery/full/photo-1d7dfef867bcff.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-ae8b841002837a",
@@ -3181,7 +1824,8 @@
       "sourceUrl": "https://abc13.com/post/rockets-gerald-green-assists-harvey-victims-with-relief-gang/2931614/",
       "src": "assets/gallery/thumbs/photo-ae8b841002837a.jpg",
       "fullSrc": "assets/gallery/full/photo-ae8b841002837a.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-0d642f02a66538",
@@ -3196,7 +1840,8 @@
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-houston-flood-rescue/",
       "src": "assets/gallery/thumbs/photo-0d642f02a66538.jpg",
       "fullSrc": "assets/gallery/full/photo-0d642f02a66538.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-270d223b099908",
@@ -3211,7 +1856,8 @@
       "sourceUrl": "https://abc13.com/society/trae-tha-truth-helping-residents-rebuild-after-harvey/2750035/",
       "src": "assets/gallery/thumbs/photo-270d223b099908.jpg",
       "fullSrc": "assets/gallery/full/photo-270d223b099908.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-15f047c964e535",
@@ -3226,7 +1872,8 @@
       "sourceUrl": "https://www.fox26houston.com/news/local-celebrities-form-group-to-continue-helping-community",
       "src": "assets/gallery/thumbs/photo-15f047c964e535.png",
       "fullSrc": "assets/gallery/full/photo-15f047c964e535.png",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-81c736051d6159",
@@ -3241,7 +1888,8 @@
       "sourceUrl": "https://www.revolt.tv/2017/9/5/20820154/trae-tha-truth-joins-hurricane-harvey-relief-efforts-in-hometown-of-houston-tx",
       "src": "assets/gallery/thumbs/photo-81c736051d6159.jpg",
       "fullSrc": "assets/gallery/full/photo-81c736051d6159.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-11ffbe2a06d324",
@@ -3256,7 +1904,8 @@
       "sourceUrl": "https://www.revolt.tv/2017/9/1/20820144/bun-b-trae-tha-truth-and-dj-mr-rogers-speak-on-hurricane-harvey-relief",
       "src": "assets/gallery/thumbs/photo-11ffbe2a06d324.jpg",
       "fullSrc": "assets/gallery/full/photo-11ffbe2a06d324.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-6d21973ab466b8",
@@ -3271,7 +1920,8 @@
       "sourceUrl": "https://www.revolt.tv/article/2017-08-30/31265/see-how-trae-tha-truth-is-helping-local-rescue-efforts-in-houston",
       "src": "assets/gallery/thumbs/photo-6d21973ab466b8.jpg",
       "fullSrc": "assets/gallery/full/photo-6d21973ab466b8.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-8e204ef83c9d39",
@@ -3286,7 +1936,8 @@
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-gives-75-scholarships-kids-houston/",
       "src": "assets/gallery/thumbs/photo-8e204ef83c9d39.jpg",
       "fullSrc": "assets/gallery/full/photo-8e204ef83c9d39.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-e2fa4dc4baadaf",
@@ -3301,7 +1952,8 @@
       "sourceUrl": "https://stereogum.com/2028672/trae-tha-truth-im-on-3-0-video-feat-t-i-dave-east-tee-grizzley-royce-da-59-curreny-dram-snoop-dogg-fabolous-rick-ross-chamillionaire-g-eazy-styles-p-e-40-mark-morrison/news",
       "src": "assets/gallery/thumbs/photo-e2fa4dc4baadaf.jpg",
       "fullSrc": "assets/gallery/full/photo-e2fa4dc4baadaf.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-5d0c595f978a2e",
@@ -3316,7 +1968,8 @@
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-mozzy-tapped-in-album/",
       "src": "assets/gallery/thumbs/photo-5d0c595f978a2e.jpg",
       "fullSrc": "assets/gallery/full/photo-5d0c595f978a2e.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-811cf0957dbe32",
@@ -3331,7 +1984,8 @@
       "sourceUrl": "https://www.xxlmag.com/mozzy-trae-tha-truth-and-snoop-dogg-set-ground-rules/",
       "src": "assets/gallery/thumbs/photo-811cf0957dbe32.png",
       "fullSrc": "assets/gallery/full/photo-811cf0957dbe32.png",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-77c831e2b9369a",
@@ -3346,7 +2000,8 @@
       "sourceUrl": "https://exclaim.ca/music/article/trae_tha_truth-tha_truth_pt_2",
       "src": "assets/gallery/thumbs/photo-77c831e2b9369a.jpg",
       "fullSrc": "assets/gallery/full/photo-77c831e2b9369a.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-fbd18b818087db",
@@ -3361,7 +2016,8 @@
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-t-i-rick-ross-and-audio-push-team-up-for-all-good/",
       "src": "assets/gallery/thumbs/photo-fbd18b818087db.jpg",
       "fullSrc": "assets/gallery/full/photo-fbd18b818087db.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-6445054849c811",
@@ -3376,7 +2032,8 @@
       "sourceUrl": "https://www.okayplayer.com/h-town-legend-trae-tha-truth-talks-tha-truth-lp-more-on-the-combat-jack-show/718945",
       "src": "assets/gallery/thumbs/photo-6445054849c811.jpg",
       "fullSrc": "assets/gallery/full/photo-6445054849c811.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-4524dd0b05bf82",
@@ -3391,7 +2048,8 @@
       "sourceUrl": "https://www.xxlmag.com/trae-tha-truth-tha-truth-review/",
       "src": "assets/gallery/thumbs/photo-4524dd0b05bf82.jpg",
       "fullSrc": "assets/gallery/full/photo-4524dd0b05bf82.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-d573c421cb1c04",
@@ -3406,7 +2064,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trae.jpg",
       "src": "assets/gallery/thumbs/photo-d573c421cb1c04.jpg",
       "fullSrc": "assets/gallery/full/photo-d573c421cb1c04.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-b76a4351c9332d",
@@ -3421,7 +2080,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Traethatruth.jpg",
       "src": "assets/gallery/thumbs/photo-b76a4351c9332d.jpg",
       "fullSrc": "assets/gallery/full/photo-b76a4351c9332d.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-9f1687407f3f63",
@@ -3436,7 +2096,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trae_in_2005.jpg",
       "src": "assets/gallery/thumbs/photo-9f1687407f3f63.jpg",
       "fullSrc": "assets/gallery/full/photo-9f1687407f3f63.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-a5240999d24332",
@@ -3451,7 +2112,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trae_in_2005_(cropped).jpg",
       "src": "assets/gallery/thumbs/photo-a5240999d24332.jpg",
       "fullSrc": "assets/gallery/full/photo-a5240999d24332.jpg",
-      "featured": true
+      "featured": true,
+      "contentHash": null
     },
     {
       "id": "photo-8082d382cc9f5d",
@@ -3466,7 +2128,8 @@
       "sourceUrl": "https://open.spotify.com/artist/49vCIUW46QY3L5vo1xVFoy",
       "src": "assets/gallery/thumbs/photo-8082d382cc9f5d.jpg",
       "fullSrc": "assets/gallery/full/photo-8082d382cc9f5d.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-de0a5857908add",
@@ -3481,7 +2144,8 @@
       "sourceUrl": "https://open.spotify.com/artist/49vCIUW46QY3L5vo1xVFoy",
       "src": "assets/gallery/thumbs/photo-de0a5857908add.jpg",
       "fullSrc": "assets/gallery/full/photo-de0a5857908add.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-7beddcb312955f",
@@ -3496,7 +2160,8 @@
       "sourceUrl": "https://open.spotify.com/artist/49vCIUW46QY3L5vo1xVFoy",
       "src": "assets/gallery/thumbs/photo-7beddcb312955f.jpg",
       "fullSrc": "assets/gallery/full/photo-7beddcb312955f.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-c44622281b2264",
@@ -3511,7 +2176,8 @@
       "sourceUrl": "https://music.apple.com/us/artist/trae-tha-truth/260848039",
       "src": "assets/gallery/thumbs/photo-c44622281b2264.jpg",
       "fullSrc": "assets/gallery/full/photo-c44622281b2264.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-3cabc77ba3fe79",
@@ -3526,7 +2192,8 @@
       "sourceUrl": "https://tidal.com/artist/3798715",
       "src": "assets/gallery/thumbs/photo-3cabc77ba3fe79.jpg",
       "fullSrc": "assets/gallery/full/photo-3cabc77ba3fe79.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-50235e86898953",
@@ -3541,7 +2208,8 @@
       "sourceUrl": "https://www.deezer.com/artist/498202",
       "src": "assets/gallery/thumbs/photo-50235e86898953.jpg",
       "fullSrc": "assets/gallery/full/photo-50235e86898953.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-cc5f83bedaeb0a",
@@ -3556,7 +2224,8 @@
       "sourceUrl": "https://soundcloud.com/traethatruth",
       "src": "assets/gallery/thumbs/photo-cc5f83bedaeb0a.jpg",
       "fullSrc": "assets/gallery/full/photo-cc5f83bedaeb0a.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-2fc3a3aa210c03",
@@ -3571,7 +2240,8 @@
       "sourceUrl": "https://www.iheart.com/artist/trae-tha-truth-201608/",
       "src": "assets/gallery/thumbs/photo-2fc3a3aa210c03.jpg",
       "fullSrc": "assets/gallery/full/photo-2fc3a3aa210c03.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-249a8f39262a71",
@@ -3586,7 +2256,8 @@
       "sourceUrl": "https://www.youtube.com/@traethatruthtv",
       "src": "assets/gallery/thumbs/photo-249a8f39262a71.jpg",
       "fullSrc": "assets/gallery/full/photo-249a8f39262a71.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-58a784c3885216",
@@ -3601,7 +2272,8 @@
       "sourceUrl": "https://www.youtube.com/@traethatruthtv",
       "src": "assets/gallery/thumbs/photo-58a784c3885216.jpg",
       "fullSrc": "assets/gallery/full/photo-58a784c3885216.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     },
     {
       "id": "photo-2abe4f085bc6ce",
@@ -3616,7 +2288,8 @@
       "sourceUrl": "https://www.youtube.com/channel/UCakqwhv9V-7nzEXGQhckwEA",
       "src": "assets/gallery/thumbs/photo-2abe4f085bc6ce.jpg",
       "fullSrc": "assets/gallery/full/photo-2abe4f085bc6ce.jpg",
-      "featured": false
+      "featured": false,
+      "contentHash": null
     }
   ],
   "events": [

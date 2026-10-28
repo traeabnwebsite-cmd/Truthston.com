@@ -1,4 +1,4 @@
-import base64,json,tempfile,threading,unittest,urllib.request,urllib.error,http.cookiejar
+import hashlib,base64,json,tempfile,threading,unittest,urllib.request,urllib.error,http.cookiejar
 from pathlib import Path
 from .cms_store import CmsStore,CmsError,public_snapshot
 from .preview import PreviewServer
@@ -26,6 +26,11 @@ class StoreTest(unittest.TestCase):
   r['status']='published';r['alt']=''
   with self.assertRaises(CmsError):self.store.save('photos',r,r['version'])
   r['alt']='ABN photo';published=self.store.save('photos',r,r['version']);self.assertTrue((self.root/published['src']).exists());self.assertNotIn('fileId',self.store.public()['photos'][0])
+ def test_photo_hash_comes_from_uploaded_file_not_client(self):
+  first=self.upload(PNG);second=self.upload(PNG)
+  for fid in [first,second]:self.store.save('photos',{'title':'Same frame','status':'published','fileId':fid,'alt':'Frame','precision':'unknown','contentHash':'untrusted'})
+  hashes=[p['contentHash'] for p in self.store.public()['photos']]
+  self.assertEqual(hashes,[hashlib.sha256(PNG).hexdigest()]*2)
  def test_upload_integrity_and_offsets(self):
   info=self.store.begin_upload('photo.png',len(PNG),'photo')
   with self.assertRaises(CmsError):self.store.upload_chunk(info['id'],10,PNG)
