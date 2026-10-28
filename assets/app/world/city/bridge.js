@@ -1,3 +1,4 @@
+import { ARCHIVE_CROSSINGS } from "./archive-layout.js";
 import { $, $$, esc } from "../../core/dom.js";
 export function buildBridge({
   world,
@@ -11,7 +12,7 @@ export function buildBridge({
 }) {
   const bridgeStart = world.children.length;
   // BE SOMEONE railway bridge: steel plate girder, ballast, rails and rivets over the road.
-  const bridgeZ = -57;
+  const bridgeZ = ARCHIVE_CROSSINGS.railway.z;
   box(36, 0.65, 4.4, mat("#4b4537"), 6.65, 7.3, bridgeZ);
   box(36, 1.35, 0.3, mat("#47493a"), 6.65, 8.05, bridgeZ + 2.2);
   box(36, 0.7, 0.2, mat("#353d34"), 6.65, 7.9, bridgeZ - 2.2);

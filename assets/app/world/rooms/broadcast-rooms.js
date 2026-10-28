@@ -1,3 +1,4 @@
+import { buildShopDoor } from "./doorway.js";
 // Original ABN spaces informed by real broadcast and large-format recording rooms.
 // References and the translated design decisions are documented in review/STUDIO-REFERENCES.md.
 export function buildBroadcastRooms({
@@ -84,13 +85,13 @@ export function buildBroadcastRooms({
       const sx = x + side * 7.5;
       // The corridor and elevator openings retain physical doorway clearance.
       if ((x === 0 && side === 1) || (x === 20 && side === -1)) {
-        box(0.22, 5.5, 8, fabric, sx, 11.1, -2);
-        box(0.22, 5.5, 1.5, fabric, sx, 11.1, 5.25);
-        box(0.22, 2, 2.5, fabric, sx, 12.85, 3.25);
+        box(0.22, 5.5, 7.95, fabric, sx, 11.1, -2.025);
+        box(0.22, 5.5, 1.45, fabric, sx, 11.1, 5.275);
+        box(0.22, 1.8, 2.6, fabric, sx, 12.95, 3.25);
       } else if (x === 0 && side === -1) {
         box(0.22, 5.5, 4.3, fabric, sx, 11.1, -3.85);
         box(0.22, 5.5, 5.1, fabric, sx, 11.1, 3.45);
-        box(0.22, 2.1, 2.6, fabric, sx, 12.8, -0.4);
+        box(0.22, 1.8, 2.6, fabric, sx, 12.95, -0.4);
       } else box(0.22, 5.5, 12, fabric, sx, 11.1, 0);
       box(0.16, 0.16, 11.8, walnut, sx - side * 0.15, floorY + 0.13, 0);
       for (const z of [-4.6, -2.9, -1.2, 0.5]) {
@@ -595,5 +596,37 @@ export function buildBroadcastRooms({
   box(5, 0.3, 2.5, walnut, 10, 8.2, 3.25);
   box(5, 4, 0.2, fabric, 10, 10.3, 2);
   box(5, 4, 0.2, fabric, 10, 10.3, 4.5);
+  buildShopDoor({
+    T,
+    world,
+    box,
+    mat,
+    label,
+    hit,
+    wood: walnut,
+    x: 7.35,
+    z: 3.25,
+    y: floorY,
+    facing: -Math.PI / 2,
+    title: "WABN RADIO",
+    action: () => store.navigate("radio"),
+    color: "#314b54",
+  });
+  buildShopDoor({
+    T,
+    world,
+    box,
+    mat,
+    label,
+    hit,
+    wood: walnut,
+    x: 12.65,
+    z: 3.25,
+    y: floorY,
+    facing: Math.PI / 2,
+    title: "STUDIO ABN",
+    action: () => store.navigate("studio"),
+    color: "#4e3a29",
+  });
   return { floorY, radioScreen, console: ssl };
 }

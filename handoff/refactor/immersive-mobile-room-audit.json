@@ -1,0 +1,578 @@
+{
+  "results": [
+    {
+      "station": 0,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "width": 390,
+        "height": 791,
+        "top": 53,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 0,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "width": 844,
+        "height": 337,
+        "top": 53,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 1,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "width": 390,
+        "height": 791,
+        "top": 53,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 1,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "width": 844,
+        "height": 337,
+        "top": 53,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 2,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 57,
+        "width": 252,
+        "height": 787,
+        "top": 57,
+        "right": 252,
+        "bottom": 844,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 2,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 57,
+        "width": 706,
+        "height": 333,
+        "top": 57,
+        "right": 706,
+        "bottom": 390,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 5,
+      "mode": "immersive",
+      "hash": "#merch",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "panel": true,
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 5,
+      "mode": "immersive",
+      "hash": "#merch",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "panel": true,
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 3,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "width": 390,
+        "height": 791,
+        "top": 53,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 3,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "width": 844,
+        "height": 337,
+        "top": 53,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 6,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "width": 390,
+        "height": 791,
+        "top": 53,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 6,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "width": 844,
+        "height": 337,
+        "top": 53,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 7,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "width": 390,
+        "height": 791,
+        "top": 53,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    },
+    {
+      "station": 7,
+      "mode": "immersive",
+      "hash": "#record-shop",
+      "native": true,
+      "active": true,
+      "room": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "panel": false,
+      "canvas": {
+        "x": 0,
+        "y": 53,
+        "width": 844,
+        "height": 337,
+        "top": 53,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "guideToolsParent": "world-mobile-menu"
+    }
+  ],
+  "errors": [],
+  "doors": [
+    {
+      "title": "ELEVATOR",
+      "width": 2.6,
+      "height": 3.7,
+      "frameWidth": 2.9,
+      "frameHeight": 3.95,
+      "position": [
+        -8.3,
+        0,
+        -0.4
+      ]
+    },
+    {
+      "title": "APPAREL / MERCH",
+      "width": 2.6,
+      "height": 3.7,
+      "frameWidth": 2.9,
+      "frameHeight": 3.95,
+      "position": [
+        8.27,
+        0,
+        -0.4
+      ]
+    },
+    {
+      "title": "WABN RADIO",
+      "width": 2.6,
+      "height": 3.7,
+      "frameWidth": 2.9,
+      "frameHeight": 3.95,
+      "position": [
+        7.35,
+        8.35,
+        3.25
+      ]
+    },
+    {
+      "title": "STUDIO ABN",
+      "width": 2.6,
+      "height": 3.7,
+      "frameWidth": 2.9,
+      "frameHeight": 3.95,
+      "position": [
+        12.65,
+        8.35,
+        3.25
+      ]
+    },
+    {
+      "title": "ELEVATOR",
+      "width": 2.6,
+      "height": 3.7,
+      "frameWidth": 2.9,
+      "frameHeight": 3.95,
+      "position": [
+        -8.3,
+        8.35,
+        -0.4
+      ]
+    },
+    {
+      "title": "DJ BOOTH",
+      "width": 2.6,
+      "height": 3.7,
+      "frameWidth": 2.9,
+      "frameHeight": 3.95,
+      "position": [
+        -8.27,
+        0,
+        2.6
+      ]
+    },
+    {
+      "title": "SCREENING ROOM",
+      "width": 2.6,
+      "height": 3.7,
+      "frameWidth": 2.9,
+      "frameHeight": 3.95,
+      "position": [
+        8.27,
+        0,
+        2.6
+      ]
+    },
+    {
+      "title": "STEP OUTSIDE / TRUTHSTON",
+      "width": 2.6,
+      "height": 3.7,
+      "frameWidth": 2.9,
+      "frameHeight": 3.95,
+      "position": [
+        6.65,
+        0,
+        -5.65
+      ]
+    },
+    {
+      "title": "ENTER ABN",
+      "width": 2.6,
+      "height": 3.7,
+      "frameWidth": 2.9,
+      "frameHeight": 3.95,
+      "position": [
+        0,
+        0,
+        6.96
+      ]
+    }
+  ],
+  "browseButton": 0
+}

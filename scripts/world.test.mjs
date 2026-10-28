@@ -152,3 +152,20 @@ test("full shop orbit stays within closed walls while entrance overview and othe
   const booth = { x: -14.5, y: 4.6, z: 5.5 };
   assert.deepEqual(constrainShopOrbit({ ...booth }, target, 1), booth);
 });
+
+test("narrow theater framing preserves enough horizontal field for the projected picture", async () => {
+  const { responsiveFieldOfView } = await import(
+    "../assets/app/world/framing.js"
+  );
+  // 252px stage after the 138px rail on a portrait phone. Nine-unit screen
+  // lies 9.2 units from the projector; it must fit without stretching geometry.
+  const aspect = 252 / 787;
+  const fov = responsiveFieldOfView(45, aspect, 125);
+  const visibleWidth = 2 * 9.2 * Math.tan((fov * Math.PI) / 360) * aspect;
+  assert.ok(
+    visibleWidth >= 9,
+    `Projected width ${visibleWidth} clips the screen`,
+  );
+  assert.ok(fov <= 125);
+  assert.ok(responsiveFieldOfView(43, aspect) <= 90);
+});

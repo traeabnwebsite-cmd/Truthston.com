@@ -1470,7 +1470,7 @@ body {
     font-size: 11px;
     min-height: 40px;
   }
-  .cinema-playing #room-cinema {
+  .flat.cinema-playing #room-cinema {
     top: 296px;
     left: 8px;
     width: calc(100% - 16px);
@@ -1531,7 +1531,7 @@ body {
   .in-screening-room #cinema-browse-zone {
     top: 65px;
   }
-  .cinema-playing #room-cinema {
+  .flat.cinema-playing #room-cinema {
     top: 50%;
     left: 50%;
     height: min(66dvh, calc(100dvw * 0.42));

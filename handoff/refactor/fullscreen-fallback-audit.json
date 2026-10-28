@@ -1,0 +1,303 @@
+{
+  "results": [
+    {
+      "station": 0,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "station": 0,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      }
+    },
+    {
+      "station": 1,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "station": 1,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      }
+    },
+    {
+      "station": 2,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "station": 2,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      }
+    },
+    {
+      "station": 5,
+      "hash": "#merch",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "station": 5,
+      "hash": "#merch",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      }
+    },
+    {
+      "station": 3,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "station": 3,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      }
+    },
+    {
+      "station": 6,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "station": 6,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      }
+    },
+    {
+      "station": 7,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "station": 7,
+      "hash": "#record-shop",
+      "mode": "immersive",
+      "active": true,
+      "fallback": true,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "viewport": {
+        "width": 844,
+        "height": 390
+      }
+    }
+  ],
+  "exit": {
+    "active": false,
+    "body": "mobile-site",
+    "overflow": ""
+  }
+}

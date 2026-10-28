@@ -526,18 +526,20 @@ export async function createWorld({
     owned.push(input);
     const { ink, ix, drops } = input;
     function resize() {
-      const r = canvas.parentElement.getBoundingClientRect();
+      const r = canvas.getBoundingClientRect();
       renderer.setSize(r.width, r.height, false);
       camera.aspect = r.width / r.height;
       camera.fov = responsiveFieldOfView(
         camera.userData.baseFov || 43,
         camera.aspect,
+        appState.station === 2 ? 125 : 90,
       );
       camera.updateProjectionMatrix();
       ink.width = r.width;
       ink.height = r.height;
     }
     lifetime.observe(new ResizeObserver(resize), canvas.parentElement);
+    lifetime.observe(new ResizeObserver(resize), canvas);
     resize();
     // The approved illustrated companion is a depth-tested billboard inside the actual room.
     const roomGuideController = createRoomGuide({
@@ -570,7 +572,7 @@ export async function createWorld({
     sceneAPI.theaterView = () => {
       view.streetJourney = null;
       camera.userData.baseFov = 45;
-      camera.fov = responsiveFieldOfView(45, camera.aspect);
+      camera.fov = responsiveFieldOfView(45, camera.aspect, 125);
       camera.updateProjectionMatrix();
       view.angleGoal = -Math.PI / 2;
       view.radiusGoal = 9.2;
@@ -652,6 +654,17 @@ export async function createWorld({
           },
           meshLayers: layers,
           pixelRatio: renderer.getPixelRatio(),
+          shopDoors: (() => {
+            const doors = [];
+            world.traverse((object) => {
+              if (object.userData?.shopDoor)
+                doors.push({
+                  ...object.userData.shopDoor,
+                  position: object.getWorldPosition(new T.Vector3()).toArray(),
+                });
+            });
+            return doors;
+          })(),
           floorPlan: {
             cashierFeetY: 0,
             cashierZ: -4.08,

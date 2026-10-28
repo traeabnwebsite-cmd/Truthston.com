@@ -74,10 +74,6 @@ export function createRoomNavigation({
       location.hash = "record-shop";
       accountRoute();
     }
-    if (i === 5) {
-      commerce.merch();
-      return;
-    }
     if (i === 1 && appState.station !== 1 && !entered) {
       showDJEntrance();
       return;
@@ -138,9 +134,13 @@ export function createRoomNavigation({
     ][i];
     getWorld()?.travel(i);
     document.dispatchEvent(new CustomEvent("truth-station", { detail: i }));
+    if (i === 5) {
+      commerce.merch();
+      return;
+    }
     if (appState.mode !== "immersive") {
       if (i === 1) showDJFallback();
-      if (i === 2) cinema.open(0);
+      if (i === 2) cinema.browse();
       if (i === 3) community.timeline();
       if (i === 4) community.giving();
       if (i === 5) commerce.merch();

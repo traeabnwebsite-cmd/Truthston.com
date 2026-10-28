@@ -1,3 +1,4 @@
+import { buildShopDoor } from "./doorway.js";
 import { $, $$, esc } from "../../core/dom.js";
 export function buildTheaterRoom({
   world,
@@ -29,38 +30,23 @@ export function buildTheaterRoom({
   box(0.24, 5.07, 2.3, theatreWall, 19, 4.05, 4.85);
   box(0.24, 6.7, 7.3, theatreWall, 8.5, 3.25, -2.35);
   box(0.24, 6.7, 2.1, theatreWall, 8.5, 3.25, 4.95);
-  box(0.24, 2.75, 2.6, theatreWall, 8.5, 5.325, 2.6);
+  box(0.24, 3, 2.6, theatreWall, 8.5, 5.2, 2.6);
   box(10.5, 0.16, 12, mat("#20251f"), 13.75, 6.65, 0);
-  box(0.45, 0.06, 2.6, paper, 8.5, 0.015, 2.6);
-  for (const z of [1.25, 3.95]) box(0.4, 3.8, 0.12, wood, 8.5, 1.9, z);
-  box(0.4, 0.14, 2.8, wood, 8.5, 3.85, 2.6);
-  const entranceSign = label(
-    "SCREENING ROOM",
-    2.55,
-    0.5,
-    8.32,
-    4.25,
-    2.6,
-    "#f0d6a1",
-    "#753b2c",
-    95,
-  );
-  entranceSign.rotation.y = -Math.PI / 2;
-  hit(entranceSign, "Enter the separate screening room", () => go(2));
-  const entrance = new T.Mesh(
-    new T.PlaneGeometry(2.55, 3.65),
-    new T.MeshBasicMaterial({
-      color: "#d9902b",
-      transparent: true,
-      opacity: 0.045,
-      side: T.DoubleSide,
-      depthWrite: false,
-    }),
-  );
-  entrance.rotation.y = -Math.PI / 2;
-  entrance.position.set(8.32, 1.85, 2.6);
-  world.add(entrance);
-  hit(entrance, "Enter the screening room", () => go(2));
+  buildShopDoor({
+    T,
+    world,
+    box,
+    mat,
+    label,
+    hit,
+    wood,
+    x: 8.27,
+    z: 2.6,
+    facing: -Math.PI / 2,
+    title: "SCREENING ROOM",
+    action: () => go(2),
+    color: "#753b2c",
+  });
   const returnSign = label(
     "BACK TO THE RECORD SHOP",
     2.55,

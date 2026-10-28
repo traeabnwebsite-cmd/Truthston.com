@@ -1,280 +1,400 @@
-/* Theater-only controls: one film strip, revealed at the top edge. */
-#cinema-browse-zone {
+/* The screen and vertical selection rail occupy separate columns. */
+#cinema-carousel,
+#cinema-controls {
   display: none;
 }
-.in-screening-room #cinema-browse-zone {
-  display: block;
-  position: absolute;
-  z-index: 39;
-  top: 66px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(980px, calc(100% - 64px));
-  height: 132px;
+.in-screening-room .room-wrap {
+  grid-template-rows: auto minmax(0, 1fr) !important;
+  gap: 0 !important;
+  min-height: 0 !important;
+  background: #090e0b;
 }
-.in-screening-room #cinema-browse-toggle {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 25px;
-  padding: 4px 16px;
-  color: #c3b59b;
-  background: #101713c9;
-  border: 1px solid #b7a58233;
-  border-radius: 0 0 10px 10px;
-  font-size: 8px;
-  letter-spacing: 1.1px;
-  text-transform: uppercase;
-  opacity: 0.55;
-  transition: opacity 0.2s;
+.in-screening-room .room-wrap:not(.fullscreen-active) {
+  height: clamp(420px, 78dvh, 900px) !important;
 }
-.in-screening-room #cinema-browse-toggle span {
-  margin-left: 10px;
+.in-screening-room .room-wrap::after {
+  display: none !important;
 }
-.in-screening-room #cinema-carousel {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 25px;
-  bottom: auto;
-  width: 100%;
-  height: 104px;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  gap: 10px;
-  padding: 9px;
-  background: linear-gradient(#101914f5, #101914e8);
-  backdrop-filter: blur(14px);
-  border: 1px solid #b59b6a44;
-  border-radius: 9px;
-  box-shadow: 0 9px 24px #0007;
-  opacity: 0;
-  transform: translateY(-8px);
-  visibility: hidden;
-  pointer-events: none;
-  transition:
-    opacity 0.2s,
-    transform 0.2s,
-    visibility 0.2s;
+.in-screening-room
+  .room-wrap
+  > :is(
+    .world-context,
+    .stations,
+    .fullscreen-exit-bar,
+    .room-caption,
+    .world-guide-tools
+  ) {
+  display: none !important;
 }
-.in-screening-room .cinema-menu-open #cinema-carousel {
-  opacity: 1;
-  transform: none;
-  visibility: visible;
-  pointer-events: auto;
+.in-screening-room .world-toolbar {
+  grid-row: 1;
+  min-height: 48px;
+  padding: 6px 12px !important;
+  flex-wrap: nowrap !important;
 }
-.cinema-menu-open #cinema-browse-toggle,
-.in-screening-room #cinema-browse-toggle:hover,
-.in-screening-room #cinema-browse-toggle:focus-visible {
-  opacity: 1;
+.in-screening-room .world-toolbar .room-label {
+  display: block !important;
+  flex: 1 !important;
+  min-width: 0;
 }
-.in-screening-room #cinema-rail-scroll {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x proximity;
-  flex: 1;
-  padding: 1px 3px;
-  scrollbar-width: none;
-}
-.in-screening-room #cinema-rail-scroll::-webkit-scrollbar {
-  display: none;
-}
-.in-screening-room .cinema-pick {
-  flex: 0 0 123px;
-  width: 123px;
-  display: block;
-  padding: 0;
-  border: 0;
-  background: none;
-}
-.in-screening-room .cinema-pick img {
-  width: 123px;
-  height: 65px;
-  aspect-ratio: auto;
-  border-radius: 3px;
-  object-fit: cover;
-}
-.in-screening-room .cinema-pick b {
-  font-size: 15px;
-  margin: 5px 0 0;
+.in-screening-room .world-toolbar .room-label b {
+  font-size: 17px !important;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.in-screening-room #cinema-rail-up,
-.in-screening-room #cinema-rail-down {
-  position: static;
+.in-screening-room .world-toolbar .room-label small {
+  display: none !important;
+}
+.in-screening-room .world-toolbar .room-tools {
+  width: auto !important;
+  flex: none !important;
+}
+.in-screening-room .world-toolbar :is(#calm, #help, #fullscreen) {
+  display: none !important;
+}
+.in-screening-room #world-menu-toggle {
+  display: grid !important;
+  place-items: center;
+  flex: 0 0 44px !important;
+  width: 44px !important;
+  min-width: 44px;
+  max-width: 44px;
+  height: 44px;
+  padding: 9px !important;
+}
+#world-menu-toggle svg {
+  display: block;
   width: 24px;
-  flex: 0 0 24px;
-  height: auto;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: #ceb98f;
-  font-size: 27px;
+  height: 24px;
+  flex: none;
 }
-.in-screening-room #cinema-controls,
-.theater-mode .room-wrap.fullscreen-active #cinema-controls {
-  left: 20px;
-  right: 220px;
-  bottom: 14px;
-  gap: 9px;
-  padding: 6px 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
+.in-screening-room .world-stage {
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  min-height: 0;
+  --film-rail-width: 180px;
 }
-.in-screening-room #cinema-controls span {
-  color: #9c9a8a;
-  font-size: 7px;
+.in-screening-room .cinema-menu-open .world-stage {
+  grid-template-columns: minmax(0, 1fr) var(--film-rail-width);
 }
-.in-screening-room #cinema-controls button,
-.in-screening-room #cinema-controls a {
-  background: #111b15b8;
-  border-color: #a28c6944;
-  border-radius: 4px;
-  font-size: 8px;
-}
-.theater-mode .room-wrap {
-  min-height: 520px;
-}
-.cinema-playing .room-wrap {
-  height: 100dvh;
-  min-height: 520px;
-}
-.cinema-playing .dock,
-.cinema-playing .stations {
-  display: none;
-}
-.theater-mode .fullscreen-exit-bar {
-  left: auto;
-  right: 14px;
-  bottom: 14px;
-  width: auto;
-  padding: 0;
-  background: none;
-  border: 0;
+.in-screening-room .world-stage #scene {
+  position: static !important;
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
   min-height: 0;
 }
-.theater-mode .fullscreen-exit-bar > span,
-.theater-mode .fullscreen-audio {
+.in-screening-room .world-stage #ink {
   display: none;
 }
-.theater-mode .fullscreen-exit-bar > button {
-  min-width: 150px;
-  font-size: 9px;
+.in-screening-room #cinema-carousel {
+  position: static !important;
+  grid-column: 2;
+  grid-row: 1;
+  inset: auto !important;
+  width: auto !important;
+  height: 100% !important;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto 36px minmax(0, 1fr) 36px;
+  gap: 6px;
   padding: 10px;
+  background: #111b15;
+  border: 0;
+  border-left: 1px solid #a58c5b;
+  border-radius: 0;
+  box-shadow: none;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
 }
-.theater-mode .room-tools {
-  top: 18px;
-  right: 18px;
+.in-screening-room #cinema-carousel[hidden] {
+  display: none !important;
 }
-.theater-mode .room-tools .tag {
-  padding: 9px 11px;
-  font-size: 9px;
-  background: #132119bb;
+.cinema-rail-heading {
+  font:
+    700 11px/1.6 "Space Mono",
+    monospace;
+  letter-spacing: 1.4px;
+  color: #d4bb87;
+  text-align: center;
 }
-.theater-mode .room-label {
-  top: 22px;
-  left: 24px;
+.in-screening-room #cinema-rail-scroll {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  gap: 14px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+  padding: 0 2px;
+  scrollbar-width: thin;
 }
-.theater-mode .room-label b {
-  font-size: 20px;
+.in-screening-room .cinema-pick {
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  padding: 4px;
+  text-align: left;
+  color: #eee6d3;
+  border: 1px solid transparent;
+  background: none;
+  scroll-snap-align: start;
+}
+.in-screening-room .cinema-pick[aria-current="true"] {
+  border-color: #d9902b;
+  background: #2b382a;
+}
+.in-screening-room .cinema-pick img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+}
+.in-screening-room .cinema-pick b {
+  display: block;
+  margin: 7px 0 2px;
+  font-size: 15px;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.in-screening-room :is(#cinema-rail-up, #cinema-rail-down) {
+  position: static;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 36px;
+  min-height: 36px;
+  margin: 0;
+  padding: 0;
+  color: #eee6d3;
+  font-size: 22px;
+  border: 1px solid #b7a27a55;
+  background: #26382f;
+}
+#world-mobile-menu .world-menu-cinema {
+  position: static !important;
+  inset: auto !important;
+  display: none;
+  width: 100%;
+  padding: 16px 0;
+  margin: 16px 0 0;
+  transform: none;
+  background: none;
+  box-shadow: none;
+  border: 0;
+  border-top: 1px solid #9a896a;
+}
+.in-screening-room #world-mobile-menu .world-menu-cinema {
+  display: grid;
+  gap: 10px;
+}
+#world-mobile-menu .world-menu-cinema h3 {
+  font:
+    800 25px/1.1 "Barlow Condensed",
+    Impact,
+    sans-serif;
+  margin: 0;
+}
+#world-mobile-menu #cinema-now {
+  font:
+    12px/1.7 "Space Mono",
+    monospace;
+  color: #4f493c;
+  margin: 0;
+}
+#world-mobile-menu .world-menu-cinema :is(button, a) {
+  position: static;
+  display: block;
+  min-height: 44px;
+  padding: 10px;
+  width: 100%;
+  font:
+    13px/1.5 "Space Mono",
+    monospace;
+  background: #f5eddc;
+  color: #29291f;
+  border: 1px solid #a29173;
+  border-radius: 0;
+  text-align: left;
+}
+#world-mobile-menu .world-menu-cinema label {
+  display: grid;
+  font-size: 11px;
+  gap: 8px;
+}
+.cinema-transport {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.in-screening-room #world-mobile-menu:not([hidden]) {
+  display: block !important;
+  position: absolute;
+  left: auto;
+  right: 12px;
+  top: 58px;
+  bottom: auto;
+  width: min(360px, calc(100% - 24px));
+  max-height: calc(100% - 70px);
+  overflow: auto;
+  z-index: 90;
+  padding: 18px;
+  background: #eee6d3;
+  color: #26251e;
+  border: 1px solid #af9b76;
+  box-shadow: 0 10px 35px #0008;
+}
+#world-mobile-menu .world-guide-tools {
+  position: static !important;
+  inset: auto !important;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 16px 0 0;
+  max-width: none;
+  width: auto;
+  border: 0;
+  border-top: 1px solid #a29173;
+  background: none;
+}
+#world-mobile-menu .world-guide-tools[hidden] {
+  display: none !important;
+}
+#world-mobile-menu .world-guide-tools button {
+  min-height: 44px;
+  padding: 10px;
+  font-size: 13px;
+  color: #26251e;
+  background: #f5eddc;
+  border: 1px solid #a29173;
+}
+.in-screening-room #room-cinema iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+.cinema-touch-surface {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  z-index: 3;
+  cursor: pointer;
+}
+.room-wrap:not(.hud-hidden) .cinema-touch-surface {
+  pointer-events: none;
+}
+.cinema-playing .room-wrap.hud-hidden {
+  grid-template-rows: minmax(0, 1fr) !important;
+}
+.cinema-playing .room-wrap.hud-hidden > .world-toolbar {
+  display: none !important;
+}
+.cinema-playing .room-wrap.hud-hidden > .world-stage {
+  grid-row: 1 !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+.cinema-playing
+  .room-wrap.hud-hidden
+  :is(
+    #world-mobile-menu,
+    #cinema-carousel,
+    .world-guide-tools,
+    .world-orientation-hint
+  ) {
+  display: none !important;
+}
+.cinema-playing :is(.dock, #truth-companion, #companion-bubble) {
+  display: none !important;
+}
+.flat.in-screening-room #scene {
+  visibility: hidden;
+}
+.flat.in-screening-room .world-stage {
+  background: radial-gradient(ellipse at center, #263128, #080d09 75%);
+}
+.flat.in-screening-room #room-cinema {
+  display: block;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  transform: none !important;
+}
+.flat.in-screening-room .cinema-menu-open #room-cinema {
+  width: calc(100% - var(--film-rail-width)) !important;
+}
+.flat.in-screening-room .hud-hidden #room-cinema {
+  width: 100% !important;
+}
+.flat.in-screening-room #room-cinema[hidden] {
+  display: none;
+}
+.cinema-welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: 24px;
+  text-align: center;
+  color: #eee6d3;
+}
+.cinema-welcome span {
+  font-size: 11px;
   letter-spacing: 1.4px;
 }
-.theater-mode .room-label small {
-  display: none;
+.cinema-welcome h2 {
+  font:
+    800 clamp(30px, 5vw, 60px) / 1 "Barlow Condensed",
+    Impact,
+    sans-serif;
+  margin: 20px 0;
 }
-.theater-mode .world-guide-tools {
-  top: 52px;
-  left: 24px;
+.cinema-welcome p {
+  font-size: 14px;
+  line-height: 1.8;
 }
-.theater-mode .world-guide-tools button {
-  font-size: 7px;
-  padding: 6px 8px;
-  background: #15251bb3;
-  border-color: #b7a58233;
-}
-.theater-mode .room-wrap:after {
-  box-shadow: inset 0 0 75px #0004;
-  opacity: 0.1;
-}
-.cinema-playing #companion-bubble {
-  z-index: 40;
-}
-@media (max-width: 760px) {
-  .in-screening-room #cinema-browse-zone {
-    top: 110px;
-    width: calc(100% - 22px);
-    height: 117px;
+@media (max-width: 760px), (pointer: coarse) and (max-width: 1100px) {
+  .in-screening-room .world-stage {
+    --film-rail-width: 138px;
   }
   .in-screening-room #cinema-carousel {
-    height: 89px;
-    padding: 7px;
+    padding: 8px;
     gap: 4px;
-  }
-  .in-screening-room .cinema-pick {
-    flex-basis: 100px;
-    width: 100px;
-  }
-  .in-screening-room .cinema-pick img {
-    width: 100px;
-    height: 53px;
   }
   .in-screening-room .cinema-pick b {
     font-size: 13px;
   }
-  .in-screening-room #cinema-rail-scroll {
-    gap: 8px;
+  .in-screening-room .world-toolbar .room-label b {
+    font-size: 14px !important;
   }
-  .theater-mode .room-label {
-    top: 69px;
-    left: 12px;
-  }
-  .theater-mode .world-guide-tools {
-    top: 91px;
-    left: 12px;
-  }
-  .in-screening-room #cinema-controls,
-  .theater-mode .room-wrap.fullscreen-active #cinema-controls {
-    left: 10px;
-    right: 165px;
-    bottom: 10px;
-    gap: 5px;
-    flex-wrap: wrap;
-  }
-  .in-screening-room #cinema-controls span {
-    flex-basis: 100%;
-  }
-  .theater-mode .fullscreen-exit-bar {
+  .in-screening-room #world-mobile-menu:not([hidden]) {
     right: 8px;
-    bottom: 10px;
-  }
-  .theater-mode .fullscreen-exit-bar > button {
-    min-width: 140px;
-    padding: 10px;
-    font-size: 8px;
-  }
-  .cinema-playing #room-cinema {
-    left: 8px;
-    top: 232px;
+    top: 56px;
     width: calc(100% - 16px);
-    height: auto;
-    aspect-ratio: 16/9;
-    z-index: 7;
-    transform: none !important;
+    max-height: calc(100% - 64px);
+    padding: 16px;
   }
-  .theater-mode .room-wrap {
-    min-height: 540px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .in-screening-room #cinema-carousel,
-  #cinema-browse-toggle {
-    transition: none !important;
+  .in-screening-room .world-toolbar {
+    padding: max(4px, env(safe-area-inset-top))
+      max(8px, env(safe-area-inset-right)) 4px
+      max(8px, env(safe-area-inset-left)) !important;
   }
 }

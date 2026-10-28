@@ -102,7 +102,8 @@ export function createCompanionJourney({
     character.setAttribute("aria-hidden", "true");
     character.tabIndex = -1;
     setMode("immersive");
-    go(destination);
+    // Arrival must not reset a movie already selected in this same room.
+    if (appState.station !== destination) go(destination);
     getWorld().guideTravel?.(destination);
     worldTools.hidden = false;
     $(".room-wrap").scrollIntoView({

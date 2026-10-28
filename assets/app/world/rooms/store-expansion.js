@@ -1,3 +1,4 @@
+import { buildShopDoor } from "./doorway.js";
 import { buildBroadcastRooms } from "./broadcast-rooms.js";
 export function buildStoreExpansion({
   T,
@@ -71,71 +72,46 @@ export function buildStoreExpansion({
   world.add(reign);
   hit(reign, "Talk to Reign", () => store.navigate("checkout"));
   function elevator(y) {
-    const start = world.children.length;
-    box(2.6, 4.2, 0.25, mat("#4b5049"), 6.9, y + 2.1, 2.55);
-    box(0.2, 4.2, 2.6, mat("#4b5049"), 5.55, y + 2.1, 3.75);
-    box(0.2, 4.2, 2.6, mat("#4b5049"), 8.25, y + 2.1, 3.75);
-    for (const x of [6.27, 7.53]) {
-      const door = box(
-        1.23,
-        3.1,
-        0.1,
-        mat("#92988f", { metalness: 0.65, roughness: 0.4 }),
-        x,
-        y + 1.55,
-        5.08,
-      );
-      hit(door, "Enter elevator", () => store.openElevator());
-    }
-    box(2.8, 0.16, 0.3, dark, 6.9, y + 3.18, 5.08);
-    const button = box(0.18, 0.3, 0.08, brass, 5.36, y + 1.5, 5.1);
-    hit(button, "Select elevator floor", () => store.openElevator());
-    const shaft = new T.Group();
-    for (const object of world.children.slice(start)) {
-      object.position.x -= 6.9;
-      object.position.z -= 5.08;
-      shaft.add(object);
-    }
-    shaft.rotation.y = Math.PI / 2;
-    shaft.position.set(-8.3, 0, -0.4);
-    shaft.name =
-      y === 0 ? "shop-elevator-left-wall" : "upstairs-elevator-left-wall";
-    world.add(shaft);
+    const steel = mat("#4b5049");
+    box(0.25, 4.5, 2.9, steel, -10.9, y + 2.25, -0.4);
+    for (const z of [-1.85, 1.05]) box(2.6, 4.5, 0.2, steel, -9.6, y + 2.25, z);
+    buildShopDoor({
+      T,
+      world,
+      box,
+      mat,
+      label,
+      hit,
+      wood,
+      x: -8.3,
+      z: -0.4,
+      y,
+      facing: Math.PI / 2,
+      title: "ELEVATOR",
+      action: () => store.openElevator(),
+      closed: true,
+      double: true,
+      color: "#92988f",
+    });
   }
   elevator(0);
   twin("Enter elevator", () => store.openElevator());
-  const liftSign = label(
-    "ELEVATOR / RADIO · STUDIO",
-    2.65,
-    0.3,
-    -8.15,
-    3.65,
-    -0.4,
-    "#ead8ae",
-    "#4b5049",
-    70,
-  );
-  liftSign.rotation.y = Math.PI / 2;
-  hit(liftSign, "Select elevator floor", () => store.openElevator());
-  // A distinct closed merch entrance in the reserved bay on the right wall.
-  const merchDoor = box(0.12, 3.7, 2.5, mat("#294c3b"), 8.3, 1.85, -0.4);
-  hit(merchDoor, "Enter apparel and merch shop", commerce.merch);
-  for (const z of [-1.75, 0.95]) box(0.26, 3.95, 0.14, wood, 8.25, 1.97, z);
-  box(0.26, 0.16, 2.85, wood, 8.25, 3.95, -0.4);
-  box(0.18, 0.12, 0.12, brass, 8.17, 1.7, 0.5);
-  const merchSign = label(
-    "APPAREL / MERCH",
-    2.7,
-    0.5,
-    8.15,
-    4.43,
-    -0.4,
-    "#eee0bf",
-    "#294c3b",
-    85,
-  );
-  merchSign.rotation.y = -Math.PI / 2;
-  hit(merchSign, "Enter apparel and merch shop", commerce.merch);
+  buildShopDoor({
+    T,
+    world,
+    box,
+    mat,
+    label,
+    hit,
+    wood,
+    x: 8.27,
+    z: -0.4,
+    facing: -Math.PI / 2,
+    title: "APPAREL / MERCH",
+    action: commerce.merch,
+    closed: true,
+    color: "#294c3b",
+  });
   twin("Enter apparel and merch shop", commerce.merch);
   const stairSign = null;
   // Upstairs rooms are cutaways on a dedicated scene layer, connected by an actual corridor.

@@ -38,73 +38,80 @@ export function createCinemaController({
     host.hidden = true;
     host.setAttribute("aria-label", "Theater screen");
     (room.querySelector?.(".world-stage") || room).append(host);
-    const browse = document.createElement("div");
-    browse.id = "cinema-browse-zone";
-    browse.innerHTML =
-      '<button id="cinema-browse-toggle" aria-expanded="true" aria-controls="cinema-carousel">Browse films <span>⌄</span></button>';
-    (room.querySelector?.(".world-stage") || room).append(browse);
     const rail = document.createElement("aside");
     rail.id = "cinema-carousel";
-    rail.setAttribute("aria-label", "Theater film strip");
-    rail.innerHTML = `<button id="cinema-rail-up" aria-label="Previous videos">‹</button><div id="cinema-rail-scroll">${screeningVideos.map((v, i) => `<button class="cinema-pick" data-cinema-video="${i}" aria-current="false"><img loading="lazy" src="${esc(v.thumb)}" alt=""><span><b>${esc(v.title)}</b></span></button>`).join("")}</div><button id="cinema-rail-down" aria-label="More videos">›</button>`;
-    browse.append(rail);
+    rail.setAttribute("aria-label", "Choose a film");
+    rail.innerHTML = `<div class="cinema-rail-heading">ON SCREEN</div><button id="cinema-rail-up" aria-label="Previous videos">↑</button><div id="cinema-rail-scroll">${screeningVideos.map((v, i) => `<button class="cinema-pick" data-cinema-video="${i}" aria-current="false"><img loading="lazy" src="${esc(v.thumb)}" alt=""><span><b>${esc(v.title)}</b></span></button>`).join("")}</div><button id="cinema-rail-down" aria-label="More videos">↓</button>`;
+    (room.querySelector?.(".world-stage") || room).append(rail);
     function menu(open) {
       room.classList.toggle("cinema-menu-open", open);
-      $("#cinema-browse-toggle").setAttribute("aria-expanded", String(open));
+      rail.hidden = !open;
       rail.setAttribute("aria-hidden", String(!open));
       if (open) rail.removeAttribute("inert");
       else rail.setAttribute("inert", "");
     }
     room._cinemaMenu = menu;
-    let hideMenu;
-    lifetime.add(() => clearTimeout(hideMenu));
-    const closeSoon = () => {
-      clearTimeout(hideMenu);
-      hideMenu = setTimeout(() => {
-        if (cinemaState.active && !browse.matches(":focus-within")) menu(false);
-      }, 450);
-    };
-    browse.addEventListener("pointerenter", () => {
-      clearTimeout(hideMenu);
-      menu(true);
-    });
-    browse.addEventListener("pointerleave", closeSoon);
-    browse.addEventListener("focusin", () => menu(true));
-    browse.addEventListener("focusout", closeSoon);
-    $("#cinema-browse-toggle").onclick = () => menu(true);
-    browse.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        $("#cinema-browse-toggle").focus();
-        menu(false);
-      }
-    });
-    const controls = document.createElement("div");
+    const controls = document.createElement("section");
     controls.id = "cinema-controls";
+    controls.className = "world-menu-cinema";
     controls.innerHTML =
-      '<span id="cinema-now" role="status">Choose a video from the carousel.</span><button id="cinema-stop">Lights up</button><button id="cinema-leave">Back to the shop</button><a id="cinema-external" target="_blank" rel="noopener noreferrer" hidden>Open on YouTube ↗</a>';
-    (room.querySelector?.(".world-stage") || room).append(controls);
+      '<h3>The screening room</h3><p id="cinema-now" role="status">Choose a video from the side rail.</p><div class="cinema-transport"><button id="cinema-rewind">↶ 10 seconds</button><button id="cinema-play-pause">Play / pause</button><button id="cinema-forward">10 seconds ↷</button></div><label>VIDEO POSITION<input type="range" id="cinema-seek" min="0" max="100" step=".1" value="0"></label><button id="cinema-stop">Lights up</button><button id="cinema-leave">Back to the shop</button><a id="cinema-external" target="_blank" rel="noopener noreferrer" hidden>Open on YouTube ↗</a>';
+    (room.querySelector?.("#world-mobile-menu") || room).append(controls);
     $$("[data-cinema-video]").forEach(
       (b) => (b.onclick = () => video(+b.dataset.cinemaVideo)),
     );
     $("#cinema-rail-up").onclick = () =>
       $("#cinema-rail-scroll").scrollBy({
-        left: -360,
+        top: -240,
         behavior: appState.calm ? "auto" : "smooth",
       });
     $("#cinema-rail-down").onclick = () =>
       $("#cinema-rail-scroll").scrollBy({
-        left: 360,
+        top: 240,
         behavior: appState.calm ? "auto" : "smooth",
       });
     $("#cinema-stop").onclick = stopCinema;
     $("#cinema-leave").onclick = () => go(0);
+    $("#cinema-play-pause").onclick = () => {
+      if (cinemaState.playing) cinemaState.player?.pauseVideo?.();
+      else cinemaState.player?.playVideo?.();
+    };
+    for (const [id, delta] of [
+      ["#cinema-rewind", -10],
+      ["#cinema-forward", 10],
+    ])
+      $(id).onclick = () => {
+        const player = cinemaState.player;
+        if (player?.getCurrentTime)
+          player.seekTo(Math.max(0, player.getCurrentTime() + delta), true);
+      };
+    $("#cinema-seek").oninput = (event) => {
+      const player = cinemaState.player;
+      if (player?.getDuration)
+        player.seekTo(
+          (player.getDuration() * Number(event.target.value)) / 100,
+          true,
+        );
+    };
+    lifetime.interval(() => {
+      const player = cinemaState.player,
+        seek = $("#cinema-seek");
+      if (player?.getDuration && seek && document.activeElement !== seek) {
+        const duration = player.getDuration();
+        seek.value = duration ? (player.getCurrentTime() / duration) * 100 : 0;
+      }
+    }, 1000);
+    lifetime.listen(document, "truth-hud", (event) => {
+      if (appState.station === 2) menu(event.detail.visible);
+    });
     lifetime.listen(document, "truth-station", (e) => {
       document.body.classList.toggle("theater-mode", e.detail === 2);
       document.body.classList.toggle("in-screening-room", e.detail === 2);
       if (e.detail === 2) {
-        menu(!cinemaState.active);
+        menu(true);
         document.dispatchEvent(new Event("truth-guide-screening"));
-        room.scrollIntoView({ block: "start" });
+        if (!room.classList.contains("fullscreen-active"))
+          room.scrollIntoView({ block: "start" });
       } else stopCinema();
     });
   }
@@ -112,7 +119,7 @@ export function createCinemaController({
   const loadYouTubeAPI = provider.load;
   function cinemaPlaying(value, ended = false) {
     cinemaState.playing = value;
-    if (ended) $(".room-wrap")._cinemaMenu?.(true);
+
     document.dispatchEvent(
       new CustomEvent("truth-cinema", { detail: { playing: value, ended } }),
     );
@@ -138,12 +145,11 @@ export function createCinemaController({
     document.body.classList.remove("cinema-playing");
     $(".room-wrap")._cinemaMenu?.(true);
     $("#cinema-now") &&
-      ($("#cinema-now").textContent = "Choose a video from the carousel.");
+      ($("#cinema-now").textContent = "Choose a video from the side rail.");
   }
   async function video(i = 0) {
     if (!screeningVideos.length) return;
     if ($("#modal").open) $("#modal").close();
-    if (getWorld() && appState.mode !== "immersive") setMode("immersive");
     if (appState.station !== 2) go(2);
     i = Math.max(0, Math.min(screeningVideos.length - 1, i));
     const selected = screeningVideos[i],
@@ -184,12 +190,18 @@ export function createCinemaController({
     iframe.src =
       "https://www.youtube-nocookie.com/embed/" +
       selected.id +
-      "?enablejsapi=1&playsinline=1&rel=0&fs=0&autoplay=1&origin=" +
+      "?enablejsapi=1&playsinline=1&rel=0&fs=0&controls=0&autoplay=1&origin=" +
       encodeURIComponent(location.origin);
-    host.replaceChildren(iframe);
+    const touch = document.createElement("button");
+    touch.className = "cinema-touch-surface";
+    touch.setAttribute("aria-label", "Show theater menu and videos");
+    touch.onclick = () =>
+      document.dispatchEvent(new Event("truth-cinema-wake"));
+    host.replaceChildren(iframe, touch);
     host.dataset.video = selected.id;
     $(".room-wrap")._cinemaMenu?.(false);
     document.activeElement?.blur();
+    document.dispatchEvent(new Event("truth-cinema-selected"));
     try {
       const YT = await loadYouTubeAPI();
       if (serial !== cinemaSerial) return;
@@ -230,12 +242,23 @@ export function createCinemaController({
     state: cinemaState,
     mount: setupCinema,
     open: video,
+    browse() {
+      if (appState.station !== 2) go(2);
+      document.body.classList.add("theater-mode", "in-screening-room");
+      $(".room-wrap")._cinemaMenu?.(true);
+      if (!getWorld() && !cinemaState.active) {
+        const host = $("#room-cinema");
+        host.hidden = false;
+        host.innerHTML =
+          '<div class="cinema-welcome"><span>TRUTHSTON / SCREENING ROOM</span><h2>TAKE YOUR SEAT.</h2><p>Choose a film from the side rail.</p></div>';
+      }
+    },
     stop: stopCinema,
     destroy() {
       stopCinema();
       provider.destroy();
       lifetime.dispose();
-      ["#room-cinema", "#cinema-browse-zone", "#cinema-controls"].forEach((s) =>
+      ["#room-cinema", "#cinema-carousel", "#cinema-controls"].forEach((s) =>
         $(s)?.remove(),
       );
       delete $(".room-wrap")._cinemaMenu;

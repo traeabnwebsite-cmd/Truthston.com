@@ -1,4 +1,5 @@
 import { createLifetime } from "./core/lifecycle.js";
+import { createMobileLayout } from "./shell/mobile-layout.js";
 import { createTwinRegistry } from "./core/twins.js";
 import { createFeedback } from "./shell/feedback.js";
 import { createHomeSummary } from "./shell/home.js";
@@ -67,8 +68,13 @@ export async function createApplication({ initialMode } = {}) {
   if (initialMode && ["standard", "immersive", "reduced"].includes(initialMode))
     appState.mode = initialMode;
   else if (appState.calm) appState.mode = "reduced";
+  else if (
+    navigator.standalone ||
+    matchMedia("(display-mode: standalone), (display-mode: fullscreen)").matches
+  )
+    appState.mode = "immersive";
   else if (innerWidth < 650) appState.mode = "standard";
-  let sceneAPI, worldLoader;
+  let sceneAPI, worldLoader, mobileLayout;
   const lifetime = createLifetime();
   const worldAbort = new AbortController();
   lifetime.add(() => worldAbort.abort());
@@ -137,7 +143,15 @@ export async function createApplication({ initialMode } = {}) {
   });
 
   const router = createRouter({
-    onRoute: () => mode.syncWorld(),
+    onRoute: (intent) => {
+      if (intent.account || intent.shopping || intent.editorial || intent.store) {
+        cinema.stop();
+        document.body.classList.remove("theater-mode", "in-screening-room");
+        $(".room-wrap").classList.remove("hud-hidden");
+      }
+      mode.syncWorld();
+      mobileLayout?.sync();
+    },
     query: $,
     queryAll: $$,
     editorial: { open: (section) => editorial.open(section) },
@@ -259,6 +273,13 @@ export async function createApplication({ initialMode } = {}) {
     screeningVideos,
   });
 
+  mobileLayout = createMobileLayout({
+    appState,
+    openDJ: dj.open,
+    openCinema: () => cinema.browse(),
+    openTimeline: community.timeline,
+  });
+
   worldLoader = createLazyFeature({
     load: async () => {
       const { createWorld } = await import("./world/controller.js");
@@ -325,6 +346,11 @@ export async function createApplication({ initialMode } = {}) {
   });
   // Apply the current choice after async startup; never overwrite a user's early mobile selection.
   mode.select(appState.mode);
+  if (
+    navigator.standalone ||
+    matchMedia("(display-mode: standalone), (display-mode: fullscreen)").matches
+  )
+    void fullscreen.enter({ native: false });
 
   // The companion is an illustrated site guide, not a direct chat with Trae. All destinations are allowlisted.
   // Retain the approved illustrated character. Canvas layers provide light limb/head motion without a card flip.
@@ -344,6 +370,7 @@ export async function createApplication({ initialMode } = {}) {
     await fullscreen.leave();
     if ($("#modal").open) $("#modal").close();
     chrome.destroy();
+    mobileLayout.destroy();
     companion.destroy();
     cinema.destroy();
     worldLoader.destroy();
@@ -385,6 +412,7 @@ export async function createApplication({ initialMode } = {}) {
   lifetime.listen(window, "pageshow", () => {
     if (appState.mode === "immersive") sceneAPI?.resume();
   });
+  worldLayout.ready();
   return {
     state: appState,
     destroy,

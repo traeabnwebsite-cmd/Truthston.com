@@ -1,0 +1,42 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { createFullscreenSession } from "../assets/app/shell/fullscreen-session.js";
+test("logical fullscreen persists through room changes, fallback, and rotation before native exit", () => {
+  let time = 0;
+  const s = createFullscreenSession({ now: () => time });
+  s.begin();
+  s.sync(true);
+  s.rotate();
+  time = 500;
+  assert.equal(s.sync(false), true);
+  assert.equal(s.active, true);
+  s.sync(true);
+  s.leave();
+  assert.equal(s.sync(false), false);
+});
+test("orientation event after browser exit recovers the session; explicit exit cannot recover", () => {
+  let time = 0;
+  const s = createFullscreenSession({ now: () => time });
+  s.begin();
+  s.sync(true);
+  time = 100;
+  s.sync(false);
+  assert.equal(s.active, false);
+  time = 150;
+  s.rotate();
+  assert.equal(s.active, true);
+  s.leave();
+  time = 200;
+  s.rotate();
+  assert.equal(s.active, false);
+});
+test("normal browser exit is respected and unsupported fullscreen stays in fallback", () => {
+  let time = 0;
+  const s = createFullscreenSession({ now: () => time });
+  s.begin();
+  s.fallback();
+  assert.equal(s.sync(false), true);
+  s.sync(true);
+  time = 5000;
+  assert.equal(s.sync(false), false);
+});

@@ -1,3 +1,4 @@
+import { buildShopDoor } from "./doorway.js";
 import { $, $$, esc } from "../../core/dom.js";
 export function buildStorefront({
   world,
@@ -44,13 +45,23 @@ export function buildStorefront({
     for (const dx of [-2.3, 0, 2.3])
       box(0.055, 3.15, 0.12, roofSteel, x + dx, 2.05, 6.98);
   }
-  for (const x of [-0.72, 0.72]) {
-    const entry = box(1.35, 3.25, 0.1, storefrontGlass, x, 1.75, 6.96);
-    hit(entry, "Enter ABN Records, CDs and Tapes", () => go(0));
-    box(0.07, 3.3, 0.14, roofSteel, x - 0.69, 1.75, 7.01);
-    box(0.04, 0.55, 0.11, limestone, x + (x < 0 ? 0.45 : -0.45), 1.65, 7.05);
-  }
-  box(3, 0.1, 0.2, roofSteel, 0, 3.43, 6.98);
+  buildShopDoor({
+    T,
+    world,
+    box,
+    mat,
+    label,
+    hit,
+    wood: roofSteel,
+    x: 0,
+    z: 6.96,
+    title: "ENTER ABN",
+    action: () => go(0),
+    closed: true,
+    double: true,
+    color: "#274b4e",
+    doorMaterial: storefrontGlass,
+  });
   const shopAwning = box(12, 0.12, 2.2, mat("#8b3e2e"), 0, 4.04, 7.35);
   shopAwning.rotation.x = 0.08;
   abnMark(2.1, -6.2, 5.08, 6.98);

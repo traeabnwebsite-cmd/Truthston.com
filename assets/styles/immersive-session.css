@@ -1,0 +1,28 @@
+/* One persistent surface for every room and embedded page, in either orientation. */
+html.world-fullscreen,
+body.world-fullscreen {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+.room-wrap.fullscreen-active {
+  position: fixed !important;
+  inset: 0 !important;
+  width: var(--immersive-width, 100vw) !important;
+  height: var(--immersive-height, 100dvh) !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  z-index: 1000 !important;
+}
+.room-wrap.fullscreen-active .world-stage {
+  min-height: 0 !important;
+  min-width: 0 !important;
+}
+.room-wrap:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}

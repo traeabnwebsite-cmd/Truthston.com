@@ -1,7 +1,12 @@
 import { $, $$, esc } from "../core/dom.js";
 import { createLifetime } from "../core/lifecycle.js";
+import { createFullscreenSession } from "./fullscreen-session.js";
 export function createFullscreen({ toast }) {
   const lifetime = createLifetime();
+  const session = createFullscreenSession();
+  let disposed = false,
+    htmlOverflow = "",
+    lastOrientation = innerWidth > innerHeight;
 
   const roomElement = $(".room-wrap"),
     fullscreenButton = $("#fullscreen"),
@@ -24,9 +29,31 @@ export function createFullscreen({ toast }) {
   });
   const nativeFullscreenElement = () =>
     document.fullscreenElement || document.webkitFullscreenElement || null;
-  const fullscreenActive = () =>
-    nativeFullscreenElement() === roomElement ||
-    roomElement.classList.contains("fullscreen-fallback");
+  const nativeRoomActive = () => {
+    const element = nativeFullscreenElement();
+    return (
+      element === roomElement ||
+      Boolean(element && roomElement.contains(element))
+    );
+  };
+  const fullscreenActive = () => session.active || nativeRoomActive();
+  function resizeViewport() {
+    if (disposed) return;
+    const next = innerWidth > innerHeight;
+    if (next !== lastOrientation) {
+      session.rotate();
+      lastOrientation = next;
+    }
+    roomElement.style.setProperty(
+      "--immersive-height",
+      `${window.visualViewport?.height || innerHeight}px`,
+    );
+    roomElement.style.setProperty(
+      "--immersive-width",
+      `${window.visualViewport?.width || innerWidth}px`,
+    );
+    if (session.active) syncFullscreen();
+  }
   function placeFullscreenOverlays(active) {
     for (const { node, anchor } of fullscreenOverlays) {
       const destination = active ? roomElement : anchor.parentNode;
@@ -43,7 +70,18 @@ export function createFullscreen({ toast }) {
     }
   }
   function syncFullscreen() {
-    const active = fullscreenActive();
+    if (disposed) return;
+    const active = session.sync(nativeRoomActive());
+    roomElement.classList.toggle(
+      "fullscreen-fallback",
+      active && !nativeRoomActive(),
+    );
+    document.documentElement.classList.toggle("world-fullscreen", active);
+    document.body.classList.toggle("world-fullscreen", active);
+    if (active) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    }
     roomElement.classList.toggle("fullscreen-active", active);
     fullscreenButton.setAttribute("aria-pressed", String(active));
     fullscreenButton.setAttribute(
@@ -57,6 +95,7 @@ export function createFullscreen({ toast }) {
     placeFullscreenOverlays(active);
     if (!active && fullscreenWasActive) {
       document.body.style.overflow = fullscreenOverflow;
+      document.documentElement.style.overflow = htmlOverflow;
       window.scrollTo(fullscreenScroll.x, fullscreenScroll.y);
       lifetime.frame(() => {
         if (!$("#modal").open) {
@@ -75,8 +114,9 @@ export function createFullscreen({ toast }) {
   async function leaveFullscreen() {
     if (fullscreenBusy) return;
     fullscreenBusy = true;
+    session.leave();
     try {
-      if (nativeFullscreenElement() === roomElement) {
+      if (nativeRoomActive()) {
         const exit = document.exitFullscreen || document.webkitExitFullscreen;
         if (exit) await exit.call(document);
       }
@@ -89,20 +129,27 @@ export function createFullscreen({ toast }) {
       fullscreenBusy = false;
     }
   }
-  async function enterFullscreen() {
-    if (fullscreenBusy) return;
+  async function enterFullscreen({ native = true } = {}) {
+    if (fullscreenBusy || disposed) return;
+    if (session.active && nativeRoomActive()) return;
     fullscreenBusy = true;
-    fullscreenScroll = { x: window.scrollX, y: window.scrollY };
-    fullscreenOverflow = document.body.style.overflow;
-    fullscreenReturnFocus = document.activeElement;
+    if (!session.active) {
+      fullscreenScroll = { x: window.scrollX, y: window.scrollY };
+      fullscreenOverflow = document.body.style.overflow;
+      htmlOverflow = document.documentElement.style.overflow;
+      fullscreenReturnFocus = document.activeElement;
+    }
+    session.begin();
+    resizeViewport();
     try {
       const request =
         roomElement.requestFullscreen || roomElement.webkitRequestFullscreen;
-      if (!request) throw new Error("Fullscreen unavailable");
-      await request.call(roomElement);
+      if (!request || !native) throw new Error("Fullscreen unavailable");
+      if (roomElement.requestFullscreen)
+        await request.call(roomElement, { navigationUI: "hide" });
+      else await request.call(roomElement);
     } catch {
-      roomElement.classList.add("fullscreen-fallback");
-      document.body.style.overflow = "hidden";
+      session.fallback();
     } finally {
       syncFullscreen();
       fullscreenBusy = false;
@@ -119,6 +166,31 @@ export function createFullscreen({ toast }) {
     e.preventDefault();
     leaveFullscreen();
   });
+  lifetime.listen(window, "resize", resizeViewport);
+  lifetime.listen(window, "orientationchange", () => {
+    session.rotate();
+    resizeViewport();
+  });
+  if (window.screen?.orientation)
+    lifetime.listen(window.screen.orientation, "change", () => {
+      session.rotate();
+      resizeViewport();
+    });
+  if (window.visualViewport)
+    lifetime.listen(window.visualViewport, "resize", resizeViewport);
+  // A rotation can cause a browser to drop native fullscreen. The next user
+  // gesture can legally restore it, while the fixed immersive surface stays put.
+  lifetime.listen(roomElement, "pointerdown", (event) => {
+    if (event.target.closest?.("#fullscreen,#fullscreen-exit")) return;
+    if (
+      session.active &&
+      !nativeRoomActive() &&
+      roomElement.requestFullscreen &&
+      !fullscreenBusy
+    )
+      void enterFullscreen();
+  });
+  resizeViewport();
   syncFullscreen();
   // Keep keyboard focus within CSS fullscreen; dialogs retain their native focus handling.
   lifetime.listen(document, "keydown", (e) => {
@@ -160,6 +232,11 @@ export function createFullscreen({ toast }) {
     leave: leaveFullscreen,
     isActive: fullscreenActive,
     destroy() {
+      disposed = true;
+      session.leave();
+      document.documentElement.classList.remove("world-fullscreen");
+      document.body.classList.remove("world-fullscreen");
+      document.documentElement.style.overflow = htmlOverflow;
       lifetime.dispose();
       roomElement.classList.remove("fullscreen-fallback", "fullscreen-active");
       fullscreenBar.hidden = true;

@@ -1,0 +1,120 @@
+{
+  "selected": {
+    "classes": "room-wrap fullscreen-active hud-hidden",
+    "body": "mobile-site world-fullscreen calm theater-mode in-screening-room cinema-playing",
+    "rail": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "left": 0
+    },
+    "host": {
+      "x": 188.28884887695312,
+      "y": 42.95930099487305,
+      "width": 467.4222717285156,
+      "height": 259.2913513183594,
+      "top": 42.95930099487305,
+      "right": 655.7111206054688,
+      "bottom": 302.2506523132324,
+      "left": 188.28884887695312
+    },
+    "canvas": {
+      "x": 0,
+      "y": 0,
+      "width": 844,
+      "height": 390,
+      "top": 0,
+      "right": 844,
+      "bottom": 390,
+      "left": 0
+    },
+    "transform": "matrix3d(0.486898, 0, 0, 0, 0.0236854, 0.497125, 0, 5.61e-05, 0, 0, 1, 0, 188.289, 42.9593, 0, 1)",
+    "toolbar": 0,
+    "player": false,
+    "active": true
+  },
+  "woke": {
+    "classes": "room-wrap fullscreen-active cinema-menu-open",
+    "body": "mobile-site world-fullscreen calm theater-mode in-screening-room cinema-playing",
+    "rail": {
+      "x": 706,
+      "y": 57,
+      "width": 138,
+      "height": 333,
+      "top": 57,
+      "right": 844,
+      "bottom": 390,
+      "left": 706
+    },
+    "host": {
+      "x": 188.28884887695312,
+      "y": 99.95930480957031,
+      "width": 467.4222717285156,
+      "height": 259.29132080078125,
+      "top": 99.95930480957031,
+      "right": 655.7111206054688,
+      "bottom": 359.25062561035156,
+      "left": 188.28884887695312
+    },
+    "canvas": {
+      "x": 0,
+      "y": 57,
+      "width": 706,
+      "height": 333,
+      "top": 57,
+      "right": 706,
+      "bottom": 390,
+      "left": 0
+    },
+    "transform": "matrix3d(0.486898, 0, 0, 0, 0.0236854, 0.497125, 0, 5.61e-05, 0, 0, 1, 0, 188.289, 42.9593, 0, 1)",
+    "toolbar": 57,
+    "player": true,
+    "active": true
+  },
+  "menu": {
+    "parent": "world-mobile-menu",
+    "display": "grid"
+  },
+  "hiddenAgain": {
+    "classes": "room-wrap fullscreen-active hud-hidden",
+    "body": "mobile-site world-fullscreen calm theater-mode in-screening-room cinema-playing",
+    "rail": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "left": 0
+    },
+    "host": {
+      "x": 188.28884887695312,
+      "y": 42.95930099487305,
+      "width": 467.4222717285156,
+      "height": 259.2913513183594,
+      "top": 42.95930099487305,
+      "right": 655.7111206054688,
+      "bottom": 302.2506523132324,
+      "left": 188.28884887695312
+    },
+    "canvas": {
+      "x": 0,
+      "y": 0,
+      "width": 844,
+      "height": 390,
+      "top": 0,
+      "right": 844,
+      "bottom": 390,
+      "left": 0
+    },
+    "transform": "matrix3d(0.486898, 0, 0, 0, 0.0236854, 0.497125, 0, 5.61e-05, 0, 0, 1, 0, 188.289, 42.9593, 0, 1)",
+    "toolbar": 0,
+    "player": true,
+    "active": true
+  }
+}

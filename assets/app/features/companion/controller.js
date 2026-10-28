@@ -472,6 +472,9 @@ export function createCompanion({
       place(r.left, r.top);
     }
   }
+  lifetime.listen(document, "truth-mobile-layout", () => {
+    if (state.homeDocked) dockHome();
+  });
   lifetime.listen(document, "fullscreenchange", attach);
   lifetime.listen(document, "webkitfullscreenchange", attach);
   lifetime.observe(
@@ -565,7 +568,7 @@ export function createCompanion({
   worldTools.hidden = true;
   worldTools.innerHTML =
     '<button id="companion-world-ask">✦ Ask the companion</button><button id="companion-world-home">↥ Back upstairs</button><button id="companion-world-putaway">Put companion away</button>';
-  $(".room-wrap").append(worldTools);
+  ($("#world-mobile-menu") || $(".room-wrap")).append(worldTools);
   $("#companion-world-putaway").onclick = putAway;
   const journey = createCompanionJourney({
     state,
@@ -671,7 +674,7 @@ export function createCompanion({
     }
   });
   lifetime.listen(document, "truth-guide-screening", () => {
-    if (state.hidden) return;
+    if (state.hidden || appState.mode !== "immersive") return;
     if (state.inWorld) {
       if (appState.station !== 2) go(2);
       else if (!state.worldSeat) getWorld()?.guideTravel?.(2);

@@ -208,6 +208,7 @@ export function createWorldNavigation({
       camera.fov = responsiveFieldOfView(
         camera.userData.baseFov,
         camera.aspect,
+        i === 2 ? 125 : 90,
       );
       camera.updateProjectionMatrix();
       sun.intensity = i === 3 ? 1.65 : 3;

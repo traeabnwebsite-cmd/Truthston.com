@@ -1,6 +1,8 @@
-# Trae Tha Truth — sliced production build specification
+# Truthston.com — sliced production build specification
 
-Version 4.0 · October 27, 2026 · Modular prototype implemented on `codex/modularize-frontend`.
+Version 5.0 · October 28, 2026.
+
+**Current execution register:** [Completion build specification](docs/COMPLETION-BUILD-SPEC.md) defines C01–C13, verified starting state, chronological execution and production acceptance. Use it before historical status notes below. Modular extraction and subsequent publication have already reached main; old statements below saying main/live are unchanged are historical, not current deployment state.
 
 **Architecture update:** R0–R8 separation is complete. See [actual module map, lifecycle and release contracts](docs/refactor/ARCHITECTURE.md) and [verification gates](docs/refactor/STATUS.md). Use the existing feature owners for further production work; do not recreate shared feature scope in the entry. Source preview needs no frontend build. The branch has not been merged into main or deployed over the live site. The product/backend acceptance items below remain distinct from architecture completion.
 

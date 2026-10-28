@@ -15,3 +15,10 @@ test('feature disposal removes listeners, timers and observers exactly once',asy
 test('persistent DOM handler ownership restores the previous handler on disposal',()=>{const target={onclick:()=>1},old=target.onclick,lifetime=createLifetime();lifetime.handler(target,'onclick',()=>2);assert.equal(target.onclick(),2);lifetime.dispose();assert.equal(target.onclick,old);});
 
 test('entering a room waits for the world without forcing Standard mode',async()=>{let world=null,loads=0;const modes=[],travel=[];const h=fixture(()=>Promise.resolve(),{getWorld:()=>world,ensureWorld:async()=>{loads++;world={setGuideVisible(){},guideTravel:id=>travel.push(id)};},setMode:mode=>modes.push(mode)});h.state.portalPhase='outside';await h.journey.enterPortal(1);assert.equal(loads,1);assert.equal(h.state.inWorld,true);assert.ok(modes.every(mode=>mode==='immersive'));assert.deepEqual(travel,[1]);});
+
+test('companion arrival in the current theater does not retravel and reset a selected movie',async()=>{
+ const navigation=[],guide=[];
+ const h=fixture(()=>Promise.resolve(),{appState:{station:2,calm:false},getWorld:()=>({setGuideVisible(){},guideTravel:id=>guide.push(id)}),go:id=>navigation.push(id)});
+ h.state.portalPhase='outside';await h.journey.enterPortal(2);
+ assert.equal(h.state.inWorld,true);assert.deepEqual(navigation,[]);assert.deepEqual(guide,[2]);
+});

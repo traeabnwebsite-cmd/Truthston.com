@@ -1397,7 +1397,7 @@ body:has(dialog[open]) #truth-companion {
   z-index: 36;
 }
 @media (max-width: 650px) {
-  .cinema-playing #room-cinema {
+  .flat.cinema-playing #room-cinema {
     z-index: 7;
     left: 8px;
     top: 160px;

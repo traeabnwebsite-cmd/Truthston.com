@@ -21,6 +21,7 @@ export function createExperienceMode({
     if (m === "reduced") setCalm(true);
     if (m === "immersive" && !getWorld()) document.body.classList.add("flat");
     syncWorld();
+    document.dispatchEvent(new Event("truth-mode"));
   }
   function syncWorld() {
     if (

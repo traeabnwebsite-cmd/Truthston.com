@@ -1,8 +1,8 @@
 // Widen the vertical field of view on narrow screens without stretching scene geometry.
-export function responsiveFieldOfView(base, aspect) {
+export function responsiveFieldOfView(base, aspect, maxFov = 90) {
   const ratio = Math.max(0.25, Number(aspect) || 1);
   return Math.min(
-    90,
+    maxFov,
     (2 *
       Math.atan(Math.tan((base * Math.PI) / 360) / Math.min(1, ratio / 1.25)) *
       180) /

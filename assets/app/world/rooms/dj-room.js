@@ -1,3 +1,4 @@
+import { buildShopDoor } from "./doorway.js";
 import { $, $$, esc } from "../../core/dom.js";
 export function buildDJRoom({
   world,
@@ -140,21 +141,21 @@ export function buildDJRoom({
   const djGlow = new T.PointLight("#f4c38e", 65, 18, 2);
   djGlow.position.set(-14.4, 5.8, 2);
   scene.add(djGlow);
-  for (const z of [1.18, 4.02]) box(0.26, 3.95, 0.16, djFrame, -8.42, 1.97, z);
-  box(0.26, 0.16, 3, djFrame, -8.42, 3.95, 2.6);
-  const djEntry = label(
-    "DJ BOOTH",
-    2.7,
-    0.58,
-    -8.27,
-    4.43,
-    2.6,
-    "#eee0bf",
-    "#81392d",
-    95,
-  );
-  djEntry.rotation.y = Math.PI / 2;
-  hit(djEntry, "Enter the DJ booth", () => go(1));
+  buildShopDoor({
+    T,
+    world,
+    box,
+    mat,
+    label,
+    hit,
+    wood,
+    x: -8.27,
+    z: 2.6,
+    facing: Math.PI / 2,
+    title: "DJ BOOTH",
+    action: () => go(1),
+    color: "#81392d",
+  });
   const djBack = label(
     "BACK TO THE RECORD SHOP",
     2.7,

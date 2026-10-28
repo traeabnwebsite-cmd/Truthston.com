@@ -1,3 +1,5 @@
+import { archiveYearRows } from "./archive-layout.js";
+import { buildShopDoor } from "../rooms/doorway.js";
 import { $, $$, esc } from "../../core/dom.js";
 export function buildStreet({
   box,
@@ -20,35 +22,21 @@ export function buildStreet({
   timeline,
 }) {
   const streetCenter = 6.65;
-  box(0.16, 4, 0.35, wood, 5.43, 2, -5.85);
-  box(0.16, 4, 0.35, wood, 7.78, 2, -5.85);
-  box(2.5, 0.18, 0.35, wood, 6.6, 4, -5.85);
-  box(2.25, 0.08, 0.65, paper, 6.6, 0.02, -5.85);
-  const doorPivot = new T.Group();
-  doorPivot.position.set(5.5, 0, -5.65);
-  world.add(doorPivot);
-  const door = new T.Mesh(new T.BoxGeometry(2.16, 3.8, 0.14), mat("#334b35"));
-  door.position.set(1.08, 1.9, 0);
-  doorPivot.add(door);
-  hit(door, "Step outside — Houston street", () => go(3));
-  const handle = new T.Mesh(
-    new T.SphereGeometry(0.065, 12, 8),
-    mat("#d9902b", { metalness: 0.75, roughness: 0.3 }),
-  );
-  handle.position.set(1.93, 1.85, 0.13);
-  doorPivot.add(handle);
-  const doorSign = label(
-    "STEP OUTSIDE / TRUTHSTON",
-    2.4,
-    0.42,
-    6.6,
-    4.35,
-    -5.5,
-    "#f4d19b",
-    "#243d32",
-    65,
-  );
-  hit(doorSign, "Step outside — Houston street", () => go(3));
+  const { pivot: doorPivot } = buildShopDoor({
+    T,
+    world,
+    box,
+    mat,
+    label,
+    hit,
+    wood,
+    x: 6.65,
+    z: -5.65,
+    title: "STEP OUTSIDE / TRUTHSTON",
+    action: () => go(3),
+    closed: true,
+    color: "#334b35",
+  });
   const exteriorStart = world.children.length;
   // Houston city set: landmark silhouettes based on real architecture; distances are compressed for a cinematic prototype.
   const skyCanvas = document.createElement("canvas");
@@ -698,7 +686,7 @@ export function buildStreet({
   car(15.6, -74, "#42594b", true);
 
   // Archive years hang over the street on continuous catenary cables, with short vertical hangers.
-  const yearRows = [-22, -29, -38, -47, -68, -78, -88, -98];
+  const yearRows = archiveYearRows;
   for (let row = 0; row < yearRows.length; row++) {
     const z = yearRows[row],
       y = 6.2;
@@ -740,6 +728,8 @@ export function buildStreet({
           0.014,
           dark,
         );
+      sign.userData.archiveYear = year;
+      sign.name = "archive-year-" + year;
       hit(sign, "Houston / " + year, () => timeline(year));
     }
   }

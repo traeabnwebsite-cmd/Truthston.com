@@ -2,7 +2,6 @@
 @import url("./foundation.css");
 @import url("./fullscreen.css");
 @import url("./companion.css");
-@import url("./theater.css");
 @import url("./account.css");
 @import url("./editorial.css");
 @import url("./readability.css");
@@ -11,3 +10,9 @@
 @import url("./newsroom.css");
 @import url("./record-store.css");
 @import url("./world-layout.css?v=mobile-immersive-2");
+
+@import url("./immersive-session.css");
+
+@import url("./mobile-standard.css");
+
+@import url("./theater.css");

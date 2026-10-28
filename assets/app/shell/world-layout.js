@@ -8,6 +8,14 @@ export function createWorldLayout() {
   entry.className = "mobile-world-entry";
   entry.innerHTML =
     '<div><b>Step inside Truthston.</b><small>A full-screen 3D experience. Best viewed sideways.</small></div><button class="primary" type="button">Enter the 3D world ↗</button>';
+  const entryButton = entry.querySelector("button");
+  entryButton.disabled = true;
+  entryButton.textContent = "Preparing the 3D world…";
+  const modeButtons = [...document.querySelectorAll("[data-mode]")];
+  const originalDisabled = modeButtons.map((button) => button.disabled);
+  modeButtons.forEach((button) => {
+    button.disabled = true;
+  });
   room.before(entry);
   lifetime.listen(entry.querySelector("button"), "click", () =>
     document.querySelector('[data-mode="immersive"]').click(),
@@ -44,7 +52,9 @@ export function createWorldLayout() {
   const toggle = document.createElement("button");
   toggle.id = "world-menu-toggle";
   toggle.className = "tag";
-  toggle.textContent = "Navigate";
+  toggle.innerHTML =
+    '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>';
+  toggle.setAttribute("aria-label", "Navigation menu");
   toggle.setAttribute("aria-expanded", "false");
   toggle.setAttribute("aria-controls", "world-mobile-menu");
   room.querySelector(".room-tools").prepend(toggle);
@@ -61,11 +71,17 @@ export function createWorldLayout() {
     [6, "↑ WABN Radio"],
     [7, "↑ Studio ABN"],
   ];
-  menu.innerHTML = `<div class="world-menu-heading"><b>WHERE TO?</b><button type="button" id="world-menu-close" aria-label="Close navigation">×</button></div><div class="world-destinations"><span class="world-floor-heading">FIRST FLOOR</span>${destinations.map(([id, name]) => `${id === 6 ? '<span class="world-floor-heading">SECOND FLOOR</span>' : ""}<button type="button" data-world-station="${id}">${name}</button>`).join("")}<button type="button" data-world-elevator>Elevator</button><a href="#record-shop/listen">Music archive</a></div><label class="world-landmark-picker">HOUSTON LANDMARK<select id="world-landmark"><option value="">Choose a landmark</option>${[...room.querySelectorAll("[data-city]")].map((button) => `<option value="${button.dataset.city}">${button.textContent}</option>`).join("")}</select></label><div class="world-menu-audio"><button type="button" id="world-audio-toggle">Play / pause music</button><button type="button" id="world-calm-toggle">Calm effects</button></div>`;
+  menu.innerHTML = `<div class="world-menu-heading"><b>WHERE TO?</b><button type="button" id="world-menu-close" aria-label="Close navigation">×</button></div><div class="world-destinations"><span class="world-floor-heading">FIRST FLOOR</span>${destinations.map(([id, name]) => `${id === 6 ? '<span class="world-floor-heading">SECOND FLOOR</span>' : ""}<button type="button" data-world-station="${id}">${name}</button>`).join("")}<button type="button" data-world-elevator>Elevator</button><button type="button" data-world-fullscreen>Enter fullscreen</button><a href="#record-shop/listen">Music archive</a></div><label class="world-landmark-picker">HOUSTON LANDMARK<select id="world-landmark"><option value="">Choose a landmark</option>${[...room.querySelectorAll("[data-city]")].map((button) => `<option value="${button.dataset.city}">${button.textContent}</option>`).join("")}</select></label><div class="world-menu-audio"><button type="button" id="world-audio-toggle">Play / pause music</button><button type="button" id="world-calm-toggle">Calm effects</button></div>`;
   room.append(menu);
+  let hudTimer;
   function closeMenu() {
     menu.hidden = true;
     toggle.setAttribute("aria-expanded", "false");
+    if (
+      document.body.classList.contains("cinema-playing") &&
+      !room.classList.contains("hud-hidden")
+    )
+      setHud(true);
   }
   lifetime.listen(toggle, "click", () => {
     menu.hidden = !menu.hidden;
@@ -78,6 +94,10 @@ export function createWorldLayout() {
       room
         .querySelector(`[data-station="${button.dataset.worldStation}"]`)
         ?.click();
+    }
+    if (button?.hasAttribute("data-world-fullscreen")) {
+      closeMenu();
+      room.querySelector("#fullscreen").click();
     }
     if (button?.hasAttribute("data-world-elevator")) {
       closeMenu();
@@ -99,7 +119,45 @@ export function createWorldLayout() {
   });
   lifetime.listen(document, "truth-station", closeMenu);
   lifetime.listen(document, "fullscreenchange", closeMenu);
-  lifetime.listen(document, "truth-fullscreen-change", closeMenu);
+  lifetime.listen(document, "truth-fullscreen-change", (event) => {
+    closeMenu();
+    menu.querySelector("[data-world-fullscreen]").textContent = event.detail
+      .active
+      ? "Exit fullscreen"
+      : "Enter fullscreen";
+  });
+  function setHud(visible) {
+    clearTimeout(hudTimer);
+    room.classList.toggle("hud-hidden", !visible);
+    if (!visible) closeMenu();
+    document.dispatchEvent(
+      new CustomEvent("truth-hud", { detail: { visible } }),
+    );
+    if (visible && document.body.classList.contains("cinema-playing"))
+      hudTimer = setTimeout(() => {
+        if (
+          menu.hidden &&
+          !room.querySelector("#cinema-carousel")?.matches(":focus-within")
+        )
+          setHud(false);
+      }, 3500);
+  }
+  lifetime.add(() => clearTimeout(hudTimer));
+  lifetime.listen(document, "truth-cinema-selected", () => setHud(false));
+  lifetime.listen(document, "truth-cinema-wake", () => setHud(true));
+  lifetime.listen(document, "truth-station", () => setHud(true));
+  lifetime.listen(stage, "pointerup", (event) => {
+    if (
+      !document.body.classList.contains("cinema-playing") ||
+      event.target.closest("button,a,input,select,iframe,aside,dialog")
+    )
+      return;
+    setHud(room.classList.contains("hud-hidden"));
+  });
+  lifetime.listen(document, "keydown", (event) => {
+    if (event.key === "Tab" && room.classList.contains("hud-hidden"))
+      setHud(true);
+  });
   const rotate = document.createElement("div");
   rotate.className = "world-orientation-hint";
   rotate.innerHTML =
@@ -109,12 +167,23 @@ export function createWorldLayout() {
     rotate.hidden = true;
   });
   return {
+    ready() {
+      entryButton.disabled = false;
+      entryButton.textContent = "Enter the 3D world ↗";
+      modeButtons.forEach((button, index) => {
+        button.disabled = originalDisabled[index];
+      });
+    },
     destroy() {
+      modeButtons.forEach((button, index) => {
+        button.disabled = originalDisabled[index];
+      });
       lifetime.dispose();
       toggle.remove();
       menu.remove();
       rotate.remove();
       entry.remove();
+      room.classList.remove("hud-hidden");
       for (const node of original) room.append(node);
       toolbar.remove();
       context.remove();

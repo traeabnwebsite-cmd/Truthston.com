@@ -1,0 +1,26 @@
+{
+  "hidden": "room-wrap fullscreen-fallback fullscreen-active hud-hidden",
+  "fit": {
+    "canvas": {
+      "x": 0,
+      "y": 57,
+      "width": 252,
+      "height": 787,
+      "top": 57,
+      "right": 252,
+      "bottom": 844,
+      "left": 0
+    },
+    "screen": {
+      "x": 5.189932823181152,
+      "y": 371.90667724609375,
+      "width": 241.62071228027344,
+      "height": 134.03131103515625,
+      "top": 371.90667724609375,
+      "right": 246.8106451034546,
+      "bottom": 505.93798828125,
+      "left": 5.189932823181152
+    },
+    "fov": 116.53211006767344
+  }
+}

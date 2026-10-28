@@ -1,3 +1,4 @@
+import { ARCHIVE_CROSSINGS } from "./archive-layout.js";
 import { $, $$, esc } from "../../core/dom.js";
 export function buildCityRoads({
   campusRoadFootprints,
@@ -387,13 +388,13 @@ export function buildCityRoads({
   }
   freeway(
     [
-      [-440, 5.3, -40],
-      [-300, 5.3, -40],
-      [-150, 5.3, -40],
-      [0, 5.3, -40],
-      [190, 5.3, -40],
+      [-440, ARCHIVE_CROSSINGS.katy.y, ARCHIVE_CROSSINGS.katy.z],
+      [-300, ARCHIVE_CROSSINGS.katy.y, ARCHIVE_CROSSINGS.katy.z],
+      [-150, ARCHIVE_CROSSINGS.katy.y, ARCHIVE_CROSSINGS.katy.z],
+      [0, ARCHIVE_CROSSINGS.katy.y, ARCHIVE_CROSSINGS.katy.z],
+      [190, ARCHIVE_CROSSINGS.katy.y, ARCHIVE_CROSSINGS.katy.z],
     ],
-    14,
+    ARCHIVE_CROSSINGS.katy.width,
     "I-10 / KATY FREEWAY",
   );
   freeway(

@@ -1,3 +1,9 @@
+# Active completion work — October 28, 2026
+
+Read docs/COMPLETION-BUILD-SPEC.md first. Owner requests autonomous implementation in order, complete each job before the next, commit/push completed updates. C01 mobile/fullscreen/theater corrections are implemented and browser-audited; see docs/MOBILE-AND-THEATER-AUDIT.md for evidence and physical-device limitations. C02 operational readiness tooling follows. Main already contains the modular frontend; historical branch-only notes below are obsolete. No real commercial services are configured. Do not use WebFaktory Cloudflare credentials for Trae resources.
+
+---
+
 # Current release — record store floor plan and upstairs expansion
 
 October 28, 2026. Owner explicitly approved publishing the shared expansion and coordinating with “Develop and critique platform vision”. See docs/STORE-EXPANSION.md and review/STUDIO-REBUILD-HANDOFF.md. Checkout/Reign are at the back; Giving display is removed pending a separate Relief Gang room. Elevator shares the DJ wall; screening is opposite DJ; merch has a separate right-wall door; side shelves end before doorways. Same floor order on desktop/mobile: Record Store, DJ Booth, Screening Room, Merch Store, Streets, then WABN Radio and Studio ABN. No separate Streaming/Purchases/Checkout bottom items.
