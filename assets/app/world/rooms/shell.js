@@ -1,28 +1,25 @@
 export function buildShopShell({ box, mat, wood, dark }) {
-  box(17, 0.3, 13, wood, 0, -0.2, 0);
-  for (let i = 0; i < 22; i++)
-    box(0.025, 0.012, 13, dark, -8.2 + i * 0.78, -0.035, 0);
-  box(13.8, 7, 0.28, mat("#5d5540"), -1.6, 3.35, -6);
-  box(1, 7, 0.28, mat("#5d5540"), 8, 3.35, -6);
-  box(2.2, 3, 0.28, mat("#5d5540"), 6.4, 5.35, -6);
-  box(0.25, 7, 7.3, mat("#484935"), -8.5, 3.35, -2.35);
-  box(0.25, 7, 2.1, mat("#484935"), -8.5, 3.35, 4.95);
-  box(0.25, 3.1, 2.6, mat("#484935"), -8.5, 5.3, 2.6);
-  box(0.25, 7, 2.7, mat("#51472f"), 8.5, 3.35, -4.65);
-  box(0.25, 7, 0.7, mat("#51472f"), 8.5, 3.35, -0.35);
-  box(0.25, 3.2, 2.6, mat("#51472f"), 8.5, 5, -2);
-  for (let y = 0; y < 11; y++)
-    for (let x = 0; x < 28; x++) {
-      if (x > 21 && x < 26 && y < 7) continue;
-      const b = box(
-        0.57,
-        0.025,
-        0.02,
-        mat("#312d22"),
-        -8.15 + x * 0.61 + (y % 2) * 0.3,
-        0.3 + y * 0.6,
-        -5.84,
-      );
-      b.castShadow = false;
-    }
+  const wall = mat("#b9ad94"),
+    trim = mat("#383e35");
+  box(17, 0.25, 13, wood, 0, -0.15, 0);
+  for (let i = 0; i < 17; i++) box(0.018, 0.01, 13, dark, -8 + i, -0.018, 0);
+  // Full-height walls and a real ceiling; only the actual doorways are open.
+  box(14, 6.6, 0.22, wall, -1.5, 3.3, -6);
+  box(1, 6.6, 0.22, wall, 8, 3.3, -6);
+  box(2.3, 2.7, 0.22, wall, 6.65, 5.25, -6);
+  // The left wall has elevator (-0.4) and DJ (2.6) doorways.
+  box(0.22, 6.6, 4.3, wall, -8.5, 3.3, -3.85);
+  box(0.22, 6.6, 0.4, wall, -8.5, 3.3, 1.1);
+  box(0.22, 2.6, 2.6, wall, -8.5, 5.3, -0.4);
+  box(0.22, 6.6, 2.1, wall, -8.5, 3.3, 4.95);
+  box(0.22, 2.6, 2.6, wall, -8.5, 5.3, 2.6);
+  // Screening faces the DJ doorway; merch takes the other right-wall bay.
+  box(0.22, 6.6, 4.3, wall, 8.5, 3.3, -3.85);
+  box(0.22, 6.6, 0.4, wall, 8.5, 3.3, 1.1);
+  box(0.22, 6.6, 2.1, wall, 8.5, 3.3, 4.95);
+  for (const z of [-0.4, 2.6]) box(0.22, 2.6, 2.6, wall, 8.5, 5.3, z);
+  // Leave the right-hand stairwell open to the second floor.
+  box(14, 0.16, 13, trim, -1.5, 6.65, 0);
+  for (const x of [-5, -1, 3]) box(0.08, 0.18, 12.5, dark, x, 6.48, 0);
+  box(16.8, 0.16, 0.2, dark, 0, 0.12, -5.83);
 }

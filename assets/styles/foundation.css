@@ -550,7 +550,7 @@ dialog {
 }
 dialog::backdrop {
   background: #10150fcc;
-  backdrop-filter: blur(7px);
+  backdrop-filter: none;
 }
 .close {
   position: absolute;

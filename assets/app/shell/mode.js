@@ -1,6 +1,11 @@
 import { $, $$, esc } from "../core/dom.js";
 import { createLifetime } from "../core/lifecycle.js";
-export function createExperienceMode({ appState, getWorld, getWorldLoader }) {
+export function createExperienceMode({
+  appState,
+  getWorld,
+  getWorldLoader,
+  enterImmersive = () => {},
+}) {
   const lifetime = createLifetime();
 
   function setMode(m) {
@@ -20,7 +25,8 @@ export function createExperienceMode({ appState, getWorld, getWorldLoader }) {
   function syncWorld() {
     if (
       appState.mode !== "immersive" ||
-      document.body.classList.contains("account-view")
+      document.body.classList.contains("account-view") ||
+      document.body.classList.contains("room-panel-view")
     ) {
       getWorld()?.suspend();
       return;
@@ -36,7 +42,16 @@ export function createExperienceMode({ appState, getWorld, getWorldLoader }) {
   }
   setCalm(appState.calm);
   $$("[data-mode]").forEach((b) =>
-    lifetime.handler(b, "onclick", () => setMode(b.dataset.mode)),
+    lifetime.handler(b, "onclick", () => {
+      setMode(b.dataset.mode);
+      if (
+        b.dataset.mode === "immersive" &&
+        matchMedia(
+          "(max-width: 760px), (pointer: coarse), (max-height: 550px) and (max-width: 1000px)",
+        ).matches
+      )
+        void enterImmersive();
+    }),
   );
   lifetime.handler($("#calm"), "onclick", () => setCalm(!appState.calm));
   lifetime.listen(

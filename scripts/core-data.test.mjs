@@ -4,8 +4,39 @@ import {prepareCatalog} from '../assets/app/data/catalog.js';
 import {loadPublicContent,loadOptionalCatalog} from '../assets/app/data/content-client.js';
 import {createRouter,routeIntent} from '../assets/app/core/router.js';
 import {embeddedVault} from '../assets/app/data/fallback-catalog.js';
+import {priceForRelease, chronologicalReleases, radioCollections} from '../assets/app/features/store/catalog-policy.js';
+import {answerReign} from '../assets/app/features/store/reign-knowledge.js';
+import {responsiveFieldOfView} from '../assets/app/world/framing.js';
 const sample={releases:[{title:'Sample',year:2000,tracks:[]}],timeline:[],giving:[]};
 const cover=t=>'generated:'+t;
+test('content navigation preserves both native and mobile fallback room fullscreen',async()=>{
+ for(const native of [true,false]) {
+  const classes=new Map(),opened=[];
+  const room={classList:{contains:name=>!native && name==='fullscreen-fallback'}};
+  let exits=0;
+  const doc={fullscreenElement:native?room:null,exitFullscreen:async()=>{exits++},body:{classList:{toggle:(name,value)=>classes.set(name,value)}}};
+  const win={location:{hash:'#radio'},scrollTo(){},addEventListener(){},removeEventListener(){}};
+  const panels=new Map();const query=key=>{if(key==='.room-wrap')return room;if(!panels.has(key))panels.set(key,{hidden:false,focus(){}});return panels.get(key)};
+  const router=createRouter({win,doc,query,queryAll:()=>[],account:{open(){}},commerce:{open(){}},editorial:{open(){}},store:{open:path=>opened.push(path)}});
+  await router.route();assert.equal(exits,0);assert.equal(classes.get('account-view'),false);assert.equal(classes.get('room-panel-view'),true);assert.deepEqual(opened,['radio']);
+  win.location.hash='#record-shop';await router.route();assert.equal(classes.get('room-panel-view'),false);assert.equal(query('#record-store-page').hidden,true);
+ }
+});
+test('portrait framing widens the field of view while keeping geometry proportions unchanged',()=>{
+ assert.equal(responsiveFieldOfView(43,1.8),43);assert.ok(responsiveFieldOfView(43,.6)>43);assert.ok(responsiveFieldOfView(43,.2)<=90);
+});
+test('store pricing distinguishes albums, mixtapes, singles and EPs; display sorting preserves deep-link indices',()=>{
+ const source=[{title:'Later',year:2020,date:'2020-10-01',type:'Studio Album'},{title:'Earlier',year:2001,type:'Mixtape'},{title:'Spring',year:2020,date:'2020-03-01',type:'EP'},{title:'Song',year:2021,type:'Single'}];
+ assert.deepEqual(source.map(priceForRelease),[1599,599,399,199]);
+ const sorted=chronologicalReleases(source);assert.deepEqual(sorted.map(r=>r.title),['Earlier','Spring','Later','Song']);assert.equal(source[0].title,'Later');assert.equal(source.indexOf(sorted[0]),1);
+ assert.equal(radioCollections(source).find(c=>c.id==='mixtapes').releases.length,1);
+});
+test('Reign answers from source records and declines unknown release claims',()=>{
+ const record={title:'Losing Composure',artist:'Trae tha Truth',artists:['Trae tha Truth'],date:'2003-09-09',type:'Studio Album',tracks:['Intro','Beware'],sourceUrl:'https://music.apple.com/'};
+ const answer=answerReign('Tell me about Losing Composure',{records:[record]});assert.match(answer.text,/2003-09-09/);assert.match(answer.text,/1\. Intro/);assert.deepEqual(answer.records,[record]);
+ const missing=answerReign('Guerilla Maab imaginary missing album',{records:[record]});assert.match(missing.text,/don’t have a sourced match/);assert.equal(missing.records.length,0);
+ assert.match(answerReign('What are the prices?',{records:[]}).text,/\$15\.99/);
+});
 test('catalog extraction preserves138 numeric links, covers, and title/year identities',()=>{
  const {releases}=prepareCatalog({supplied:structuredClone(embeddedVault),siteContent:{projects:[]},sample,cover});
  assert.equal(releases.length,138);assert.equal(releases[0].title,'Tha Truth');assert.equal(releases[0].year,2015);assert.match(releases[0].cover,/^assets\/covers\//);assert.ok(releases.every(r=>Array.isArray(r.tracks)));

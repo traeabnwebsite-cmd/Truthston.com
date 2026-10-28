@@ -4,7 +4,11 @@ export function createWorldResources({ canvas, T, world, renderer, interact }) {
   function loadVenueMark(name, draw) {
     const image = new Image();
     image.onload = () => {
+      const previous = new Set(world.children);
       draw(image);
+      world.children
+        .filter((object) => !previous.has(object))
+        .forEach((object) => object.traverse((child) => child.layers.set(3)));
       venueMarks[name] = "loaded";
       canvas.dataset.venueLogos = JSON.stringify(venueMarks);
     };
@@ -76,6 +80,7 @@ export function createWorldResources({ canvas, T, world, renderer, interact }) {
       }),
     );
     o.position.set(x, y, z);
+    o.userData.label = text;
     world.add(o);
     return o;
   }

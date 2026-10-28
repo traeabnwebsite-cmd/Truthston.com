@@ -47,12 +47,12 @@ export function createChrome({
     const frame = $("#youtube-player");
     if (frame) frame.src = "about:blank";
   });
-  twin("DJ booth turntables and mixer", dj.open);
+  twin("DJ booth turntables and mixer", navigation.openTurntables);
   twin("Enter the screening room", () => navigation.go(2));
   twin("Return to the record shop", () => navigation.go(0));
   twin("Back door to Houston street", () => navigation.go(3));
   lifetime.handler($("#deck"), "onclick", navigation.enterDJRoom);
-  lifetime.handler($("#open-dj-mixer"), "onclick", dj.open);
+  lifetime.handler($("#open-dj-mixer"), "onclick", navigation.openTurntables);
   lifetime.handler($("#dj-back-store"), "onclick", () => navigation.go(0));
   lifetime.listen($("#modal"), "close", () => {
     $$(".project-audio audio").forEach((a) => a.pause());
@@ -88,8 +88,7 @@ export function createChrome({
   );
   lifetime.handler($("#timeline-btn"), "onclick", () => community.timeline());
   lifetime.handler($("#challenge-btn"), "onclick", () => {
-    mode.select("standard");
-    $("#grid button").focus();
+    location.hash = "record-shop/listen";
   });
   $$("[data-station]").forEach((b) =>
     lifetime.handler(b, "onclick", () =>

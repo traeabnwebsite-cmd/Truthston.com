@@ -9,6 +9,7 @@ import { createCompanionKnowledge } from "./knowledge.js";
 export function createCompanion({
   releases,
   getWorld,
+  ensureWorld,
   commerce,
   enterDJRoom,
   release,
@@ -172,7 +173,6 @@ export function createCompanion({
     crate: [
       "Dig through releases",
       () => {
-        setMode("standard");
         go(0);
         $(".room-wrap").scrollIntoView({ block: "start" });
       },
@@ -232,19 +232,35 @@ export function createCompanion({
     const r = root.getBoundingClientRect(),
       w = el.offsetWidth,
       h = el.offsetHeight;
-    // Prefer the viewer's right; keep the cloud body and its copy on screen.
-    const left = Math.max(8, Math.min(innerWidth - w - 8, r.right - 4));
-    const top = Math.max(8, Math.min(innerHeight - h - 8, r.top - 160));
+    const anchor = state.inWorld
+      ? state.worldAnchor
+      : { x: r.left + r.width / 2, y: r.top + 20 };
+    if (
+      state.hidden ||
+      !anchor ||
+      root.style.visibility === "hidden" ||
+      anchor.x < 0 ||
+      anchor.x > innerWidth ||
+      anchor.y < 0 ||
+      anchor.y > innerHeight ||
+      (!state.inWorld && (r.bottom < 0 || r.top > innerHeight))
+    ) {
+      el.hidden = true;
+      return;
+    }
+    // Stay attached to Trae's head. Never clamp an offscreen character's cloud into view.
+    const left = Math.max(8, Math.min(innerWidth - w - 8, anchor.x - w * 0.7));
+    const top =
+      anchor.y >= h + 8
+        ? anchor.y - h + 12
+        : Math.min(innerHeight - h - 8, anchor.y + 18);
     el.style.left = left + "px";
     el.style.top = top + "px";
-    const anchor = Math.max(
-      6,
-      Math.min(66, ((r.left + r.width * 0.78 - left) / w) * 280),
-    );
+    const tail = Math.max(6, Math.min(250, ((anchor.x - left) / w) * 280));
     const dots = el.querySelectorAll("circle");
-    dots[0]?.setAttribute("cx", String(anchor + 13));
+    dots[0]?.setAttribute("cx", String(tail + 13));
     dots[0]?.setAttribute("cy", "153");
-    dots[1]?.setAttribute("cx", String(anchor));
+    dots[1]?.setAttribute("cx", String(tail));
     dots[1]?.setAttribute("cy", "172");
   }
   function place(x, y) {
@@ -566,6 +582,7 @@ export function createCompanion({
       return appState;
     },
     getWorld: (...args) => getWorld(...args),
+    ensureWorld,
     setMode: (...args) => setMode(...args),
     showThought: (...args) => promotions.showThought(...args),
     cancelSequence: (...args) => cancelSequence(...args),

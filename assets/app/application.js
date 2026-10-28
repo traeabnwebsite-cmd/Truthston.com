@@ -7,6 +7,7 @@ import { createExperienceMode } from "./shell/mode.js";
 import { createFullscreen } from "./shell/fullscreen.js";
 import { createRoomNavigation } from "./shell/room-navigation.js";
 import { createChrome } from "./shell/chrome.js";
+import { createWorldLayout } from "./shell/world-layout.js";
 import { createLazyFeature } from "./core/lazy-feature.js";
 import { createCompanion } from "./features/companion/controller.js";
 import { createScreeningCatalog } from "./features/theater/catalog.js";
@@ -16,6 +17,7 @@ import { createPlayerDock } from "./features/audio/dock.js";
 import { createDJMixer } from "./features/dj/mixer.js";
 import { loadGalleryCuration } from "./features/editorial/gallery.js";
 import { createCatalogPage } from "./features/catalog/page.js";
+import { createRecordStore } from "./features/store/controller.js";
 import { createDailyChallenge } from "./features/catalog/daily-challenge.js";
 import { createAccountPage } from "./features/account/page.js";
 import { createEditorialPage } from "./features/editorial/page.js";
@@ -34,6 +36,7 @@ import {
 } from "./data/content-client.js";
 
 export async function createApplication({ initialMode } = {}) {
+  const worldLayout = createWorldLayout();
   let stampArtwork = null;
   try {
     stampArtwork = (await import("../stamps.mjs")).renderStamp;
@@ -63,6 +66,8 @@ export async function createApplication({ initialMode } = {}) {
   });
   if (initialMode && ["standard", "immersive", "reduced"].includes(initialMode))
     appState.mode = initialMode;
+  else if (appState.calm) appState.mode = "reduced";
+  else if (innerWidth < 650) appState.mode = "standard";
   let sceneAPI, worldLoader;
   const lifetime = createLifetime();
   const worldAbort = new AbortController();
@@ -71,11 +76,13 @@ export async function createApplication({ initialMode } = {}) {
   const twin = twins.register;
   const feedback = createFeedback({ appState, getWorld: () => sceneAPI });
   const { toast, earn, modal } = feedback;
+  const fullscreen = createFullscreen({ toast });
   const mode = createExperienceMode({
     appState,
     getWorld: () => sceneAPI,
     getWorldLoader: () => worldLoader,
     toast,
+    enterImmersive: () => fullscreen.enter(),
   });
 
   const audio = createAudioEngine({
@@ -136,6 +143,7 @@ export async function createApplication({ initialMode } = {}) {
     editorial: { open: (section) => editorial.open(section) },
     commerce: { open: () => commerce.render() },
     account: { open: (path) => account.open(path) },
+    store: { open: (path) => recordStore.open(path) },
   });
   function accountRoute() {
     return router.route();
@@ -154,7 +162,10 @@ export async function createApplication({ initialMode } = {}) {
     earn,
     toast,
     modal,
-    play: (...args) => audio.play(...args),
+    play: (...args) => {
+      recordStore.pause();
+      return audio.play(...args);
+    },
     pauseRoomForVideo: audio.pause,
     enterDJRoom: () => navigation.enterDJRoom(),
     registerTwin: (...args) => twin(...args),
@@ -162,6 +173,26 @@ export async function createApplication({ initialMode } = {}) {
   function release(r) {
     return catalog.openRelease(r);
   }
+
+  const recordStore = createRecordStore({
+    releases,
+    modal,
+    openRelease: release,
+    pauseAudio: audio.pause,
+    toast,
+    visitRoom: (station) => {
+      accountRoute();
+      mode.select("immersive");
+      navigation.go(station);
+      $(".room-wrap").scrollIntoView({ block: "start", behavior: "smooth" });
+    },
+  });
+
+  lifetime.add(
+    audio.subscribe(() => {
+      if (audio.playing) recordStore.pause();
+    }),
+  );
 
   const screeningVideos = createScreeningCatalog(data);
   const cinema = createCinemaController({
@@ -191,8 +222,8 @@ export async function createApplication({ initialMode } = {}) {
     appState,
     cinema,
     community,
+    store: recordStore,
   });
-  const fullscreen = createFullscreen({ toast });
   const chrome = createChrome({
     fullscreen,
     account,
@@ -216,6 +247,7 @@ export async function createApplication({ initialMode } = {}) {
   const companion = createCompanion({
     releases,
     getWorld: () => sceneAPI,
+    ensureWorld: () => worldLoader.load(),
     commerce,
     enterDJRoom: (...a) => navigation.enterDJRoom(...a),
     release,
@@ -247,6 +279,7 @@ export async function createApplication({ initialMode } = {}) {
         data,
         audio,
         appState,
+        store: recordStore,
         playerDock,
         setMode: mode.select,
         autoStart: false,
@@ -261,7 +294,8 @@ export async function createApplication({ initialMode } = {}) {
         if (appState.score >= (i + 1) * 25) world.unlock(i);
       if (
         appState.mode === "immersive" &&
-        !document.body.classList.contains("account-view")
+        !document.body.classList.contains("account-view") &&
+        !document.body.classList.contains("room-panel-view")
       ) {
         document.body.classList.remove("flat");
         world.resume();
@@ -269,19 +303,28 @@ export async function createApplication({ initialMode } = {}) {
     },
     onError(error) {
       console.warn("Room fallback:", error);
-      $("#loading")?.remove();
       if (
         appState.mode === "immersive" &&
         !document.body.classList.contains("account-view")
       ) {
-        mode.select("standard");
-        toast("3D is unavailable. The full archive is open in Standard mode.");
+        document.body.classList.remove("flat");
+        const notice = $("#loading") || document.createElement("div");
+        notice.id = "loading";
+        notice.className = "loading is-error";
+        notice.style.display = "grid";
+        notice.innerHTML =
+          '<b>The 3D room couldn’t start.</b><small>Your viewing mode has been kept. Try again, or choose the archive.</small><div><button class="primary" id="world-retry">Retry 3D</button><button class="secondary" id="world-standard">Open Standard view</button></div>';
+        if (!notice.parentNode) $(".world-stage").append(notice);
+        $("#world-retry").onclick = () => {
+          notice.innerHTML = "Loading the 3D room…";
+          void worldLoader.load();
+        };
+        $("#world-standard").onclick = () => mode.select("standard");
       }
     },
   });
-  if (appState.calm || appState.mode === "reduced") mode.select("reduced");
-  else if (innerWidth < 650 || appState.mode === "standard")
-    mode.select("standard");
+  // Apply the current choice after async startup; never overwrite a user's early mobile selection.
+  mode.select(appState.mode);
 
   // The companion is an illustrated site guide, not a direct chat with Trae. All destinations are allowlisted.
   // Retain the approved illustrated character. Canvas layers provide light limb/head motion without a card flip.
@@ -309,6 +352,7 @@ export async function createApplication({ initialMode } = {}) {
     playerDock.destroy();
     await audio.destroy();
     catalog.destroy();
+    recordStore.destroy();
     editorial.destroy();
     account.destroy();
     commerce.destroy();
@@ -316,6 +360,7 @@ export async function createApplication({ initialMode } = {}) {
     navigation.destroy();
     mode.destroy();
     fullscreen.destroy();
+    worldLayout.destroy();
     homeSummary.destroy();
     feedback.destroy();
     twins.destroy();

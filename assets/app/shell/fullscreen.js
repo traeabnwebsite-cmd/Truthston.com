@@ -68,6 +68,9 @@ export function createFullscreen({ toast }) {
       });
     }
     fullscreenWasActive = active;
+    document.dispatchEvent(
+      new CustomEvent("truth-fullscreen-change", { detail: { active } }),
+    );
   }
   async function leaveFullscreen() {
     if (fullscreenBusy) return;

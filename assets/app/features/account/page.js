@@ -412,7 +412,6 @@ export async function createAccountPage({
       if ($("#library-browse"))
         $("#library-browse").onclick = () => {
           location.hash = "";
-          setMode("standard");
         };
     } else if (bookTab === "rewards") {
       content.innerHTML = `<p class="book-note">${balance} available preview credits. Stamps stay in your collection when you redeem. These sample rewards demonstrate the experience; there are no live offers or orders.</p><div class="rewards-grid">${rewardDefs

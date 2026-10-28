@@ -1,4 +1,5 @@
 import { $, $$, esc } from "../../core/dom.js";
+import { chronologicalReleases } from "../store/catalog-policy.js";
 export function createCatalogPage({
   appState,
   releases,
@@ -32,7 +33,7 @@ export function createCatalogPage({
               "<p>Member playback will be available after membership services are connected.</p>"
             }</div>`
           : ""
-      }<ol>${r.tracks.length ? r.tracks.map((t) => `<li>${esc(typeof t === "string" ? t : t.title || t.name)}</li>`).join("") : "<li>Tracklist not available in the vault.</li>"}</ol><div class="actions"><button class="primary" id="release-play">▶ Play</button><button class="secondary" id="release-deck">DJ Booth</button><button class="secondary" id="release-share">Share ↗</button></div></div></div>`,
+      }<ol>${r.tracks.length ? r.tracks.map((t) => `<li>${esc(typeof t === "string" ? t : t.title || t.name)}</li>`).join("") : "<li>Tracklist not available in the vault.</li>"}</ol><div class="actions"><button class="primary" id="release-play">▶ Play free preview</button><a class="secondary" href="#record-shop/releases" id="release-purchase">Purchase side ↗</a><button class="secondary" id="release-deck">DJ Booth</button><button class="secondary" id="release-share">Share ↗</button></div></div></div>`,
     );
     const im = $(".modal-cover");
     im.onerror = () => (im.src = r.art);
@@ -48,6 +49,7 @@ export function createCatalogPage({
         }),
     );
     $("#release-deck").onclick = enterDJRoom;
+    $("#release-purchase").onclick = () => $("#modal").close();
     $("#release-share").onclick = () => share(r);
   }
   async function share(r) {
@@ -102,10 +104,10 @@ export function createCatalogPage({
       }
     };
   }
-  $("#grid").innerHTML = releases
+  $("#grid").innerHTML = chronologicalReleases(releases)
     .map(
-      (r, i) =>
-        `<button class="release" data-release="${i}"><img loading="lazy" src="${esc(r.cover)}" alt="${esc(r.title)} sleeve"><b>${esc(r.title)}</b><small>${esc(r.year)} / ${esc(r.type || "Release")}</small></button>`,
+      (r) =>
+        `<button class="release" data-release="${releases.indexOf(r)}"><img loading="lazy" src="${esc(r.cover)}" alt="${esc(r.title)} sleeve"><b>${esc(r.title)}</b><small>${esc(r.year)} / ${esc(r.type || "Release")}</small></button>`,
     )
     .join("");
   $$("[data-release]").forEach((b) => {

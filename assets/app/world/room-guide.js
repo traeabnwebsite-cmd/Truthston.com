@@ -25,8 +25,8 @@ export function createRoomGuide({
       [-14.5, 0, -2.8],
     ],
     2: [
-      [8.85, 0, -2],
-      [10.3, 0, -2],
+      [8.85, 0, 2.6],
+      [10.3, 0, 2.6],
       [10.9, 0, 0],
       [15.0, 0, 0],
       companionSeat.anchor.toArray(),
@@ -145,10 +145,15 @@ export function createRoomGuide({
         Math.abs(projected.y) < 1.1 &&
         appState.station !== 3 &&
         appState.mode === "immersive";
+    const head = m.position.clone();
+    head.y += 1.05 * m.scale.y;
+    head.project(camera);
     g.options.onPosition(
       rect.left + ((projected.x + 1) * rect.width) / 2,
       rect.top + ((1 - projected.y) * rect.height) / 2,
       visible,
+      rect.left + ((head.x + 1) * rect.width) / 2,
+      rect.top + ((1 - head.y) * rect.height) / 2,
     );
   }
 

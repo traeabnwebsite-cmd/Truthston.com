@@ -37,12 +37,12 @@ export function createCinemaController({
     host.id = "room-cinema";
     host.hidden = true;
     host.setAttribute("aria-label", "Theater screen");
-    room.append(host);
+    (room.querySelector?.(".world-stage") || room).append(host);
     const browse = document.createElement("div");
     browse.id = "cinema-browse-zone";
     browse.innerHTML =
       '<button id="cinema-browse-toggle" aria-expanded="true" aria-controls="cinema-carousel">Browse films <span>⌄</span></button>';
-    room.append(browse);
+    (room.querySelector?.(".world-stage") || room).append(browse);
     const rail = document.createElement("aside");
     rail.id = "cinema-carousel";
     rail.setAttribute("aria-label", "Theater film strip");
@@ -82,7 +82,7 @@ export function createCinemaController({
     controls.id = "cinema-controls";
     controls.innerHTML =
       '<span id="cinema-now" role="status">Choose a video from the carousel.</span><button id="cinema-stop">Lights up</button><button id="cinema-leave">Back to the shop</button><a id="cinema-external" target="_blank" rel="noopener noreferrer" hidden>Open on YouTube ↗</a>';
-    room.append(controls);
+    (room.querySelector?.(".world-stage") || room).append(controls);
     $$("[data-cinema-video]").forEach(
       (b) => (b.onclick = () => video(+b.dataset.cinemaVideo)),
     );

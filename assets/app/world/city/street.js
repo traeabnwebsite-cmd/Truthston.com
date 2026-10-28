@@ -49,6 +49,7 @@ export function buildStreet({
     65,
   );
   hit(doorSign, "Step outside — Houston street", () => go(3));
+  const exteriorStart = world.children.length;
   // Houston city set: landmark silhouettes based on real architecture; distances are compressed for a cinematic prototype.
   const skyCanvas = document.createElement("canvas");
   skyCanvas.width = 2048;
@@ -743,5 +744,8 @@ export function buildStreet({
     }
   }
 
+  world.children
+    .slice(exteriorStart)
+    .forEach((object) => object.traverse((child) => child.layers.set(3)));
   return { doorPivot, streetSky, asphalt, concrete, streetGlow, glowMat, beam };
 }

@@ -18,6 +18,7 @@ export function prepareCatalog({
     const entry = {
       title: project.title,
       year: Number(project.date?.slice(0, 4)),
+      date: project.date,
       type: project.type,
       cover: project.cover,
       tracks: project.tracks.map((t) => t.title),

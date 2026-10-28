@@ -1,4 +1,5 @@
 import { disposeScene } from "./dispose.js";
+import { responsiveFieldOfView } from "./framing.js";
 import { buildShopShell } from "./rooms/shell.js";
 import { createWorldAnimation } from "./animation.js";
 import { createRoomGuide } from "./room-guide.js";
@@ -10,7 +11,7 @@ import { createTheaterScreen } from "../features/theater/world-screen.js";
 import { createWorldResources } from "./resources.js";
 import { buildCrates } from "./rooms/crates.js";
 import { buildDJRoom } from "./rooms/dj-room.js";
-import { buildMerchRoom } from "./rooms/merch.js";
+import { buildStoreExpansion } from "./rooms/store-expansion.js";
 import { buildTheaterRoom } from "./rooms/theater.js";
 import { buildStreet } from "./city/street.js";
 import { buildBridge } from "./city/bridge.js";
@@ -44,6 +45,7 @@ export async function createWorld({
   appState,
   playerDock,
   setMode,
+  store,
   three,
   rendererFactory,
   autoStart = true,
@@ -71,7 +73,7 @@ export async function createWorld({
         antialias: true,
         alpha: true,
       });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.7));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = T.PCFSoftShadowMap;
   renderer.outputColorSpace = T.SRGBColorSpace;
@@ -93,7 +95,7 @@ export async function createWorld({
   }
   try {
     scene.background = new T.Color("#25251d");
-    scene.fog = new T.FogExp2("#25251d", 0.025);
+    scene.fog = new T.FogExp2("#25251d", 0);
     const camera = new T.PerspectiveCamera(43, 1, 0.25, 1600);
     const world = new T.Group();
     const view = {
@@ -162,8 +164,25 @@ export async function createWorld({
       wood,
       dark,
       canvas,
+      store,
     });
     const { abnTexture, abnMark } = crates;
+    if (store)
+      buildStoreExpansion({
+        T,
+        world,
+        box,
+        mat,
+        wood,
+        dark,
+        paper,
+        label,
+        hit,
+        twin,
+        go,
+        store,
+        commerce,
+      });
     const djRoom = buildDJRoom({
       world,
       box,
@@ -171,7 +190,10 @@ export async function createWorld({
       dark,
       paper,
       hit,
-      dj,
+      dj: {
+        ...dj,
+        open: () => (appState.station === 1 ? dj.open() : go(1)),
+      },
       T,
       mat,
       red,
@@ -181,22 +203,13 @@ export async function createWorld({
       twin,
       abnMark,
       rand,
-      commerce,
+      commerce: {
+        ...commerce,
+        bumpboxDisplay: (...args) =>
+          appState.station === 1 ? commerce.bumpboxDisplay(...args) : go(1),
+      },
     });
     const { disc, discLabel, discB, discLabelB } = djRoom;
-    const merchRoom = buildMerchRoom({
-      mat,
-      box,
-      T,
-      dark,
-      world,
-      hit,
-      commerce,
-      abnTexture,
-      label,
-      twin,
-      wood,
-    });
     const theaterRoom = buildTheaterRoom({
       world,
       mat,
@@ -242,6 +255,7 @@ export async function createWorld({
       glowMat,
       beam,
     } = street;
+    const exteriorStart = world.children.length;
     const bridge = buildBridge({
       world,
       box,
@@ -458,6 +472,9 @@ export async function createWorld({
       cars: { a: 2, r: 18, e: 10, t: [-12.4, 1, -15.5] },
       map: { a: Math.PI - 0.1, r: 260, e: 790, t: [-125, 0, -250] },
     };
+    world.children
+      .slice(exteriorStart)
+      .forEach((object) => object.traverse((child) => child.layers.set(3)));
     const givingRoom = buildGivingRoom({
       box,
       wood,
@@ -512,6 +529,10 @@ export async function createWorld({
       const r = canvas.parentElement.getBoundingClientRect();
       renderer.setSize(r.width, r.height, false);
       camera.aspect = r.width / r.height;
+      camera.fov = responsiveFieldOfView(
+        camera.userData.baseFov || 43,
+        camera.aspect,
+      );
       camera.updateProjectionMatrix();
       ink.width = r.width;
       ink.height = r.height;
@@ -548,7 +569,8 @@ export async function createWorld({
     sceneAPI.setCinemaLights = theaterProjection.setCinemaLights;
     sceneAPI.theaterView = () => {
       view.streetJourney = null;
-      camera.fov = 45;
+      camera.userData.baseFov = 45;
+      camera.fov = responsiveFieldOfView(45, camera.aspect);
       camera.updateProjectionMatrix();
       view.angleGoal = -Math.PI / 2;
       view.radiusGoal = 9.2;
@@ -595,8 +617,49 @@ export async function createWorld({
       destroy: dispose,
       diagnostics() {
         let objects = 0;
+        const layers = {};
+        const probe = new T.Raycaster();
+        probe.layers.mask = camera.layers.mask;
+        probe.setFromCamera(new T.Vector2(0, 0), camera);
+        const centerHits = probe
+          .intersectObjects(world.children, true)
+          .filter(
+            (hit) => hit.object.visible && hit.object.material?.opacity !== 0,
+          )
+          .slice(0, 5)
+          .map((hit) => ({
+            label: hit.object.userData.text || hit.object.userData.label || "",
+            geometry: hit.object.geometry?.parameters,
+            position: hit.object.getWorldPosition(new T.Vector3()).toArray(),
+          }));
         scene.traverse(() => objects++);
-        return { objects, renderer: renderer.info?.memory || {}, disposed };
+        world.traverse((object) => {
+          if (object.isMesh)
+            layers[object.layers.mask] = (layers[object.layers.mask] || 0) + 1;
+        });
+        return {
+          objects,
+          renderer: renderer.info?.memory || {},
+          drawCalls: renderer.info?.render?.calls,
+          centerHits,
+          disposed,
+          camera: {
+            position: camera.position.toArray(),
+            target: view.target.toArray(),
+            fov: camera.fov,
+            aspect: camera.aspect,
+            layers: camera.layers.mask,
+          },
+          meshLayers: layers,
+          pixelRatio: renderer.getPixelRatio(),
+          floorPlan: {
+            cashierFeetY: 0,
+            cashierZ: -4.08,
+            counterRearZ: -4,
+            counterHeight: 1.22,
+            aisleWidth: 11.5,
+          },
+        };
       },
     });
     if (autoStart) animation.resume();

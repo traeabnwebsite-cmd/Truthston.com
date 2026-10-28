@@ -114,7 +114,7 @@ export function buildDJRoom({
     for (const side of [-1, 1])
       for (let col = 0; col < 6; col++) {
         const z = -4.7 + col * 1.9;
-        if (side > 0 && z > 1.3 && z < 3.9) continue;
+        if (side > 0 && z > -1.9 && z < 4.1) continue;
         box(
           0.2,
           1.65,

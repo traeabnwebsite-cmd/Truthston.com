@@ -1,4 +1,5 @@
 import { $ as query, $$ as queryAll, esc } from "../core/dom.js";
+import { responsiveFieldOfView } from "./framing.js";
 export function createWorldNavigation({
   $ = query,
   $$ = queryAll,
@@ -26,12 +27,16 @@ export function createWorldNavigation({
   vaultLight,
 }) {
   const positions = [
-    { a: 0.23, r: 15.5, e: 6.7, t: [0, 2, 0] },
+    { a: 0.12, r: 12.5, e: 4.6, t: [0, 1.8, -1] },
     { a: 0, r: 5.5, e: 4.6, t: [-14.5, 2.7, 0] },
     { a: -Math.PI / 2, r: 9.2, e: 3.1, t: [18.2, 3.05, -0.8] },
     { a: 0, r: 22, e: 3.4, t: [6.65, 6, -33] },
     { a: 0.5, r: 7.4, e: 5.7, t: [-5.5, 1.2, 3.4] },
     { a: 0.2, r: 7, e: 4.9, t: [4.4, 1.5, 1] },
+    { a: 0.12, r: 7.5, e: 10.8, t: [0, 9.85, -1.4] },
+    { a: 0.1, r: 8.3, e: 11.2, t: [20, 9.9, -1.5] },
+    { a: 0, r: 5.2, e: 2.8, t: [0, 1.4, -3.4] },
+    { a: -0.65, r: 10, e: 5.7, t: [4.2, 2.5, -0.8] },
   ];
   function audioPosition() {
     audio.setSpatialPosition(
@@ -87,7 +92,7 @@ export function createWorldNavigation({
       view.targetGoal.set(...v.t);
     },
     cityView(id) {
-      camera.layers.set(0);
+      camera.layers.set(3);
       const p = cityViews[id];
       if (!p) return;
       arenaRoof.visible = lip.visible = id !== "court";
@@ -183,15 +188,27 @@ export function createWorldNavigation({
           look: view.target.clone(),
           points: [
             camera.position.clone(),
-            new T.Vector3(7, 2.3, -2),
-            new T.Vector3(10.3, 2.5, -2),
+            new T.Vector3(7, 2.3, 2.6),
+            new T.Vector3(10.3, 2.5, 2.6),
             new T.Vector3(9.3, 4.8, 0),
           ],
           endLook: new T.Vector3(18.2, 2, 0),
         };
-      camera.layers.set(i === 2 ? 1 : 0);
+      camera.layers.set(i === 3 ? 3 : i === 2 ? 1 : [6, 7].includes(i) ? 2 : 0);
+      sun.layers.enable(3);
+      roomAmbient.layers.enable(3);
+      streetGlow.layers.enable(3);
+      if ([6, 7].includes(i)) {
+        sun.layers.enable(2);
+        roomAmbient.layers.enable(2);
+        streetGlow.layers.enable(2);
+      }
       sun.castShadow = i !== 2;
-      camera.fov = i === 3 ? 50 : i === 1 ? 52 : i === 2 ? 45 : 43;
+      camera.userData.baseFov = i === 3 ? 50 : i === 1 ? 52 : i === 2 ? 45 : 43;
+      camera.fov = responsiveFieldOfView(
+        camera.userData.baseFov,
+        camera.aspect,
+      );
       camera.updateProjectionMatrix();
       sun.intensity = i === 3 ? 1.65 : 3;
       sun.color.set(i === 3 ? "#f8d7b3" : "#f1bb7a");
@@ -206,7 +223,7 @@ export function createWorldNavigation({
       scene.fog.color.set(
         i === 3 ? "#345a83" : i === 2 ? "#20251f" : "#25251d",
       );
-      scene.fog.density = i === 3 ? 0.00125 : 0.025;
+      scene.fog.density = i === 3 ? 0.00125 : 0;
       const p = positions[i];
       view.angleGoal = p.a;
       view.radiusGoal = p.r;

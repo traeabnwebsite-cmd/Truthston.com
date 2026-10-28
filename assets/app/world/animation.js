@@ -1,5 +1,6 @@
 import { $, $$, esc } from "../core/dom.js";
 import { createLifetime } from "../core/lifecycle.js";
+import { constrainShopOrbit } from "./framing.js";
 export function createWorldAnimation({
   audio,
   appState,
@@ -152,6 +153,7 @@ export function createWorldAnimation({
       view.elevation,
       view.target.z + Math.cos(view.angle) * view.radius,
     );
+    constrainShopOrbit(camera.position, view.target, appState.station);
     camera.lookAt(view.target);
     if (appState.calm) view.streetJourney = null;
     if (view.streetJourney) {
@@ -247,12 +249,7 @@ export function createWorldAnimation({
     view.frames++;
     view.frameTotal += dt;
     if (view.frames >= 180) {
-      if (
-        appState.station !== 2 &&
-        view.frames / view.frameTotal < 40 &&
-        renderer.getPixelRatio() > 0.75
-      )
-        renderer.setPixelRatio(Math.max(0.75, renderer.getPixelRatio() * 0.75));
+      // Keep the selected display resolution stable; do not soften the room over time.
       view.frames = 0;
       view.frameTotal = 0;
     }

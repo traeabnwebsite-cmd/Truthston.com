@@ -1,0 +1,656 @@
+.room-wrap {
+  display: grid !important;
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto auto;
+  height: clamp(580px, 62vw, 800px) !important;
+  isolation: isolate;
+}
+.world-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  background: #26382f;
+  color: #f2e5c8;
+  z-index: 10;
+  border-bottom: 1px solid #b6a887;
+  min-width: 0;
+}
+.world-toolbar .room-label {
+  position: static !important;
+  max-width: none !important;
+  min-width: 0;
+  flex: 1;
+}
+.world-toolbar .room-label b {
+  font-size: clamp(16px, 1.8vw, 24px) !important;
+  line-height: 1.2;
+}
+.world-toolbar .room-label small {
+  font-size: 10px !important;
+  line-height: 1.4;
+  margin-top: 4px;
+  letter-spacing: 0.6px;
+}
+.world-toolbar .room-tools {
+  position: static !important;
+  flex-shrink: 0;
+  display: flex !important;
+  gap: 6px;
+  background: none !important;
+  backdrop-filter: none !important;
+}
+.world-toolbar .room-tools button {
+  min-height: 40px;
+  padding: 8px 10px;
+  font-size: 11px !important;
+  white-space: nowrap;
+}
+.world-context {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: #26382f;
+  color: #f2e5c8;
+  min-width: 0;
+  z-index: 9;
+}
+.world-context > .dj-room-controls,
+.world-context > .venue-controls,
+.world-context > .uptown-controls,
+.world-context > .ballpark-controls,
+.world-context > .store-room-actions {
+  position: static !important;
+  max-width: none !important;
+  width: auto !important;
+  margin: 0;
+  padding: 8px 18px !important;
+  background: transparent !important;
+  border: 0 !important;
+  flex-wrap: wrap;
+  gap: 8px !important;
+  white-space: normal !important;
+  min-width: 0;
+}
+.world-context .store-room-actions {
+  display: flex !important;
+  padding: 0 18px !important;
+}
+.world-context > .city-nav {
+  position: static !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 1 1 100%;
+  justify-content: flex-start !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-height: 62px;
+  padding: 6px 14px !important;
+  gap: 12px !important;
+  border-top: 1px solid #b6a887;
+  white-space: nowrap;
+}
+.world-context > .city-nav button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  min-height: 40px;
+}
+#world-menu-toggle,
+#world-mobile-menu,
+.world-orientation-hint {
+  display: none;
+}
+.mobile-world-entry {
+  display: none;
+}
+.loading.is-error {
+  pointer-events: auto;
+  z-index: 20;
+  padding: 25px;
+  background: #26382ff5;
+  gap: 15px;
+  text-align: center;
+}
+.loading.is-error small {
+  max-width: 350px;
+  line-height: 1.6;
+}
+.loading.is-error button {
+  margin: 6px;
+  min-height: 44px;
+}
+@media (max-width: 760px), (pointer: coarse) {
+  .mobile-world-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 18px 5%;
+    padding: 20px;
+    background: #26382f;
+    color: #eee6d3;
+    border-top: 3px solid #b78a48;
+  }
+  .mobile-world-entry b {
+    display: block;
+    font:
+      800 27px "Barlow Condensed",
+      Impact,
+      sans-serif;
+  }
+  .mobile-world-entry small {
+    display: block;
+    font-size: 11px;
+    line-height: 1.6;
+    margin-top: 5px;
+  }
+  .mobile-world-entry button {
+    min-height: 48px;
+    font-size: 14px;
+  }
+}
+.world-context .store-room-actions:has(a[style]) {
+  padding: 8px 18px !important;
+}
+.world-context button,
+.world-context a {
+  min-height: 40px;
+  max-width: 100%;
+  font-size: 11px !important;
+  white-space: normal;
+  line-height: 1.4;
+}
+.world-stage {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #252b25;
+}
+.world-stage #scene {
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+.room-panel-view .world-stage #scene,
+.room-panel-view .world-stage .catalog {
+  display: none !important;
+}
+.world-stage > #record-store-page,
+.world-stage > #account-page,
+.world-stage > #editorial-page,
+.world-stage > #bump-shop {
+  position: absolute !important;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 18px 20px 45px;
+  background: var(--paper);
+  color: var(--ink);
+  box-sizing: border-box;
+  z-index: 15;
+}
+.world-stage > [hidden] {
+  display: none !important;
+}
+.elevator-floors {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+.elevator-floors button {
+  text-align: left;
+  min-height: 48px;
+  line-height: 1.5;
+}
+.store-room-actions #store-elevator {
+  display: none;
+  color: var(--paper);
+  background: #26382f;
+  border: 1px solid #b6a887;
+  padding: 8px 14px;
+}
+body:is(
+    [data-store-room="0"],
+    [data-store-room="6"],
+    [data-store-room="7"],
+    [data-store-room="8"],
+    [data-store-room="9"]
+  )
+  #store-elevator {
+  display: block;
+}
+.world-stage #scene {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  filter: none !important;
+}
+.world-stage .catalog {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  padding: 22px !important;
+}
+.world-stage .catalog-head {
+  padding-right: 0 !important;
+}
+.world-stage #tip {
+  z-index: 12;
+  max-width: min(260px, 80%);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.room-wrap .stations {
+  position: static !important;
+  width: 100%;
+  height: auto !important;
+  min-height: 48px;
+  display: flex;
+  justify-content: flex-start !important;
+  gap: 18px !important;
+  padding: 5px 16px !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: #26382f;
+  border-top: 1px solid #b6a887;
+  scrollbar-width: thin;
+  z-index: 10;
+}
+.room-wrap .stations button {
+  font-size: 11px !important;
+  min-height: 38px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  max-width: none;
+}
+.room-wrap .fullscreen-exit-bar {
+  position: static !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 8px 18px !important;
+  background: #26382f;
+  border-top: 1px solid #b6a887;
+  z-index: 11;
+  max-width: 100%;
+  font-size: 10px;
+}
+.room-wrap .fullscreen-exit-bar[hidden] {
+  display: none !important;
+}
+.room-wrap:fullscreen,
+.room-wrap.fullscreen-fallback {
+  height: 100dvh !important;
+  min-height: 0 !important;
+  width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.room-wrap:fullscreen .room-caption,
+.room-wrap.fullscreen-fallback .room-caption {
+  position: static !important;
+  display: flex !important;
+  gap: 15px;
+  padding: 10px 18px !important;
+  max-height: 85px;
+  overflow: auto;
+  min-height: 0;
+  background: #26382f;
+  margin: 0 !important;
+  z-index: 10;
+}
+.room-wrap .room-caption h2 {
+  font-size: 20px !important;
+  flex: 0 0 auto !important;
+  line-height: 1.1;
+  margin: 0;
+}
+.room-wrap .room-caption p {
+  font-size: 11px !important;
+  line-height: 1.5;
+  margin: 0;
+}
+.room-wrap .world-guide-tools {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  max-width: calc(100% - 28px);
+}
+.companion-thought {
+  transition: none !important;
+  max-width: min(240px, 65vw);
+  filter: none !important;
+}
+@media (max-width: 760px) {
+  .room-wrap {
+    height: 650px !important;
+  }
+  .world-toolbar {
+    flex-wrap: wrap;
+    padding: 10px 12px;
+    gap: 9px;
+  }
+  .world-toolbar .room-label {
+    flex-basis: 100%;
+  }
+  .world-toolbar .room-label b {
+    font-size: 18px !important;
+  }
+  .world-toolbar .room-tools {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .world-toolbar .room-tools button {
+    flex: 1;
+    min-width: 0;
+  }
+  .world-context > .dj-room-controls,
+  .world-context > .venue-controls,
+  .world-context > .uptown-controls,
+  .world-context > .ballpark-controls,
+  .world-context > .store-room-actions {
+    padding: 6px 12px !important;
+    max-width: 100% !important;
+  }
+  .world-context .dj-room-controls {
+    grid-template-columns: 1fr 1fr;
+  }
+  .world-context .store-room-actions a {
+    font-size: 10px !important;
+    padding: 8px;
+  }
+  .world-stage .catalog {
+    padding: 14px !important;
+  }
+  .room-wrap .fullscreen-exit-bar > span {
+    display: none;
+  }
+  .room-wrap .fullscreen-exit-bar {
+    padding: 6px 12px !important;
+  }
+  .room-wrap .fullscreen-audio {
+    gap: 8px;
+  }
+  .room-wrap .fullscreen-audio label {
+    font-size: 9px;
+  }
+  .room-wrap .fullscreen-audio input {
+    width: 65px;
+  }
+  .room-wrap:fullscreen .room-caption,
+  .room-wrap.fullscreen-fallback .room-caption {
+    max-height: 65px;
+  }
+  .room-wrap .room-caption h2 {
+    font-size: 16px !important;
+  }
+  .room-wrap .room-caption p {
+    font-size: 10px !important;
+  }
+}
+@media (max-height: 550px) {
+  .room-wrap:fullscreen .room-caption,
+  .room-wrap.fullscreen-fallback .room-caption {
+    display: none !important;
+  }
+  .room-wrap:fullscreen .world-toolbar,
+  .room-wrap.fullscreen-fallback .world-toolbar {
+    flex-wrap: nowrap;
+    padding: 6px 10px;
+  }
+  .room-wrap:fullscreen .room-label,
+  .room-wrap.fullscreen-fallback .room-label {
+    flex-basis: auto;
+  }
+  .room-wrap:fullscreen .room-label small,
+  .room-wrap.fullscreen-fallback .room-label small {
+    display: none;
+  }
+  .room-wrap:fullscreen .room-tools,
+  .room-wrap.fullscreen-fallback .room-tools {
+    width: auto;
+  }
+  .room-wrap:fullscreen .room-tools button,
+  .room-wrap.fullscreen-fallback .room-tools button {
+    min-height: 34px;
+  }
+  .room-wrap:fullscreen .stations,
+  .room-wrap.fullscreen-fallback .stations {
+    min-height: 38px;
+  }
+  .room-wrap:fullscreen .stations button,
+  .room-wrap.fullscreen-fallback .stations button {
+    min-height: 30px;
+  }
+}
+
+@media (max-width: 760px),
+  (pointer: coarse),
+  (max-height: 550px) and (max-width: 1000px) {
+  .room-wrap.fullscreen-active {
+    grid-template-rows: auto minmax(0, 1fr) !important;
+    gap: 0 !important;
+  }
+  .room-wrap.fullscreen-active > .world-toolbar {
+    grid-row: 1;
+    flex-wrap: nowrap !important;
+    min-height: 46px;
+    padding: max(6px, env(safe-area-inset-top))
+      max(10px, env(safe-area-inset-right)) 6px
+      max(10px, env(safe-area-inset-left)) !important;
+    gap: 8px;
+  }
+  .room-wrap.fullscreen-active > .world-stage {
+    grid-row: 2;
+    min-height: 0;
+  }
+  .room-wrap.fullscreen-active > .world-context,
+  .room-wrap.fullscreen-active > .stations,
+  .room-wrap.fullscreen-active > .fullscreen-exit-bar,
+  .room-wrap.fullscreen-active > .room-caption {
+    display: none !important;
+  }
+  .room-wrap.fullscreen-active .world-toolbar .room-label {
+    flex: 1 !important;
+    min-width: 0;
+  }
+  .room-wrap.fullscreen-active .world-toolbar .room-label b {
+    font-size: 14px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .room-wrap.fullscreen-active .world-toolbar .room-label small {
+    display: none !important;
+  }
+  .room-wrap.fullscreen-active .world-toolbar .room-tools {
+    width: auto !important;
+    flex: 0 0 auto !important;
+    gap: 6px;
+  }
+  .room-wrap.fullscreen-active .room-tools #calm,
+  .room-wrap.fullscreen-active .room-tools #help {
+    display: none !important;
+  }
+  .room-wrap.fullscreen-active #world-menu-toggle {
+    display: block;
+    min-height: 36px;
+    padding: 7px 12px;
+    font-size: 12px !important;
+  }
+  .room-wrap.fullscreen-active .room-tools #fullscreen {
+    font-size: 0 !important;
+    min-height: 36px;
+    padding: 7px 12px;
+  }
+  .room-wrap.fullscreen-active .room-tools #fullscreen::after {
+    content: "Exit";
+    font-size: 12px;
+  }
+  .room-wrap.fullscreen-active #world-mobile-menu:not([hidden]) {
+    display: block;
+    position: absolute;
+    right: 8px;
+    top: calc(52px + env(safe-area-inset-top));
+    z-index: 80;
+    width: min(330px, calc(100% - 16px));
+    max-height: calc(100% - 62px - env(safe-area-inset-top));
+    overflow: auto;
+    overscroll-behavior: contain;
+    background: #eee6d3;
+    color: #26382f;
+    border: 1px solid #b6a887;
+    box-shadow: 0 5px 20px #0005;
+    padding: 14px;
+  }
+  .world-menu-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #b6a887;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+  .world-menu-heading button {
+    font-size: 24px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+  .world-destinations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .world-destinations button,
+  .world-destinations a,
+  .world-menu-audio button {
+    padding: 12px 10px;
+    border: 1px solid #b6a887;
+    min-height: 44px;
+    font:
+      12px/1.4 "Space Mono",
+      monospace;
+    text-align: left;
+    color: #26382f;
+    text-decoration: none;
+    background: #f7efde;
+  }
+  .world-landmark-picker {
+    display: grid;
+    gap: 8px;
+    font-size: 10px;
+    margin-top: 16px;
+  }
+  .world-landmark-picker select {
+    width: 100%;
+    padding: 12px;
+    background: #f7efde;
+    color: #26382f;
+    border: 1px solid #b6a887;
+    font-size: 14px;
+  }
+  .world-menu-audio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .room-wrap.fullscreen-active .world-stage #scene {
+    touch-action: none !important;
+  }
+  .room-wrap.fullscreen-active .world-orientation-hint:not([hidden]) {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    background: #26382fee;
+    color: #f0e5cd;
+    padding: 9px 12px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  .world-orientation-hint button {
+    color: inherit;
+    font-size: 20px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+}
+@media (orientation: landscape) {
+  .world-orientation-hint {
+    display: none !important;
+  }
+}
+
+@media (max-width: 760px),
+  (pointer: coarse),
+  (max-height: 550px) and (max-width: 1000px) {
+  .room-wrap.fullscreen-active .world-toolbar .room-label {
+    padding: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .room-wrap.fullscreen-active > #truth-companion,
+  .room-wrap.fullscreen-active > #companion-bubble,
+  .room-wrap.fullscreen-active > #companion-restore,
+  .room-wrap.fullscreen-active > .accessible,
+  .room-wrap.fullscreen-active > .world-guide-tools {
+    display: none !important;
+  }
+  .room-wrap.fullscreen-active .world-toolbar .room-tools {
+    padding: 0 !important;
+    border: 0 !important;
+  }
+}
+
+/* Upstairs has no companion floor anchor; never float the page sprite over a desk. */
+body:is([data-store-room="6"], [data-store-room="7"])
+  .room-wrap
+  > :is(
+    #truth-companion,
+    #companion-bubble,
+    #companion-restore,
+    .world-guide-tools
+  ) {
+  display: none !important;
+}
+
+/* Floors stay together in the navigation, with a small boundary before upstairs. */
+.room-wrap .stations .second-floor-start {
+  border-left: 1px solid #d9cdb060;
+  padding-left: 18px;
+  margin-left: 4px;
+}
+
+.world-destinations .world-floor-heading {
+  grid-column: 1 / -1;
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  color: var(--red);
+  border-top: 1px solid #d9cdb044;
+  padding-top: 10px;
+  margin-top: 3px;
+}
+.world-destinations .world-floor-heading:first-child {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}

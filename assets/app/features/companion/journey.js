@@ -9,6 +9,7 @@ export function createCompanionJourney({
   pose,
   appState,
   getWorld,
+  ensureWorld = async () => getWorld(),
   setMode,
   showThought,
   cancelSequence,
@@ -66,12 +67,9 @@ export function createCompanionJourney({
     if (state.hidden) return;
     if (["entering", "arriving"].includes(state.portalPhase)) return;
     if (!getWorld()) {
-      setMode("standard");
-      showThought(
-        "The room is in Standard mode. You can still chat and explore the archive.",
-        "crate",
-      );
-      return;
+      setMode("immersive");
+      await ensureWorld();
+      if (!getWorld() || state.hidden) return;
     }
     const token = ++state.portalToken;
     cancelSequence();
@@ -136,8 +134,9 @@ export function createCompanionJourney({
     state.rig?.cinema?.(seated, Boolean(cinema.state?.playing));
     if (!seated) pose(3);
   }
-  function guidePosition(x, y, visible) {
+  function guidePosition(x, y, visible, headX = x, headY = y - 170) {
     if (!state.inWorld) return;
+    state.worldAnchor = visible ? { x: headX, y: headY } : null;
     root.style.position = "fixed";
     root.style.left = x - 66 + "px";
     root.style.top = y - 176 + "px";

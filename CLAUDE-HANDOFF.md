@@ -1,3 +1,11 @@
+# Current release — record store floor plan and upstairs expansion
+
+October 28, 2026. Owner explicitly approved publishing the shared expansion and coordinating with “Develop and critique platform vision”. See docs/STORE-EXPANSION.md and review/STUDIO-REBUILD-HANDOFF.md. Checkout/Reign are at the back; Giving display is removed pending a separate Relief Gang room. Elevator shares the DJ wall; screening is opposite DJ; merch has a separate right-wall door; side shelves end before doorways. Same floor order on desktop/mobile: Record Store, DJ Booth, Screening Room, Merch Store, Streets, then WABN Radio and Studio ABN. No separate Streaming/Purchases/Checkout bottom items.
+
+Store and radio pages remain free-preview/device-local; payments, real entitlements and studio recording are not activated. Reign is a sourced local guide. Keep the established fail-closed service boundaries. Final combined verification:61 Node+19 Python tests and desktop/phone WebGL/navigation checks. Previous live modular commit b3ba1dc is the packaged rollback reference.
+
+---
+
 # Live deployment update — October 28, 2026
 
 The modular version was merged into main at97a4bf2. A shallow-clone rollback dependency caused the first Cloudflare build to fail;38d2d00 fetches the exact pinned rollback SHA when absent and deployed successfully. Both truthston.com hostnames serve the modular release.74 tests pass (55 Node+19 Python).

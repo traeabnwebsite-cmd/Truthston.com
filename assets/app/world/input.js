@@ -51,6 +51,7 @@ export function createWorldInput({
       ((e.clientX - r.left) / r.width) * 2 - 1,
       (-(e.clientY - r.top) / r.height) * 2 + 1,
     );
+    ray.layers.mask = camera.layers.mask;
     ray.setFromCamera(pointer, camera);
     return ray.intersectObjects(interact, false)[0]?.object;
   }
