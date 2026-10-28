@@ -5,17 +5,28 @@ export function createExperienceMode({ appState, getWorld, getWorldLoader }) {
 
   function setMode(m) {
     appState.mode = m;
+    const loading = $("#loading");
+    if (loading)
+      loading.style.display =
+        m === "immersive" && !getWorld() ? "grid" : "none";
     document.body.classList.toggle("flat", m !== "immersive");
     $$("[data-mode]").forEach((b) =>
       b.classList.toggle("active", b.dataset.mode === m),
     );
     if (m === "reduced") setCalm(true);
-    if(m==='immersive' && !getWorld())document.body.classList.add('flat');
+    if (m === "immersive" && !getWorld()) document.body.classList.add("flat");
     syncWorld();
   }
-  function syncWorld(){
-    if(appState.mode!=='immersive'||document.body.classList.contains('account-view')){getWorld()?.suspend();return;}
-    if(getWorld())getWorld().resume();else getWorldLoader()?.load();
+  function syncWorld() {
+    if (
+      appState.mode !== "immersive" ||
+      document.body.classList.contains("account-view")
+    ) {
+      getWorld()?.suspend();
+      return;
+    }
+    if (getWorld()) getWorld().resume();
+    else getWorldLoader()?.load();
   }
 
   function setCalm(v) {

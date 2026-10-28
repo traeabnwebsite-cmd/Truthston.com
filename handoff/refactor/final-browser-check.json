@@ -14,6 +14,9 @@
     "deckOffset": "0.9287925696594357",
     "pitch": "0.75"
   },
-  "overflow": false,
+  "phone": {
+    "overflow": false,
+    "loadingVisible": false
+  },
   "pageErrors": []
 }
