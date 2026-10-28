@@ -164,7 +164,7 @@ Complete and verify each job before the next. Existing historical jobs retain th
 
 | Release | Work | Exit gate |
 |---|---|---|
-| P0 | Refactor slices R0–R8 in MONOLITH-BREAKDOWN.md; preserve current behavior | Modular source, direct module tests, no UI/functionality regression and safe deployment |
+| P0 — COMPLETE ON BRANCH | Refactor slices R0–R8; preserve current behavior | Modular source, direct module tests, browser parity, isolated staging and rollback packaging verified. Production promotion remains separate |
 | P1 | Staging isolation, pinned identity proof, member/staff roles, transactional email and D1/R2 repositories | Real own-account and staff authorization flows pass; resources and secrets isolated |
 | P2 | Cloud CMS, catalog normalization and one representative batch intake | Authenticated staff publish article/photo/event/merch/project without code commits; private drafts protected |
 | P3 | Protected streaming/downloads and eligible DJ catalog | Asset identity/access/range/expiry/revocation/device limits tested against uploaded authorized files |
