@@ -1,3 +1,11 @@
+# Live deployment update — October 28, 2026
+
+The modular version was merged into main at97a4bf2. A shallow-clone rollback dependency caused the first Cloudflare build to fail;38d2d00 fetches the exact pinned rollback SHA when absent and deployed successfully. Both truthston.com hostnames serve the modular release.74 tests pass (55 Node+19 Python).
+
+Owner requested Boss Ballin on the live DJ decks. Public playback now uses assets/audio/boss-ballin-preview.m4a, a full-length318.093s AAC128k web rendition made from the owner-supplied MP3. This specific preview is intentionally public for playback and both decks share the same decoded buffer. The source MP3 remains private/ignored; other catalog masters remain excluded. Do not mistake this public demonstration track for configured premium-media delivery.
+
+Historical branch-only/no-merge statements below predate promotion.
+
 # Current handoff — modular frontend complete
 
 October 27, 2026. Worktree: `/Users/brandonhughes/.codex/worktrees/truthston-modular/Trae Tha Truth`; branch `codex/modularize-frontend`. R0–R8 are complete. Read docs/refactor/ARCHITECTURE.md, docs/refactor/STATUS.md, COMPLETION-REPORT.md and BUILD-SPEC.md v4 before continuing. Historical notes below are superseded where they call the frontend monolithic or ask to resume R4.

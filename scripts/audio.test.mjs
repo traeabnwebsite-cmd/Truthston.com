@@ -10,7 +10,7 @@ function fixture({missing=false}={}) {
  return{audio,context,events};
 }
 test('two copies start at the same audio clock with B one beat ahead; pitch preserves the playhead',async()=>{
- const{audio,context}=fixture();assert.equal(audio.ctx,undefined);await audio.play();assert.equal(audio.analyser.fftSize,2048);assert.equal(audio.decks[0].node.started[0],audio.decks[1].node.started[0]);assert.ok(Math.abs(audio.decks[1].offset-audio.decks[0].offset-60/64.6)<1e-9);
+ const{audio,context}=fixture();assert.equal(audio.previewTrack.url,'assets/audio/boss-ballin-preview.m4a');assert.equal(audio.ctx,undefined);await audio.play();assert.equal(audio.analyser.fftSize,2048);assert.equal(audio.decks[0].node.started[0],audio.decks[1].node.started[0]);assert.ok(Math.abs(audio.decks[1].offset-audio.decks[0].offset-60/64.6)<1e-9);
  context.currentTime=15;const before=audio.position();audio.setDeckPitch(0,.75);assert.equal(audio.position(),before);context.currentTime+=2;assert.equal(audio.position(),before+1.5);await audio.play();assert.equal(audio.playing,false);await audio.destroy();assert.equal(context.closed,true);
 });
 test('manual cuts use equal-power gains and report activity; reverse scratch creates reversed audio',async()=>{
