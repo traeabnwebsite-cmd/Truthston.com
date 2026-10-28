@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
+import { resolveRollbackRevision } from "./rollback-revision.mjs";
 import {
   readCodeTree,
   writeCodeSnapshot,
@@ -40,12 +41,10 @@ const release = await writeCodeSnapshot(
   await readCodeTree(resolve(root, "assets")),
   destination,
 );
-const rollbackRef = process.env.TRUTHSTON_ROLLBACK_REF || "3e81bd3";
-const revision = execFileSync(
-  "git",
-  ["rev-parse", "--verify", rollbackRef + "^{commit}"],
-  { cwd: root, encoding: "utf8" },
-).trim();
+const rollbackRef =
+  process.env.TRUTHSTON_ROLLBACK_REF ||
+  "3e81bd392d13cac588e00941672f871743645611";
+const revision = resolveRollbackRevision(root, rollbackRef);
 const paths = execFileSync(
   "git",
   ["ls-tree", "-r", "--name-only", revision, "assets"],
