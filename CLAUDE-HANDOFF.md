@@ -12,6 +12,10 @@ Owner confirmed photographs only: no video-still gallery. Production identity, p
 
 ---
 
+## Latest completed job — newsroom audit
+
+26 original sourced desk reports now replace thin published research notes;80 references retained as CMS drafts,44 existing private articles preserved. Full-frame photos keep heads visible; lead image/copy form a desktop spread, dispatches below, phone stacks. See docs/NEWSROOM-AUDIT.md and handoff/refactor/newsroom-audit.json. Current verification:54 Node+19 Python tests;80 application/CMS modules. Preview http://localhost:8765/?v=newsroom-complete#newsroom . Edition application is idempotent; do not overwrite subsequent CMS edits. Main/live remain protected.
+
 ## Historical handoff log
 
 ## Latest completed update — October 27, 2026
