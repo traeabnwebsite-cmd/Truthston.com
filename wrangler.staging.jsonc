@@ -25,5 +25,13 @@
   "account_id": "90e7a4da02e47f49eb819dd595f1f430",
   "workers_dev": true,
   "preview_urls": true,
-  "routes": []
+  "routes": [],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "truthston-staging",
+      "database_id": "b47e7d2f-e2e0-46af-aea3-3edb0af94ed2",
+      "migrations_dir": "migrations"
+    }
+  ]
 }

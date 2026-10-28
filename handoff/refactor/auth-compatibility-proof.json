@@ -1,0 +1,29 @@
+{
+  "fixture": "Better Auth1.7.14 + Drizzle0.45.4 + local Workers/D1",
+  "users": [
+    {
+      "signup": true,
+      "unverifiedDenied": true,
+      "verified": true,
+      "session": true
+    },
+    {
+      "signup": true,
+      "unverifiedDenied": true,
+      "verified": true,
+      "session": true
+    }
+  ],
+  "separateIdentities": true,
+  "forgedCookieDenied": true,
+  "logoutRevokes": true,
+  "otherSessionRetained": true,
+  "wrongPasswordDenied": true,
+  "recovery": true,
+  "recoveryRevokes": true,
+  "recoveryReplayDenied": true,
+  "crossOriginDenied": true,
+  "realEmailSent": false,
+  "productionEnabled": false,
+  "result": "pass"
+}

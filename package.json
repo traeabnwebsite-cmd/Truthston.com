@@ -12,12 +12,14 @@
     "dev": "python3 -m server.preview --port 8765",
     "preflight": "node scripts/platform-preflight.mjs",
     "smoke:live": "node scripts/smoke-live.mjs",
-    "media:validate": "node scripts/validate-media-manifest.mjs"
+    "media:validate": "node scripts/validate-media-manifest.mjs",
+    "proof:auth": "node scripts/prove-auth.mjs"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "5.20261026.1",
     "@types/node": "22.20.5",
     "acorn": "8.15.0",
+    "drizzle-kit": "0.31.11",
     "eslint-scope": "8.4.0",
     "prettier": "3.6.2",
     "typescript": "7.0.2",
@@ -25,5 +27,10 @@
   },
   "overrides": {
     "undici": "7.30.1"
+  },
+  "dependencies": {
+    "@better-auth/drizzle-adapter": "1.7.14",
+    "better-auth": "1.7.14",
+    "drizzle-orm": "0.45.4"
   }
 }

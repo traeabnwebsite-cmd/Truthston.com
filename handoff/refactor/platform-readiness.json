@@ -54,14 +54,16 @@
     "staging": {
       "worker": "truthston-modular-staging",
       "bindings": {
-        "database": [],
+        "database": [
+          "DB"
+        ],
         "privateStorage": []
       },
       "routes": []
     }
   },
   "package": {
-    "current": "416f9c35b249ec1f3a8c",
+    "current": "3e613593458bee8fefe1",
     "retained": "416f9c35b249ec1f3a8c",
     "privateFileLeaks": 0
   },

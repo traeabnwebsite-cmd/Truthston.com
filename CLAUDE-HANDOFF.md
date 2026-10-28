@@ -1,3 +1,15 @@
+# Publishing/auth checkpoint — October28,2026
+
+Live remains d779d14 / frontend416f9c35b249ec1f3a8c. C03 committed locally51a48fa; PUSH FAILED because existing gh CLI credentials became invalid. GitHub browser reconnect reached “Confirm access” email verification for traeabnwebsite-cmd; user was asked asynchronously to complete that in the open tab. CLI polling then ended on a network reset; retry a fresh same-scope login after the user verifies. Do not claim C03 is live; use exact SHA for check queries, never remote “HEAD” as evidence for an unpushed commit.
+
+C04 independent foundation: Better Auth1.7.14 + @better-auth/drizzle-adapter1.7.14 + Drizzle0.45.4, generated schema/migration, local real workerd/D1 proof. `npm run proof:auth` passes two-user verification/sign-in/isolation/logout/recovery/replay/cross-origin checks, with only a local mailbox sink. No real email or public identity enabled. See proof/auth/README.md; production D1 multi-write fault/recovery behavior remains a gate. New dependencies pinned/locked; default frontend still requires no build.
+
+Cloudflare browser existing Trae session resumed. Created isolated empty D1 database truthston-staging, ID b47e7d2f-e2e0-46af-aea3-3edb0af94ed2, in account90e7a4da02e47f49eb819dd595f1f430. Staging config binding DB records it; production config untouched. No remote migrations or real member data inserted. Screenshot output/playwright/cloudflare-staging-d1.png. R2 is not enrolled; its billing page requires a renewing usage-billed subscription. Exact-rate confirmation was requested asynchronously. Do not activate before approval. See docs/CLOUD-FOUNDATION-STATUS.md. Existing unrelated accounts preserved.
+
+Next: finish recording C04 readiness and commit; publish all local commits after authentication works, verify exact CI/Cloudflare commit and live release, then proceed C04 cloud persistence/email/identity failure tests and C05 adapters. Never import browser balances as awards or publish private masters.
+
+---
+
 # Completion execution checkpoint — October28,2026
 
 C01 deployed3d5a617 (mobile/fullscreen/theater); C02 deployedd779d14 (readiness/health/provenance). Read-only live HTTP smoke passed on apex/www. C03 stable IDs/share links and batch intake dry run implemented; tests and browser shared-link roundtrip pass. Full production C03 remains gated on actual ingest through C04–C06. Never call draft sleeves playable projects.

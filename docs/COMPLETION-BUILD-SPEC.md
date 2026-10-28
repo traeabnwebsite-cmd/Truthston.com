@@ -50,6 +50,8 @@ Normalize stable project/track/asset IDs while preserving legacy links and order
 
 ### C04 / S14 S10 — isolated cloud foundations and identity proof
 
+**Status:** baseline local Workers/D1 identity compatibility, recovery and session tests pass with pinned Better Auth/Drizzle. Isolated empty cloud D1 `truthston-staging` created; config records its ID, production remains unbound. Cloud migrations/private R2/verified email, failure-injection and recovery rehearsals remain open. See `proof/auth/README.md`.
+
 Provision isolated staging D1/R2 only in the Trae account with suitable credentials; apply additive migrations; establish backup/restore and private buckets. Prove pinned identity package compatibility, migrations, verification/session lifecycle and email delivery on Workers. Configure secrets through provider facilities, not Git. Verify Access/staff protection independently from member roles. Keep current unrelated account credentials intact.
 
 **Gate:** two verified test identities and a separate staff identity; logout/recovery/revocation/expiry; no cross-member data access or self-assigned roles; verified email; isolated staging data; recover a backup. Missing account credentials are a real integration dependency, not permission to use another account.

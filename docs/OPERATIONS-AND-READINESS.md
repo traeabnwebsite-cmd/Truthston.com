@@ -29,3 +29,5 @@ The generated `handoff/refactor/platform-readiness.json` is authoritative for th
 An isolated staging configuration exists with no public production routes. Actual staging D1/R2 provisioning, backups and cloud rollback rehearsal remain C04/C13 work; passing the config-isolation check alone does not demonstrate cloud persistence/recovery. Public content cache revocation and already-downloaded files need explicit retention decisions during production media work.
 
 Reference: [Cloudflare Workers best practices](https://developers.cloudflare.com/workers/best-practices/workers-best-practices/), reviewed for this operational change.
+
+C04 update: an empty cloud D1 staging database is now provisioned; schema/cloud recovery is not yet verified. R2 enrollment awaits explicit billing-terms confirmation. See CLOUD-FOUNDATION-STATUS.md.

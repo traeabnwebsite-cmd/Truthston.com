@@ -123,3 +123,5 @@ Job26 completion: header/title/footer/console use Truthston.com; elevated Welcom
 40. **Implemented C02 — Release/readiness tooling.** Generated content/capability inventory, environment/package preflight with CI gate, health release identity and operational capability truth, live HTTP smoke and rollback runbook. No commercial services activated; cloud persistence/recovery remains C04/C13.
 
 41. **Implemented identity/intake foundation; production content gate remains — C03.** Fixed138 existing project IDs, cataloged track references, stable release links with frozen legacy numeric mapping, per-file manifest validation/checksums/error recovery. No masters uploaded or entitlements granted. See docs/CATALOG-COMPLETION-STATUS.md.
+
+42. **C04 foundation partial — Identity compatibility and staging database.** Pinned Better Auth/Drizzle, generated auth schema and real local workerd/D1 proof including recovery/replay and cross-origin rejection. Created empty isolated truthston-staging D1, recorded staging-only binding; no production service activated. Publishing C03/follow-up commits currently waits on GitHub email verification.

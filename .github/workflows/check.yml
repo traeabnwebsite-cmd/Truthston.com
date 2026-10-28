@@ -20,3 +20,4 @@ jobs:
       - run: npm run prepare:assets
       - run: node scripts/check-source.mjs public
       - run: npm run preflight
+      - run: npm run proof:auth
