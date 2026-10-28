@@ -4,14 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "tsc --noEmit && node scripts/check-source.mjs && node scripts/check-module-boundaries.mjs && node --test cloudflare/worker.test.mjs cloudflare/membership-policy.test.mjs scripts/cinema.test.mjs scripts/skyline-layout.test.mjs scripts/core-data.test.mjs scripts/cms-client.test.mjs scripts/gallery.test.mjs scripts/calendar.test.mjs scripts/audio.test.mjs scripts/companion.test.mjs scripts/world.test.mjs scripts/asset-release.test.mjs scripts/newsroom.test.mjs scripts/fullscreen.test.mjs scripts/platform-preflight.test.mjs && python3 scripts/check-schema.py && python3 -m unittest server.test_cms",
+    "check": "tsc --noEmit && node scripts/check-source.mjs && node scripts/check-module-boundaries.mjs && node --test cloudflare/worker.test.mjs cloudflare/membership-policy.test.mjs scripts/cinema.test.mjs scripts/skyline-layout.test.mjs scripts/core-data.test.mjs scripts/cms-client.test.mjs scripts/gallery.test.mjs scripts/calendar.test.mjs scripts/audio.test.mjs scripts/companion.test.mjs scripts/world.test.mjs scripts/asset-release.test.mjs scripts/newsroom.test.mjs scripts/fullscreen.test.mjs scripts/platform-preflight.test.mjs scripts/media-intake.test.mjs && python3 scripts/check-schema.py && python3 -m unittest server.test_cms",
     "prepare:assets": "node scripts/prepare-assets.mjs",
     "dev:cloudflare": "npm run prepare:assets && wrangler dev --config wrangler.staging.jsonc",
     "deploy:preview": "npm run check && npm run prepare:assets && wrangler deploy --config wrangler.staging.jsonc",
     "types": "wrangler types --config wrangler.companion.jsonc",
     "dev": "python3 -m server.preview --port 8765",
     "preflight": "node scripts/platform-preflight.mjs",
-    "smoke:live": "node scripts/smoke-live.mjs"
+    "smoke:live": "node scripts/smoke-live.mjs",
+    "media:validate": "node scripts/validate-media-manifest.mjs"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "5.20261026.1",

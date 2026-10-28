@@ -44,7 +44,7 @@ const release = await writeCodeSnapshot(
 );
 const rollbackRef =
   process.env.TRUTHSTON_ROLLBACK_REF ||
-  "3d5a617ac6d9b1d516180ad673eca2221a7cb771";
+  "d779d14e7c73c5e488b3ab78b61480acd8bda3ed";
 const revision = resolveRollbackRevision(root, rollbackRef);
 const paths = execFileSync(
   "git",

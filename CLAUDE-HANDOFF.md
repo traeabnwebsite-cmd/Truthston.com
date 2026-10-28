@@ -1,3 +1,13 @@
+# Completion execution checkpoint — October28,2026
+
+C01 deployed3d5a617 (mobile/fullscreen/theater); C02 deployedd779d14 (readiness/health/provenance). Read-only live HTTP smoke passed on apex/www. C03 stable IDs/share links and batch intake dry run implemented; tests and browser shared-link roundtrip pass. Full production C03 remains gated on actual ingest through C04–C06. Never call draft sleeves playable projects.
+
+Next independent integration work is C04: isolated staging D1/private R2 and identity compatibility proof. Cloudflare browser access has been resumed through the existing Trae GitHub profile; no unrelated account changes. No production D1/R2/email/billing configured. Better Auth official docs now use @better-auth/drizzle-adapter, not older adapter import assumptions; re-read current docs before pinning a package. No new auth dependencies installed yet. Keep public health unconfigured until actual services pass. See docs/COMPLETION-BUILD-SPEC.md and docs/OPERATIONS-AND-READINESS.md.
+
+User standing authorization: implement spec autonomously in order, commit/push completed updates, keep mobile parity and accurate deployment reporting. Physical-device verification remains open. Do not restart older monolith tasks or restore rejected 3D guide.
+
+---
+
 # Active completion work — October 28, 2026
 
 Read docs/COMPLETION-BUILD-SPEC.md first. Owner requests autonomous implementation in order, complete each job before the next, commit/push completed updates. C01 mobile/fullscreen/theater corrections are implemented and browser-audited; see docs/MOBILE-AND-THEATER-AUDIT.md for evidence and physical-device limitations. C02 operational readiness tooling follows. Main already contains the modular frontend; historical branch-only notes below are obsolete. No real commercial services are configured. Do not use WebFaktory Cloudflare credentials for Trae resources.

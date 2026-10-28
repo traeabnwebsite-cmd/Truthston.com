@@ -42,6 +42,8 @@ Create a reproducible content/capability inventory and preflight report. Detect 
 
 ### C03 / S04 — canonical catalog and intake
 
+**Status:** canonical138-project identity registry, stable/legacy link handling and file-manifest dry-run validation implemented. Actual multitrack publication depends on cloud identity/storage and source content. See `CATALOG-COMPLETION-STATUS.md`.
+
 Normalize stable project/track/asset IDs while preserving legacy links and ordered track lists. Distinguish metadata-only, preview, member stream, purchase/download and DJ-eligible content. Import manifests with duplicate checksums and field/file validation; no invented tracks/dates/prices. Show useful empty/error states. Never label the single Boss Ballin demo as another project’s audio.
 
 **Gate:** representative album + mixtape + single ingested; correct artwork/tracks; title edits preserve URLs; duplicate retries are idempotent; unpublished assets inaccessible; inventory reports missing masters and metadata explicitly.

@@ -63,3 +63,12 @@ test('router owns exactly one hash listener and supports explicit teardown',asyn
  router.start();router.start();assert.equal(listeners.size,1);await router.route();assert.deepEqual(views,['stamp-book']);assert.equal(query('#account-page').hidden,false);assert.equal(query('#editorial-page').hidden,true);router.destroy();assert.equal(listeners.size,0);
 });
 test('catalog preparation does not mutate imported release data across application remounts',()=>{const supplied={releases:[{title:'A',year:2000,tracks:['One']}]};const before=structuredClone(supplied);const options={supplied,embeddedVault:{},siteContent:{projects:[]},sample:{},cover:()=>'/cover.png'};prepareCatalog(options);prepareCatalog(options);assert.deepEqual(supplied,before);});
+
+test('canonical release links survive new releases and metadata edits; old numeric links keep their original project',async()=>{
+ const {catalogIdentities}=await import('../assets/app/data/catalog-identities.js');
+ const {releaseHash,resolveReleaseLink}=await import('../assets/app/data/release-links.js');
+ const first={id:catalogIdentities[0].id,title:'Updated title'},newRelease={id:'new-project'};
+ const records=[newRelease,first];assert.equal(resolveReleaseLink(records,releaseHash(first)),first);assert.equal(resolveReleaseLink(records,'#release=0'),first);
+ assert.equal(resolveReleaseLink(records,'#release/missing'),null);assert.equal(resolveReleaseLink(records,'#release/%ZZ'),null);
+ assert.equal(new Set(catalogIdentities.map(r=>r.id)).size,138);
+});

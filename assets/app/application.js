@@ -355,8 +355,7 @@ export async function createApplication({ initialMode } = {}) {
   // The companion is an illustrated site guide, not a direct chat with Trae. All destinations are allowlisted.
   // Retain the approved illustrated character. Canvas layers provide light limb/head motion without a card flip.
 
-  const deepLink = location.hash.match(/^#release=(\d+)$/);
-  if (deepLink && releases[+deepLink[1]]) release(releases[+deepLink[1]]);
+  catalog.openFromHash();
 
   router.start();
   accountRoute();

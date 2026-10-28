@@ -1,3 +1,5 @@
+import { releaseHash, resolveReleaseLink } from "../../data/release-links.js";
+import { createLifetime } from "../../core/lifecycle.js";
 import { $, $$, esc } from "../../core/dom.js";
 import { chronologicalReleases } from "../store/catalog-policy.js";
 export function createCatalogPage({
@@ -14,6 +16,12 @@ export function createCatalogPage({
   enterDJRoom,
   registerTwin,
 }) {
+  const lifetime = createLifetime();
+  function openFromHash() {
+    const record = resolveReleaseLink(releases, location.hash);
+    if (record) release(record);
+  }
+  lifetime.listen(window, "hashchange", openFromHash);
   function release(r) {
     recordActivity("dig", String(r.title) + ":" + r.year);
     appState.selected = r;
@@ -93,7 +101,7 @@ export function createCatalogPage({
     );
     $("#copy").onclick = async () => {
       const u = new URL(location.href);
-      u.hash = "release=" + releases.indexOf(r);
+      u.hash = releaseHash(r);
       try {
         await navigator.clipboard.writeText(u.href);
         toast("Link copied.");
@@ -125,8 +133,10 @@ export function createCatalogPage({
     );
   return {
     openRelease: release,
+    openFromHash,
     share,
     destroy() {
+      lifetime.dispose();
       removeTwins.forEach((remove) => remove?.());
       $("#grid").replaceChildren();
     },
