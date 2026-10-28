@@ -19,6 +19,15 @@ export function createLifetime() {
       add(() => target.removeEventListener(type, listener, options));
       return listener;
     },
+    handler(target, property, listener) {
+      if (disposed) return listener;
+      const previous = target[property];
+      target[property] = listener;
+      add(() => {
+        if (target[property] === listener) target[property] = previous;
+      });
+      return listener;
+    },
     interval(callback, ms) {
       if (disposed) return null;
       const id = setInterval(callback, ms);
@@ -52,8 +61,14 @@ export function createLifetime() {
       add(() => observer.disconnect());
       return observer;
     },
-    clearTimeout(id) { clearTimeout(id); timeouts.delete(id); },
-    cancelFrame(id) { cancelAnimationFrame(id); frames.delete(id); },
+    clearTimeout(id) {
+      clearTimeout(id);
+      timeouts.delete(id);
+    },
+    cancelFrame(id) {
+      cancelAnimationFrame(id);
+      frames.delete(id);
+    },
     dispose() {
       if (disposed) return;
       disposed = true;

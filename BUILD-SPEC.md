@@ -1,6 +1,8 @@
 # Trae Tha Truth — sliced production build specification
 
-Version 3.0 · October 27, 2026 · Audited prototype baseline `b499d9a`.
+Version 4.0 · October 27, 2026 · Modular prototype implemented on `codex/modularize-frontend`.
+
+**Architecture update:** R0–R8 separation is complete. See [actual module map, lifecycle and release contracts](docs/refactor/ARCHITECTURE.md) and [verification gates](docs/refactor/STATUS.md). Use the existing feature owners for further production work; do not recreate shared feature scope in the entry. Source preview needs no frontend build. The branch has not been merged into main or deployed over the live site. The product/backend acceptance items below remain distinct from architecture completion.
 
 Read [COMPLETION-REPORT.md](COMPLETION-REPORT.md) for current completion evidence and [MONOLITH-BREAKDOWN.md](MONOLITH-BREAKDOWN.md) for the refactor sequence. This specification supersedes the v2.1 delivery order and single-file source requirement. The detailed [v2.1 product requirements](docs/BUILD-SPEC-v2.1.md), [stamp/member contract](docs/MEMBERSHIP-AND-STAMPS.md), [media intake contract](docs/MEDIA-INGEST.md) and [CMS guide](docs/CMS-GUIDE.md) remain supporting requirements where they do not conflict with this version. The historical v2.1 status table is not the current completion report.
 

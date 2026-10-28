@@ -18,6 +18,8 @@ export function createAudioEngine({
     rate = 1,
     headphones = false;
   const listeners = new Set();
+  const abort = new AbortController();
+  let disposed = false;
   const previewTrack = {
     title: "Boss Ballin",
     url: "assets/audio/boss-ballin.mp3",
@@ -66,6 +68,7 @@ export function createAudioEngine({
     ":" +
     String(Math.floor(Math.max(0, n) % 60)).padStart(2, "0");
   function initAudio() {
+    if (disposed) throw new Error("Audio engine disposed");
     if (ctx) return;
     ctx = contextFactory();
     analyser = ctx.createAnalyser();
@@ -111,11 +114,15 @@ export function createAudioEngine({
       previewBusy = true;
       syncAudioLabels();
       try {
-        const res = await fetchAudio(previewTrack.url);
+        const res = await fetchAudio(previewTrack.url, {
+          signal: abort.signal,
+        });
         if (!res.ok) throw new Error("Preview record unavailable");
         buffer = await ctx.decodeAudioData(await res.arrayBuffer());
+        if (disposed) return;
         providedTrack = true;
       } catch {
+        if (disposed) return;
         buffer = ctx.createBuffer(1, ctx.sampleRate * 12, ctx.sampleRate);
         const a = buffer.getChannelData(0),
           sr = ctx.sampleRate;
@@ -200,6 +207,7 @@ export function createAudioEngine({
       await ctx.resume();
       if (previewBusy) return;
       await loadPreviewRecord();
+      if (disposed) return;
       if (force && playing) return;
       if (playing) {
         stopDeck(0);
@@ -214,6 +222,7 @@ export function createAudioEngine({
       }
       syncAudioLabels();
     } catch (e) {
+      if (disposed) return;
       previewBusy = false;
       syncAudioLabels();
       toast("Audio could not start. Press play to try again.");
@@ -223,6 +232,7 @@ export function createAudioEngine({
     initAudio();
     await ctx.resume();
     await loadPreviewRecord();
+    if (disposed) return;
     const d = decks[i];
     if (d.running) stopDeck(i);
     else startDeck(i, d.offset);
@@ -449,7 +459,17 @@ export function createAudioEngine({
         panner["position" + axis].setTargetAtTime(p[i], ctx.currentTime, 0.1),
       );
     },
+    pause() {
+      if (!playing) return;
+      stopDeck(0);
+      stopDeck(1);
+      stopAutoChop();
+      syncAudioLabels();
+    },
     async destroy() {
+      if (disposed) return;
+      disposed = true;
+      abort.abort();
       stopAutoChop();
       decks.forEach((d, i) => {
         stopDeck(i);

@@ -113,15 +113,19 @@ export function createCatalogPage({
     b.querySelector("img").onerror = () =>
       (b.querySelector("img").src = releases[+b.dataset.release].art);
   });
+  const removeTwins = [];
   for (let i = 0; i < releases.length; i++)
-    registerTwin(
-      `Release ${i + 1}: ${releases[i].title}, ${releases[i].year}`,
-      () => release(releases[i]),
+    removeTwins.push(
+      registerTwin(
+        `Release ${i + 1}: ${releases[i].title}, ${releases[i].year}`,
+        () => release(releases[i]),
+      ),
     );
   return {
     openRelease: release,
     share,
     destroy() {
+      removeTwins.forEach((remove) => remove?.());
       $("#grid").replaceChildren();
     },
   };

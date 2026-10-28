@@ -6,6 +6,7 @@ export function prepareCatalog({
   sample,
   cover,
 }) {
+  supplied = structuredClone(supplied);
   const data = Array.isArray(supplied)
     ? { ...sample, releases: supplied }
     : { ...sample, ...supplied };

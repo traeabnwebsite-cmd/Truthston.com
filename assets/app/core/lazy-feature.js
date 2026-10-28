@@ -22,11 +22,14 @@ export function createLazyFeature({
             result?.destroy?.();
             return null;
           }
+          if (!result) return null;
           value = result;
           onReady(result);
           return result;
         })
         .catch((error) => {
+          value?.destroy?.();
+          value = null;
           if (!disposed) onError(error);
           return null;
         })

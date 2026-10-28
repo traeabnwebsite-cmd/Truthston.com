@@ -1,3 +1,19 @@
+# Current handoff — modular frontend complete
+
+October 27, 2026. Worktree: `/Users/brandonhughes/.codex/worktrees/truthston-modular/Trae Tha Truth`; branch `codex/modularize-frontend`. R0–R8 are complete. Read docs/refactor/ARCHITECTURE.md, docs/refactor/STATUS.md, COMPLETION-REPORT.md and BUILD-SPEC.md v4 before continuing. Historical notes below are superseded where they call the frontend monolithic or ask to resume R4.
+
+`assets/app/main.js` is a three-line entry; application.js composes services. Audio/DJ, theater, companion, pages, shell and room/city/landmark builders have explicit owners/lifetimes. Keep the approved illustrated companion, fitted wood door and persistent restore control. Main/delivery/live retain the protected stable version. No merge/deploy was performed; preview workflow targets isolated staging, not the live Worker.
+
+Current source preview: http://localhost:8765/?v=modular-complete (alternate 8767; stable 8766). Source runs through `python3 -m server.preview --port 8765`, without frontend compilation. Public packaging snapshots native JS/CSS with rollback code and excludes private masters. Update TRUTHSTON_ROLLBACK_REF to the actual live commit at a future approved promotion; current default 3e81bd3 is the protected baseline. Never use the unrelated Cloudflare token from the shell environment for a real deployment.
+
+Verification:51 Node + 19 Python tests and types/schema/source/module graph checks pass; module graph has 79 application/CMS modules without cycles. Identical 4,874-object scene fingerprint,242 parcels / 166 street segments/zero conflicts; real software-WebGL smoke passed without a production FPS claim. Browser routes,138 releases/66 unique photos/35 stamps/calendar, DJ 75% pitch/cut, fullscreen and companion recovery passed. Full teardown/remount preserves counts without duplicates. See handoff/refactor/*.json and docs/refactor/ARCHITECTURE.md.
+
+Owner confirmed photographs only: no video-still gallery. Production identity, payments, private R2 delivery, authoritative reward issuance/redemption and cloud CMS are still unconfigured; preserve the fail-closed service boundaries. Do not confuse modularization completion with subscription-business launch. Finish each subsequent job and verification before starting another.
+
+---
+
+## Historical handoff log
+
 ## Latest completed update — October 27, 2026
 
 Read COMPLETION-REPORT.md, BUILD-SPEC.md v3, MONOLITH-BREAKDOWN.md, WORK-QUEUE.md and docs/TRAE-DAY-VENUES.md first. Jobs25–30 are complete at their stated prototype/research scope. Truthston.com branding/welcome sign;35 worn-ink stamp designs, four matching GUERILLA MAAB member marks, Angel By Nature wings, ABN lines/thumb, exact supplied Hustle Gang emblem, Rap-A-Lot logo;12 sourced Trae Day venues replace city labels. No display-only design grants real awards/credits. Toyota Center solid curved roof and court restoration fixed;13 geographically placed downtown complexes with road/freeway clearance checks. Stamp artwork and skyline layout are native modules, but most frontend remains a monolith; R0–R8 is a plan still to execute. 21 Node+17 Python tests, types/assets/SQL pass. Do not treat old handoff counts/status below as current. Real identity/D1/R2/Stripe/cloud CMS/AI remain unconfigured and protected routes fail closed. Preserve the approved illustrated companion. Finish one job and its verification before the next.

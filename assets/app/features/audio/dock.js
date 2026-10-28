@@ -17,15 +17,18 @@ export function createPlayerDock({ audio, appState, earn, updateDJ }) {
     acc = 0,
     last = performance.now();
   function syncLabels() {
-    const title = audio.providedTrack
-      ? audio.previewTrack.title
-      : "Original room beat";
+    const title =
+      !audio.buffer || audio.providedTrack
+        ? audio.previewTrack.title
+        : "Original room beat";
     $("#track-title").textContent = title;
     $("#track-subtitle").textContent = audio.previewBusy
       ? "LOADING YOUR PREVIEW RECORD…"
-      : audio.providedTrack
-        ? "PREVIEW RECORD / BOTH DECKS LOADED"
-        : "GENERATED BEAT / AUDIO FILE UNAVAILABLE";
+      : !audio.buffer
+        ? "PREVIEW RECORD / PRESS PLAY"
+        : audio.providedTrack
+          ? "PREVIEW RECORD / BOTH DECKS LOADED"
+          : "GENERATED BEAT / AUDIO FILE UNAVAILABLE";
     $("#play").textContent = audio.previewBusy
       ? "…"
       : audio.playing

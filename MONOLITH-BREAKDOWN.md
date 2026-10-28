@@ -1,6 +1,8 @@
 # Truthston — monolith breakdown and migration plan
 
-October 27, 2026 · Planned work, not implemented by this document.
+October 27, 2026 · R0–R8 implemented on `codex/modularize-frontend`.
+
+See [implemented architecture](docs/refactor/ARCHITECTURE.md) and [slice evidence](docs/refactor/STATUS.md). The original migration plan below is retained as the acceptance register; proposed filenames are superseded by the actual module map. The branch remains separate from production.
 
 ## Decision
 

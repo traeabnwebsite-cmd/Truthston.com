@@ -23,6 +23,7 @@ export function createRouter({
   editorial,
   win = window,
   doc = document,
+  onRoute = () => {},
 }) {
   let started = false;
   async function route() {
@@ -53,6 +54,7 @@ export function createRouter({
       win.scrollTo(0, 0);
       query("#book-back").focus({ preventScroll: true });
     }
+    onRoute(intent);
   }
   return {
     route,

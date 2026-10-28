@@ -47,14 +47,22 @@ export async function createWorld({
   three,
   rendererFactory,
   autoStart = true,
+  signal,
 }) {
   const lifetime = createLifetime();
+  const registerTwin = twin;
+  twin = (...args) => {
+    const remove = registerTwin(...args);
+    if (typeof remove === "function") lifetime.add(remove);
+    return remove;
+  };
   let sceneAPI;
   const T =
     three ||
     (await import(
       "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.module.min.js"
     ));
+  signal?.throwIfAborted();
   const canvas = $("#scene");
   const renderer = rendererFactory
     ? rendererFactory(canvas)
@@ -257,6 +265,7 @@ export async function createWorld({
       twin,
       modal,
     });
+    signal?.throwIfAborted();
     const { skylineTowerFootprints, skylineInventory } = skyline;
     const transco = buildTransco({ world, rand, T, renderer, mat, box });
     const venueMaterials = createVenueMaterials({ T, rand, mat, world });

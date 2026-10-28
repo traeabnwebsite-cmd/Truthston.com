@@ -31,3 +31,4 @@ test('router owns exactly one hash listener and supports explicit teardown',asyn
  const doc={body:{classList:{toggle(){}}}};const router=createRouter({win,doc,query,queryAll:()=>[],account:{open:path=>views.push(path)},commerce:{open(){}},editorial:{open(){}}});
  router.start();router.start();assert.equal(listeners.size,1);await router.route();assert.deepEqual(views,['stamp-book']);assert.equal(query('#account-page').hidden,false);assert.equal(query('#editorial-page').hidden,true);router.destroy();assert.equal(listeners.size,0);
 });
+test('catalog preparation does not mutate imported release data across application remounts',()=>{const supplied={releases:[{title:'A',year:2000,tracks:['One']}]};const before=structuredClone(supplied);const options={supplied,embeddedVault:{},siteContent:{projects:[]},sample:{},cover:()=>'/cover.png'};prepareCatalog(options);prepareCatalog(options);assert.deepEqual(supplied,before);});
