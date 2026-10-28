@@ -1,5 +1,6 @@
 {
   "schemaVersion": 1,
+  "editorialSourceAvailable": true,
   "completionSpec": "docs/COMPLETION-BUILD-SPEC.md",
   "commercialLaunchReady": false,
   "capabilities": {

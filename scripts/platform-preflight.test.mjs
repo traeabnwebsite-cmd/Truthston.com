@@ -65,3 +65,8 @@ test("preflight fails on shared environments, leaked master media and broken ret
   assert.ok(r.problems.some((x) => x.includes("master.mp3")));
   assert.ok(r.problems.some((x) => x.includes("previous/app/main.js")));
 });
+
+test('cloud checkout need not contain the deliberately private local editorial database',async(t)=>{
+ const {root}=await fixture(t);await rm(join(root,'content/editorial.json'));
+ const r=await platformPreflight(root);assert.deepEqual(r.problems,[]);assert.equal(r.editorialSourceAvailable,false);assert.equal(r.content.articles.editorialTotal,null);assert.equal(r.content.articles.drafts,null);assert.equal(r.content.articles.publishedSnapshot,1);
+});

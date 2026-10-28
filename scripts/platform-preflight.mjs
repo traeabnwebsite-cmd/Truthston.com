@@ -14,7 +14,10 @@ export async function platformPreflight(
       json("wrangler.jsonc"),
       json("wrangler.staging.jsonc"),
       json("assets/content/site.json"),
-      json("content/editorial.json"),
+      json("content/editorial.json").catch((error) => {
+        if (error.code === "ENOENT") return null;
+        throw error;
+      }),
       json("assets/config/gallery-curation.json"),
     ]);
   const problems = [];
@@ -34,8 +37,10 @@ export async function platformPreflight(
       k,
       {
         publishedSnapshot: (published[k] || []).length,
-        editorialTotal: (editorial[k] || []).length,
-        drafts: (editorial[k] || []).filter((x) => x.status === "draft").length,
+        editorialTotal: editorial ? (editorial[k] || []).length : null,
+        drafts: editorial
+          ? (editorial[k] || []).filter((x) => x.status === "draft").length
+          : null,
       },
     ]),
   );
@@ -104,6 +109,7 @@ export async function platformPreflight(
   });
   return {
     schemaVersion: 1,
+    editorialSourceAvailable: Boolean(editorial),
     completionSpec: "docs/COMPLETION-BUILD-SPEC.md",
     commercialLaunchReady: false,
     capabilities: platformCapabilities,
