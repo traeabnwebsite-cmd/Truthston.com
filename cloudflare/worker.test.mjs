@@ -48,3 +48,18 @@ test('public editorial content uses its sanitized asset and production CMS stays
  assert.equal((await worker.fetch(new Request('https://test.local/api/cms/session'),env)).status,503);
  assert.equal((await worker.fetch(new Request('https://test.local/api/projects/one/tracks/two/audio'),env)).status,503);
 });
+
+test('health identifies the actual release without promoting unimplemented services when bindings exist', async()=>{
+ const diagnosticEnv={...env,DB:{},MEDIA:{},STRIPE_SECRET_KEY:'test-value',ASSETS:{fetch:async()=>Response.json({current:{id:'416f9c35b249ec1f3a8c'}})}};
+ const response=await worker.fetch(new Request('https://test.local/api/health'),diagnosticEnv);
+ const value=await response.json();assert.equal(value.release,'416f9c35b249ec1f3a8c');
+ assert.equal(value.capabilities.accounts,'not-configured');assert.equal(value.capabilities.cloudCMS,'not-configured');assert.equal(value.capabilities.billing,'not-configured');
+ assert.ok(!JSON.stringify(value).includes('test-value'));
+ const head=await worker.fetch(new Request('https://test.local/api/health',{method:'HEAD'}),env);assert.equal(await head.text(),'');
+});
+test('malformed or missing release metadata is reported as unknown',async()=>{
+ for(const body of ['not json',JSON.stringify({current:{id:'bad'}})]){
+ const response=await worker.fetch(new Request('https://test.local/api/health'),{...env,ASSETS:{fetch:async()=>new Response(body)}});
+ assert.equal((await response.json()).release,null);
+ }
+});

@@ -1,3 +1,4 @@
+import { platformPreflight } from "./platform-preflight.mjs";
 import { readFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { resolveRollbackRevision } from "./rollback-revision.mjs";
@@ -43,7 +44,7 @@ const release = await writeCodeSnapshot(
 );
 const rollbackRef =
   process.env.TRUTHSTON_ROLLBACK_REF ||
-  "a834ca2a0d2521fc708d313c7fad0004f327e956";
+  "3d5a617ac6d9b1d516180ad673eca2221a7cb771";
 const revision = resolveRollbackRevision(root, rollbackRef);
 const paths = execFileSync(
   "git",
@@ -77,7 +78,15 @@ for (const name of ["index.html", "cms.html"])
 await writeFile(
   resolve(destination, "release-manifest.json"),
   JSON.stringify(
-    { current: release, retained: previous, rollbackRevision: revision },
+    {
+      current: release,
+      retained: previous,
+      rollbackRevision: revision,
+      sourceRevision: execFileSync("git", ["rev-parse", "HEAD"], {
+        cwd: root,
+        encoding: "utf8",
+      }).trim(),
+    },
     null,
     2,
   ) + "\n",
@@ -105,4 +114,11 @@ console.log(
   release.id,
   "; retained rollback code:",
   previous?.id || "none",
+);
+
+// Workers Builds runs this step too; package safety must not depend on a parallel CI job.
+const readiness = await platformPreflight(root);
+if (readiness.problems.length) throw new Error(readiness.problems.join("\n"));
+console.log(
+  "Package preflight: isolated config, retained code, app icons and private-media exclusion pass.",
 );

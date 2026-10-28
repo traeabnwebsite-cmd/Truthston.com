@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "completionSpec": "docs/COMPLETION-BUILD-SPEC.md",
+  "commercialLaunchReady": false,
+  "capabilities": {
+    "publicContent": "published-snapshot",
+    "accounts": "not-configured",
+    "cloudCMS": "not-configured",
+    "premiumAudio": "not-configured",
+    "premiumVideo": "not-configured",
+    "billing": "not-configured",
+    "verifiedStamps": "not-configured",
+    "rewardFulfillment": "not-configured",
+    "merchCheckout": "external-provider",
+    "studioRecording": "not-configured"
+  },
+  "content": {
+    "articles": {
+      "publishedSnapshot": 26,
+      "editorialTotal": 150,
+      "drafts": 124
+    },
+    "photos": {
+      "publishedSnapshot": 113,
+      "editorialTotal": 113,
+      "drafts": 0,
+      "uniqueGallery": 66
+    },
+    "events": {
+      "publishedSnapshot": 2,
+      "editorialTotal": 2,
+      "drafts": 0
+    },
+    "projects": {
+      "publishedSnapshot": 0,
+      "editorialTotal": 138,
+      "drafts": 138
+    },
+    "products": {
+      "publishedSnapshot": 7,
+      "editorialTotal": 7,
+      "drafts": 0
+    }
+  },
+  "environments": {
+    "production": {
+      "worker": "trae-tha-truth-preview",
+      "bindings": {
+        "database": [],
+        "privateStorage": []
+      }
+    },
+    "staging": {
+      "worker": "truthston-modular-staging",
+      "bindings": {
+        "database": [],
+        "privateStorage": []
+      },
+      "routes": []
+    }
+  },
+  "package": {
+    "current": "416f9c35b249ec1f3a8c",
+    "retained": "416f9c35b249ec1f3a8c",
+    "privateFileLeaks": 0
+  },
+  "problems": [],
+  "pending": [
+    "Real member/staff identity and verified transactional email",
+    "Isolated D1/private R2 and cloud CMS",
+    "Authorized private media and provider billing",
+    "Verified stamp earning and funded reward fulfillment",
+    "Physical iOS/Android acceptance and operational launch rehearsal"
+  ]
+}

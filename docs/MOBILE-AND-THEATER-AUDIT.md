@@ -25,4 +25,4 @@ October 28, 2026. Implements completion slice C01; release/deployment evidence i
 
 ## Release
 
-Source/types/module boundaries,67 Node tests,19 Python tests,SQL policy checks and packaged509-file reference validation pass. Packaged release416f9c35b249ec1f3a8c retains previous lived038ad231ab52743a89a. Main/Cloudflare promotion follows this audit. No real membership, billing, premium media, cloud publishing or studio recording service is enabled by these UI corrections.
+Source/types/module boundaries,67 Node tests,19 Python tests,SQL policy checks and packaged509-file reference validation pass. Packaged release416f9c35b249ec1f3a8c retains previous lived038ad231ab52743a89a. Committed/pushed3d5a617; GitHub and Cloudflare passed. Both hostnames serve416f9c35b249ec1f3a8c; live390px Standard home/theater and read-only HTTP smoke passed. No real membership, billing, premium media, cloud publishing or studio recording service is enabled by these UI corrections.

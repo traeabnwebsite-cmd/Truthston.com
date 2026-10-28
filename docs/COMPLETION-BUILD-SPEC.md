@@ -24,7 +24,7 @@ Target services: Cloudflare Workers + Static Assets; isolated D1 application dat
 
 ### C01 / S01 S02 S06 — finish the current responsive and fullscreen job
 
-**Status:** implementation and desktop/touch-emulation verification complete; main deployment follows. Physical-device launch verification remains open in C13. See `MOBILE-AND-THEATER-AUDIT.md`.
+**Status:** deployed at3d5a617 / code416f9c35b249ec1f3a8c; desktop/touch-emulation verification complete. Physical-device launch verification remains open in C13. See `MOBILE-AND-THEATER-AUDIT.md`.
 
 Deliver a dedicated phone Standard layout, readable type, reserved regions for guide/stamp/player and consistent page navigation. Preserve one fullscreen root through all seven destinations and embedded content. Retain fullscreen intent across orientation/browser transitions; provide a menu recovery action and explicit exit. Home-screen app mode supplements browser support. Normalize every shop/elevator/upstairs entrance to the same opening. Move year signs/cables entirely outside freeway footprints.
 
@@ -34,7 +34,7 @@ Theater: remove Browse films; one vertical side rail; selecting a film hides eve
 
 ### C02 / S14 S16 — operational release and capability truth
 
-**Status:** release pipeline exists; completion tooling missing.
+**Status:** operational tooling implemented: generated inventory/preflight, CI gate, public health capability/release reporting and read-only live smoke. Cloud backup/rollback rehearsal still depends on C04/C13. See `OPERATIONS-AND-READINESS.md`.
 
 Create a reproducible content/capability inventory and preflight report. Detect absent real bindings/providers instead of advertising paid functionality. Publish exact release identity and validate staging/production separation. Update stale architecture/deployment/handoff documents. Establish rollback to the previous known release, smoke checks and a launch checklist with owners/evidence. CI must fail on broken imports, tests, public private-media leakage or release packaging.
 

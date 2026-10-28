@@ -19,3 +19,4 @@ jobs:
       - run: npm run check
       - run: npm run prepare:assets
       - run: node scripts/check-source.mjs public
+      - run: npm run preflight
