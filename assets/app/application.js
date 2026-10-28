@@ -194,6 +194,7 @@ export async function createApplication({ initialMode } = {}) {
   });
   const fullscreen = createFullscreen({ toast });
   const chrome = createChrome({
+    fullscreen,
     account,
     accountRoute,
     screeningVideos,

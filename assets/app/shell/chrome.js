@@ -12,8 +12,21 @@ export function createChrome({
   modal,
   community,
   mode,
+  fullscreen,
 }) {
   const lifetime = createLifetime();
+
+  $$("[data-home]").forEach((link) =>
+    lifetime.handler(link, "onclick", async (event) => {
+      event.preventDefault();
+      await fullscreen.leave();
+      if ($("#modal").open) $("#modal").close();
+      location.hash = "";
+      await accountRoute();
+      navigation.go(0);
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }),
+  );
 
   lifetime.handler($("#account-open"), "onclick", () => {
     account.navigate("overview");
