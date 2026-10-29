@@ -1,3 +1,13 @@
+# Restored publication / R2 checkout checkpoint
+
+GitHub email verification completed through the browser using the Trae Gmail inbox. CLI authentication works, other saved accounts retained. Pushed51a48fa +62ac43f to main; GitHub and Cloudflare checks for62ac43f both pass. Public frontend3e613593458bee8fefe1 includes stable catalog IDs/share links. Auth proof stays local-only; do not advertise production accounts.
+
+Owner explicitly approved the Standard R2 subscription terms. Enrollment reached Cloudflare secure payment form, requiring a card/billing address; no saved payment details are filled. Asked owner to enter those directly in the open checkout and reply “payment entered.” Browser R2 tab1090913669 retained as handoff. Complete activation after their input; do not ask for the same subscription approval again. No bucket created yet. D1 staging already exists as recorded below.
+
+Next: finish R2 provisioning when payment details are supplied; keep all buckets private. Continue C04 cloud migrations/recovery/identity fault tests and verified email, then C05. Never use unrelated WebFaktory credentials. See docs/CLOUD-FOUNDATION-STATUS.md for current facts; older blocked-push/approval notes below are historical.
+
+---
+
 # Publishing/auth checkpoint — October28,2026
 
 Live remains d779d14 / frontend416f9c35b249ec1f3a8c. C03 committed locally51a48fa; PUSH FAILED because existing gh CLI credentials became invalid. GitHub browser reconnect reached “Confirm access” email verification for traeabnwebsite-cmd; user was asked asynchronously to complete that in the open tab. CLI polling then ended on a network reset; retry a fresh same-scope login after the user verifies. Do not claim C03 is live; use exact SHA for check queries, never remote “HEAD” as evidence for an unpushed commit.
